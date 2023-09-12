@@ -1,9 +1,9 @@
 import Landing from "./components/Landing"
-
+import Register from "./components/Register/Register"
 function App() {
   return (
     <div className="App">
-      <Landing/>
+      <Register/>
     </div>
   );
 }
