@@ -1,0 +1,51 @@
+#footerSection{
+    background-color: #111111;
+    padding: 2rem;
+}
+
+.footerA { 
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;  
+}
+  
+.footerTitle {
+    text-decoration: solid;
+    color: white;
+}
+
+.footerOptions span{
+    display: block; 
+    color: rgb(116, 111, 111);
+    margin-bottom: 5px; 
+    margin-top: 10px;
+}
+
+.footerB { 
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;  
+}
+
+#footerLeft{
+    margin-left: 9.2rem;
+}
+
+#footerRight{
+    margin-right: 9.2rem;
+}
+   
+.footerIco{
+    margin-left: 0.4rem;
+    margin-right: 0.4rem;
+}
+  
+#myHr {
+    width: 77%; 
+    height: 1px;
+    background-color: white;
+    margin-left: 9.2rem;
+  }
+  
+  
+  
