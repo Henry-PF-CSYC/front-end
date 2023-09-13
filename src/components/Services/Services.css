@@ -1,0 +1,16 @@
+#servicesContainer{
+    padding: 3rem;
+}
+
+#filterContainer{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.servicesFilter{
+    margin: 0.7rem; 
+}
+
+
+

@@ -74,6 +74,11 @@ const Landing = () =>{
 
             </section>
 
+            <section id="servCardContainer">
+              
+                
+            </section>
+
         </section>
     )
 }
