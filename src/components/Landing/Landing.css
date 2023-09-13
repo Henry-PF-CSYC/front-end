@@ -1,0 +1,62 @@
+#bgImage{
+    width: 100%;
+}
+
+#presentation{
+    padding: 3rem;
+    align-items: center;
+}
+
+#presentation p{
+    font-size: 18px;
+}
+
+#csa{
+    background-color: #75B3AC;
+    text-align: center;
+    color: white;
+    padding:1rem
+}
+
+#csa h1{
+    color: black;
+    margin: 1.5rem;
+}
+
+#combos{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin: 1rem;
+}
+
+#servicios{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;    
+    margin: 1rem;
+}
+
+.comboImg{
+    width: 300px;
+    height: 300px;
+    margin-bottom: 1rem;
+}
+
+.serviceImg{
+    width: 300px;
+    height: 300px;
+    border-radius: 1rem; 
+    margin-bottom: 1rem;
+}
+
+.scContainer{
+    max-width: min-content;
+}
+
+#whatsnew{
+   color: rgb(68, 68, 68);
+   background-color: #99EEFF;
+   border-radius: 1rem;
+   padding: 1rem;
+}
