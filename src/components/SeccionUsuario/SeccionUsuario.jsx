@@ -3,16 +3,10 @@ import CardsServicios from '../CardsServicios/CardsServicios'
 import internet from '../../assets/internet.webp'
 import gas from '../../assets/gas.webp'
 import agua from '../../assets/agua.jpg'
-import { useState } from 'react'
+import ModalUsuario from '../ModalUsuario/ModalUsuario'
 
 
 const SeccionUsuario = () => {
-
-    const [viewPassword, setViewPassword] = useState(false)
-
-    const changeViewPassword = () => {
-        setViewPassword(!viewPassword)
-    }
 
     const servicios = [
         {
@@ -36,7 +30,7 @@ const SeccionUsuario = () => {
     ]
 
     return (
-        <div>
+        <>
             <div className="row m-5">
                 <div className='col-12 d-flex justify-content-end'>
                     <button className='btn btn-dark' type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">Modificar datos personales</button>
@@ -80,59 +74,8 @@ const SeccionUsuario = () => {
                     }
                 </div>
             </div>
-
-            {/* <!-- Modal --> */}
-            <div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div className="modal-dialog modal-dialog-centered">
-                    <div className="modal-content">
-                        <div className="modal-header border border-bottom-0">
-                            <h1 className="modal-title fs-5" id="exampleModalLabel">Editar usuario</h1>
-                            <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <form>
-                            <div className="modal-body row">
-                                <div className="form-floating mb-3">
-                                    <input type="string" className="form-control" id="nombre" placeholder="Pepito" />
-                                    <label className='ms-2' htmlFor="floatingNombre">Nombre</label>
-                                </div>
-                                <div className="form-floating mb-3">
-                                    <input type="number" className="form-control" id="numero" placeholder="123456" />
-                                    <label className='ms-2' htmlFor="floatingNumero">Numero</label>
-                                </div>
-                                <div className="form-floating mb-3">
-                                    <input type="string" className="form-control" id="direccion" placeholder="calle 123" />
-                                    <label className='ms-2' htmlFor="floatingDireccion">Direccion</label>
-                                </div>
-                                <div className="form-floating mb-3">
-                                    <input type="email" className="form-control" id="correo" placeholder="name@example.com" />
-                                    <label className='ms-2' htmlFor="floatingEmail">Email</label>
-                                </div>
-                                <div className="form-floating mb-3">
-                                    <input type={viewPassword ? 'text' : 'password'} className="form-control" id="contrasena" placeholder="123456abc" />
-                                    <label className='ms-2' htmlFor="floatingPassword">Contraseña</label>
-                                    <i
-                                        className={`bi bi-eye${viewPassword ? '-slash' : ''}`}
-                                        style={{
-                                            position: 'absolute',
-                                            top: '50%',
-                                            right: '21px',
-                                            transform: 'translateY(-50%)',
-                                            cursor: 'pointer'
-                                        }}
-                                        onClick={changeViewPassword}
-                                    ></i>
-                                </div>
-
-                            </div>
-                            <div className="modal-footer border border-top-0">
-                                <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                                <button type="button" className="btn btn-primary">Guardar cambios</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
+            <ModalUsuario/>
+        </>
     )
 }
 
