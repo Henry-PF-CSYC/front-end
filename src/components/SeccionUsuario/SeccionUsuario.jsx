@@ -4,9 +4,23 @@ import internet from '../../assets/internet.webp'
 import gas from '../../assets/gas.webp'
 import agua from '../../assets/agua.jpg'
 import ModalUsuario from '../ModalUsuario/ModalUsuario'
+import { useState } from 'react'
+import { Button } from 'react-bootstrap'
 
 
 const SeccionUsuario = () => {
+
+    const [show, setShow] = useState(false)
+
+    const [dataUser, setDataUser] = useState({
+        name: 'Usuario1',
+        surname: 'Apellido2',
+        email: 'Prueba@gmail.com',
+        dni: 123456,
+        address: 'calle falsa 123',
+        phone: 123456789,
+        picFile: ''
+    })
 
     const servicios = [
         {
@@ -29,20 +43,27 @@ const SeccionUsuario = () => {
         }
     ]
 
+    const handleClose = () => {
+        setShow(false)
+    }
+
     return (
         <>
             <div className="row m-5">
                 <div className='col-12 d-flex justify-content-end'>
-                    <button className='btn btn-dark' type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">Modificar datos personales</button>
+                    {/* <button className='btn btn-dark' type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">Modificar datos personales</button> */}
+                    <Button variant='dark' onClick={() => {setShow(true)}}>Modificar datos personales</Button>
                 </div>
                 <div className="col-12 d-flex justify-content-center mb-3">
                     <h1>Mi perfil</h1>
                 </div>
                 <div className="col-10 ps-5">
-                    <p>Nombre: Usuario</p>
-                    <p>Numero: 999999999</p>
-                    <p>Direcion: ——————</p>
-                    <p>Email: ——————</p>
+                    <p>Nombre: {dataUser.name}</p>
+                    <p>Apellido: {dataUser.surname}</p>
+                    <p>Email: {dataUser.email}</p>
+                    <p>DNI: {dataUser.dni}</p>
+                    <p>Direcion: {dataUser.address}</p>
+                    <p>Telefono: {dataUser.phone}</p>
                     <p>Contraseña: ——————</p>
                 </div>
                 <div className="col-2">
@@ -74,7 +95,7 @@ const SeccionUsuario = () => {
                     }
                 </div>
             </div>
-            <ModalUsuario/>
+            <ModalUsuario show={show} dataUser={dataUser} handleClose={handleClose}/>
         </>
     )
 }
