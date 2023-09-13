@@ -1,5 +1,5 @@
 import {useEffect, useState} from "react"
-
+import "./LoginStyles.css"
 function Login(){
     
     const [formData, setFormData] = useState({
@@ -68,35 +68,37 @@ function Login(){
       }, [blockedUntil]) //esta atento solo si se establece un bloqueo
 
       return (
-        <div>
+        <div className="LoginStyle.login-container">
           <h2>Iniciar sesión</h2>
-          <form onSubmit={handlerSubmit}>
-            <label>
+          <form className="login-form" onSubmit={handlerSubmit}>
+            <label className="label-text">
               Nombre de usuario
               <input
                 type="text"
                 name="userName"
                 value={formData.userName}
                 onChange={handlerInputChange}
-                
-                disabled={fieldsDisabled}
+                disabled={fieldsDisabled ? "disabled" : ""}
+                className={`login-input ${fieldsDisabled ? "disabled" : ""}`}
               />
 
             </label>
-            <label>
+            <label className="label-text">
               Contraseña:
               <input
                 type="password"
                 name="password"
                 value={formData.password}
                 onChange={handlerInputChange}
-                
-                disabled={fieldsDisabled}
+                disabled={fieldsDisabled ? "disabled" : ""}
+                className={`login-input ${fieldsDisabled ? "disabled" : ""}`}
               />
             </label>
 
-            {error && <p>{error}</p>}
-            <button type="submit" disabled={fieldsDisabled}>Iniciar sesión</button>
+            {error && <p className="login-error">{error}</p>}
+            <button type="submit" disabled={fieldsDisabled} className="login-button">Iniciar sesión</button><br/>
+            <p>Aun no eres miembro?</p>
+            <button className="login-button">Registrarse</button>
           </form>
         </div>
       )
