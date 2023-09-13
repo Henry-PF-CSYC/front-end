@@ -1,0 +1,20 @@
+.descripcion {
+    flex-shrink: 0;
+    /* width: 1px; */
+    height: auto;
+    /* 51px */
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    word-break: break-word;
+    overflow: visible;
+    flex: 1 0 0px;
+    position: relative;
+    font-weight: 500;
+    font-style: normal;
+    font-family: "Inter", sans-serif;
+    color: #666666;
+    font-size: 16px;
+    letter-spacing: 0em;
+    line-height: 1.6;
+    text-align: justify;
+}
