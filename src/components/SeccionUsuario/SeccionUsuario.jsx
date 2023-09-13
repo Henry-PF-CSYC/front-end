@@ -1,11 +1,18 @@
-import CardsServicios from '../CardsServicios/CardsServicios'
 import imagenUsuario from '../../assets/imagenUsuario.png'
+import CardsServicios from '../CardsServicios/CardsServicios'
 import internet from '../../assets/internet.webp'
 import gas from '../../assets/gas.webp'
 import agua from '../../assets/agua.jpg'
+import { useState } from 'react'
 
 
 const SeccionUsuario = () => {
+
+    const [viewPassword, setViewPassword] = useState(false)
+
+    const changeViewPassword = () => {
+        setViewPassword(!viewPassword)
+    }
 
     const servicios = [
         {
@@ -51,7 +58,7 @@ const SeccionUsuario = () => {
                     Mis ofertas activas: 123<button className='btn btn-dark p-1 ms-2'>Ver</button>
                 </div>
             </div>
-            <div style={{ backgroundColor: '#75B3Ac' }}>
+            <div style={{ backgroundColor: '#75B3Ac' }} className='pb-1'>
                 <div className="row m-5">
                     <div className="col-12 d-flex justify-content-center mt-5">
                         <h1>Mis servicios activos:</h1>
@@ -75,20 +82,53 @@ const SeccionUsuario = () => {
             </div>
 
             {/* <!-- Modal --> */}
-            <div className="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div className="modal-dialog">
+            <div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div className="modal-dialog modal-dialog-centered">
                     <div className="modal-content">
-                        <div className="modal-header">
-                            <h1 className="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                        <div className="modal-header border border-bottom-0">
+                            <h1 className="modal-title fs-5" id="exampleModalLabel">Editar usuario</h1>
                             <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
-                        <div className="modal-body">
-                            ...
-                        </div>
-                        <div className="modal-footer">
-                            <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="button" className="btn btn-primary">Save changes</button>
-                        </div>
+                        <form>
+                            <div className="modal-body row">
+                                <div className="form-floating mb-3">
+                                    <input type="string" className="form-control" id="nombre" placeholder="Pepito" />
+                                    <label className='ms-2' htmlFor="floatingNombre">Nombre</label>
+                                </div>
+                                <div className="form-floating mb-3">
+                                    <input type="number" className="form-control" id="numero" placeholder="123456" />
+                                    <label className='ms-2' htmlFor="floatingNumero">Numero</label>
+                                </div>
+                                <div className="form-floating mb-3">
+                                    <input type="string" className="form-control" id="direccion" placeholder="calle 123" />
+                                    <label className='ms-2' htmlFor="floatingDireccion">Direccion</label>
+                                </div>
+                                <div className="form-floating mb-3">
+                                    <input type="email" className="form-control" id="correo" placeholder="name@example.com" />
+                                    <label className='ms-2' htmlFor="floatingEmail">Email</label>
+                                </div>
+                                <div className="form-floating mb-3">
+                                    <input type={viewPassword ? 'text' : 'password'} className="form-control" id="contrasena" placeholder="123456abc" />
+                                    <label className='ms-2' htmlFor="floatingPassword">Contraseña</label>
+                                    <i
+                                        className={`bi bi-eye${viewPassword ? '-slash' : ''}`}
+                                        style={{
+                                            position: 'absolute',
+                                            top: '50%',
+                                            right: '21px',
+                                            transform: 'translateY(-50%)',
+                                            cursor: 'pointer'
+                                        }}
+                                        onClick={changeViewPassword}
+                                    ></i>
+                                </div>
+
+                            </div>
+                            <div className="modal-footer border border-top-0">
+                                <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                                <button type="button" className="btn btn-primary">Guardar cambios</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>

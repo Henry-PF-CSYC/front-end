@@ -45,13 +45,13 @@ const Footer = () => {
 
         <div id="footerRight">
             <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer">
-            <i class="bi bi-facebook footerIco"></i></a>
+            <i className="bi bi-facebook footerIco"></i></a>
 
             <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer">
-            <i class="bi bi-instagram footerIco"></i></a>
+            <i className="bi bi-instagram footerIco"></i></a>
 
             <a href="https://www.twitter.com" target="_blank" rel="noopener noreferrer">
-            <i class="bi bi-twitter footerIco"></i></a>
+            <i className="bi bi-twitter footerIco"></i></a>
         </div>
 
     </div>
