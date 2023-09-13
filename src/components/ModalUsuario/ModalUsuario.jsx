@@ -4,7 +4,7 @@ import validations from '../Register/validations'
 import '../Register/RegisterStyles.css'
 import { Button, Modal } from 'react-bootstrap'
 
-const ModalUsuario = ({ show, handleClose, dataUser }) => {
+const ModalUsuario = ({ show, handleClose, dataUser, updateUser }) => {
     const { values, errors, touched, handleBlur, handleChange, handleSubmit, resetForm } = useFormik({
         initialValues: {
             name: dataUser.name,
@@ -17,8 +17,8 @@ const ModalUsuario = ({ show, handleClose, dataUser }) => {
         },
         enableReinitialize: true,
         validationSchema: validations,
-        onSubmit: (values, { resetForm }) => {
-            handleClose()
+        onSubmit: () => {
+            updateUser(values)
         }
     })
 

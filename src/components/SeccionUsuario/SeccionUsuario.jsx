@@ -47,6 +47,11 @@ const SeccionUsuario = () => {
         setShow(false)
     }
 
+    const updateUser = (data) => {
+        setDataUser(data)
+        setShow(false)
+    }
+
     return (
         <>
             <div className="row m-5">
@@ -95,7 +100,7 @@ const SeccionUsuario = () => {
                     }
                 </div>
             </div>
-            <ModalUsuario show={show} dataUser={dataUser} handleClose={handleClose}/>
+            <ModalUsuario show={show} dataUser={dataUser} handleClose={handleClose} updateUser={updateUser}/>
         </>
     )
 }
