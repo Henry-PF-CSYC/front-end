@@ -3,6 +3,7 @@ import Navbar from "./components/Navbar/Navbar";
 import Footer from "./components/Footer/Footer";
 import Landing from "./components/Landing/Landing";
 
+
 // Ruteado
 import {Routes, Route} from "react-router-dom"
 
