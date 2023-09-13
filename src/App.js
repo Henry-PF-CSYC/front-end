@@ -7,14 +7,27 @@ import Landing from "./components/Landing/Landing";
 // Ruteado
 import {Routes, Route} from "react-router-dom"
 
+import Login from "./components/Login/login"
+=======
+
+
 function App() {
   return (
     <div className="App">
+
       <Navbar/>
         <Routes>
           <Route path="/" element={<Landing/>}/>
         </Routes>  
       <Footer/> 
+=======
+
+      <Landing/>   
+      <Login/>
+
+=======
+      <Landing/>
+
     </div>
   );
 }
