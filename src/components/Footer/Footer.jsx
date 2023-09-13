@@ -1,4 +1,5 @@
 import "./Footer.css";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
@@ -9,9 +10,9 @@ const Footer = () => {
       <div>
         <h6 className="footerTitle">Servicios</h6>
             <div className="footerOptions">
-                <span>Luz</span>
-                <span>Gas</span>
-                <span>Internet</span>
+                <Link to="servicios/luz" style={{ textDecoration:'none'}}><span>Luz</span></Link>
+                <Link to="servicios/gas" style={{ textDecoration:'none'}}><span>Gas</span></Link>
+                <Link to="servicios/internet" style={{ textDecoration:'none'}}><span>Internet</span></Link>
             </div>
       </div>
 
@@ -19,7 +20,7 @@ const Footer = () => {
       <div>
         <h6 className="footerTitle">Ofertas</h6>
             <div className="footerOptions">
-                <span>Publica tu oferta!</span>
+                <Link to="ofertas" style={{ textDecoration:'none'}}><span>Publica tu oferta!</span></Link>
             </div>
       </div>
 
@@ -27,7 +28,7 @@ const Footer = () => {
       <div>
         <h6 className="footerTitle">Contacto</h6>
             <div className="footerOptions">
-                <span>Teléfon de contacto: xxxx-xxxx</span>
+                <span>Teléfono de contacto: xxxx-xxxx</span>
                 <span>Dirección: xxxx-xxxx </span>
                 <span>Email: xxxx-xxxx </span>
             </div>
@@ -43,9 +44,14 @@ const Footer = () => {
         </div>
 
         <div id="footerRight">
-            <i class="bi bi-facebook footerIco"></i>
-            <i class="bi bi-instagram footerIco"></i>
-            <i class="bi bi-twitter footerIco"></i>
+            <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer">
+            <i class="bi bi-facebook footerIco"></i></a>
+
+            <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer">
+            <i class="bi bi-instagram footerIco"></i></a>
+
+            <a href="https://www.twitter.com" target="_blank" rel="noopener noreferrer">
+            <i class="bi bi-twitter footerIco"></i></a>
         </div>
 
     </div>
