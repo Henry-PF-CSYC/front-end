@@ -1,7 +1,7 @@
 import Landing from "./components/Landing"
 
 import Login from "./components/Login/login"
-=======
+
 
 
 function App() {
@@ -11,7 +11,7 @@ function App() {
       <Landing/>   
       <Login/>
 
-=======
+
       <Landing/>
 
     </div>
