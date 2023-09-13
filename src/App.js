@@ -1,5 +1,5 @@
 import Landing from "./components/Landing"
-import Login from "./Login/login"
+import Login from "./components/Login/login"
 
 function App() {
   return (
