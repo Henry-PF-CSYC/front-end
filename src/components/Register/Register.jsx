@@ -32,7 +32,7 @@ const Register = () => {
       <form onSubmit={handleSubmit} autoComplete='off' className='formStyles'>
         <h1>Formulario de Registro</h1>
 
-        <div className="row mt-4">
+        <div className="row mt-4 fila">
           <div className="col-md-3">
             <h6 className="tagStyle">Nombre</h6>
           </div>
@@ -53,7 +53,7 @@ const Register = () => {
 
         <hr className="mx-n3" />
 
-        <div className="row mt-4">
+        <div className="row mt-4 fila">
           <div className="col-md-3">
             <h6 className="tagStyle">Apellido</h6>
           </div>
@@ -74,7 +74,7 @@ const Register = () => {
 
         <hr className="mx-n3" />
 
-        <div className="row mt-4">
+        <div className="row mt-4 fila">
           <div className="col-md-3">
             <h6 className="tagStyle">Correo Electrónico</h6>
           </div>
@@ -95,7 +95,7 @@ const Register = () => {
 
         <hr className="mx-n3" />
 
-        <div className="row mt-4">
+        <div className="row mt-4 fila">
           <div className="col-md-3">
             <h6 className="tagStyle">DNI</h6>
           </div>
@@ -116,7 +116,7 @@ const Register = () => {
 
         <hr className="mx-n3" />
 
-        <div className="row mt-4">
+        <div className="row mt-4 fila">
           <div className="col-md-3">
             <h6 className="tagStyle">Dirección</h6>
           </div>
@@ -137,7 +137,7 @@ const Register = () => {
 
         <hr className="mx-n3" />
 
-        <div className="row mt-4">
+        <div className="row mt-4 fila">
           <div className="col-md-3">
             <h6 className="tagStyle">Teléfono</h6>
           </div>
@@ -158,7 +158,7 @@ const Register = () => {
 
         <hr className="mx-n3" />
 
-        <div className="row mt-4">
+        <div className="row mt-4 fila">
           <div className="col-md-3">
             <h6 className="tagStyle">Foto de Socio</h6>
           </div>
@@ -178,10 +178,9 @@ const Register = () => {
 
         <hr className="mx-n3" />
 
-        <div className="row mt-4">
-          <div className="col-md-3"></div>
+        <div className="row mt-4 boton">
           <div className="col-md-9">
-            <button type="submit" className="btn btn-lg submitButton">Registrarse</button>
+            <button type="submit" className="btn btn-primary btn-lg">Registrarse</button>
           </div>
         </div>
 

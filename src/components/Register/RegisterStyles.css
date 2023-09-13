@@ -16,7 +16,10 @@
   display: flex;
   justify-content: center;
 }
-
+.fila{
+  width: 100%;
+  align-items: center;
+}
 .cardStyles{
   display: flex;
   border-radius: 25px;
@@ -53,7 +56,7 @@
 }
 
 .submitButton{
-  /* align-items: center; */
+  align-items: center; 
   width: 150px;
 	background: black;
 	font-weight: bold;
@@ -65,7 +68,10 @@
 	margin: 10px 5px;
 }
 
-
+.boton{
+  display: flex;
+ justify-content: space-around;
+}
 
 
 @media (max-width:720px) {
