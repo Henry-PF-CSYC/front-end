@@ -64,7 +64,7 @@ function Login(){
             setLoginAttempts(0)
             setFieldsDisabled(false)
           }
-        }, 1000) // Comprueba cada segundo (varia luego es solo para demo)
+        }, 1000) // Comprueba cada segundo () varia luego es solo para demo
       }, [blockedUntil]) //esta atento solo si se establece un bloqueo
 
       return (
