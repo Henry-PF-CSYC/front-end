@@ -1,5 +1,8 @@
 import {useEffect, useState} from "react"
+import {useNavigate} from "react-router-dom"
 import "./LoginStyles.css"
+
+
 function Login(){
     
     const [formData, setFormData] = useState({
@@ -10,6 +13,7 @@ function Login(){
     const [loginAttempts, setLoginAttempts] = useState(0) //intentos de inicio
     const [blockedUntil, setBlockedUntil] = useState(null) //bloqueo para que no pueda iniciar sesion
     const [fieldsDisabled, setFieldsDisabled] = useState(false) //para desabilitar campos
+    const navigate = useNavigate()
 
 
     const handlerInputChange=(event)=>{
@@ -68,11 +72,12 @@ function Login(){
       }, [blockedUntil]) //esta atento solo si se establece un bloqueo
 
       return (
-        <div className="LoginStyle.login-container">
-          <h2>Iniciar sesión</h2>
-          <form className="login-form" onSubmit={handlerSubmit}>
+        <div className="site">
+          <div className="login-container">
+           <i class="bi bi-person-circle icono-grande"></i>
+            <form className="login-form" onSubmit={handlerSubmit}>
             <label className="label-text">
-              Nombre de usuario
+              Usuario:
               <input
                 type="text"
                 name="userName"
@@ -96,11 +101,13 @@ function Login(){
             </label>
 
             {error && <p className="login-error">{error}</p>}
-            <button type="submit" disabled={fieldsDisabled} className="login-button">Iniciar sesión</button><br/>
-            <p>Aun no eres miembro?</p>
-            <button className="login-button">Registrarse</button>
+            <button type="submit" disabled={fieldsDisabled} className="login-button">Iniciar sesión</button>
+            <p className="text-noMenber">Aun no eres miembro?</p>
+            <button className="login-button" onClick={() => navigate("/register")}>Registrarse</button>
           </form>
+         </div>
         </div>
+       
       )
     
 }
