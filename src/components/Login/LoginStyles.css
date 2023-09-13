@@ -20,7 +20,6 @@
     flex-direction: column;
     align-items: center;
   }
-  
   .login-input {
     width: 100%;
     margin-bottom: 10px;
@@ -29,13 +28,11 @@
     border: 1px solid #ccc;
     font-size: 1.0rem;
   }
-  
   .login-error {
     color: red;
     font-size: 0.9rem;
     margin-top: 5px;
   }
-  
   .login-button {
     width: 150px;
     background-color: rgb(28, 120, 213);
@@ -59,7 +56,6 @@
     font-size: 0.9rem;
     font-weight: bold;
   }
-
   .disabled {
     background-color: #f0f0f0;
     cursor: not-allowed;
