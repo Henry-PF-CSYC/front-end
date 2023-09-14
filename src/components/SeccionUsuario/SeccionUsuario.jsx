@@ -1,18 +1,29 @@
-import imagenUsuario from '../../assets/imagenUsuario.png'
 import CardsServicios from '../CardsServicios/CardsServicios'
-import internet from '../../assets/internet.webp'
-import gas from '../../assets/gas.webp'
-import agua from '../../assets/agua.jpg'
+import ModalUsuario from '../ModalUsuario/ModalUsuario'
+
+import imagenUsuario from '../../assets/stockuser.png'
+
+import internet from '../../assets/Servicios/internet.webp'
+import gas from '../../assets/Servicios/gas.webp'
+import agua from '../../assets/Servicios/agua.jpg'
+
 import { useState } from 'react'
+import { Button } from 'react-bootstrap'
 
 
 const SeccionUsuario = () => {
 
-    const [viewPassword, setViewPassword] = useState(false)
+    const [show, setShow] = useState(false)
 
-    const changeViewPassword = () => {
-        setViewPassword(!viewPassword)
-    }
+    const [dataUser, setDataUser] = useState({
+        name: 'Usuario1',
+        surname: 'Apellido2',
+        email: 'Prueba@gmail.com',
+        dni: 123456,
+        address: 'calle falsa 123',
+        phone: 123456789,
+        picFile: ''
+    })
 
     const servicios = [
         {
@@ -35,20 +46,32 @@ const SeccionUsuario = () => {
         }
     ]
 
+    const handleClose = () => {
+        setShow(false)
+    }
+
+    const updateUser = (data) => {
+        setDataUser(data)
+        setShow(false)
+    }
+
     return (
-        <div>
+        <>
             <div className="row m-5">
                 <div className='col-12 d-flex justify-content-end'>
-                    <button className='btn btn-dark' type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">Modificar datos personales</button>
+                    {/* <button className='btn btn-dark' type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">Modificar datos personales</button> */}
+                    <Button variant='dark' onClick={() => {setShow(true)}}>Modificar datos personales</Button>
                 </div>
                 <div className="col-12 d-flex justify-content-center mb-3">
                     <h1>Mi perfil</h1>
                 </div>
                 <div className="col-10 ps-5">
-                    <p>Nombre: Usuario</p>
-                    <p>Numero: 999999999</p>
-                    <p>Direcion: ——————</p>
-                    <p>Email: ——————</p>
+                    <p>Nombre: {dataUser.name}</p>
+                    <p>Apellido: {dataUser.surname}</p>
+                    <p>Email: {dataUser.email}</p>
+                    <p>DNI: {dataUser.dni}</p>
+                    <p>Direcion: {dataUser.address}</p>
+                    <p>Telefono: {dataUser.phone}</p>
                     <p>Contraseña: ——————</p>
                 </div>
                 <div className="col-2">
@@ -80,59 +103,8 @@ const SeccionUsuario = () => {
                     }
                 </div>
             </div>
-
-            {/* <!-- Modal --> */}
-            <div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div className="modal-dialog modal-dialog-centered">
-                    <div className="modal-content">
-                        <div className="modal-header border border-bottom-0">
-                            <h1 className="modal-title fs-5" id="exampleModalLabel">Editar usuario</h1>
-                            <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <form>
-                            <div className="modal-body row">
-                                <div className="form-floating mb-3">
-                                    <input type="string" className="form-control" id="nombre" placeholder="Pepito" />
-                                    <label className='ms-2' htmlFor="floatingNombre">Nombre</label>
-                                </div>
-                                <div className="form-floating mb-3">
-                                    <input type="number" className="form-control" id="numero" placeholder="123456" />
-                                    <label className='ms-2' htmlFor="floatingNumero">Numero</label>
-                                </div>
-                                <div className="form-floating mb-3">
-                                    <input type="string" className="form-control" id="direccion" placeholder="calle 123" />
-                                    <label className='ms-2' htmlFor="floatingDireccion">Direccion</label>
-                                </div>
-                                <div className="form-floating mb-3">
-                                    <input type="email" className="form-control" id="correo" placeholder="name@example.com" />
-                                    <label className='ms-2' htmlFor="floatingEmail">Email</label>
-                                </div>
-                                <div className="form-floating mb-3">
-                                    <input type={viewPassword ? 'text' : 'password'} className="form-control" id="contrasena" placeholder="123456abc" />
-                                    <label className='ms-2' htmlFor="floatingPassword">Contraseña</label>
-                                    <i
-                                        className={`bi bi-eye${viewPassword ? '-slash' : ''}`}
-                                        style={{
-                                            position: 'absolute',
-                                            top: '50%',
-                                            right: '21px',
-                                            transform: 'translateY(-50%)',
-                                            cursor: 'pointer'
-                                        }}
-                                        onClick={changeViewPassword}
-                                    ></i>
-                                </div>
-
-                            </div>
-                            <div className="modal-footer border border-top-0">
-                                <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                                <button type="button" className="btn btn-primary">Guardar cambios</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
+            <ModalUsuario show={show} dataUser={dataUser} handleClose={handleClose} updateUser={updateUser}/>
+        </>
     )
 }
 

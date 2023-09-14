@@ -1,6 +1,10 @@
 import "./Services.css"
 import CardsServicios from "../CardsServicios/CardsServicios"
 
+import agua from "../../assets/Servicios/agua.jpg"
+import internet from "../../assets/Servicios/internet.webp"
+import gas from "../../assets/Servicios/gas.webp"
+
 const Services = () =>{
     return(
         <section id="servicesContainer">
@@ -51,19 +55,19 @@ const Services = () =>{
 
             <section className="row">
                 <div className="col-4">
-                    <CardsServicios imagen="./Imagenes/Servicios/agua.jpg" titulo="Agua potable - 5000$ x mes" nombreBoton="Lo quiero!"
+                    <CardsServicios imagen={agua} titulo="Agua potable - 5000$ x mes" nombreBoton="Lo quiero!"
                     descripcion="Brindamos agua potable con altos estándares de calidad,
                     comprometiéndonos con el futuro de las generaciones venideras." 
                     />
                 </div>
 
                 <div className="col-4">
-                    <CardsServicios imagen="./Imagenes/Servicios/internet.webp" titulo="10 Megas - 4000$ x mes" nombreBoton="Lo quiero!"
+                    <CardsServicios imagen={internet} titulo="10 Megas - 4000$ x mes" nombreBoton="Lo quiero!"
                     descripcion="Plan básico con una velocidad estándar para uso cotidiano, que es ideal para 3 o 4 dispositivos simultaneos!"/>
                 </div>
 
                 <div className="col-4">
-                    <CardsServicios imagen="./Imagenes/Servicios/gas.webp" titulo="Gas natural - 9000$ x mes" nombreBoton="Lo quiero!"
+                    <CardsServicios imagen={gas} titulo="Gas natural - 9000$ x mes" nombreBoton="Lo quiero!"
                     descripcion="Nuestro servicio de gas te brinda la comodidad y el calor que necesitas en tu hogar. 
                     Calidez y seguridad garantizada, pedilo hoy!" />
                 </div>

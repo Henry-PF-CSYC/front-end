@@ -1,0 +1,11 @@
+.internetContainer{
+    background-image: url("/src/assets/Fondos/internet-service.png");
+    background-size: cover; 
+    text-align: center;
+    font-size: larger;
+    padding: 3rem;
+}
+
+.internetCards{
+    justify-content: center;
+}
