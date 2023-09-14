@@ -6,11 +6,20 @@ import agua from '../../assets/agua.jpg'
 import ModalUsuario from '../ModalUsuario/ModalUsuario'
 import { useState } from 'react'
 import { Button } from 'react-bootstrap'
+import { useDispatch, useSelector } from 'react-redux'
+import { getUser } from '../../redux/actions'
 
 
 const SeccionUsuario = () => {
 
+    const dispatch = useDispatch()
+    const user = useSelector(state => console.log(state))
+
     const [show, setShow] = useState(false)
+
+    const pruebaReducr = () => {
+        dispatch(getUser())
+    }
 
     const [dataUser, setDataUser] = useState({
         name: 'Usuario1',
@@ -75,7 +84,7 @@ const SeccionUsuario = () => {
                     <img src={imagenUsuario} width={'163px'} height={'170px'} alt='si funciona' />
                 </div>
                 <div className='col-12 ps-5'>
-                    Mis ofertas activas: 123<button className='btn btn-dark p-1 ms-2'>Ver</button>
+                    Mis ofertas activas: 123<button className='btn btn-dark p-1 ms-2' onClick={pruebaReducr}>Ver</button>
                 </div>
             </div>
             <div style={{ backgroundColor: '#75B3Ac' }} className='pb-1'>

@@ -1,6 +1,6 @@
 import { GETUSER } from "./action-types"
 
-const getUser = () => {
+export const getUser = () => {
     return {
         type: GETUSER,
         payload: {

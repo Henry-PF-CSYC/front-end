@@ -2,10 +2,7 @@ import { GETUSER } from "./action-types";
 
 // Estado global
 const initialState = {
-    dataUser: {
-        name: 'Duvan',
-        Surname: 'Ramirez'
-    }
+    dataUser: {}
 } 
 
 // Reducer 
