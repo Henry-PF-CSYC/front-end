@@ -1,4 +1,3 @@
-
 import './Navbar.css';
 import { Link } from 'react-router-dom';
 import { useAuth0 } from '@auth0/auth0-react';
@@ -31,21 +30,9 @@ const Navbar = () => {
 
                 <Link to="/contacto" style={{ textDecoration:'none'}}><h5>Contacto</h5></Link>
                 <Link to="/ofertas" style={{ textDecoration:'none'}}><h5>Ofertas</h5></Link>
-                <Link to="/login"><button>Ingresá</button></Link>
-              </div>    
-        </section>)}
+        
+                
 
-
-            <div className="options">
-                <Link to="/servicios" style={{ textDecoration: 'none' }}>
-                    <h5>Servicios</h5>
-                </Link>
-                <Link to="/contacto" style={{ textDecoration: 'none' }}>
-                    <h5>Contacto</h5>
-                </Link>
-                <Link to="/ofertas" style={{ textDecoration: 'none' }}>
-                    <h5>Ofertas</h5>
-                </Link>
                 {isAuthenticated ? (
                     <div class="dropdown">
                         <button
@@ -63,9 +50,7 @@ const Navbar = () => {
                             aria-labelledby="dropdownMenuButton1"
                         >
                             <li>
-                                <a class="dropdown-item" href="#">
-                                    Perfil
-                                </a>
+                                <Link to="/usuario"><a class="dropdown-item" href="#">Perfil</a></Link>
                             </li>
                             <li>
                                 <a class="dropdown-item" href="#">

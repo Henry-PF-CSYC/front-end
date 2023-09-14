@@ -30,11 +30,6 @@
 
 
 #logo{
-.dropdown-toggle::after {
-    font-size: 0.90rem; 
-  }
-
-#logo{
     width: 280px;
     height: 90px;
 }

@@ -9,9 +9,11 @@ import agua from '../../assets/Servicios/agua.jpg'
 
 import { useState } from 'react'
 import { Button } from 'react-bootstrap'
-
+import { useAuth0 } from '@auth0/auth0-react';
 
 const SeccionUsuario = () => {
+
+    const { user } = useAuth0();
 
     const [show, setShow] = useState(false)
 
