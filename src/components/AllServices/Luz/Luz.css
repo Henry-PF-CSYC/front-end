@@ -1,0 +1,11 @@
+.luzContainer{
+    background-image: url("/src/assets/Fondos/luz-service.jpg");
+    background-size: cover; 
+    text-align: center;
+    font-size: larger;
+    padding: 3rem;
+}
+
+.luzCards{
+    justify-content: center;
+}

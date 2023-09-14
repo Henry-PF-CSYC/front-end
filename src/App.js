@@ -4,12 +4,19 @@ import Footer from "./components/Footer/Footer";
 import Landing from "./components/Landing/Landing";
 import Login from "./components/Login/login"
 import Register from "./components/Register/Register"
-import Services from "./components/Services/Services";
 import SeccionUsuario from './components/SeccionUsuario/SeccionUsuario'
+
+// Servicios
+import Services from "./components/Services/Services";
+import Internet from "./components/AllServices/Internet/Internet";
+import Agua from "./components/AllServices/Agua/Agua";
+import Gas from "./components/AllServices/Gas/Gas";
+import Luz from "./components/AllServices/Luz/Luz";
 
 // Ruteado
 import {Routes, Route} from "react-router-dom"
 
+// Renderizado
 function App() {
   return (
     <div className="App">
@@ -18,8 +25,13 @@ function App() {
           <Route path="/" element={<Landing/>}/>
           <Route path="/login" element={<Login/>}/>
           <Route path="/register" element={<Register/>}/>
-          <Route path="/servicios" element={<Services/>}/>
           <Route path="/usuario" element={<SeccionUsuario/>}/>
+
+          <Route path="/servicios" element={<Services/>}/>
+          <Route path="/internet" element={<Internet/>}/>
+          <Route path="/agua" element={<Agua/>}/>
+          <Route path="/gas" element={<Gas/>}/>
+          <Route path="/luz" element={<Luz/>}/> 
         </Routes>  
       <Footer/> 
     </div>);

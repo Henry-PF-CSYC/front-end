@@ -1,9 +1,12 @@
-import imagenUsuario from '../../assets/imagenUsuario.png'
 import CardsServicios from '../CardsServicios/CardsServicios'
-import internet from '../../assets/internet.webp'
-import gas from '../../assets/gas.webp'
-import agua from '../../assets/agua.jpg'
 import ModalUsuario from '../ModalUsuario/ModalUsuario'
+
+import imagenUsuario from '../../assets/stockuser.png'
+
+import internet from '../../assets/Servicios/internet.webp'
+import gas from '../../assets/Servicios/gas.webp'
+import agua from '../../assets/Servicios/agua.jpg'
+
 import { useState } from 'react'
 import { Button } from 'react-bootstrap'
 
