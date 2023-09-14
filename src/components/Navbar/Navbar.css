@@ -3,32 +3,42 @@
     align-items: center;
     justify-content: space-between;
     background-color: black;
-  }
-  
+}
+
 .options {
     display: flex;
     flex-direction: row;
-    margin-right: 2rem;
-    color: rgb(196, 192, 192); 
+    margin-right: 4rem;
+    color: rgb(196, 192, 192);
 }
-  
-.options h5{
-    margin-left: 1.5rem; 
+
+.options h5 {
+    margin-left: 1.5rem;
     color: white;
-    border-bottom: 2px solid transparent; 
-    transition: border-bottom 0.3s ease; 
+    border-bottom: 2px solid transparent;
+    transition: border-bottom 0.3s ease;
 }
 
 .options h5:hover {
-    border-bottom: 1px solid white; 
+    border-bottom: 1px solid white;
 }
 
-.options button{
-   border-radius: 10px;
-   margin-left: 1.5rem;     
+.options button {
+    border-radius: 10px;
+    margin-left: 1.5rem;
 }
 
-#logo{
+#logo {
     width: 280px;
     height: 90px;
+}
+
+.img {
+    max-width: 50px;
+    border-radius: 100%;
+    margin-left: 5px;
+}
+.ProfileBtn {
+    background-color: rgba(240, 248, 255, 0);
+    border-color: rgba(240, 248, 255, 0);
 }
