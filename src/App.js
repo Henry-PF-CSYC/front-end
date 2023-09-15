@@ -2,6 +2,7 @@
 import Navbar from "./components/Navbar/Navbar";
 import Footer from "./components/Footer/Footer";
 import Landing from "./components/Landing/Landing";
+import Contact from "./components/Contact/Contact";
 import Login from "./components/Login/login"
 import Register from "./components/Register/Register"
 import SeccionUsuario from './components/SeccionUsuario/SeccionUsuario'
@@ -30,6 +31,7 @@ function App() {
           <Route path="/register" element={<Register/>}/>
           <Route path="/usuario" element={<SeccionUsuario/>}/>
           <Route path="/ofertas" element={<Clasificados/>}/>
+          <Route path="/contacto" element={<Contact/>}/>
 
           <Route path="/servicios" element={<Services/>}/>
           <Route path="/internet" element={<Internet/>}/>

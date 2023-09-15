@@ -43,7 +43,7 @@ const Navbar = () => {
                             aria-expanded="false"
                             className="ProfileBtn"
                         >
-                            <img src={user.picture} className="img" />
+                            <img src={user.picture} alt="userImage" className="img" />
                         </button>
                         <ul
                             class="dropdown-menu"
