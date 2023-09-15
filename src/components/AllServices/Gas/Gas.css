@@ -1,0 +1,11 @@
+.gasContainer{
+    background-image: url("/src/assets/Fondos/gas-service.jpg");
+    background-size: cover; 
+    text-align: center;
+    font-size: larger;
+    padding: 3rem;
+}
+
+.gasCards{
+    justify-content: center;
+}
