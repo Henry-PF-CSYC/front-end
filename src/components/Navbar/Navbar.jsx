@@ -11,10 +11,11 @@ const Navbar = () => {
   return (
         <section className="container-fluid navbar">
 
-              <div>           
+              <div id='logoContainer'>           
                 <Link to="/"><img src={logo} id="logo" alt="logo" /></Link>
               </div>
-              
+
+
               <div className="options">
                
                 <div class="dropdown">
