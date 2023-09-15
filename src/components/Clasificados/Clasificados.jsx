@@ -1,4 +1,4 @@
-import CardsClasificados from "../CardsClasificados/CardsClasificados";
+import CardsClasificados from "./CardsClasificados/CardsClasificados";
 
 const array=[{tipo:"oferta",titulo:"titulo",descripcion:"descripcion",contacto:"contacto"},{ofeta:"oferta",titulo:"titulo",descripcion:"descripcion",contacto:"contacto"},{ofeta:"oferta",titulo:"titulo",descripcion:"descripcion",contacto:"contacto"},{ofeta:"oferta",titulo:"titulo",descripcion:"descripcion",contacto:"contacto"}]
 
@@ -14,8 +14,7 @@ const Clasificados=()=>{
                 />
             ))
             }
-        </div>
-    )
+        </div>)
 }
 
 export default Clasificados

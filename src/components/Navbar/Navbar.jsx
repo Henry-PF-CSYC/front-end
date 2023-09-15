@@ -29,7 +29,7 @@ const Navbar = () => {
                 </div>
 
                 <Link to="/contacto" style={{ textDecoration:'none'}}><h5>Contacto</h5></Link>
-                <Link to="/ofertas" style={{ textDecoration:'none'}}><h5>Ofertas</h5></Link>
+                <Link to="/clasificados" style={{ textDecoration:'none'}}><h5>Clasificados</h5></Link>
         
                 
 
@@ -50,11 +50,12 @@ const Navbar = () => {
                             aria-labelledby="dropdownMenuButton1"
                         >
                             <li>
-                                <Link to="/usuario"><a class="dropdown-item" href="#">Perfil</a></Link>
+                                <Link to="/usuario" style={{ textDecoration:'none'}}>
+                                    <a class="dropdown-item userDropdown" href=".">Ver mi perfil</a></Link>
                             </li>
                             <li>
-                                <a class="dropdown-item" href="#">
-                                    <button onClick={logout}>Log Out</button>
+                                <a class="dropdown-item" href=".">
+                                    <p className="userDropdown" onClick={logout}>Salir</p>
                                 </a>
                             </li>
                         </ul>

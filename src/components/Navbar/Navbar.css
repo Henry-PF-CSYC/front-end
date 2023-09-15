@@ -10,10 +10,11 @@
     flex-direction: row;
     margin-right: 4rem;
     color: rgb(196, 192, 192);
+    align-items: center;
 }
 
 .options h5 {
-    margin-left: 1.5rem;
+    margin-left:2rem;
     color: white;
     border-bottom: 2px solid transparent;
     transition: border-bottom 0.3s ease;
@@ -25,9 +26,8 @@
 
 .options button {
     border-radius: 10px;
-    margin-left: 1.5rem;
+    margin-left: 2rem;
 }
-
 
 #logo{
     width: 280px;
@@ -39,7 +39,12 @@
     border-radius: 100%;
     margin-left: 5px;
 }
+
 .ProfileBtn {
     background-color: rgba(240, 248, 255, 0);
     border-color: rgba(240, 248, 255, 0);
+}
+
+.userDropdown{
+    margin: 0%;
 }

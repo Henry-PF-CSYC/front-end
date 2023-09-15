@@ -1,5 +1,5 @@
 import "./Agua.css" 
-import CardsServicios from "../../CardsServicios/CardsServicios"
+import CardsServicios from "../../Servicios/CardsServicios/CardsServicios"
 import agua from "../../../assets/Servicios/agua.jpg"
 
 const Agua = () =>{

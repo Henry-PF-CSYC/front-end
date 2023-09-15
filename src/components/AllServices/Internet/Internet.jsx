@@ -1,5 +1,5 @@
 import "./Internet.css" 
-import CardsServicios from "../../CardsServicios/CardsServicios"
+import CardsServicios from "../../Servicios/CardsServicios/CardsServicios"
 import plan1 from "../../../assets/Planes/Internet/internet-plan1.webp"
 import plan2 from "../../../assets/Planes/Internet/internet-plan2.jpg"
 import plan3 from "../../../assets/Planes/Internet/internet-plan3.jpg"

@@ -12,7 +12,7 @@ import Clasificados from "./components/Clasificados/Clasificados";
 import {Routes, Route} from "react-router-dom"
 
 // Servicios
-import Services from "./components/Services/Services";
+import Servicios from "./components/Servicios/Servicios";
 import Internet from "./components/AllServices/Internet/Internet";
 import Agua from "./components/AllServices/Agua/Agua";
 import Gas from "./components/AllServices/Gas/Gas";
@@ -30,10 +30,10 @@ function App() {
           <Route path="/login" element={<Login/>}/>
           <Route path="/register" element={<Register/>}/>
           <Route path="/usuario" element={<SeccionUsuario/>}/>
-          <Route path="/ofertas" element={<Clasificados/>}/>
+          <Route path="/clasificados" element={<Clasificados/>}/>
           <Route path="/contacto" element={<Contact/>}/>
 
-          <Route path="/servicios" element={<Services/>}/>
+          <Route path="/servicios" element={<Servicios/>}/>
           <Route path="/internet" element={<Internet/>}/>
           <Route path="/agua" element={<Agua/>}/>
           <Route path="/gas" element={<Gas/>}/>

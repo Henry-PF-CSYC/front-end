@@ -1,4 +1,4 @@
-import CardsServicios from '../CardsServicios/CardsServicios'
+import CardsServicios from '../Servicios/CardsServicios/CardsServicios'
 import ModalUsuario from '../ModalUsuario/ModalUsuario'
 
 import imagenUsuario from '../../assets/stockuser.png'

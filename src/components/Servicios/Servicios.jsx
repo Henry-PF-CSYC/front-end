@@ -1,5 +1,5 @@
-import "./Services.css"
-import CardsServicios from "../CardsServicios/CardsServicios"
+import "./Servicios.css"
+import CardsServicios from "../Servicios/CardsServicios/CardsServicios"
 
 import agua from "../../assets/Servicios/agua.jpg"
 import internet from "../../assets/Servicios/internet.webp"

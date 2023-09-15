@@ -1,5 +1,5 @@
 import "./Gas.css" 
-import CardsServicios from "../../CardsServicios/CardsServicios"
+import CardsServicios from "../../Servicios/CardsServicios/CardsServicios"
 import gas from "../../../assets/Servicios/gas.webp"
 
 const Agua = () =>{
