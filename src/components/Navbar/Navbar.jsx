@@ -26,6 +26,9 @@ const Navbar = () => {
                       <li><Link to="/gas" style={{ textDecoration:'none'}}><span class="dropdown-item">Gas</span></Link></li>
                       <li><Link to="/internet" style={{ textDecoration:'none'}}><span class="dropdown-item">Internet</span></Link></li>
                       <li><Link to="/agua" style={{ textDecoration:'none'}}><span class="dropdown-item">Agua</span></Link></li>
+                      <li><Link to="/cable" style={{ textDecoration:'none'}}><span class="dropdown-item">Cable</span></Link></li>
+                      <li><Link to="/telefonia" style={{ textDecoration:'none'}}><span class="dropdown-item">Telefonia</span></Link></li>
+                      <li><Link to="/streaming" style={{ textDecoration:'none'}}><span class="dropdown-item">Streaming</span></Link></li>
                     </ul>
                 </div>
 

@@ -17,6 +17,9 @@ import Internet from "./components/Servicios/Internet/Internet";
 import Agua from "./components/Servicios/Agua/Agua";
 import Gas from "./components/Servicios/Gas/Gas";
 import Luz from "./components/Servicios/Luz/Luz";
+import Cable from "./components/Servicios/Cable/Cable";
+import Telefonia from "./components/Servicios/Telefonia/Telefonia";
+import Streaming from "./components/Servicios/Streaming/Streaming";
 
 
 // Renderizado
@@ -38,6 +41,9 @@ function App() {
           <Route path="/agua" element={<Agua/>}/>
           <Route path="/gas" element={<Gas/>}/>
           <Route path="/luz" element={<Luz/>}/> 
+          <Route path="/cable" element={<Cable/>}/> 
+          <Route path="/telefonia" element={<Telefonia/>}/> 
+          <Route path="/streaming" element={<Streaming/>}/> 
         </Routes>  
       <Footer/> 
     </div>);
