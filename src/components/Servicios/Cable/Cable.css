@@ -1,0 +1,15 @@
+.cableContainer{
+    background-image: url("/src/assets/Fondos/cable-service.jpg");
+    background-size: cover; 
+    text-align: center;
+    font-size: larger;
+    padding: 3rem;
+}
+
+#cableInfo{
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+.cableCards{
+    justify-content: center;
+}

@@ -6,7 +6,7 @@ const Agua = () =>{
     return(
         <section className="container-fluid aguaContainer">
 
-            <section>
+            <section id="aguaInfo">
                 <h1>Agua de calidad superior</h1>
                 
                 <p>Nuestra suscripción de agua garantiza que tu hogar esté abastecido con agua potable de la más alta calidad. Nos comprometemos a proporcionar agua pura y segura para tu consumo diario y uso doméstico. Cada gota que fluye de nuestros grifos es sometida a rigurosos controles de calidad para garantizar que cumple con los estándares más estrictos.</p>   

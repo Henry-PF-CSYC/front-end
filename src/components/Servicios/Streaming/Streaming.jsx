@@ -1,0 +1,44 @@
+import "./Streaming.css" 
+import CardsServicios from "../CardsServicios/CardsServicios"
+import plan1 from "../../../assets/Planes/Streaming/streaming-combo1.jpg"
+import plan2 from "../../../assets/Planes/Streaming/streaming-combo2.webp"
+import plan3 from "../../../assets/Planes/Streaming/streaming-combo3.webp"
+
+const Streaming = () =>{
+    return(
+        <section className="container-fluid streamingContainer">
+
+            <section id="streamingInfo">
+                <h1>Streaming</h1>
+                
+                <p>Te ofrecemos acceso a una biblioteca interminable de contenido de transmisión en línea. Desde éxitos de taquilla hasta series originales y documentales, tendrás todo lo que necesitas para tus noches de entretenimiento. Con una interfaz fácil de usar y transmisión en alta definición, podrás disfrutar de tus programas y películas favoritos sin interrupciones.</p>   
+                 
+                <p>Nuestra suscripción de streaming también permite la visualización en múltiples dispositivos, para que puedas disfrutar en casa o mientras te desplazas. Además, estamos constantemente actualizando nuestro catálogo para ofrecerte lo último en entretenimiento.</p> 
+
+                <p>Únete a nosotros y descubre una nueva forma de ver televisión. Con opciones personalizadas y una amplia variedad de contenido, satisfacemos todos tus gustos de entretenimiento.</p>
+            </section>
+
+            <hr/>
+
+            <section className="row streamingCards">
+                <div className="col-4">
+                    <CardsServicios imagen={plan1} titulo="Netflix & Disney+ || 1000$ x mes" 
+                    descripcion="Pack estándar para disfrutar series y películas de calidad!" nombreBoton="Lo quiero!"/>
+                </div>
+
+                <div className="col-4">
+                    <CardsServicios imagen={plan2} titulo="Pack 4 en 1 || 1500$ x mes" 
+                    descripcion="4 servicios. 4 formas de disfrutar miles de éxitos!" nombreBoton="Lo quiero!"/>
+                </div>
+
+                <div className="col-4">
+                    <CardsServicios imagen={plan3} titulo="Pack cine || 2000$ x mes" 
+                    descripcion="Con este plan, aburrirse será tarea dificil, 6 servicios y más en camino." nombreBoton="Lo quiero!"/>
+                </div>
+            </section>
+            
+        </section>
+    )
+}
+
+export default Streaming

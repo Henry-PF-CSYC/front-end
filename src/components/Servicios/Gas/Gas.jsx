@@ -6,7 +6,7 @@ const Agua = () =>{
     return(
         <section className="container-fluid gasContainer">
 
-            <section>
+            <section id="gasInfo">
                 <h1>Gas Natural Eficiente</h1>
                 
                 <p>Nuestra suscripción de gas natural te brinda un suministro confiable de calor y energía para tu hogar. Con nosotros, puedes estar seguro de que siempre tendrás la temperatura adecuada en tu casa, sin importar el clima exterior. El gas natural es una opción respetuosa con el medio ambiente y eficiente en términos energéticos.</p>   

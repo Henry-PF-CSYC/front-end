@@ -8,7 +8,7 @@ const Internet = () =>{
     return(
         <section className="container-fluid internetContainer">
 
-            <section>
+            <section id="internetInfo">
                 <h1>Internet</h1>
                 
                 <p>Nuestra suscripción de Internet de alta velocidad ofrece una experiencia en línea sin igual. Disfrutarás de una navegación suave y sin demoras. Ya sea que estés transmitiendo contenido multimedia, realizando videollamadas de alta definición o trabajando desde casa, nuestra confiable conexión te permitirá hacerlo todo sin problemas.</p>   

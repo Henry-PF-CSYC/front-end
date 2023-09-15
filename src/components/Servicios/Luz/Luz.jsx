@@ -6,7 +6,7 @@ const Luz = () =>{
     return(
         <section className="container-fluid luzContainer">
 
-            <section>
+            <section id="luzInfo">
                 <h1>Electricidad Confiable</h1>
                 
                 <p>Nuestra suscripción de electricidad te brinda acceso a una fuente confiable de energía que iluminará tu hogar y facilitará tu vida diaria. Con nosotros, disfrutarás de una electricidad de alta calidad que alimenta tus dispositivos y electrodomésticos de manera eficiente y segura.</p>   
