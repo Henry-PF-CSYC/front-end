@@ -1,7 +1,7 @@
 import { useFormik } from "formik"
 import { useState } from "react"
-import validations from '../Register/validations'
-import '../Register/RegisterStyles.css'
+import validations from '../../Register/validations'
+import "../../Register/Register"
 import { Button, Modal } from 'react-bootstrap'
 
 const ModalUsuario = ({ show, handleClose, dataUser, updateUser }) => {

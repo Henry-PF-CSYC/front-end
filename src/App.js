@@ -13,10 +13,10 @@ import {Routes, Route} from "react-router-dom"
 
 // Servicios
 import Servicios from "./components/Servicios/Servicios";
-import Internet from "./components/AllServices/Internet/Internet";
-import Agua from "./components/AllServices/Agua/Agua";
-import Gas from "./components/AllServices/Gas/Gas";
-import Luz from "./components/AllServices/Luz/Luz";
+import Internet from "./components/Servicios/Internet/Internet";
+import Agua from "./components/Servicios/Agua/Agua";
+import Gas from "./components/Servicios/Gas/Gas";
+import Luz from "./components/Servicios/Luz/Luz";
 
 
 // Renderizado

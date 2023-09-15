@@ -1,5 +1,5 @@
 import CardsServicios from '../Servicios/CardsServicios/CardsServicios'
-import ModalUsuario from '../ModalUsuario/ModalUsuario'
+import ModalUsuario from "./ModalUsuario/ModalUsuario"
 
 import imagenUsuario from '../../assets/stockuser.png'
 

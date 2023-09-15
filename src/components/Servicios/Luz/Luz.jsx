@@ -1,5 +1,5 @@
 import "./Luz.css" 
-import CardsServicios from "../../Servicios/CardsServicios/CardsServicios"
+import CardsServicios from "../CardsServicios/CardsServicios"
 import luz from "../../../assets/Servicios/luz.webp"
 
 const Luz = () =>{

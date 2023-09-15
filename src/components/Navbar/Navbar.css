@@ -11,13 +11,16 @@
     margin-right: 4rem;
     color: rgb(196, 192, 192);
     align-items: center;
+    text-decoration: none;
+    color: white;
 }
 
 .options h5 {
     margin-left:2rem;
-    color: white;
+    margin-left:2rem;
     border-bottom: 2px solid transparent;
     transition: border-bottom 0.3s ease;
+    text-decoration: none;
 }
 
 .options h5:hover {
@@ -27,6 +30,7 @@
 .options button {
     border-radius: 10px;
     margin-left: 2rem;
+    margin-left:2rem;
 }
 
 #logo{
@@ -47,4 +51,10 @@
 
 .userDropdown{
     margin: 0%;
+}
+
+
+.linkh5{
+    color: white;
+    text-decoration: none;
 }

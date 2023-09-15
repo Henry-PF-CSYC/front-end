@@ -28,8 +28,8 @@ const Navbar = () => {
                     </ul>
                 </div>
 
-                <Link to="/contacto" style={{ textDecoration:'none'}}><h5>Contacto</h5></Link>
-                <Link to="/clasificados" style={{ textDecoration:'none'}}><h5>Clasificados</h5></Link>
+                <h5><Link className='linkh5' to="/contacto">Contacto</Link></h5>
+                <h5><Link className='linkh5' to="/clasificados">Clasificados</Link></h5>
         
                 
 
