@@ -13,6 +13,7 @@ import agua from "../../assets/Servicios/agua.jpg"
 import cable from "../../assets/Servicios/cable.webp"
 import telefonia from "../../assets/Servicios/telefonia.jpg"
 import streaming from "../../assets/Servicios/streaming.webp"
+import { Link } from "react-router-dom"
 
 const Landing = () =>{
     return(
@@ -36,12 +37,12 @@ const Landing = () =>{
                     <swiper-slide class="comboSlide">
                         <img src={combo1} alt="Offer 1"/>
                         <p>Oferta 1</p>
-                        <button>Lo quiero!</button>
+                        <Link to="/servicios/"></Link><button>Lo quiero!</button>
                     </swiper-slide>
                     <swiper-slide class="comboSlide">
                         <img src={combo2} alt="Offer 2"/>
                         <p>Oferta 2</p>
-                        <button>Lo quiero!</button>
+                        <Link to="/servicios/"></Link><button>Lo quiero!</button>
                     </swiper-slide>
                     <swiper-slide class="comboSlide">
                         <img src={combo3} alt="Offer 3"/>
@@ -64,39 +65,39 @@ const Landing = () =>{
                         <swiper-slide class="serviceSlide"><h4>Gas</h4><img src={gas} className="carr2Img" alt="service"/>
                         <p>Nuestro servicio de gas te brinda la comodidad y el calor que necesitas en tu hogar. Con nuestro suministro 
                         confiable, puedes disfrutar de un ambiente cálido y acogedor en cada rincón, sin preocuparte por interrupciones</p>
-                        <button>Mas informacion</button></swiper-slide>
+                        <Link to="/servicios/gas"><button>Mas informacion</button></Link></swiper-slide>
                         
                         <swiper-slide class="serviceSlide"><h4>Internet</h4><img src={internet} className="carr2Img" alt="service"/>
                         <p>La conectividad es esencial en la era digital, y nuestro servicio de internet te ofrece una conexión 
                         rápida y confiable. Con velocidades de navegación y descarga excepcionales, puedes estar siempre conectado, 
                         trabajar de manera eficiente y disfrutar de un entretenimiento sin interrupciones en línea</p>
-                        <button>Mas informacion</button></swiper-slide>
+                        <Link to="/servicios/internet"><button>Mas informacion</button></Link></swiper-slide>
                         
                         <swiper-slide class="serviceSlide"><h4>Luz</h4><img src={luz} className="carr2Img" alt="service"/>
                         <p>La electricidad es el corazón de tu hogar, y nosotros lo mantenemos latiendo fuerte. 
                         Con nuestro servicio de luz, garantizamos una iluminación constante y segura, proporcionándote 
                         la energía que necesitas para iluminar tu vida y realizar tus actividades diarias.</p>
-                        <button>Mas informacion</button></swiper-slide>
+                        <Link to="/servicios/luz"><button>Mas informacion</button></Link></swiper-slide>
 
                         <swiper-slide class="serviceSlide"><h4>Agua</h4><img src={agua} alt="service"/>
                         <p>Nuestro servicio de agua garantiza un suministro limpio y confiable para tu hogar. Con la calidad del agua 
                         que ofrecemos, puedes mantener tus necesidades de agua cubiertas, desde la cocina hasta el baño, sin preocupaciones.</p>
-                        <button>Mas informacion</button></swiper-slide>
+                        <Link to="/servicios/agua"><button>Mas informacion</button></Link></swiper-slide>
                         
                         <swiper-slide class="serviceSlide"><h4>Cable</h4><img src={cable} alt="service"/>
                         <p>Nuestro servicio de cable te brinda acceso a una amplia variedad de canales y entretenimiento de alta 
                         calidad. Con programación para todas las edades y gustos, disfruta de la mejor televisión en tu hogar.</p>
-                        <button>Mas informacion</button></swiper-slide>
+                        <Link to="/servicios/cable"><button>Mas informacion</button></Link></swiper-slide>
                         
                         <swiper-slide class="serviceSlide"><h4>Telefonia</h4><img src={telefonia} alt="service"/>
                         <p>Nuestro servicio de telefonía ofrece comunicaciones claras y confiables. Mantente conectado con amigos y 
                         familiares en todo momento y disfruta de llamadas sin interrupciones.</p>
-                        <button>Mas informacion</button></swiper-slide>
+                        <Link to="/servicios/telefonia"><button>Mas informacion</button></Link></swiper-slide>
 
                         <swiper-slide class="serviceSlide"><h4>Streaming</h4><img src={streaming} alt="service"/>
                         <p>Nuestro servicio de streaming te brinda acceso a una amplia biblioteca de películas, programas de 
                         televisión y contenido exclusivo. Disfruta del entretenimiento a la carta desde la comodidad de tu hogar.</p>
-                        <button>Mas informacion</button></swiper-slide>
+                        <Link to="/servicios/streaming"><button>Mas informacion</button></Link></swiper-slide>
                         
                     </swiper-container>
 
