@@ -8,7 +8,7 @@ import combo3 from "../../assets/Combos/3.png"
 
 import gas from "../../assets/Servicios/gas.webp"
 import internet from "../../assets/Servicios/internet.webp"
-import luz from "../../assets/Servicios/gas.webp"
+import luz from "../../assets/Servicios/luz.webp"
 
 const Landing = () =>{
     return(
@@ -47,6 +47,7 @@ const Landing = () =>{
 
                 <hr/>
 
+
                 <h1>Nuestros servicios</h1>
 
                 <div id="servicios">
@@ -84,13 +85,10 @@ const Landing = () =>{
 
             </section>
 
-            <section id="servCardContainer">
-              
-                
-            </section>
-
         </section>
+        
     )
+    
 }
 
 export default Landing;
