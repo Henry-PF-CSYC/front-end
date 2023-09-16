@@ -37,13 +37,13 @@ function App() {
           <Route path="/contacto" element={<Contact/>}/>
 
           <Route path="/servicios" element={<Servicios/>}/>
-          <Route path="/internet" element={<Internet/>}/>
-          <Route path="/agua" element={<Agua/>}/>
-          <Route path="/gas" element={<Gas/>}/>
-          <Route path="/luz" element={<Luz/>}/> 
-          <Route path="/cable" element={<Cable/>}/> 
-          <Route path="/telefonia" element={<Telefonia/>}/> 
-          <Route path="/streaming" element={<Streaming/>}/> 
+          <Route path="/servicios/internet" element={<Internet/>}/>
+          <Route path="/servicios/agua" element={<Agua/>}/>
+          <Route path="/servicios/gas" element={<Gas/>}/>
+          <Route path="/servicios/luz" element={<Luz/>}/> 
+          <Route path="/servicios/cable" element={<Cable/>}/> 
+          <Route path="/servicios/telefonia" element={<Telefonia/>}/> 
+          <Route path="/servicios/streaming" element={<Streaming/>}/> 
         </Routes>  
       <Footer/> 
     </div>);
