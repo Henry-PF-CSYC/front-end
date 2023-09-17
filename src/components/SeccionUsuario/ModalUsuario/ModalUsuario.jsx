@@ -16,7 +16,7 @@ const ModalUsuario = ({ show, handleClose, dataUser, updateUser }) => {
     } = useFormik({
         initialValues: {
             name: dataUser.name,
-            surname: dataUser.surname,
+            lastname: dataUser.lastname,
             dni: dataUser.dni,
             email: dataUser.email,
             address: dataUser.address,
@@ -70,21 +70,21 @@ const ModalUsuario = ({ show, handleClose, dataUser, updateUser }) => {
                         <div className="form-floating mb-2">
                             <input
                                 type="string"
-                                id="surname"
-                                name="surname"
-                                value={values.surname}
+                                id="lastname"
+                                name="lastname"
+                                value={values.lastname}
                                 placeholder="Pepito"
                                 onChange={handleChange}
                                 className={
                                     'form-control ' +
-                                    (errors.surname && touched.surname
+                                    (errors.lastname && touched.lastname
                                         ? 'inputError'
                                         : '')
                                 }
                                 onBlur={handleBlur}
                             />
-                            {errors.surname && touched.surname && (
-                                <p className="errorText">{errors.surname}</p>
+                            {errors.lastname && touched.lastname && (
+                                <p className="errorText">{errors.lastname}</p>
                             )}
                             <label className="ms-2" htmlFor="floatingNombre">
                                 Apellido

@@ -1,22 +1,26 @@
-import { GETUSER } from "./action-types";
+import { GETUSER, EMPTY_USER } from './action-types';
 
 // Estado global
 const initialState = {
     dataUser: {}
-} 
+};
 
-// Reducer 
+// Reducer
 const reducer = (state = initialState, action) => {
-   
-    switch (action.type){
+    switch (action.type) {
         case GETUSER:
-            return{
+            return {
                 ...state,
                 dataUser: action.payload
-            }
-
-        default: return {...state}
+            };
+        case EMPTY_USER:
+            return {
+                ...state,
+                dataUser: {}
+            };
+        default:
+            return { ...state };
     }
-}
+};
 
 export default reducer;
