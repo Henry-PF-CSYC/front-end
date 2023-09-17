@@ -2,8 +2,9 @@ import './Navbar.css';
 import { Link } from 'react-router-dom';
 import { useAuth0 } from '@auth0/auth0-react';
 import logo from '../../assets/Logos/logoB.png';
-import { emptyUser } from '../../redux/actions';
+import { emptyUser, getUser } from '../../redux/actions';
 import { useDispatch } from 'react-redux';
+import { useEffect } from 'react';
 
 const Navbar = () => {
     const { loginWithRedirect, isAuthenticated, user, logout } = useAuth0();
@@ -15,6 +16,10 @@ const Navbar = () => {
         dispatch(emptyUser());
     };
 
+    const click = () => {
+        console.log('me ejecute');
+        dispatch(getUser(user.email));
+    };
     return (
         <section className="container-fluid navbar">
             <div id="logoContainer">
@@ -134,6 +139,7 @@ const Navbar = () => {
                             />
                         </button>
                         <ul
+                            onClick={click()}
                             class="dropdown-menu"
                             aria-labelledby="dropdownMenuButton1"
                         >

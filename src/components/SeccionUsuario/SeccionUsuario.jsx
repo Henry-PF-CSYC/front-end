@@ -34,11 +34,11 @@ const SeccionUsuario = () => {
     useEffect(() => {
         if (isAuthenticated) {
             console.log('me ejecute');
-            dispatch(getUser(dataUser.email));
+            dispatch(getUser(user.email));
             setDataUser(usuario);
             usuario.email = user.email;
         }
-    }, {});
+    }, []);
 
     const servicios = [
         {
