@@ -1,6 +1,6 @@
 import style from './CardsServicios.module.css'
 
-const CardsServicios = ({ imagen, titulo, descripcion, nombreBoton }) => {
+const CardsServicios = ({ imagen, titulo, descripcion, nombreBoton, estado }) => {
     return (
         <div>
             <div className="card w-85">
@@ -13,6 +13,7 @@ const CardsServicios = ({ imagen, titulo, descripcion, nombreBoton }) => {
                     <div className="ps-3">
                     <button className="btn btn-primary">{nombreBoton}</button>
                     </div>
+                    <p>{estado}</p>
                 </div>
             </div>
 

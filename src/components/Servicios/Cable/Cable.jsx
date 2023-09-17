@@ -3,8 +3,13 @@ import CardsServicios from "../CardsServicios/CardsServicios"
 import plan1 from "../../../assets/Planes/Cable/cable-plan1.webp"
 import plan2 from "../../../assets/Planes/Cable/cable-plan2.jpg"
 import plan3 from "../../../assets/Planes/Cable/cable-plan3.jpg"
+import {useSelector} from "react-redux"
 
 const Cable = () =>{
+
+    const services = useSelector(state => state.backUpServices)
+    const cableService = services.filter(service => service.type === "cable")
+
     return(
         <section className="container-fluid cableContainer">
 
@@ -19,24 +24,23 @@ const Cable = () =>{
             <hr/>
 
             <section className="row cableCards">
-                <div className="col-4">
-                    <CardsServicios imagen={plan1} titulo="Basico - 2500$ x mes" 
-                    descripcion="Plan básico con 40 canales, para chicos y adultos de todas las edades!" nombreBoton="Lo quiero!"/>
-                </div>
+                {cableService.map((service, index) => (
+                    <div key={index} className="col-4">
+                        <CardsServicios
+                            imagen={plan1}
+                            titulo={service.name}
+                            nombreBoton="Lo quiero!"
+                            descripcion={service.description}
+                            precio={`$${service.price} x mes`}
+                            estado={service.status}
+                        />
+                    </div>
+                ))}
 
-                <div className="col-4">
-                    <CardsServicios imagen={plan2} titulo="Intermedio - 4000$ x mes" 
-                    descripcion="Plan intermedio con 70 canales, incluido el pack de deportes!" nombreBoton="Lo quiero!"/>
-                </div>
-
-                <div className="col-4">
-                    <CardsServicios imagen={plan3} titulo="Plus+ - 6000$ x mes" 
-                    descripcion="Plan con 100 canales, incluidos internacionales, deportes y muchos más!" nombreBoton="Lo quiero!"/>
-                </div>
             </section>
             
         </section>
     )
 }
 
-export default Cable
+export default Cable;

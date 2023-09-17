@@ -3,8 +3,13 @@ import CardsServicios from "../CardsServicios/CardsServicios"
 import plan1 from "../../../assets/Planes/Internet/internet-plan1.webp"
 import plan2 from "../../../assets/Planes/Internet/internet-plan2.jpg"
 import plan3 from "../../../assets/Planes/Internet/internet-plan3.jpg"
+import { useSelector } from "react-redux"
 
 const Internet = () =>{
+
+    const services = useSelector(state => state.backUpServices)
+    const internetService = services.filter(service => service.type === "internet")
+    
     return(
         <section className="container-fluid internetContainer">
 
@@ -21,20 +26,18 @@ const Internet = () =>{
             <hr/>
 
             <section className="row internetCards">
-                <div className="col-4">
-                    <CardsServicios imagen={plan1} titulo="10 Megas - 4000$ x mes" 
-                    descripcion="Plan básico con una velocidad estándar para uso cotidiano, que es ideal para 3 o 4 dispositivos simultaneos!" nombreBoton="Lo quiero!"/>
-                </div>
-
-                <div className="col-4">
-                    <CardsServicios imagen={plan2} titulo="50 megas - 6000$ x mes" 
-                    descripcion="10 megas no son suficientes? Te ofrecemos este plan para que puedas expandirte aun más, de 5 a 6 dispositivos!" nombreBoton="Lo quiero!"/>
-                </div>
-
-                <div className="col-4">
-                    <CardsServicios imagen={plan3} titulo="100 megas - 9000$ x mes" 
-                    descripcion="Nuestro plan más potente, para más de 7 dispositivos. Olvidate de los cortes y restricciones. Usar con precaución!" nombreBoton="Lo quiero!"/>
-                </div>
+                {internetService.map((service, index) => (
+                    <div key={index} className="col-4">
+                        <CardsServicios
+                            imagen={plan1}
+                            titulo={service.name}
+                            nombreBoton="Lo quiero!"
+                            descripcion={service.description}
+                            precio={`$${service.price} x mes`}
+                            estado={service.status}
+                        />
+                    </div>
+                ))}
             </section>
             
         </section>
