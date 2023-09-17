@@ -1,5 +1,6 @@
 import { useState } from "react"
 import "./ContactStyle.css"
+import { Modal, Button } from "react-bootstrap"
 
 function Contact() {
 
@@ -8,6 +9,9 @@ function Contact() {
         phone: "",
         message: ""
       })
+      const [showModal, setShowModal] = useState(false);
+      const [modalMessage, setModalMessage] = useState("");
+      const [modalVariant, setModalVariant] = useState("success")
 
     const handlerSubmit=async(event)=>{
         event.preventDefault()
@@ -15,21 +19,33 @@ function Contact() {
         const { name, phone, message } = formData
 
         if (name && phone && message) {
-            alert('Se envió el mensaje')
+
             const dataToSend={
-                name, phone, message
-            }
-            try { 
-                const response=await fetch("/contact/send", {
-                    method: "POST",
-                    headers: {
-                      "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify(dataToSend), 
-                  })
-                
+                name, 
+                phone,
+                message
+            };
+            try {
+              const response=await fetch("https://csyc.onrender.com/contact/send", {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json",
+                },
+                body: JSON.stringify(dataToSend), 
+              })
+              if (response.ok) {
+                setModalVariant("success")
+                setModalMessage("Su mensaje fue enviado con éxito.")
+              } else {
+                setModalVariant("danger")
+                setModalMessage("Inténtelo más tarde. Hubo un error.")
+              }
+              setShowModal(true)
             } catch (error) {
-                console.log(error)
+              console.error(error);
+              setModalVariant("danger");
+              setModalMessage("Hubo un error en la solicitud.");
+              setShowModal(true);
             }
           } 
     }
@@ -50,6 +66,11 @@ function Contact() {
             })
           }
         }
+
+      const closeModal = () => {
+          setShowModal(false);
+          setModalMessage("");
+      }
 
 
     return (
@@ -126,9 +147,24 @@ function Contact() {
               </div>
               <button type="submit" className="contact-button">Enviar</button> 
             </form>
+            <Modal show={showModal} onHide={closeModal} centered>
+              <Modal.Header closeButton>
+               <Modal.Title></Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                  <div className={`alert alert-${modalVariant}`} role="alert">
+                  {modalMessage}
+                  </div>
+                </Modal.Body>
+                <Modal.Footer>
+                  <Button variant="secondary" onClick={closeModal}>
+                    Cerrar
+                  </Button>
+                </Modal.Footer>
+            </Modal>
          </div>
         </div>
-        </div>
+       </div>
       );
     }
   

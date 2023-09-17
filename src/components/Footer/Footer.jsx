@@ -8,27 +8,27 @@ const Footer = () => {
     <section className="container-fluid footerA">
       
       <div>
-        <h6 className="footerTitle">Servicios</h6>
+        <Link to="servicios" style={{ textDecoration:'none'}}><h6 className="footerTitle">Servicios</h6></Link>
             <div className="footerOptions">
-                <Link to="/luz" style={{ textDecoration:'none'}}><span>Luz</span></Link>
-                <Link to="/gas" style={{ textDecoration:'none'}}><span>Gas</span></Link>
-                <Link to="/internet" style={{ textDecoration:'none'}}><span>Internet</span></Link>
-                <Link to="/agua" style={{ textDecoration:'none'}}><span>Agua</span></Link>
+                <Link to="servicios/luz" style={{ textDecoration:'none'}}><span>Luz</span></Link>
+                <Link to="servicios/gas" style={{ textDecoration:'none'}}><span>Gas</span></Link>
+                <Link to="servicios/internet" style={{ textDecoration:'none'}}><span>Internet</span></Link>
             </div>
       </div>
 
 
       <div>
-        <h6 className="footerTitle">Ofertas</h6>
+        <Link to="clasificados" style={{ textDecoration:'none'}}><h6 className="footerTitle">Ofertas</h6></Link>
             <div className="footerOptions">
-                <Link to="/ofertas" style={{ textDecoration:'none'}}><span>Publica tu oferta!</span></Link>
+                <Link to="/clasificados" style={{ textDecoration:'none'}}><span>Publica tu oferta!</span></Link>
                 <Link to="/usuario" style={{ textDecoration:'none'}}><span>Ver mis ofertas</span></Link>
+                <Link to="/terminos&condiciones" style={{ textDecoration:'none'}}><span>Términos y condiciones</span></Link>
             </div>
       </div>
 
 
       <div>
-        <h6 className="footerTitle">Contacto</h6>
+        <Link to="/contacto" style={{ textDecoration:'none'}}><h6 className="footerTitle">Contacto</h6></Link>
             <div className="footerOptions">
                 <span>Teléfono de contacto: xxxx-xxxx</span>
                 <span>Dirección: xxxx-xxxx </span>

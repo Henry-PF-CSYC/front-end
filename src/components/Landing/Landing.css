@@ -2,6 +2,7 @@
     width: 100%;
 }
 
+/*Intro*/
 #presentation{
     padding: 3rem;
     align-items: center;
@@ -11,6 +12,8 @@
     font-size: 18px;
 }
 
+
+/*Combos Servicios y Avisos*/
 #csa{
     background-color: #75B3AC;
     text-align: center;
@@ -23,40 +26,91 @@
     margin: 1.5rem;
 }
 
-#combos{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    margin: 1rem;
+
+/*Carrusel Combos*/
+#comboCarr{
+    width:auto;
+    height: auto;
 }
 
-#servicios{
+.comboSlide{
+    text-align: center;
+    font-size: 18px;
+    background-color: #75B3AC;
     display: flex;
-    flex-direction: row;
-    justify-content: space-around;    
-    margin: 1rem;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
-.comboImg{
-    width: 300px;
-    height: 300px;
+.comboSlide img {
+    width: 30%;
+    height: 30%;
     margin-bottom: 1rem;
 }
 
-.serviceImg{
+.comboSlide p{
+    margin-bottom: 1rem; 
+}
+
+.comboSlide button {
+    margin-bottom: 2.8rem; 
+}
+
+
+
+/*Carrusel Servicios*/
+#serviceCarr{
+    width:100%;
+    height: 100%;
+    background-color: #75B3AC;
+    border-radius: 1rem;
+}
+
+.serviceSlide{
+    text-align: center;
+    font-size: 18px;
+    background-color: #5f948e;
+    border-radius: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.serviceSlide img{
     width: 300px;
     height: 300px;
-    border-radius: 1rem; 
-    margin-bottom: 1rem;
+    border-radius: 1rem;
+    margin: 1rem;
 }
 
-.scContainer{
-    max-width: min-content;
+.serviceSlide p{
+    height: 10rem;
+    width: 30rem;
+    font-size: 1rem;
+    margin-bottom: 14px; 
 }
 
+.serviceSlide h4{
+    margin-top: 1rem;
+}
+
+.serviceSlide button {
+    margin-top: auto; 
+    margin-bottom: 2.8rem;
+}
+
+
+/*Novedades*/
 #whatsnew{
-   color: rgb(68, 68, 68);
-   background-color: #99EEFF;
-   border-radius: 1rem;
-   padding: 1rem;
-}
+    color: rgb(68, 68, 68);
+    background-color: #99EEFF;
+    border-radius: 1rem;
+    padding: 1rem;
+ }
+ 
+
+
+
+ 
