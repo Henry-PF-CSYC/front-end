@@ -6,7 +6,13 @@ import logo from "../../assets/Logos/logoB.png"
 
 const Navbar = () => {
     
-  const { loginWithRedirect, isAuthenticated, user, logout } = useAuth0();
+    const { loginWithRedirect, isAuthenticated, user, logout } = useAuth0();
+
+    const handleLogout = () => {
+        logout({
+            returnTo: window.location.origin
+        });
+    };
     
   return (
         <section className="container-fluid navbar">
@@ -58,8 +64,9 @@ const Navbar = () => {
                                     <a class="dropdown-item userDropdown" href=".">Ver mi perfil</a></Link>
                             </li>
                             <li>
-                                <a class="dropdown-item" href=".">
-                                    <p className="userDropdown" onClick={logout}>Salir</p>
+                                {/* Call handleLogout function on logout click */}
+                                <a class="dropdown-item" onClick={handleLogout}>
+                                    <p class="userDropdown">Salir</p>
                                 </a>
                             </li>
                         </ul>
@@ -75,3 +82,4 @@ const Navbar = () => {
 };
 
 export default Navbar;
+
