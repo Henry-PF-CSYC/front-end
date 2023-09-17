@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { GETUSER } from './action-types';
+import { GETSERVICES } from './action-types';
 
 export const getUser = (email) => {
     return async (dispatch) => {
@@ -29,3 +30,19 @@ export const postUser = (user) => {
         }
     };
 };
+export const getServices = () => {
+    return async ( dispatch ) => {
+        try {
+            const { data } = await axios.get(
+                'https://csyc.onrender.com/services'
+            );
+            dispatch({
+                type: GETSERVICES,
+                payload: data
+            })
+            console.log(data);
+        } catch (error) {
+            console.log(error)
+        }
+    }
+}

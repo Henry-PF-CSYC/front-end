@@ -3,8 +3,13 @@ import CardsServicios from "../CardsServicios/CardsServicios"
 import plan1 from "../../../assets/Planes/Telefonia/telefonia-plan1.jpg"
 import plan2 from "../../../assets/Planes/Telefonia/telefonia-plan2.jpg"
 import plan3 from "../../../assets/Planes/Telefonia/telefonia-plan3.webp"
+import { useSelector } from "react-redux"
 
 const Telefonia = () =>{
+
+    const services = useSelector(state => state.backUpServices)
+    const telefoniaServices = services.filter(service => service.type === "telefonia")
+
     return(
         <section className="container-fluid telefoniaContainer">
 
@@ -19,20 +24,18 @@ const Telefonia = () =>{
             <hr/>
 
             <section className="row telefoniaCards">
-                <div className="col-4">
-                    <CardsServicios imagen={plan1} titulo="Telefonia fija - 1500$ x mes" 
-                    descripcion="Ideal para el hogar, plan estándar con todos los beneficios!" nombreBoton="Lo quiero!"/>
-                </div>
-
-                <div className="col-4">
-                    <CardsServicios imagen={plan2} titulo="Telefonia movil - 2000$ x mes" 
-                    descripcion="Telefonia móvil, con 5gb para navegar y Whatsapp gratis!" nombreBoton="Lo quiero!"/>
-                </div>
-
-                <div className="col-4">
-                    <CardsServicios imagen={plan3} titulo="Conexion Ilimitada - 3000$ x mes" 
-                    descripcion="Telefonia fija y movil, ideal para siempre estar comunicado!" nombreBoton="Lo quiero!"/>
-                </div>
+               {telefoniaServices.map((service, index) => (
+                    <div key={index} className="col-4">
+                        <CardsServicios
+                            imagen={plan1}
+                            titulo={service.name}
+                            nombreBoton="Lo quiero!"
+                            descripcion={service.description}
+                            precio={`$${service.price} x mes`}
+                            estado={service.status}
+                        />
+                    </div>
+                ))}
             </section>
             
         </section>

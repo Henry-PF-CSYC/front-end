@@ -1,8 +1,13 @@
 import "./Luz.css" 
 import CardsServicios from "../CardsServicios/CardsServicios"
 import luz from "../../../assets/Servicios/luz.webp"
+import { useSelector } from "react-redux"
 
 const Luz = () =>{
+
+    const services = useSelector(state => state.backUpServices)
+    const luzService = services.filter(service => service.type === "luz")
+
     return(
         <section className="container-fluid luzContainer">
 
@@ -19,10 +24,18 @@ const Luz = () =>{
 
 
             <section className="row luzCards">
-                <div className="col-4">
-                    <CardsServicios imagen={luz} titulo="Electricidad - 5000$ x mes" 
-                    descripcion="Nuestra red eléctrica está diseñada para que tengas un suministro constante de energía. No tendrás que preocuparte por cortes inesperados que interrumpan tus actividades. Unete hoy para disfrutar de todos los beneficios de una energia limpia!" nombreBoton="Lo quiero!"/>
-                </div>
+                {luzService.map((service, index) => (
+                    <div key={index} className="col-4">
+                        <CardsServicios
+                            imagen={luz}
+                            titulo={service.name}
+                            nombreBoton="Lo quiero!"
+                            descripcion={service.description}
+                            precio={`$${service.price} x mes`}
+                            estado={service.status}
+                        />
+                    </div>
+                ))}
             </section>
             
         </section>)

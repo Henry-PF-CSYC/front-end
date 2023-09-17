@@ -1,8 +1,15 @@
 import "./Agua.css" 
 import CardsServicios from "../CardsServicios/CardsServicios"
 import agua from "../../../assets/Servicios/agua.jpg"
+import {useSelector} from "react-redux"
 
 const Agua = () =>{
+
+    const services=useSelector(state=>state.backUpServices)
+    const aguaService=services.filter(service=>service.type==="agua")
+
+
+
     return(
         <section className="container-fluid aguaContainer">
 
@@ -21,9 +28,18 @@ const Agua = () =>{
 
 
             <section className="row aguaCards">
-                <div className="col-4">
-                    <CardsServicios imagen={agua} titulo="Agua potable - 5000$ x mes" nombreBoton="Lo quiero!" descripcion="Brindamos agua potable con altos estándares de calidad, comprometiéndonos con el futuro de las generaciones venideras."/>
-                </div>
+                {aguaService.map((service, index) => (
+                    <div key={index} className="col-4">
+                        <CardsServicios
+                            imagen={agua}
+                            titulo={service.name}
+                            nombreBoton="Lo quiero!"
+                            descripcion={service.description}
+                            precio={`$${service.price} x mes`}
+                            estado={service.status}
+                        />
+                    </div>
+                ))}
             </section>
             
         </section>)

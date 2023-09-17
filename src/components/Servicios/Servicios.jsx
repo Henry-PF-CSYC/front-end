@@ -1,3 +1,7 @@
+import { useSelector, useDispatch } from "react-redux"
+import { useEffect } from "react"
+import { getServices } from "../../redux/actions"
+
 import "./Servicios.css"
 import CardsServicios from "../Servicios/CardsServicios/CardsServicios"
 
@@ -6,6 +10,14 @@ import internet from "../../assets/Servicios/internet.webp"
 import gas from "../../assets/Servicios/gas.webp"
 
 const Services = () =>{
+
+    const servicios=useSelector((state)=>state.services)
+    const dispatch=useDispatch()
+
+    useEffect(()=>{
+        dispatch(getServices())
+    },[servicios,dispatch])
+
     return(
         <section id="servicesContainer">
            
@@ -54,23 +66,18 @@ const Services = () =>{
             <hr/>
 
             <section className="row">
-                <div className="col-4">
-                    <CardsServicios imagen={agua} titulo="Agua potable - 5000$ x mes" nombreBoton="Lo quiero!"
-                    descripcion="Brindamos agua potable con altos estándares de calidad,
-                    comprometiéndonos con el futuro de las generaciones venideras." 
+            {servicios.map((servicio, index) => (
+                <div key={index} className="col-4">
+                    <CardsServicios
+                    imagen={servicio.image}
+                    titulo={servicio.name}
+                    nombreBoton="Lo quiero!"
+                    descripcion={servicio.description}
+                    precio={`$${servicio.price} x mes`}
+                    estado={servicio.status}
                     />
                 </div>
-
-                <div className="col-4">
-                    <CardsServicios imagen={internet} titulo="10 Megas - 4000$ x mes" nombreBoton="Lo quiero!"
-                    descripcion="Plan básico con una velocidad estándar para uso cotidiano, que es ideal para 3 o 4 dispositivos simultaneos!"/>
-                </div>
-
-                <div className="col-4">
-                    <CardsServicios imagen={gas} titulo="Gas natural - 9000$ x mes" nombreBoton="Lo quiero!"
-                    descripcion="Nuestro servicio de gas te brinda la comodidad y el calor que necesitas en tu hogar. 
-                    Calidez y seguridad garantizada, pedilo hoy!" />
-                </div>
+            ))}
             </section>
 
 

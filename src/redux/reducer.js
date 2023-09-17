@@ -1,8 +1,10 @@
-import { GETUSER } from "./action-types";
+import { GETSERVICES, GETUSER } from "./action-types";
 
 // Estado global
 const initialState = {
-    dataUser: {}
+    dataUser: {},
+    services:[],
+    backUpServices:[]
 } 
 
 // Reducer 
@@ -13,6 +15,12 @@ const reducer = (state = initialState, action) => {
             return{
                 ...state,
                 dataUser: action.payload
+            }
+        case GETSERVICES:
+            return{
+                ...state,
+                services: action.payload,
+                backUpServices: action.payload
             }
 
         default: return {...state}
