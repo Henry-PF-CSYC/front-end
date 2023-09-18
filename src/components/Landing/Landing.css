@@ -67,6 +67,11 @@
     border-radius: 1rem;
 }
 
+/*si le pueden hagregar a lospuntitos del carrocel delas card de los servicios paraque se vean mas abajo*/
+.swiper{
+    padding-bottom: 25px;
+}
+
 .serviceSlide{
     text-align: center;
     font-size: 18px;
@@ -83,6 +88,9 @@
     height: 300px;
     border-radius: 1rem;
     margin: 1rem;
+
+    background-color: #f3f3f3;
+    padding: 15px;
 }
 
 .serviceSlide p{
@@ -97,8 +105,19 @@
 }
 
 .serviceSlide button {
-    margin-top: auto; 
-    margin-bottom: 2.8rem;
+    margin-top: auto;
+    margin-bottom: 1.8rem;
+    text-decoration: none;
+    color: #fff;
+    border-radius: 18px;
+    padding: 10px 20px;
+    border: 1px solid #fff;
+    transition: .5s;
+    background: transparent;
+    font-weight: bold;
+}
+.serviceSlide button:hover{
+    background-color:  rgb(11, 67, 78);
 }
 
 
