@@ -1,30 +1,35 @@
-import { GETSERVICES, GETUSER } from "./action-types";
+import { GETUSER, EMPTY_USER, GETSERVICES } from './action-types';
 
 // Estado global
 const initialState = {
     dataUser: {},
     services:[],
     backUpServices:[]
-} 
+};
 
-// Reducer 
+// Reducer
 const reducer = (state = initialState, action) => {
-   
-    switch (action.type){
+    switch (action.type) {
         case GETUSER:
-            return{
+            return {
                 ...state,
                 dataUser: action.payload
-            }
+            };
+        case EMPTY_USER:
+            return {
+                ...state,
+                dataUser: {}
+            };
+
         case GETSERVICES:
             return{
                 ...state,
                 services: action.payload,
                 backUpServices: action.payload
-            }
-
-        default: return {...state}
+            };
+            
+        default: return { ...state };
     }
-}
+};
 
 export default reducer;
