@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { GETUSER, EMPTY_USER, GETSERVICES} from './action-types';
 
+
 export const getUser = (email) => {
     return async (dispatch) => {
         try {
@@ -32,6 +33,7 @@ export const emptyUser = () => {
     };
 };
 
+
 export const getServices = () => {
     return async ( dispatch ) => {
         try {
@@ -48,3 +50,4 @@ export const getServices = () => {
         }
     }
 }
+

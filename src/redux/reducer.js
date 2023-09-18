@@ -20,14 +20,12 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 dataUser: {}
             };
-
         case GETSERVICES:
             return{
                 ...state,
                 services: action.payload,
                 backUpServices: action.payload
-            };
-            
+            };   
         default: return { ...state };
     }
 };
