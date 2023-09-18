@@ -1,8 +1,13 @@
 import "./Gas.css" 
 import CardsServicios from "../CardsServicios/CardsServicios"
 import gas from "../../../assets/Servicios/gas.webp"
+import {useSelector} from "react-redux"
 
-const Agua = () =>{
+const Gas= () =>{
+
+    const services = useSelector(state => state.backUpServices)
+    const gasService = services.filter(service => service.type === "gas")
+
     return(
         <section className="container-fluid gasContainer">
 
@@ -21,14 +26,21 @@ const Agua = () =>{
 
 
             <section className="row gasCards">
-                <div className="col-4">
-                    <CardsServicios imagen={gas} titulo="Gas natural - 9000$ x mes" nombreBoton="Lo quiero!"
-                    descripcion="Nuestro servicio de gas te brinda la comodidad y el calor que necesitas en tu hogar. 
-                    Calidez y seguridad garantizada, pedilo hoy!" />
-                </div>
+               {gasService.map((service, index) => (
+                    <div key={index} className="col-4">
+                        <CardsServicios
+                            imagen={gas}
+                            titulo={service.name}
+                            nombreBoton="Lo quiero!"
+                            descripcion={service.description}
+                            precio={`$${service.price} x mes`}
+                            estado={service.status}
+                        />
+                    </div>
+                ))}
             </section>
             
         </section>)
 }
 
-export default Agua
+export default Gas;

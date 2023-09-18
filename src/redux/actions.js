@@ -1,5 +1,6 @@
 import axios from 'axios';
-import { GETUSER, EMPTY_USER } from './action-types';
+import { GETUSER, EMPTY_USER, GETSERVICES} from './action-types';
+
 
 export const getUser = (email) => {
     return async (dispatch) => {
@@ -31,3 +32,22 @@ export const emptyUser = () => {
         type: EMPTY_USER
     };
 };
+
+
+export const getServices = () => {
+    return async ( dispatch ) => {
+        try {
+            const { data } = await axios.get(
+                'https://csyc.onrender.com/services'
+            );
+            dispatch({
+                type: GETSERVICES,
+                payload: data
+            })
+            console.log(data);
+        } catch (error) {
+            console.log(error)
+        }
+    }
+}
+
