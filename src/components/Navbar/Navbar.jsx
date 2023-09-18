@@ -20,6 +20,7 @@ const Navbar = () => {
         console.log('me ejecute');
         dispatch(getUser(user.email));
     };
+
     return (
         <section className="container-fluid navbar">
             <div id="logoContainer">
@@ -140,7 +141,7 @@ const Navbar = () => {
                         </button>
                         <ul
                             onClick={click()}
-                            class="dropdown-menu"
+                            className="dropdown-menu"
                             aria-labelledby="dropdownMenuButton1"
                         >
                             <li>
