@@ -2,12 +2,21 @@ import "./Agua.css"
 import CardsServicios from "../CardsServicios/CardsServicios"
 import agua from "../../../assets/Servicios/agua.jpg"
 import {useSelector} from "react-redux"
+import { filterByType} from "../../../redux/actions"
+import { useDispatch } from "react-redux"
+import { useEffect, useState } from "react"
 
 const Agua = () =>{
 
     const services=useSelector(state=>state.backUpServices)
     const aguaService=services.filter(service=>service.type==="agua")
 
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        // Aquí despachas la acción filterByType
+        dispatch(filterByType("base"));
+    }, []); // El array vacío asegura que esta acción se ejecute solo una vez cuando el componente se monta
 
 
     return(

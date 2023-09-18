@@ -4,11 +4,23 @@ import plan1 from "../../../assets/Planes/Streaming/streaming-combo1.jpg"
 import plan2 from "../../../assets/Planes/Streaming/streaming-combo2.webp"
 import plan3 from "../../../assets/Planes/Streaming/streaming-combo3.webp"
 import { useSelector } from "react-redux"
+import { filterByType} from "../../../redux/actions"
+import { useDispatch } from "react-redux"
+import { useEffect, useState } from "react"
+
+
 
 const Streaming = () =>{
 
     const services = useSelector(state => state.backUpServices)
     const streamingServices = services.filter(service => service.type === "streaming")
+
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        // Aquí despachas la acción filterByType
+        dispatch(filterByType("base"));
+    }, []); // El array vacío asegura que esta acción se ejecute solo una vez cuando el componente se monta
 
     return(
         <section className="container-fluid streamingContainer">

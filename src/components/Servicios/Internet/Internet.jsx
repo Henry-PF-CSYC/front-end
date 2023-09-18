@@ -4,12 +4,25 @@ import plan1 from "../../../assets/Planes/Internet/internet-plan1.webp"
 import plan2 from "../../../assets/Planes/Internet/internet-plan2.jpg"
 import plan3 from "../../../assets/Planes/Internet/internet-plan3.jpg"
 import { useSelector } from "react-redux"
+import { filterByType} from "../../../redux/actions"
+import { useDispatch } from "react-redux"
+import { useEffect, useState } from "react"
+
+
 
 const Internet = () =>{
 
     const services = useSelector(state => state.backUpServices)
     const internetService = services.filter(service => service.type === "internet")
     
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        // Aquí despachas la acción filterByType
+        dispatch(filterByType("base"));
+    }, []); // El array vacío asegura que esta acción se ejecute solo una vez cuando el componente se monta
+
+
     return(
         <section className="container-fluid internetContainer">
 
