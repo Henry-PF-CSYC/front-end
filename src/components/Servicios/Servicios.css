@@ -8,6 +8,7 @@
 #generalInfo{
     font-size: larger;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    margin-top: 50px;
 }
 
 #filterContainer{
