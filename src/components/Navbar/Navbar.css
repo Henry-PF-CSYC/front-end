@@ -3,6 +3,8 @@
     align-items: center;
     justify-content: space-between;
     background-color: black;
+    position: fixed;
+    z-index: 1000;
 }
 
 .options {
