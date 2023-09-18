@@ -19,6 +19,7 @@ import { Link } from 'react-router-dom';
 import { useEffect } from "react"
 import { useDispatch } from "react-redux"
 import { getServices } from "../../redux/actions"
+import Swiper from 'swiper';
 
 const Landing = () =>{
 
@@ -97,7 +98,7 @@ const Landing = () =>{
                                 preocuparte por interrupciones
                             </p>
                             <Link to="/servicios/gas">
-                                <button>Mas informacion</button>
+                                <button className='service-button'>Mas informacion</button>
                             </Link>
                         </swiper-slide>
 
@@ -118,7 +119,7 @@ const Landing = () =>{
                                 interrupciones en línea
                             </p>
                             <Link to="/servicios/internet">
-                                <button>Mas informacion</button>
+                                <button className='service-button'>Mas informacion</button>
                             </Link>
                         </swiper-slide>
 
@@ -134,7 +135,7 @@ const Landing = () =>{
                                 realizar tus actividades diarias.
                             </p>
                             <Link to="/servicios/luz">
-                                <button>Mas informacion</button>
+                                <button className='service-button'>Mas informacion</button>
                             </Link>
                         </swiper-slide>
 
@@ -149,7 +150,7 @@ const Landing = () =>{
                                 hasta el baño, sin preocupaciones.
                             </p>
                             <Link to="/servicios/agua">
-                                <button>Mas informacion</button>
+                                <button className='service-button'>Mas informacion</button>
                             </Link>
                         </swiper-slide>
 
@@ -164,7 +165,7 @@ const Landing = () =>{
                                 en tu hogar.
                             </p>
                             <Link to="/servicios/cable">
-                                <button>Mas informacion</button>
+                                <button className='service-button'>Mas informacion</button>
                             </Link>
                         </swiper-slide>
 
@@ -179,7 +180,7 @@ const Landing = () =>{
                                 interrupciones.
                             </p>
                             <Link to="/servicios/telefonia">
-                                <button>Mas informacion</button>
+                                <button className='service-button'>Mas informacion</button>
                             </Link>
                         </swiper-slide>
 
@@ -194,9 +195,10 @@ const Landing = () =>{
                                 tu hogar.
                             </p>
                             <Link to="/servicios/streaming">
-                                <button>Mas informacion</button>
+                                <button className='service-button'>Mas informacion</button>
                             </Link>
                         </swiper-slide>
+                        {/* <Swiper class="carrucel"></Swiper> */}
                     </swiper-container>
                 </div>
 
