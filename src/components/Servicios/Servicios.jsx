@@ -1,6 +1,6 @@
-import { useSelector, useDispatch } from "react-redux"
 import { useEffect } from "react"
-import { getServices } from "../../redux/actions"
+import { useSelector, useDispatch } from "react-redux"
+import { getServices, getPaginated, setCurrentPage, setTotalPages } from "../../redux/actions"
 
 import "./Servicios.css"
 import CardsServicios from "../Servicios/CardsServicios/CardsServicios"
@@ -11,12 +11,30 @@ import gas from "../../assets/Servicios/gas.webp"
 
 const Services = () =>{
 
-    const servicios=useSelector((state)=>state.services)
     const dispatch=useDispatch()
+    const serviciosPage=useSelector((state)=>state.services)
+    const currentPage = useSelector((state) => state.currentPage)
+    const totalPages = useSelector((state) => state.totalPages)
 
+    
+    useEffect(() => {
+        // Calcula el número total de páginas una vez que obtengas los servicios.
+        dispatch(setTotalPages(Math.ceil(serviciosPage.length / 3)));
+    }, [dispatch, serviciosPage]);
+    
     useEffect(()=>{
-        dispatch(getServices())
-    },[servicios,dispatch])
+        dispatch(getPaginated(currentPage))
+    }, [ currentPage, dispatch])
+    
+    const handlePageChange = (newPage) => {
+        // Actualiza la página actual en el estado de Redux.
+        dispatch(setCurrentPage(newPage));
+    };
+
+    // Calcula el índice de inicio y fin de las tarjetas de servicios a mostrar.
+    const startIndex = (currentPage - 1) * 3;
+    const endIndex = startIndex + 3;
+
 
     return(
         <section id="servicesContainer">
@@ -65,20 +83,47 @@ const Services = () =>{
 
             <hr/>
 
+           
             <section className="row">
-            {servicios.map((servicio, index) => (
-                <div key={index} className="col-4">
-                    <CardsServicios
-                    imagen={servicio.image}
-                    titulo={servicio.name}
-                    nombreBoton="Lo quiero!"
-                    descripcion={servicio.description}
-                    precio={`$${servicio.price} x mes`}
-                    estado={servicio.status}
-                    />
-                </div>
-            ))}
+                {serviciosPage.slice(startIndex, endIndex).map((servicio, index) => (
+                    <div key={index} className="col-4">
+                        <CardsServicios
+                            // Utiliza lógica para asignar la imagen según el tipo de servicio
+                            imagen={
+                                servicio.type === "agua"
+                                    ? agua
+                                    : servicio.type === "internet"
+                                    ? internet
+                                    : gas
+                            }
+                            titulo={servicio.name}
+                            nombreBoton="Lo quiero!"
+                            descripcion={servicio.description}
+                            precio={`$${servicio.price} x mes`}
+                            estado={servicio.status}
+                        />
+                    </div>
+                ))}
             </section>
+
+            <div className="pagination">
+                <button
+                    onClick={() => handlePageChange(currentPage - 1)}
+                    disabled={currentPage === 1}
+                >
+                    Página anterior
+                </button>
+                <p>
+                    Página {currentPage} de {totalPages}
+                </p>
+                <button
+                    onClick={() => handlePageChange(currentPage + 1)}
+                    disabled={currentPage === totalPages}
+                >
+                    Página siguiente
+                </button>
+            </div>
+            
 
 
         </section>

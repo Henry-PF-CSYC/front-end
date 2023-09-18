@@ -1,4 +1,9 @@
-export const GETUSER = 'GETUSER';
-export const EMPTY_USER = 'EMPTY_USER';
+export const GETUSER = 'GETUSER'
 export const GETSERVICES= 'GETSERVICES'
+export const GETPAGINATEDSERVICES = 'GETPAGINATEDSERVICES'
+export const SET_CURRENT_PAGE= 'SET_CURRENT_PAGE'
+export const SET_TOTAL_PAGES= 'SET_TOTAL_PAGES'
+export const EMPTY_USER = 'EMPTY_USER';
+
+
 

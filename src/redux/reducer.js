@@ -1,11 +1,16 @@
-import { GETUSER, EMPTY_USER, GETSERVICES } from './action-types';
+import { GETPAGINATEDSERVICES, GETSERVICES, GETUSER, SET_CURRENT_PAGE, SET_TOTAL_PAGES, EMPTY_USER } from "./action-types";
+
 
 // Estado global
 const initialState = {
     dataUser: {},
     services:[],
-    backUpServices:[]
-};
+    backUpServices:[],
+    currentPage: 1,
+    totalPages: 1, 
+    currentServicesPage: [],
+} 
+
 
 // Reducer
 const reducer = (state = initialState, action) => {
@@ -25,9 +30,24 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 services: action.payload,
                 backUpServices: action.payload
-            };   
+            }
+        case GETPAGINATEDSERVICES:
+            return {
+            ...state,
+            currentServicesPage: action.payload,
+            };
+        case SET_CURRENT_PAGE:
+            return {
+                ...state,
+                currentPage: action.payload,
+            };
+        case SET_TOTAL_PAGES:
+            return {
+                ...state,
+                totalPages: action.payload,
+            };
         default: return { ...state };
-    }
+            };
 };
 
 export default reducer;

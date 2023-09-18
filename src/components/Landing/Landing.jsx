@@ -15,7 +15,19 @@ import telefonia from '../../assets/Servicios/telefonia.jpg';
 import streaming from '../../assets/Servicios/streaming.webp';
 import { Link } from 'react-router-dom';
 
-const Landing = () => {
+
+import { useEffect } from "react"
+import { useDispatch } from "react-redux"
+import { getServices } from "../../redux/actions"
+
+const Landing = () =>{
+
+    const dispatch=useDispatch() 
+
+    useEffect(()=>{ //Cargo el estado global ni bien entro al landing
+        dispatch(getServices())
+    },[])
+
     return (
         <section>
             <section id="intro">

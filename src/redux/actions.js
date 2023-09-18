@@ -1,5 +1,10 @@
 import axios from 'axios';
-import { GETUSER, EMPTY_USER, GETSERVICES} from './action-types';
+import { GETUSER } from './action-types';
+import { GETSERVICES } from './action-types';
+import { GETPAGINATEDSERVICES } from './action-types'
+import { SET_TOTAL_PAGES } from "./action-types"
+import { SET_CURRENT_PAGE } from './action-types';
+import { EMPTY_USER } from './action-types';
 
 
 export const getUser = (email) => {
@@ -38,7 +43,7 @@ export const getServices = () => {
     return async ( dispatch ) => {
         try {
             const { data } = await axios.get(
-                'https://csyc.onrender.com/services'
+                'https://csyc.onrender.com/services?size=9999'
             );
             dispatch({
                 type: GETSERVICES,
@@ -50,4 +55,33 @@ export const getServices = () => {
         }
     }
 }
+
+export const getPaginated= (page) => {
+    return async (dispatch) => {
+        try {
+            const { data } = await axios.get(
+                `https://csyc.onrender.com/services?page=${page}`
+            )
+            dispatch({
+                type:GETPAGINATEDSERVICES,
+                payload: data
+            })
+            console.log(data)
+        } catch (error) {
+           console.log(error) 
+        }
+    }
+}
+export const setTotalPages = (totalPages) => {
+    return {
+        type: SET_TOTAL_PAGES,
+        payload: totalPages
+    }
+}
+export const setCurrentPage = (page) => {
+    return {
+        type: SET_CURRENT_PAGE,
+        payload: page,
+    };
+};
 
