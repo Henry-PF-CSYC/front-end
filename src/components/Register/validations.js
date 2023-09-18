@@ -2,12 +2,12 @@ import * as Yup from 'yup';
 
 const mySchema = Yup.object().shape({
     name: Yup.string()
-        .min(6, 'El nombre debe tener 5 caracteres como minimo')
+        .min(3, 'El nombre debe tener 3 caracteres como minimo')
         .max(12, 'El máximo de caracteres es de 12')
         .required('Por favor, ingrese un nombre'),
 
-    surname: Yup.string()
-        .min(6, 'El apellido debe tener 5 caracteres como minimo')
+    lastname: Yup.string()
+        .min(3, 'El apellido debe tener 3 caracteres como minimo')
         .max(12, 'El máximo de caracteres es de 12')
         .required('Por favor, ingrese un apellido'),
 

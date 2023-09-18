@@ -4,12 +4,14 @@ import { GETSERVICES } from './action-types';
 import { GETPAGINATEDSERVICES } from './action-types'
 import { SET_TOTAL_PAGES } from "./action-types"
 import { SET_CURRENT_PAGE } from './action-types';
+import { EMPTY_USER } from './action-types';
+
 
 export const getUser = (email) => {
     return async (dispatch) => {
         try {
             const { data } = await axios.get(
-                `https://csyc.onrender.com/users/${email}`
+                `https://csyc.onrender.com/users/?email=${email}`
             );
             dispatch({
                 type: GETUSER,
@@ -23,16 +25,20 @@ export const getUser = (email) => {
 export const postUser = (user) => {
     return async (dispatch) => {
         try {
-            const { data } = await axios.post(
-                'https://csyc.onrender.com/users',
-                user
-            );
+            await axios.post('https://csyc.onrender.com/users', user);
             console.log('me cree');
         } catch (error) {
             console.error('Error finding the user', error);
         }
     };
 };
+export const emptyUser = () => {
+    return {
+        type: EMPTY_USER
+    };
+};
+
+
 export const getServices = () => {
     return async ( dispatch ) => {
         try {
@@ -49,6 +55,7 @@ export const getServices = () => {
         }
     }
 }
+
 export const getPaginated= (page) => {
     return async (dispatch) => {
         try {
@@ -77,3 +84,4 @@ export const setCurrentPage = (page) => {
         payload: page,
     };
 };
+
