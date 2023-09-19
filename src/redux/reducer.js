@@ -1,4 +1,4 @@
-import { GETPAGINATEDSERVICES, GETSERVICES, GETUSER, SET_CURRENT_PAGE, SET_TOTAL_PAGES, EMPTY_USER } from "./action-types";
+import { GETSERVICES, GETUSER, GETPAGINATEDSERVICES, EMPTY_USER } from "./action-types";
 
 
 // Estado global
@@ -6,11 +6,10 @@ const initialState = {
     dataUser: {},
     services:[],
     backUpServices:[],
-    currentPage: 1,
     totalPages: 1, 
     currentServicesPage: [],
 } 
-
+console.log(initialState.currentServicesPage)
 
 // Reducer
 const reducer = (state = initialState, action) => {
@@ -33,19 +32,10 @@ const reducer = (state = initialState, action) => {
             }
         case GETPAGINATEDSERVICES:
             return {
-            ...state,
-            currentServicesPage: action.payload,
-            };
-        case SET_CURRENT_PAGE:
-            return {
                 ...state,
-                currentPage: action.payload,
-            };
-        case SET_TOTAL_PAGES:
-            return {
-                ...state,
-                totalPages: action.payload,
-            };
+                currentServicesPage: action.payload.services,
+                totalPages: action.payload.totalCount // Almacena el número total de páginas en el estado.
+            }
         default: return { ...state };
             };
 };
