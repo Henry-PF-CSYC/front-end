@@ -20,6 +20,7 @@ import Luz from "./components/Servicios/Luz/Luz";
 import Cable from "./components/Servicios/Cable/Cable";
 import Telefonia from "./components/Servicios/Telefonia/Telefonia";
 import Streaming from "./components/Servicios/Streaming/Streaming";
+import { Cart } from "./components/Cart/Cart";
 
 
 // Renderizado
@@ -44,6 +45,7 @@ function App() {
           <Route path="/servicios/cable" element={<Cable/>}/> 
           <Route path="/servicios/telefonia" element={<Telefonia/>}/> 
           <Route path="/servicios/streaming" element={<Streaming/>}/> 
+          <Route path="/cart" element={<Cart/>} /> 
         </Routes>  
       <Footer/> 
     </div>);
