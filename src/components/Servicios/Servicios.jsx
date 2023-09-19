@@ -100,14 +100,20 @@ const Services = () => {
         type="number"
         placeholder="Rango mínimo"
         value={rangeMin}
-        onChange={handleRangeMinChange} 
+        onChange={(event) => {
+          const newValue = event.target.value;
+          if (!isNaN(newValue)) { // Verifica si el valor es un número
+            setRangeMin(newValue);}}} 
       />
 
       <input
         type="number"
         placeholder="Rango máximo"
         value={rangeMax}
-        onChange={handleRangeMaxChange} 
+        onChange={(event) => {
+          const newValue = event.target.value;
+          if (!isNaN(newValue)) { // Verifica si el valor es un número
+            setRangeMax(newValue);}}}
       />
 
       <select value={filterType} onChange={handleFilterTypeChange}>
