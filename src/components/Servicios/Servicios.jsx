@@ -3,9 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { getServicesPaginated} from "../../redux/actions";
 import "./Servicios.css";
 import CardsServicios from "../Servicios/CardsServicios/CardsServicios";
-import agua from "../../assets/Servicios/agua.jpg";
-import internet from "../../assets/Servicios/internet.webp";
-import gas from "../../assets/Servicios/gas.webp";
+
 
 const Services = () => {
   const dispatch = useDispatch();

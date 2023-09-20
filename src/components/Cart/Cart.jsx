@@ -1,5 +1,4 @@
 import { Table } from 'react-bootstrap';
-import agua from '../../assets/Servicios/agua.jpg';
 import './Cart.module.css'
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -15,6 +14,11 @@ export const Cart = ({ isTerms }) => {
 
     const deleteService = (name) => {
         dispatch(deleteServiceCart(name))
+    }
+
+    const data = {
+        usuario: 'correo.com',
+        id_services: ['1','2']
     }
 
     const servicesCart = useSelector(state => state.cartServices)

@@ -1,16 +1,17 @@
 import CardsServicios from '../Servicios/CardsServicios/CardsServicios';
 import ModalUsuario from './ModalUsuario/ModalUsuario';
-
-import { useAuth0 } from '@auth0/auth0-react';
-
-import internet from '../../assets/Servicios/internet.webp';
-import gas from '../../assets/Servicios/gas.webp';
-import agua from '../../assets/Servicios/agua.jpg';
-
 import { useEffect, useState } from 'react';
 import { Button } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { getUser, postUser } from '../../redux/actions';
+import { useAuth0 } from '@auth0/auth0-react';
+
+
+const gas = "https://firebasestorage.googleapis.com/v0/b/pf-henry-16edc.appspot.com/o/servicios-landing%2Fgas.webp?alt=media&token=9a8899a4-88be-4150-bafa-0b7738e557e8"
+const internet = "https://firebasestorage.googleapis.com/v0/b/pf-henry-16edc.appspot.com/o/servicios-landing%2Finternet.webp?alt=media&token=cb1c9a73-1eee-427a-9a93-6cefd5f7aa23"
+const agua = "https://firebasestorage.googleapis.com/v0/b/pf-henry-16edc.appspot.com/o/servicios-landing%2Fagua.jpg?alt=media&token=b6629946-52ef-40df-9f02-02cf1dba940f"
+
+
 
 const SeccionUsuario = () => {
     const dispatch = useDispatch();

@@ -1,11 +1,12 @@
 import './Navbar.css';
 import { Link } from 'react-router-dom';
 import { useAuth0 } from '@auth0/auth0-react';
-import logo from '../../assets/Logos/logoB.png';
 import { emptyUser, getUser } from '../../redux/actions';
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { IconCart } from '../Cart/IconCart';
+
+const logo = "https://firebasestorage.googleapis.com/v0/b/pf-henry-16edc.appspot.com/o/logos%2FlogoB.png?alt=media&token=d3cbfd94-84f2-47d4-983e-a34ebab9dde4"
 
 const Navbar = () => {
     const { loginWithRedirect, isAuthenticated, user, logout } = useAuth0();
