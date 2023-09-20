@@ -5,6 +5,7 @@ import logo from '../../assets/Logos/logoB.png';
 import { emptyUser, getUser } from '../../redux/actions';
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
+import { IconCart } from '../Cart/IconCart';
 
 const Navbar = () => {
     const { loginWithRedirect, isAuthenticated, user, logout } = useAuth0();
@@ -173,6 +174,7 @@ const Navbar = () => {
                         <span title="Inicia sesión">Ingresa</span>
                     </button>
                 )}
+                <IconCart/>
             </div>
         </section>
     );

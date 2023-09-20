@@ -3,7 +3,7 @@ import agua from '../../assets/Servicios/agua.jpg';
 import './Cart.module.css'
 import { useState } from 'react';
 
-export const Cart = () => {
+export const Cart = ({ isTerms }) => {
 
     const [proceed, setProceed] = useState(true)
 
@@ -46,14 +46,18 @@ export const Cart = () => {
 
     return (
         <>
-            <div className='d-flex justify-content-center m-4'>
-                <h1>Mi carrito</h1>
-            </div>
+            {
+                isTerms && (
+                    <div className='d-flex justify-content-center m-4'>
+                        <h1>Mi carrito</h1>
+                    </div>
+                )
+            }
             {
                 productos.length > 0 ? (
-                    <div className="row m-5 d-flex justify-content-between">
-                        <div className="col-8">
-                            <h3 className='mb-3'>Tienes {productos.length} producto en tu carrito</h3>
+                    <div className={isTerms ? 'row m-5 d-flex justify-content-between' : 'row'}>
+                        <div className={isTerms ? 'col-8' : "col-12"}  >
+                            {/* <h3 className='mb-3'>Tienes {productos.length} producto en tu carrito</h3> */}
                             <Table variant='dark' striped hover>
                                 <thead>
                                     <tr>
@@ -83,29 +87,33 @@ export const Cart = () => {
                                 </tbody>
                             </Table>
                         </div>
-                        <div className="col-3 mt-5" >
-                            <div className='row' style={{ backgroundColor: '#F5F5F5' }}>
-                                <div className='col-6 my-3'>
-                                    <p className='fs-4 fw-bold'>Total</p>
+                        {
+                            isTerms && (
+                                <div className="col-3 mt-5">
+                                    <div className='d-flex justify-content-between align-items-center border rounded-4' style={{ backgroundColor: '#F5F5F5' }}>
+                                        <div className='my-3 mx-3'>
+                                            <p className='fs-4 fw-bold'>Total</p>
+                                        </div>
+                                        <div className='my-3 mx-3'>
+                                            <p className='fs-4 fw-bold' style={{ textAlign: 'end' }}>$1.000</p>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div className="form-check my-3 px-5 border rounded-4" style={{ backgroundColor: '#F5F5F5' }}>
+                                            <input className="form-check-input my-3" type="checkbox" onClick={checkProceed} value={proceed} id="flexCheckDefault" />
+                                            <label className="form-check-label my-3" style={{textAlign: 'justify'}} htmlFor="flexCheckDefault">
+                                                Al finalizar la compra aceptas haber leído y estar de acuerdo con nuestros Términos y Condiciones así como las así como las Preguntas Frecuentes del sitio. Aceptas también las Politicas de Privacidad y tratamiento de datos personales.
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div style={{ backgroundColor: '#F5F5F5' }}>
+                                        <div className='my-3'>
+                                            <button disabled={proceed} type="button" class="btn btn-outline-success w-100 border rounded-4">Continuar con el pago</button>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div className='col-6 my-3'>
-                                    <p className='fs-4 fw-bold' style={{ textAlign: 'end' }}>$1.000</p>
-                                </div>
-                            </div>
-                            <div className='row'>
-                                <div className="form-check col-12 my-3 ps-5" style={{ backgroundColor: '#F5F5F5' }}>
-                                    <input className="form-check-input my-3" type="checkbox" onClick={checkProceed} value={proceed} id="flexCheckDefault" />
-                                    <label className="form-check-label my-3" htmlFor="flexCheckDefault">
-                                        Al finalizar la compra aceptas haber leído y estar de acuerdo con nuestros Términos y Condiciones así como las así como las Preguntas Frecuentes del sitio. Aceptas también las Politicas de Privacidad y tratamiento de datos personales.
-                                    </label>
-                                </div>
-                            </div>
-                            <div className='row' style={{ backgroundColor: '#F5F5F5' }}>
-                                <div className='col-12 my-3'>
-                                <button disabled={proceed} type="button" class="btn btn-outline-success w-100">Continuar con el pago</button>
-                                </div>
-                            </div>
-                        </div>
+                            )
+                        }
                     </div>
                 ) : (
                     <h1>Actualmente no tienes productos agregados al carrito</h1>

@@ -45,7 +45,7 @@ function App() {
           <Route path="/servicios/cable" element={<Cable/>}/> 
           <Route path="/servicios/telefonia" element={<Telefonia/>}/> 
           <Route path="/servicios/streaming" element={<Streaming/>}/> 
-          <Route path="/cart" element={<Cart/>} /> 
+          <Route path="/cart" element={<Cart isTerms={true}/>} /> 
         </Routes>  
       <Footer/> 
     </div>);
