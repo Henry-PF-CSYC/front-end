@@ -2,7 +2,7 @@ import axios from 'axios';
 import { ADDCARTSERVICES, DELETECARTSERVICES, GETPAGINATEDSERVICES, GETUSER } from './action-types';
 import { GETSERVICES } from './action-types';
 import { EMPTY_USER } from './action-types';
-
+import { GET_CLASIFICADO } from './action-types';
 
 export const getUser = (email) => {
     return async (dispatch) => {
@@ -20,7 +20,7 @@ export const getUser = (email) => {
     };
 };
 export const postUser = (user) => {
-    return async (dispatch) => {
+    return async () => {
         try {
             await axios.post('https://csyc.onrender.com/users', user);
             console.log('me cree');
@@ -35,25 +35,33 @@ export const emptyUser = () => {
     };
 };
 
-
 export const getServices = () => {
-    return async ( dispatch ) => {
+    return async (dispatch) => {
         try {
             const response = await axios.get(
                 'https://csyc.onrender.com/services?size=9999'
             );
-            const allservices = response.data.service
+            const allservices = response.data.service;
             dispatch({
                 type: GETSERVICES,
                 payload: allservices
-            })
+            });
             console.log(allservices);
         } catch (error) {
-            console.log(error)
+            console.log(error);
         }
-    }
-}
-export const getServicesPaginated = ({ name, page, size, order, orderBy, type , rangeMin , rangeMax}) => {
+    };
+};
+export const getServicesPaginated = ({
+    name,
+    page,
+    size,
+    order,
+    orderBy,
+    type,
+    rangeMin,
+    rangeMax
+}) => {
     return async (dispatch) => {
         try {
             // Inicializa un objeto para almacenar las consultas válidas.
@@ -74,11 +82,10 @@ export const getServicesPaginated = ({ name, page, size, order, orderBy, type , 
 
             // Construye la URL de la solicitud con las consultas válidas.
             const url = `https://csyc.onrender.com/services?${queryString}`;
-            console.log(url)
+            console.log(url);
             const response = await axios.get(url);
             const services = response.data.service;
             const totalCount = response.data.count;
-            
 
             dispatch({
                 type: GETPAGINATEDSERVICES,
@@ -87,9 +94,40 @@ export const getServicesPaginated = ({ name, page, size, order, orderBy, type , 
                     totalCount // Incluye el número total de páginas en el payload.
                 }
             });
-           console.log(services)
+            console.log(services);
         } catch (error) {
             console.log(error);
+        }
+    };
+};
+
+
+export const getClasificados = () => {
+    return async (dispatch) => {
+        try {
+            const { data } = await axios.get(
+                `https://csyc.onrender.com/clasificados/`
+            );
+            dispatch({
+                type: GET_CLASIFICADO,
+                payload: data
+            });
+        } catch (error) {
+            console.error(`Error al traer los clasificados`, error);
+        }
+    };
+};
+
+
+export const postClasificados = (clasificado) => {
+    return async () => {
+        try {
+            await axios.post(
+                'https://csyc.onrender.com/clasificados',
+                clasificado
+            );
+        } catch (error) {
+            console.error('Error al crear la publicacion', error);
         }
     };
 };
@@ -101,9 +139,11 @@ export const addServiceCart = (service) => {
     }
 }
 
+
 export const deleteServiceCart = (service) => {
     return {
         type: DELETECARTSERVICES,
         payload: service
     }
 }
+

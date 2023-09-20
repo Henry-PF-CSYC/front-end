@@ -1,5 +1,4 @@
 import { useFormik } from 'formik';
-import { useState } from 'react';
 import validations from '../../Register/validations';
 import '../../Register/Register';
 import { Button, Modal } from 'react-bootstrap';

@@ -1,16 +1,17 @@
-import { GETSERVICES, GETUSER, GETPAGINATEDSERVICES, EMPTY_USER, ADDCARTSERVICES, DELETECARTSERVICES } from "./action-types";
-
+import { GETSERVICES, GETUSER, GETPAGINATEDSERVICES, EMPTY_USER, ADDCARTSERVICES, DELETECARTSERVICES, GET_CLASIFICADO } from "./action-types";
 
 // Estado global
 const initialState = {
     dataUser: {},
-    services:[],
-    backUpServices:[],
-    totalPages: 1, 
+    services: [],
+    backUpServices: [],
+    totalPages: 1,
     currentServicesPage: [],
-    cartServices: []
-} 
-console.log(initialState.currentServicesPage)
+    cartServices: [],
+    clasificados: []
+};
+
+console.log(initialState.currentServicesPage);
 
 // Reducer
 const reducer = (state = initialState, action) => {
@@ -26,16 +27,16 @@ const reducer = (state = initialState, action) => {
                 dataUser: {}
             };
         case GETSERVICES:
-            return{
+            return {
                 ...state,
                 services: action.payload,
                 backUpServices: action.payload
-            }
+            };
         case GETPAGINATEDSERVICES:
             return {
                 ...state,
                 currentServicesPage: action.payload.services,
-                totalPages: action.payload.totalCount // Almacena el número total de páginas en el estado.
+                totalPages: action.payload.totalCount // Almacena el número total de páginas en el estado
             }
         case ADDCARTSERVICES:
             return {
@@ -48,8 +49,15 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 cartServices: filterServices
             }
-        default: return { ...state };
+           
+        case GET_CLASIFICADO:
+            return {
+                ...state,
+                clasificados: action.payload
             };
+        default:
+            return { ...state };
+    }
 };
 
 export default reducer;
