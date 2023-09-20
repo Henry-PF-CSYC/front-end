@@ -68,6 +68,7 @@ const Services = () => {
       setRangeMax(event.target.value);
     };
 
+    
   return (
     <section id="servicesContainer">
       <div id="generalInfo">
@@ -199,4 +200,4 @@ const Services = () => {
         );
     };
 
-export default Services;
+export default Services;

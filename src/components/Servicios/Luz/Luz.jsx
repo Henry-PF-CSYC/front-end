@@ -2,9 +2,6 @@ import "./Luz.css"
 import CardsServicios from "../CardsServicios/CardsServicios"
 import luz from "../../../assets/Servicios/luz.webp"
 import { useSelector } from "react-redux"
-import { filterByType} from "../../../redux/actions"
-import { useDispatch } from "react-redux"
-import { useEffect, useState } from "react"
 
 
 
@@ -12,13 +9,6 @@ const Luz = () =>{
 
     const services = useSelector(state => state.backUpServices)
     const luzService = services.filter(service => service.type === "luz")
-
-    const dispatch = useDispatch();
-
-    useEffect(() => {
-        // Aquí despachas la acción filterByType
-        dispatch(filterByType("base"));
-    }, []); // El array vacío asegura que esta acción se ejecute solo una vez cuando el componente se monta
 
 
     return(

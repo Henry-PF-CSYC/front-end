@@ -4,22 +4,12 @@ import plan1 from "../../../assets/Planes/Cable/cable-plan1.webp"
 import plan2 from "../../../assets/Planes/Cable/cable-plan2.jpg"
 import plan3 from "../../../assets/Planes/Cable/cable-plan3.jpg"
 import {useSelector} from "react-redux"
-import { filterByType} from "../../../redux/actions"
-import { useDispatch } from "react-redux"
-import { useEffect, useState } from "react"
+
 
 const Cable = () =>{
 
     const services = useSelector(state => state.backUpServices)
     const cableService = services.filter(service => service.type === "cable")
-
-    const dispatch = useDispatch();
-
-    useEffect(() => {
-        // Aquí despachas la acción filterByType
-        dispatch(filterByType("base"));
-    }, []); // El array vacío asegura que esta acción se ejecute solo una vez cuando el componente se monta
-
 
     return(
         <section className="container-fluid cableContainer">

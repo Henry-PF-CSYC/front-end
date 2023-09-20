@@ -39,10 +39,10 @@ export const emptyUser = () => {
 export const getServices = () => {
     return async ( dispatch ) => {
         try {
-            const response= await axios.get(
+            const response = await axios.get(
                 'https://csyc.onrender.com/services?size=9999'
             );
-            const allservices=response.data.service
+            const allservices = response.data.service
             dispatch({
                 type: GETSERVICES,
                 payload: allservices
