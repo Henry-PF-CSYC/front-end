@@ -20,7 +20,7 @@ export const getUser = (email) => {
     };
 };
 export const postUser = (user) => {
-    return async (dispatch) => {
+    return async () => {
         try {
             await axios.post('https://csyc.onrender.com/users', user);
             console.log('me cree');
@@ -113,6 +113,19 @@ export const getClasificados = () => {
             });
         } catch (error) {
             console.error(`Error al traer los clasificados`, error);
+        }
+    };
+};
+
+export const postClasificados = (clasificado) => {
+    return async () => {
+        try {
+            await axios.post(
+                'https://csyc.onrender.com/clasificados',
+                clasificado
+            );
+        } catch (error) {
+            console.error('Error al crear la publicacion', error);
         }
     };
 };
