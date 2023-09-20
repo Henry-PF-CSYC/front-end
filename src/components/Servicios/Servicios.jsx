@@ -144,13 +144,7 @@ const Services = () => {
       {serviciosInPage.map((servicio, index) => (
           <div key={index} className="col-4">
             <CardsServicios
-              imagen={
-                servicio.type === "agua"
-                  ? agua
-                  : servicio.type === "internet"
-                  ? internet
-                  : gas
-              }
+              imagen={servicio.image}
               titulo={servicio.name}
               nombreBoton="Lo quiero!"
               descripcion={servicio.description}
