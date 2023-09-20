@@ -4,9 +4,7 @@ import plan1 from "../../../assets/Planes/Telefonia/telefonia-plan1.jpg"
 import plan2 from "../../../assets/Planes/Telefonia/telefonia-plan2.jpg"
 import plan3 from "../../../assets/Planes/Telefonia/telefonia-plan3.webp"
 import { useSelector } from "react-redux"
-import { filterByType} from "../../../redux/actions"
-import { useDispatch } from "react-redux"
-import { useEffect, useState } from "react"
+
 
 
 
@@ -14,13 +12,6 @@ const Telefonia = () =>{
 
     const services = useSelector(state => state.backUpServices)
     const telefoniaServices = services.filter(service => service.type === "telefonia")
-
-    const dispatch = useDispatch();
-
-    useEffect(() => {
-        // Aquí despachas la acción filterByType
-        dispatch(filterByType("base"));
-    }, []); // El array vacío asegura que esta acción se ejecute solo una vez cuando el componente se monta
 
 
     return(

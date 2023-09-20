@@ -1,11 +1,7 @@
 import axios from 'axios';
-import { GETUSER, ORDER_BY_NAME } from './action-types';
+import { GETPAGINATEDSERVICES, GETUSER } from './action-types';
 import { GETSERVICES } from './action-types';
-import { GETPAGINATEDSERVICES } from './action-types'
-import { SET_TOTAL_PAGES } from "./action-types"
-import { SET_CURRENT_PAGE } from './action-types';
 import { EMPTY_USER } from './action-types';
-import { FILTER_BY_TYPE } from './action-types';
 
 
 export const getUser = (email) => {
@@ -23,8 +19,6 @@ export const getUser = (email) => {
         }
     };
 };
-
-
 export const postUser = (user) => {
     return async (dispatch) => {
         try {
@@ -35,8 +29,6 @@ export const postUser = (user) => {
         }
     };
 };
-
-
 export const emptyUser = () => {
     return {
         type: EMPTY_USER
@@ -47,127 +39,61 @@ export const emptyUser = () => {
 export const getServices = () => {
     return async ( dispatch ) => {
         try {
-            const { data } = await axios.get(
+            const response = await axios.get(
                 'https://csyc.onrender.com/services?size=9999'
             );
+            const allservices = response.data.service
             dispatch({
                 type: GETSERVICES,
-                payload: data
+                payload: allservices
             })
+            console.log(allservices);
         } catch (error) {
             console.log(error)
         }
     }
 }
-
-
-export const getPaginated= (page) => {
+export const getServicesPaginated = ({ name, page, size, order, orderBy, type , rangeMin , rangeMax}) => {
     return async (dispatch) => {
         try {
-            const { data } = await axios.get(
-                `https://csyc.onrender.com/services?page=${page}&size=9999`
-            )
+            // Inicializa un objeto para almacenar las consultas válidas.
+            const queries = {};
+
+            // Agrega las consultas que tienen valores definidos.
+            if (name) queries.name = name;
+            if (page) queries.page = page;
+            if (size) queries.size = size;
+            if (order) queries.order = order;
+            if (orderBy) queries.orderBy = orderBy;
+            if (type) queries.type = type;
+            if (rangeMin) queries.min = rangeMin;
+            if (rangeMax) queries.max = rangeMax;
+
+            // Convierte el objeto queries en una cadena de consulta (query string).
+            const queryString = new URLSearchParams(queries).toString();
+
+            // Construye la URL de la solicitud con las consultas válidas.
+            const url = `https://csyc.onrender.com/services?${queryString}`;
+            console.log(url)
+            const response = await axios.get(url);
+            const services = response.data.service;
+            const totalCount = response.data.count;
+            
+
             dispatch({
-                type:GETPAGINATEDSERVICES,
-                payload: data
-            })
+                type: GETPAGINATEDSERVICES,
+                payload: {
+                    services,
+                    totalCount // Incluye el número total de páginas en el payload.
+                }
+            });
+           console.log(services)
         } catch (error) {
-           console.log(error) 
+            console.log(error);
         }
-    }
-}
-
-
-export const setTotalPages = (totalPages) => {
-    return {
-        type: SET_TOTAL_PAGES,
-        payload: totalPages
-    }
-}
-
-
-export const setCurrentPage = (page) => {
-    return {
-        type: SET_CURRENT_PAGE,
-        payload: page,
     };
 };
 
 
-// export const orderByName = (order) =>{
-//     return async (dispatch) => {
-//         try {
-//             const { data } = await axios.get(
-//                 `https://csyc.onrender.com/services?order=${order}&size=9999`
-//             )
-//             dispatch({
-//                 type: ORDER_BY_NAME,
-//                 payload: data
-//             })
-//             console.log(data)
-//         } catch (error) {
-//            console.log(error) 
-//         }
-//     }
-// }
 
 
-export const orderByName = (order) => {
-    return async (dispatch, getState) => {
-      try {
-        // Obtiene la propiedad services del estado global
-        const services = getState().services;
-  
-        // Ordena el array services según la propiedad 'name' y el parámetro 'order'
-        services.sort((a, b) => {
-          // Cambia 'name' a la propiedad que desees ordenar
-          const nameA = a.name.toUpperCase();
-          const nameB = b.name.toUpperCase();
-  
-          if (order === "ASC") {
-            return nameA.localeCompare(nameB);
-          } else if (order === "DESC") {
-            return nameB.localeCompare(nameA);
-          }
-          return 0;
-        });
-  
-        dispatch({
-          type: ORDER_BY_NAME,
-          payload: services, // Usar services en lugar de data
-        });
-  
-      } catch (error) {
-        console.log(error);
-      }
-    };
-  };
-  ;
-
-
-
-export const filterByType = (type) =>{
-    return async (dispatch) => {
-        try {
-            if(type==="base"){
-                const { data } = await axios.get(
-                    `https://csyc.onrender.com/services?order=ASC&size=9999`
-                )
-                return dispatch({
-                    type: ORDER_BY_NAME,
-                    payload: data
-                })
-            }
-            const { data } = await axios.get(
-                `https://csyc.onrender.com/services?type=${type}&size=9999`
-            )
-            return dispatch({
-                type: FILTER_BY_TYPE,
-                payload: data
-            })
-            console.log(data)
-        } catch (error) {
-           console.log(error) 
-        }
-    }
-}

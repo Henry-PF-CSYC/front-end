@@ -2,23 +2,12 @@ import "./Gas.css"
 import CardsServicios from "../CardsServicios/CardsServicios"
 import gas from "../../../assets/Servicios/gas.webp"
 import {useSelector} from "react-redux"
-import { filterByType} from "../../../redux/actions"
-import { useDispatch } from "react-redux"
-import { useEffect, useState } from "react"
 
 
 const Gas= () =>{
 
     const services = useSelector(state => state.backUpServices)
     const gasService = services.filter(service => service.type === "gas")
-
-    const dispatch = useDispatch();
-
-    useEffect(() => {
-        // Aquí despachas la acción filterByType
-        dispatch(filterByType("base"));
-    }, []); // El array vacío asegura que esta acción se ejecute solo una vez cuando el componente se monta
-
 
     return(
         <section className="container-fluid gasContainer">
