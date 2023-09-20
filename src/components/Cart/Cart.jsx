@@ -2,59 +2,34 @@ import { Table } from 'react-bootstrap';
 import agua from '../../assets/Servicios/agua.jpg';
 import './Cart.module.css'
 import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { deleteServiceCart } from '../../redux/actions';
 
 export const Cart = ({ isTerms }) => {
 
     const [proceed, setProceed] = useState(true)
-
+    const dispatch = useDispatch()
     const checkProceed = () => {
         setProceed(!proceed)
     }
 
-    const productos = [
-        {
-            picture: agua,
-            name: 'Agua',
-            price: '$1.000'
-        },
-        {
-            picture: agua,
-            name: 'Agua',
-            price: '$1.000'
-        },
-        {
-            picture: agua,
-            name: 'Agua',
-            price: '$1.000'
-        },
-        {
-            picture: agua,
-            name: 'Agua',
-            price: '$1.000'
-        },
-        {
-            picture: agua,
-            name: 'Agua',
-            price: '$1.000'
-        },
-        {
-            picture: agua,
-            name: 'Agua',
-            price: '$1.000'
-        }
-    ]
+    const deleteService = (name) => {
+        dispatch(deleteServiceCart(name))
+    }
+
+    const servicesCart = useSelector(state => state.cartServices)
 
     return (
-        <>
+        <div className={isTerms ? 'pt-5' : ''}>
             {
                 isTerms && (
-                    <div className='d-flex justify-content-center m-4'>
+                    <div className='d-flex justify-content-center m-5'>
                         <h1>Mi carrito</h1>
                     </div>
                 )
             }
             {
-                productos.length > 0 ? (
+                servicesCart.length > 0 ? (
                     <div className={isTerms ? 'row m-5 d-flex justify-content-between' : 'row'}>
                         <div className={isTerms ? 'col-8' : "col-12"}  >
                             {/* <h3 className='mb-3'>Tienes {productos.length} producto en tu carrito</h3> */}
@@ -69,17 +44,17 @@ export const Cart = ({ isTerms }) => {
                                 </thead>
                                 <tbody>
                                     {
-                                        productos.map((producto, index) => {
+                                        servicesCart.map((service, index) => {
                                             return (
                                                 <tr key={index}>
-                                                    <td className='p-0 col-2'><img className='m-3' width={'80px'} height={'50px'} src={producto.picture} /></td>
+                                                    <td className='p-0 col-2'><img className='m-3' width={'80px'} height={'50px'} src={service.imagen} /></td>
                                                     <td className='col-3'>
-                                                        <p>{producto.name}</p>
+                                                        <p>{service.titulo}</p>
                                                     </td>
                                                     <td className='col-2'>
-                                                        <p>{producto.price}</p>
+                                                        <p>{service.precio}</p>
                                                     </td>
-                                                    <td className='col-1'><button type="button" class="btn btn-outline-danger">X</button></td>
+                                                    <td className='col-1'><button onClick={() => deleteService(service.titulo)} type="button" class="btn btn-outline-danger">X</button></td>
                                                 </tr>
                                             )
                                         })
@@ -101,7 +76,7 @@ export const Cart = ({ isTerms }) => {
                                     <div>
                                         <div className="form-check my-3 px-5 border rounded-4" style={{ backgroundColor: '#F5F5F5' }}>
                                             <input className="form-check-input my-3" type="checkbox" onClick={checkProceed} value={proceed} id="flexCheckDefault" />
-                                            <label className="form-check-label my-3" style={{textAlign: 'justify'}} htmlFor="flexCheckDefault">
+                                            <label className="form-check-label my-3" style={{ textAlign: 'justify' }} htmlFor="flexCheckDefault">
                                                 Al finalizar la compra aceptas haber leído y estar de acuerdo con nuestros Términos y Condiciones así como las así como las Preguntas Frecuentes del sitio. Aceptas también las Politicas de Privacidad y tratamiento de datos personales.
                                             </label>
                                         </div>
@@ -116,10 +91,12 @@ export const Cart = ({ isTerms }) => {
                         }
                     </div>
                 ) : (
-                    <h1>Actualmente no tienes productos agregados al carrito</h1>
+                    <div className='d-flex align-items-center justify-content-center' style={{height: '284px'}}>
+                        <h1>Actualmente no tienes productos agregados al carrito</h1>
+                    </div>
                 )
             }
 
-        </>
+        </div>
     )
 }

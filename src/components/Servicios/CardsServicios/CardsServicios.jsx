@@ -1,6 +1,14 @@
+import { useDispatch } from 'react-redux'
 import style from './CardsServicios.module.css'
+import { addServiceCart } from '../../../redux/actions'
 
-const CardsServicios = ({ imagen, titulo, descripcion, nombreBoton, estado }) => {
+const CardsServicios = ({ imagen, titulo, descripcion, nombreBoton, estado, precio }) => {
+
+    const dispatch = useDispatch()
+
+    const addCart = () => {
+        dispatch(addServiceCart({ imagen, titulo, descripcion, nombreBoton, estado, precio }))
+    }
 
     return (
         <div className='mb-4'>
@@ -8,11 +16,12 @@ const CardsServicios = ({ imagen, titulo, descripcion, nombreBoton, estado }) =>
                 <img src={imagen} className="card-img-top" height={'260px'} alt="..." />
                 <div className="card-body">
                     <h5 className="card-title ps-3" style={{ color: 'white' }}>{titulo}</h5>
+                    <p style={{ color: 'white' }}>{precio}</p>
                     <div className="mt-3 px-3">
                         <p className={style.descripcion} style={{ color: 'white' }}>{descripcion}</p>
                     </div>
                     <div className="ps-3">
-                        <button className="btn btn-primary">{nombreBoton}</button>
+                        <button onClick={addCart} className="btn btn-primary">{nombreBoton}</button>
                     </div>
                     <div className='row d-flex justify-content-center mt-2 ps-3'>
                         {
