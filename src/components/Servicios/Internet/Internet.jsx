@@ -1,8 +1,5 @@
 import "./Internet.css" 
 import CardsServicios from "../CardsServicios/CardsServicios"
-import plan1 from "../../../assets/Planes/Internet/internet-plan1.webp"
-import plan2 from "../../../assets/Planes/Internet/internet-plan2.jpg"
-import plan3 from "../../../assets/Planes/Internet/internet-plan3.jpg"
 import { useSelector } from "react-redux"
 
 
@@ -31,7 +28,7 @@ const Internet = () =>{
                 {internetService.map((service, index) => (
                     <div key={index} className="col-4">
                         <CardsServicios
-                            imagen={plan1}
+                            imagen={service.image}
                             titulo={service.name}
                             nombreBoton="Lo quiero!"
                             descripcion={service.description}

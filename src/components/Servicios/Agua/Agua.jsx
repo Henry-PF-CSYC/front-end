@@ -1,6 +1,5 @@
 import "./Agua.css" 
 import CardsServicios from "../CardsServicios/CardsServicios"
-import agua from "../../../assets/Servicios/agua.jpg"
 import {useSelector} from "react-redux"
 
 
@@ -32,7 +31,7 @@ const Agua = () =>{
                 {aguaService.map((service, index) => (
                     <div key={index} className="col-4">
                         <CardsServicios
-                            imagen={agua}
+                            imagen={service.image}
                             titulo={service.name}
                             nombreBoton="Lo quiero!"
                             descripcion={service.description}

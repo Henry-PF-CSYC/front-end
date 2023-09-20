@@ -1,6 +1,5 @@
 import "./Luz.css" 
 import CardsServicios from "../CardsServicios/CardsServicios"
-import luz from "../../../assets/Servicios/luz.webp"
 import { useSelector } from "react-redux"
 
 
@@ -30,7 +29,7 @@ const Luz = () =>{
                 {luzService.map((service, index) => (
                     <div key={index} className="col-4">
                         <CardsServicios
-                            imagen={luz}
+                            imagen={service.image}
                             titulo={service.name}
                             nombreBoton="Lo quiero!"
                             descripcion={service.description}

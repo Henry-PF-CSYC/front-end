@@ -1,8 +1,5 @@
 import "./Streaming.css" 
 import CardsServicios from "../CardsServicios/CardsServicios"
-import plan1 from "../../../assets/Planes/Streaming/streaming-combo1.jpg"
-import plan2 from "../../../assets/Planes/Streaming/streaming-combo2.webp"
-import plan3 from "../../../assets/Planes/Streaming/streaming-combo3.webp"
 import { useSelector } from "react-redux"
 
 
@@ -32,7 +29,7 @@ const Streaming = () =>{
                 {streamingServices.map((service, index) => (
                     <div key={index} className="col-4">
                         <CardsServicios
-                            imagen={plan1}
+                            imagen={service.image}
                             titulo={service.name}
                             nombreBoton="Lo quiero!"
                             descripcion={service.description}
