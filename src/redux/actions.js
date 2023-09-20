@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { GETPAGINATEDSERVICES, GETUSER } from './action-types';
+import { ADDCARTSERVICES, DELETECARTSERVICES, GETPAGINATEDSERVICES, GETUSER } from './action-types';
 import { GETSERVICES } from './action-types';
 import { EMPTY_USER } from './action-types';
 
@@ -94,6 +94,16 @@ export const getServicesPaginated = ({ name, page, size, order, orderBy, type , 
     };
 };
 
+export const addServiceCart = (service) => {
+    return {
+        type: ADDCARTSERVICES,
+        payload: service
+    }
+}
 
-
-
+export const deleteServiceCart = (service) => {
+    return {
+        type: DELETECARTSERVICES,
+        payload: service
+    }
+}
