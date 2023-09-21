@@ -6,25 +6,20 @@ import { getClasificados, postClasificados } from '../../redux/actions';
 import ModalClasificado from './ModalClasificado/ModalClasificado';
 import { useAuth0 } from '@auth0/auth0-react';
 
-const array = [
-    {
-        picture:
-            'https://upload.wikimedia.org/wikipedia/commons/7/7c/Mallard_080508.jpg',
-        tipo: 'oferta',
-        titulo: 'titulo',
-        descripcion: 'descripcion',
-        contacto: 'contacto'
-    }
-];
-
 const Clasificados = () => {
     const [show, setShow] = useState(false);
-
-    const handleClose = (value) => {
-        dispatch(postClasificados(value));
+    const handleClose = () => {
         setShow(false);
     };
     const dispatch = useDispatch();
+    const { user, isAuthenticated } = useAuth0();
+    const handleSubmit = (value) => {
+        event.preventDefault();
+        console.log(value);
+        dispatch(postClasificados(value));
+        setShow(false);
+    };
+
     useEffect(() => {
         dispatch(getClasificados());
     }, []);
@@ -34,13 +29,14 @@ const Clasificados = () => {
     return (
         <div className={style.page}>
             <div className={style.container}>
-                {array.map((clasificado) => (
+                {clasi.map((clasificado) => (
                     <CardsClasificados
-                        picture={clasificado.picture}
-                        tipo={clasificado.tipo}
-                        titulo={clasificado.titulo}
-                        descripcion={clasificado.descripcion}
-                        contacto={clasificado.contacto}
+                        picture={clasificado.image}
+                        tipo={clasificado.type}
+                        titulo={clasificado.title}
+                        descripcion={clasificado.description}
+                        contacto={clasificado.contact}
+                        precio={clasificado.price}
                     />
                 ))}
             </div>
@@ -54,7 +50,13 @@ const Clasificados = () => {
                     <span className={style.span}>Crear publicacion</span>
                 </button>
             )}
-            <ModalClasificado show={show} handleClose={handleClose} />
+            <ModalClasificado
+                show={show}
+                handleSubmit={handleSubmit}
+                handleClose={handleClose}
+                //email={user.email}
+                email="cristianbarth.1@gmail.com"
+            />
         </div>
     );
 };
