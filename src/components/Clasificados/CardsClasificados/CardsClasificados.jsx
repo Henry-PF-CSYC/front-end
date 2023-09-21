@@ -1,5 +1,3 @@
-import React, { useState } from 'react';
-
 const CardsClasificados = ({
     tipo,
     titulo,
@@ -9,14 +7,23 @@ const CardsClasificados = ({
     precio
 }) => {
     const cardStyle = {
-        maxWidth: '18rem',
-        width: '18rem',
+        maxWidth: '20rem',
+        width: '20rem',
         margin: '15px'
     };
     const imgStyle = {
         maxWidth: '16rem',
         padding: 'auto'
     };
+    const descripcionStyle = {
+        overflow: 'hidden',
+        textOverflow: 'ellipsis',
+        display: '-webkit-box',
+        WebkitLineClamp: 4,
+        WebkitBoxOrient: 'vertical',
+        whiteSpace: 'normal'
+    };
+
     return (
         <div className="card bg-light mb-3" style={cardStyle}>
             <div className="card-header">
@@ -26,7 +33,9 @@ const CardsClasificados = ({
                 <h5 className="card-title">
                     {tipo}: {titulo}
                 </h5>
-                <p className="card-text">{descripcion}</p>
+                <p className="card-text" style={descripcionStyle}>
+                    {descripcion}
+                </p>
                 <p className="card-text">{contacto}</p>
                 <p className="card-text">{precio}</p>
             </div>
