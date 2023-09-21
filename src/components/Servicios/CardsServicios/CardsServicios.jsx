@@ -11,35 +11,31 @@ const CardsServicios = ({ imagen, titulo, descripcion, nombreBoton, estado, prec
     }
 
     return (
-        <div className='mb-4'>
-            <div className="card w-85" style={{ backgroundColor: 'black' }}>
-                <img src={imagen} className="card-img-top" height={'260px'} alt="..." />
-                <div className="card-body">
-                    <h5 className="card-title ps-3" style={{ color: 'white' }}>{titulo}</h5>
-                    <p style={{ color: 'white' }}>{precio}</p>
-                    <div className="mt-3 px-3">
-                        <p className={style.descripcion} style={{ color: 'white' }}>{descripcion}</p>
-                    </div>
-                    <div className="ps-3">
-                        <button onClick={addCart} className="btn btn-primary">{nombreBoton}</button>
-                    </div>
-                    <div className='row d-flex justify-content-center mt-2 ps-3'>
+        <div className={style.card}>
+            <div className={`${style.face} ${style.front}`}>
+                <img src={imagen}  alt={titulo}/>
+                <h3>{titulo}</h3>
+            </div>            
+            <div className={`${style.face} ${style.back}`}>
+                <h3>{titulo}</h3>
+                <p className={style.description}>{`${descripcion.slice(0,155)}`}</p>
+                    <p className={style.price}>{precio}</p>
+                    <button onClick={addCart} className="btn btn-primary">{nombreBoton}</button>
+                    <div>
                         {
-                            estado === 'available' ? (
-                                <div class="alert alert-success col-md-4 p-0" role="alert">
-                            {estado}
-                        </div>
-                            ) : (
-                                <div class="alert alert-danger col-md-4 p-0" role="alert">
-                            {estado}
-                        </div>
-                            )
+                        estado === 'available' ?(
+                        <div className={style.available}>
+                        Disponible
+                        </div>)
+                        :(
+                        <div  className={style.notAvailable}>
+                        No Disponible
+                        </div>)
                         }
                     </div>
-                </div>
+
             </div>
         </div>
     )
 }
-
 export default CardsServicios

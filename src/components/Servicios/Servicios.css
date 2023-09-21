@@ -1,23 +1,131 @@
-#servicesContainer{
-    /* background-image: url("/src/assets/Fondos/services.jpg"); */
-    background-size: cover; 
+/* Estilos para el contenedor principal */
+#servicesContainer {
+    background-size: cover;
     text-align: center;
     padding: 3rem;
-}
-
-#generalInfo{
+    margin-left: 10%;
+    padding: 20px;
+    position: relative;
+  }
+  #servicesContainer h1{
+    padding: 2%;
+  }
+  
+  /* Estilos para la información general */
+  #generalInfo {
     font-size: larger;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
     margin-top: 50px;
-}
-
-#filterContainer{
+  }
+  
+  /* Estilos para el contenedor de filtros */
+  #filterContainer {
     display: flex;
-    flex-direction: row;
-    align-items: center;
-}
+    flex-direction: row; /* Cambia la dirección de disposición a fila */
+    align-items: flex-end; /* Alinea los elementos al final del eje vertical */
+    justify-content: space-between; /* Espacio entre elementos */
+  }
+  
+  /* Estilos para los filtros */
+  .servicesFilter {
+    margin: 0.7rem;
+  }
+  
+  /* Estilos para la barra lateral en pantallas más grandes */
+  .barraLateral {
+    position: fixed; /* Fija la barra lateral en la pantalla */
+    left: 0;
+    top: 70px; /* Asegura que la barra lateral comience desde la parte superior */
+    width: 15%;
+    padding: 20px;
+    overflow-y: auto;
+    height: 100%; /* Ocupa todo el alto de la pantalla */
+    background: rgba(175, 175, 175, 0.6);
+    transition: background 0.3s ease;
+    border-radius: 0;
+    z-index: 1;
+    font-size: 0.9rem;
+  }
+  
+  /* Estilos para la barra lateral en pantallas más pequeñas */
+  @media screen and (max-width: 768px) {
+    .barraLateral {
+      width: 0;
+      padding: 0;
+      overflow-y: hidden;
+      background: rgba(175, 175, 175, 0.6);
+      transition: width 0.3s ease;
+      z-index: 1;
+    }
+  
+    .barraLateral:hover {
+      width: 15%;
+    }
+  
+    /* Agrega un botón para abrir la barra lateral en pantallas pequeñas */
+    #openSidebarBtn {
+      position: fixed;
+      top: 70px;
+      left: 0;
+      padding: 10px;
+      cursor: pointer;
+      z-index: 2;
+    }
+  }
+  
+  /* Estilos para los elementos de entrada en la barra lateral */
+  .barraLateral input,
+  .barraLateral select {
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 5px;
+    border: none;
+    border-radius: 10px; /* Elimina la esquina redondeada en los elementos de entrada */
+    font-weight: lighter;
+  }
+  
+  /* Estilos para la disposición de los elementos en la barra lateral */
+  .barraLateral {
+    display: flex;
+    flex-direction: column;
+  }
+  
+ /* Estilos para la disposición de los elementos en la barra lateral */
+.barraLateral div {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Alinea los elementos al centro del eje vertical */
+    margin-bottom: 8px; /* Añade espacio entre los divs */
+  }
 
-.servicesFilter{
-    margin: 0.7rem; 
+.barraLateral p{
+    font-weight: bold;
 }
-
+  
+  /* Estilos para las etiquetas de texto en la barra lateral */
+.barraLateral label {
+    margin-right: 5px;
+    margin-bottom: 5px; /* Espacio entre las etiquetas y los elementos de selección */
+    text-align: center !important; /* Centra el texto horizontalmente */
+    font-weight: bold;
+  }
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  appearance: none;
+  margin: 0;
+}
+/* Estilo para deshabilitar la flecha de apertura en los selects */
+select {
+    /* Establece la apariencia a un estilo sin flecha */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    /* Ajusta el padding para dar espacio al icono personalizado */
+    padding-right: 20px; /* Ajusta el valor según sea necesario */
+  }
+  .descriptionGeneral {
+    padding: 2%;
+    font-size: medium;
+    margin-left: 8%; /* Ajusta el margen izquierdo según sea necesario */
+  }

@@ -33,7 +33,7 @@ const Gas= () =>{
                             titulo={service.name}
                             nombreBoton="Lo quiero!"
                             descripcion={service.description}
-                            precio={`$${service.price} x mes`}
+                            precio={`$${service.price}`}
                             estado={service.status}
                         />
                     </div>
