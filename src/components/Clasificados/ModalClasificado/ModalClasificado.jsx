@@ -1,21 +1,27 @@
+import { type } from '@testing-library/user-event/dist/type';
 import { useFormik } from 'formik';
 import { Button, Modal } from 'react-bootstrap';
 
-const ModalClasificado = ({ show, handleClose }) => {
-    const { values, handleBlur, handleChange, handleSubmit, resetForm } =
-        useFormik({
-            initialValues: {
-                tipo: '',
-                titulo: '',
-                descripcion: '',
-                contacto: ''
-            },
-            enableReinitialize: true,
-            // validationSchema:validations,
-            onSubmit: () => {
-                postClasificado(values);
-            }
-        });
+const ModalClasificado = ({ show, handleSubmit, handleClose, email }) => {
+    const { values, handleBlur, handleChange, resetForm } = useFormik({
+        initialValues: {
+            user_email: email,
+            image: '',
+            type: '',
+            title: '',
+            description: '',
+            contact: '',
+            price: ''
+        },
+        enableReinitialize: true
+        // validationSchema:validations,
+    });
+    const options = [
+        { value: 'Seleccionar una opcion' },
+        { value: 'compra', label: 'Compra' },
+        { value: 'venta', label: 'Venta' },
+        { value: 'laboral', label: 'Se busca' }
+    ];
 
     return (
         <>
@@ -33,23 +39,37 @@ const ModalClasificado = ({ show, handleClose }) => {
                     <Modal.Body>
                         <div className="form-floatin mb-2">
                             <input
-                                type="string"
-                                placeholder="Tipo"
-                                id="tipo"
-                                name="tipo"
-                                value={values.tipo}
+                                type="file"
+                                placeholder="Imagen"
+                                id="image"
+                                name="image"
+                                value={values.image}
                                 onChange={handleChange}
                                 onBlur={handleBlur}
                                 className="form-control"
                             />
                         </div>
                         <div className="form-floatin mb-2">
+                            <select
+                                className="form-control"
+                                id="type"
+                                name="type"
+                                value={values.type}
+                                onChange={handleChange}
+                                onBlur={handleBlur}
+                            >
+                                {options.map((opcion) => (
+                                    <option>{opcion.value}</option>
+                                ))}
+                            </select>
+                        </div>
+                        <div className="form-floatin mb-2">
                             <input
                                 type="string"
                                 placeholder="Titulo"
-                                id="titulo"
-                                name="titulo"
-                                value={values.titulo}
+                                id="title"
+                                name="title"
+                                value={values.title}
                                 onChange={handleChange}
                                 onBlur={handleBlur}
                                 className="form-control"
@@ -59,9 +79,9 @@ const ModalClasificado = ({ show, handleClose }) => {
                             <textarea
                                 type="string"
                                 placeholder="Descripcion"
-                                id="descripcion"
-                                name="descripcion"
-                                value={values.descripcion}
+                                id="description"
+                                name="description"
+                                value={values.description}
                                 onChange={handleChange}
                                 onBlur={handleBlur}
                                 rows="4"
@@ -72,9 +92,21 @@ const ModalClasificado = ({ show, handleClose }) => {
                             <input
                                 type="number"
                                 placeholder="Numero de Contacto"
-                                id="contacto"
-                                name="contacto"
-                                value={values.contacto}
+                                id="contact"
+                                name="contact"
+                                value={values.contact}
+                                onChange={handleChange}
+                                onBlur={handleBlur}
+                                className="form-control"
+                            />
+                        </div>
+                        <div className="form-floatin mb-2">
+                            <input
+                                type="number"
+                                placeholder="Precio"
+                                id="price"
+                                name="price"
+                                value={values.price}
                                 onChange={handleChange}
                                 onBlur={handleBlur}
                                 className="form-control"
@@ -84,14 +116,18 @@ const ModalClasificado = ({ show, handleClose }) => {
                     <Modal.Footer>
                         <Button
                             variant="secondary"
-                            onClick={() => {
-                                handleClose();
-                                resetForm();
-                            }}
+                            onClick={() => handleClose()}
                         >
                             Cancelar
                         </Button>
-                        <Button type="submit" variant="success">
+                        <Button
+                            type="submit"
+                            variant="success"
+                            onClick={() => {
+                                handleSubmit(values);
+                                resetForm();
+                            }}
+                        >
                             Guaradar cambios
                         </Button>
                     </Modal.Footer>

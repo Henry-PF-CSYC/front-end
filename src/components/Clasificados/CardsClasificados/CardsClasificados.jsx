@@ -5,7 +5,8 @@ const CardsClasificados = ({
     titulo,
     descripcion,
     contacto,
-    picture
+    picture,
+    precio
 }) => {
     const cardStyle = {
         maxWidth: '18rem',
@@ -27,6 +28,7 @@ const CardsClasificados = ({
                 </h5>
                 <p className="card-text">{descripcion}</p>
                 <p className="card-text">{contacto}</p>
+                <p className="card-text">{precio}</p>
             </div>
         </div>
     );

@@ -105,7 +105,7 @@ export const getClasificados = () => {
     return async (dispatch) => {
         try {
             const { data } = await axios.get(
-                `https://csyc.onrender.com/clasificados/`
+                `https://csyc.onrender.com/offer/`
             );
             dispatch({
                 type: GET_CLASIFICADO,
@@ -119,12 +119,11 @@ export const getClasificados = () => {
 
 export const postClasificados = (clasificado) => {
     return async () => {
+        console.log(clasificado);
         try {
-            await axios.post(
-                'https://csyc.onrender.com/clasificados',
-                clasificado
-            );
+            await axios.post('https://csyc.onrender.com/offer/', clasificado);
         } catch (error) {
+            console.log(clasificado);
             console.error('Error al crear la publicacion', error);
         }
     };
