@@ -1,14 +1,15 @@
 import "./Telefonia.css" 
 import CardsServicios from "../CardsServicios/CardsServicios"
-import plan1 from "../../../assets/Planes/Telefonia/telefonia-plan1.jpg"
-import plan2 from "../../../assets/Planes/Telefonia/telefonia-plan2.jpg"
-import plan3 from "../../../assets/Planes/Telefonia/telefonia-plan3.webp"
 import { useSelector } from "react-redux"
+
+
+
 
 const Telefonia = () =>{
 
     const services = useSelector(state => state.backUpServices)
     const telefoniaServices = services.filter(service => service.type === "telefonia")
+
 
     return(
         <section className="container-fluid telefoniaContainer">
@@ -27,7 +28,7 @@ const Telefonia = () =>{
                {telefoniaServices.map((service, index) => (
                     <div key={index} className="col-4">
                         <CardsServicios
-                            imagen={plan1}
+                            imagen={service.image}
                             titulo={service.name}
                             nombreBoton="Lo quiero!"
                             descripcion={service.description}

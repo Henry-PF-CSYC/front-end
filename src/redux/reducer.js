@@ -1,16 +1,17 @@
-import { GETPAGINATEDSERVICES, GETSERVICES, GETUSER, SET_CURRENT_PAGE, SET_TOTAL_PAGES, EMPTY_USER } from "./action-types";
-
+import { GETSERVICES, GETUSER, GETPAGINATEDSERVICES, EMPTY_USER, ADDCARTSERVICES, DELETECARTSERVICES, GET_CLASIFICADO } from "./action-types";
 
 // Estado global
 const initialState = {
     dataUser: {},
-    services:[],
-    backUpServices:[],
-    currentPage: 1,
-    totalPages: 1, 
+    services: [],
+    backUpServices: [],
+    totalPages: 1,
     currentServicesPage: [],
-} 
+    cartServices: [],
+    clasificados: []
+};
 
+console.log(initialState.currentServicesPage);
 
 // Reducer
 const reducer = (state = initialState, action) => {
@@ -26,28 +27,37 @@ const reducer = (state = initialState, action) => {
                 dataUser: {}
             };
         case GETSERVICES:
-            return{
+            return {
                 ...state,
                 services: action.payload,
                 backUpServices: action.payload
-            }
+            };
         case GETPAGINATEDSERVICES:
             return {
-            ...state,
-            currentServicesPage: action.payload,
-            };
-        case SET_CURRENT_PAGE:
+                ...state,
+                currentServicesPage: action.payload.services,
+                totalPages: action.payload.totalCount // Almacena el número total de páginas en el estado
+            }
+        case ADDCARTSERVICES:
             return {
                 ...state,
-                currentPage: action.payload,
-            };
-        case SET_TOTAL_PAGES:
+                cartServices: [...state.cartServices, action.payload]
+            }
+        case DELETECARTSERVICES:
+            const filterServices = state.cartServices.filter( service => service.titulo !== action.payload)
             return {
                 ...state,
-                totalPages: action.payload,
+                cartServices: filterServices
+            }
+           
+        case GET_CLASIFICADO:
+            return {
+                ...state,
+                clasificados: action.payload
             };
-        default: return { ...state };
-            };
+        default:
+            return { ...state };
+    }
 };
 
 export default reducer;

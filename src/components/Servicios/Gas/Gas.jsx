@@ -1,7 +1,7 @@
 import "./Gas.css" 
 import CardsServicios from "../CardsServicios/CardsServicios"
-import gas from "../../../assets/Servicios/gas.webp"
 import {useSelector} from "react-redux"
+
 
 const Gas= () =>{
 
@@ -29,7 +29,7 @@ const Gas= () =>{
                {gasService.map((service, index) => (
                     <div key={index} className="col-4">
                         <CardsServicios
-                            imagen={gas}
+                            imagen={service.image}
                             titulo={service.name}
                             nombreBoton="Lo quiero!"
                             descripcion={service.description}

@@ -1,9 +1,7 @@
 import "./Cable.css" 
 import CardsServicios from "../CardsServicios/CardsServicios"
-import plan1 from "../../../assets/Planes/Cable/cable-plan1.webp"
-import plan2 from "../../../assets/Planes/Cable/cable-plan2.jpg"
-import plan3 from "../../../assets/Planes/Cable/cable-plan3.jpg"
 import {useSelector} from "react-redux"
+
 
 const Cable = () =>{
 
@@ -27,7 +25,7 @@ const Cable = () =>{
                 {cableService.map((service, index) => (
                     <div key={index} className="col-4">
                         <CardsServicios
-                            imagen={plan1}
+                            imagen={service.image}
                             titulo={service.name}
                             nombreBoton="Lo quiero!"
                             descripcion={service.description}

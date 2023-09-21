@@ -1,32 +1,32 @@
 import './Landing.css';
-
-import bg from '../../assets/Fondos/landing.webp';
-
-import combo1 from '../../assets/Combos/1.webp';
-import combo2 from '../../assets/Combos/2.webp';
-import combo3 from '../../assets/Combos/3.png';
-
-import gas from '../../assets/Servicios/gas.webp';
-import internet from '../../assets/Servicios/internet.webp';
-import luz from '../../assets/Servicios/luz.webp';
-import agua from '../../assets/Servicios/agua.jpg';
-import cable from '../../assets/Servicios/cable.webp';
-import telefonia from '../../assets/Servicios/telefonia.jpg';
-import streaming from '../../assets/Servicios/streaming.webp';
-import { Link } from 'react-router-dom';
-
-
 import { useEffect } from "react"
 import { useDispatch } from "react-redux"
 import { getServices } from "../../redux/actions"
+import { Link } from 'react-router-dom';
+
+// Imagenes
+const bg = "https://firebasestorage.googleapis.com/v0/b/pf-henry-16edc.appspot.com/o/servicios-landing%2Flanding.webp?alt=media&token=a654afc7-9a4d-429e-84fd-aa3f93eef26d"
+
+const combo1 = "https://firebasestorage.googleapis.com/v0/b/pf-henry-16edc.appspot.com/o/combos%2F1.webp?alt=media&token=324b0140-2d49-4647-b8de-4cd8d99f459b"
+const combo2 = "https://firebasestorage.googleapis.com/v0/b/pf-henry-16edc.appspot.com/o/combos%2F2.webp?alt=media&token=817903bd-886f-4f15-8b97-68208f4b4eee"
+const combo3 = "https://firebasestorage.googleapis.com/v0/b/pf-henry-16edc.appspot.com/o/combos%2F3.png?alt=media&token=bf3e722f-b537-4679-823e-15b4d1eaebf7"
+
+const gas = "https://firebasestorage.googleapis.com/v0/b/pf-henry-16edc.appspot.com/o/servicios-landing%2Fgas.webp?alt=media&token=9a8899a4-88be-4150-bafa-0b7738e557e8"
+const internet = "https://firebasestorage.googleapis.com/v0/b/pf-henry-16edc.appspot.com/o/servicios-landing%2Finternet.webp?alt=media&token=cb1c9a73-1eee-427a-9a93-6cefd5f7aa23"
+const luz = "https://firebasestorage.googleapis.com/v0/b/pf-henry-16edc.appspot.com/o/servicios-landing%2Fluz.webp?alt=media&token=f8739218-4576-4422-9543-f28838a88d28"
+const agua = "https://firebasestorage.googleapis.com/v0/b/pf-henry-16edc.appspot.com/o/servicios-landing%2Fagua.jpg?alt=media&token=b6629946-52ef-40df-9f02-02cf1dba940f"
+const cable = "https://firebasestorage.googleapis.com/v0/b/pf-henry-16edc.appspot.com/o/servicios-landing%2Fcable.webp?alt=media&token=717d29a6-d670-4812-b656-3cf1bf22dbb6"
+const telefonia = "https://firebasestorage.googleapis.com/v0/b/pf-henry-16edc.appspot.com/o/servicios-landing%2Ftelefonia.jpg?alt=media&token=865fa468-d6f5-42ab-976d-43509b55f382"
+const streaming =  "https://firebasestorage.googleapis.com/v0/b/pf-henry-16edc.appspot.com/o/servicios-landing%2Fstreaming.webp?alt=media&token=5d9b5d20-7a1f-4662-b0c8-1f627221dc50"
+
+
 
 const Landing = () =>{
 
     const dispatch=useDispatch() 
 
     useEffect(()=>{ //Cargo el estado global ni bien entro al landing
-        dispatch(getServices())
-    },[])
+        dispatch(getServices())},[])
 
     return (
         <section>
