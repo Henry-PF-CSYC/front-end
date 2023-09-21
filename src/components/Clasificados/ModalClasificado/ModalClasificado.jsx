@@ -1,5 +1,6 @@
 import { useFormik } from 'formik';
 import { Button, Modal } from 'react-bootstrap';
+import { postClasificados } from '../../../redux/actions';
 
 const ModalClasificado = ({ show, handleClose }) => {
     const { values, handleBlur, handleChange, handleSubmit, resetForm } =
@@ -13,7 +14,7 @@ const ModalClasificado = ({ show, handleClose }) => {
             enableReinitialize: true,
             // validationSchema:validations,
             onSubmit: () => {
-                postClasificado(values);
+                postClasificados(values);
             }
         });
 

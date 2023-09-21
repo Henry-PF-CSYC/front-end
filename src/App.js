@@ -1,3 +1,6 @@
+// Ruteado
+import {Routes, Route, useLocation} from "react-router-dom"
+
 // Componentes importados
 import Navbar from "./components/Navbar/Navbar";
 import Footer from "./components/Footer/Footer";
@@ -7,9 +10,7 @@ import Login from "./components/Login/login"
 import Register from "./components/Register/Register"
 import SeccionUsuario from './components/SeccionUsuario/SeccionUsuario'
 import Clasificados from "./components/Clasificados/Clasificados";
-
-// Ruteado
-import {Routes, Route} from "react-router-dom"
+import Firebase from "./components/Firebase/Firebase";
 
 // Servicios
 import Servicios from "./components/Servicios/Servicios";
@@ -22,21 +23,35 @@ import Telefonia from "./components/Servicios/Telefonia/Telefonia";
 import Streaming from "./components/Servicios/Streaming/Streaming";
 import { Cart } from "./components/Cart/Cart";
 
+//Administrador
+import Admin from "./components/Admin/Admin";
+import Dashboard from "./components/Admin/Dashboard/Dashboard";
+import Usuarios from "./components/Admin/Usuarios/Usuarios";
+import Productos from "./components/Admin/Productos/Productos";
+import Reclamos from "./components/Admin/Reclamos/Reclamos";
 
 // Renderizado
-
 function App() {
+
+  const location = useLocation();
+  const isAdminRouted = location.pathname.includes('/admin');
+
   return (
     <div className="App">
-      <Navbar/>
+      {!isAdminRouted && <Navbar />}
         <Routes>
+          
+          {/*Componentes principales*/}
           <Route path="/" element={<Landing/>}/>
           <Route path="/login" element={<Login/>}/>
           <Route path="/register" element={<Register/>}/>
           <Route path="/usuario" element={<SeccionUsuario/>}/>
           <Route path="/clasificados" element={<Clasificados/>}/>
           <Route path="/contacto" element={<Contact/>}/>
+          <Route path="/firebase" element={<Firebase/>}/>
 
+          
+           {/*Servicios*/}
           <Route path="/servicios" element={<Servicios/>}/>
           <Route path="/servicios/internet" element={<Internet/>}/>
           <Route path="/servicios/agua" element={<Agua/>}/>
@@ -46,8 +61,18 @@ function App() {
           <Route path="/servicios/telefonia" element={<Telefonia/>}/> 
           <Route path="/servicios/streaming" element={<Streaming/>}/> 
           <Route path="/cart" element={<Cart isTerms={true}/>} /> 
+
+          {/* Administrador */}
+          <Route path="/admin/*" element={<Admin />}>
+          <Route index element={<Dashboard />} />
+          <Route path="dashboard" element={<Dashboard />} />
+          <Route path="productos" element={<Productos />} />
+          <Route path="reclamos" element={<Reclamos />} />
+          <Route path="usuarios" element={<Usuarios />} />
+        </Route>
+             
         </Routes>  
-      <Footer/> 
+      {!isAdminRouted && <Footer />} 
     </div>);
 }
 
