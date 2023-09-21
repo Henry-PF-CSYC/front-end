@@ -29,7 +29,11 @@
     margin: auto;
     margin-bottom: 10px;
 }
-
+.boton {
+    background-color: white;
+    border: 0px;
+    outline: 0;
+}
 .span {
     background-color: rgb(31, 170, 180);
     padding: 1px 24px;
