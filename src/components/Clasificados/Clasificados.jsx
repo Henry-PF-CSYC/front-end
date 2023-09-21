@@ -13,7 +13,7 @@ const Clasificados = () => {
     };
     const dispatch = useDispatch();
     const { user, isAuthenticated } = useAuth0();
-    const handleSubmit = (value) => {
+    const handleSubmit = (value, event) => {        
         event.preventDefault();
         console.log(value);
         dispatch(postClasificados(value));
