@@ -71,7 +71,7 @@ const Services = () => {
     <section id="servicesContainer">
       <div id="generalInfo">
         <h1>Servicios</h1>
-        <p>
+        <p className="descriptionGeneral">
           En CSYC te ofrecemos una amplia gama de soluciones para satisfacer
           todas tus necesidades en el hogar, aquí encontrarás todo lo que
           necesitas en un solo lugar, explorar información detallada sobre cada
@@ -79,35 +79,29 @@ const Services = () => {
           misión es proporcionarte acceso fácil y conveniente a servicios
           esenciales de alta calidad
         </p>
-        <p>
-          Nos enorgullece ser tu socio en el mantenimiento de un hogar seguro,
-          eficiente y próspero. Ya seas un miembro de nuestra cooperativa o un
-          visitante interesado, esperamos que encuentres en la información que
-          necesitas para mejorar tu calidad de vida. Explora nuestras ofertas,
-          descubre oportunidades emocionantes y conéctate con nosotros!
-        </p>
       </div>
-
+      <div className="barraLateral">
+      <p>Busqueda por Nombre</p>
       <input
         type="text"
-        placeholder="Buscar por nombre"
+        placeholder=""
         value={name}
         onChange={handledInputName} 
       />
-
+    
+      <p>Rango de Precios</p>
       <input
         type="number"
-        placeholder="Rango mínimo"
+        placeholder="Precio mínimo"
         value={rangeMin}
         onChange={(event) => {
           const newValue = event.target.value;
           if (!isNaN(newValue)) { // Verifica si el valor es un número
             setRangeMin(newValue);}}} 
       />
-
       <input
         type="number"
-        placeholder="Rango máximo"
+        placeholder="Precio máximo"
         value={rangeMax}
         onChange={(event) => {
           const newValue = event.target.value;
@@ -115,46 +109,56 @@ const Services = () => {
             setRangeMax(newValue);}}}
       />
 
-      <select value={filterType} onChange={handleFilterTypeChange}>
-         <option value="">Todos los servicios</option>
-         <option value="luz">Luz</option>
-         <option value="gas">Gas</option>
-         <option value="internet">Internet</option>
-         <option value="agua">Agua</option>
-         <option value="cable">Cable</option>
-         <option value="telefonia">Telefonía</option>
-         <option value="streaming">Streaming</option>
-      </select>
-      <select value={orderOption} onChange={handleOrderChange}>
-        <option value="">Sin orden</option>
-        <option value="ASC"> Ascendente</option>
-        <option value="DESC"> Descendente</option>
-      </select> 
+      <div>
+        <label>Filtrar por tipo:</label>
+        <select value={filterType} onChange={handleFilterTypeChange}>
+          <option value="">Todos</option>
+          <option value="luz">Luz</option>
+          <option value="gas">Gas</option>
+          <option value="internet">Internet</option>
+          <option value="agua">Agua</option>
+          <option value="cable">Cable</option>
+          <option value="telefonia">Telefonía</option>
+          <option value="streaming">Streaming</option>
+        </select>
+      </div>
 
-      <select value={orderBy} onChange={handleOrderByChange}>
-        <option value="">Sin orden</option>
-        <option value="price">Orden por Precio</option> 
-        <option value="name">Orden por Nombre</option> 
-      </select>
+      <div>
+        <label>Ordenar:</label>
+        <select value={orderOption} onChange={handleOrderChange}>
+          <option value="">Sin orden</option>
+          <option value="ASC">Ascendente</option>
+          <option value="DESC">Descendente</option>
+        </select>
+      </div>
 
+      <div>
+        <label>Ordenar por:</label>
+        <select value={orderBy} onChange={handleOrderByChange}>
+          <option value="">Sin orden</option>
+          <option value="price">Orden por Precio</option>
+          <option value="name">Orden por Nombre</option>
+        </select>
+      </div>
 
+      </div>
+
+      <div className="col-md-10">
       <section className="row">
-      {serviciosInPage.map((servicio, index) => (
+        {serviciosInPage.map((servicio, index) => (
           <div key={index} className="col-4">
             <CardsServicios
               imagen={servicio.image}
               titulo={servicio.name}
               nombreBoton="Lo quiero!"
               descripcion={servicio.description}
-              precio={`$${servicio.price} x mes`}
+              precio={`$${servicio.price}`}
               estado={servicio.status}
             />
           </div>
         ))}
-
-        
       </section>
-
+    </div>
       <div className="pagination justify-content-center">
         <ul className="pagination">
           <li className={`page-item ${currentPage === 1 ? "disabled" : ""}`}>

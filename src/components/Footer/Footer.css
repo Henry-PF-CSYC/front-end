@@ -1,7 +1,9 @@
-#footerSection{
+#footerSection {
     background-color: #111111;
     padding: 2rem;
-}
+    position: relative; /* Agrega posición relativa */
+    z-index: 10; /* Asegura que el footer tenga un z-index menor */
+  }
 
 .footerA { 
     display: flex;
@@ -40,13 +42,12 @@
     margin-right: 0.4rem;
     color: rgb(116, 111, 111);
 }
-  
 #myHr {
-    width: 77%; 
+    width: 77%;
     height: 1px;
     background-color: white;
     margin-left: 9.2rem;
+    position: absolute; /* Cambia la posición a absoluta */
+    bottom: 0; /* Lo coloca al final del footer */
   }
-  
-  
   
