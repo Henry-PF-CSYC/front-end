@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { ADDCARTSERVICES, DELETECARTSERVICES, GETPAGINATEDSERVICES, GETUSER } from './action-types';
+import { ADDCARTSERVICES, DELETECARTSERVICES, GETPAGINATEDSERVICES, GETUSER, GETALLUSERS } from './action-types';
 import { GETSERVICES } from './action-types';
 import { EMPTY_USER } from './action-types';
 import { GET_CLASIFICADO } from './action-types';
@@ -19,6 +19,24 @@ export const getUser = (email) => {
         }
     };
 };
+
+export const getAllUsers = () => {
+    return async (dispatch) => {
+        try {
+            const { data } = await axios.get(
+                `https://csyc.onrender.com/users`
+            );
+            dispatch({
+                type: GETALLUSERS,
+                payload: data
+            });
+        } catch (error) {
+            console.error(`Error encontrando los usuarios`, error);
+        }
+    };
+};
+
+
 export const postUser = (user) => {
     return async () => {
         try {

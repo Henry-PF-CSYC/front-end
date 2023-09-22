@@ -27,7 +27,7 @@ import { Cart } from "./components/Cart/Cart";
 import Admin from "./components/Admin/Admin";
 import Dashboard from "./components/Admin/Dashboard/Dashboard";
 import Usuarios from "./components/Admin/Usuarios/Usuarios";
-import Productos from "./components/Admin/Productos/Productos";
+import ServicesAdm from "./components/Admin/Servicios/ServicesAdm";
 import Reclamos from "./components/Admin/Reclamos/Reclamos";
 
 // Renderizado
@@ -63,12 +63,12 @@ function App() {
           <Route path="/cart" element={<Cart isTerms={true}/>} /> 
 
           {/* Administrador */}
-          <Route path="/admin/*" element={<Admin />}>
-          <Route index element={<Dashboard />} />
-          <Route path="dashboard" element={<Dashboard />} />
-          <Route path="productos" element={<Productos />} />
-          <Route path="reclamos" element={<Reclamos />} />
-          <Route path="usuarios" element={<Usuarios />} />
+          <Route path="/admin/*" element={<Admin/>}>
+          <Route index element={<Dashboard/>}/>
+          <Route path="dashboard" element={<Dashboard/>}/>
+          <Route path="servicesAdm" element={<ServicesAdm/>}/>
+          <Route path="reclamos" element={<Reclamos/>}/>
+          <Route path="usuarios" element={<Usuarios/>}/>
         </Route>
              
         </Routes>  

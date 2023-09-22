@@ -17,9 +17,9 @@ const SideBar = () =>{
                     <span className="fs-5">Dashboard</span>
                 </a>
 
-                <a href="/admin/productos" className="list-group-item list-group-item-action my-2">
+                <a href="/admin/servicesAdm" className="list-group-item list-group-item-action my-2">
                     <i className="bi bi-table fs-5 me-2"></i>
-                    <span className="fs-5">Productos</span>
+                    <span className="fs-5">Servicios</span>
                 </a>
 
                 <a href="/admin/reclamos" className="list-group-item list-group-item-action my-2">
@@ -32,7 +32,7 @@ const SideBar = () =>{
                     <span className="fs-5">Usuarios</span>
                 </a>
 
-                <a className="list-group-item list-group-item-action my-2">
+                <a href="/" className="list-group-item list-group-item-action my-2">
                     <i className="bi bi-power fs-5 me-2"></i>
                     <span className="fs-5">Salir</span>
                 </a>
