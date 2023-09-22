@@ -84,7 +84,7 @@ const ServicesAdm = () => {
         bordered
         small
         data={{ columns, rows }}
-        infoLabel={['Mostrando del', 'al', 'de', 'servicios disponibles']} 
+        infoLabel={['Mostrando del', 'al', 'de', 'usuarios disponibles']} 
         searchLabel="Buscar por nombre" 
         entriesLabel="Entradas a desplegar:"
         className="custom-datatable"/>
