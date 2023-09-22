@@ -5,9 +5,11 @@ import { MDBDataTable } from 'mdbreact';
 import "./Usuarios.css";
 
 const ServicesAdm = () => {
+
   const dispatch = useDispatch();
   const usuarios = useSelector((state) => state.allUsers); 
   
+
   // Despachamos accion para obtener usuarios
   useEffect(() => {
     const obtenerUsuarios = async () => {
@@ -15,82 +17,46 @@ const ServicesAdm = () => {
         await dispatch(getAllUsers());
       } catch (error) { console.error('Error al obtener usuarios:', error);}
     };
-  
-  obtenerUsuarios(); // Llamamos a la función al cargar el componente
+  obtenerUsuarios(); 
   }, [dispatch]); 
 
 
-  // Verifica si los datos de servicios están disponibles antes de mostrar la tabla
+  // Verificamos si los datos están disponibles antes de mostrar la tabla
   if (!usuarios || usuarios.length === 0) {
     return <div>Cargando datos...</div>;
   }
 
-  // Define una función para asignar clases de estilo condicionales en función del estado
+
+  // Definimos una función para asignar clase segun status
   const getCellStyle = (status) => {
     if (status === 'user') {
-      return 'user-cell'; // Clase para servicios disponibles (verde)
+      return 'user-cell'; 
     } else {
-      return 'admin-cell'; // Clase para servicios no disponibles (rojo)
+      return 'admin-cell'; 
     }
   };
+
 
   // Boton de opciones
   const handleRowClick = (rowData) => {
     alert(`Haz hecho clic en ${rowData.name}`);
   };
   
-  // Define las columnas de la tabla
+
+  // Definimos las columnas de la tabla
   const columns = [
-    {
-      label: 'Email',
-      field: 'email',
-      sort: 'asc',
-      width: 150
-    },
-    {
-      label: 'DNI',
-      field: 'dni',
-      sort: 'asc',
-      width: 150
-    },
-    {
-      label: 'Nombre',
-      field: 'name',
-      sort: 'asc',
-      width: 150
-    },
-    {
-      label: 'Apellido',
-      field: 'lastname',
-      sort: 'asc',
-      width: 150
-    },
-    {
-      label: 'Teléfono',
-      field: 'phone',
-      sort: 'asc',
-      width: 150
-    },
-    {
-      label: 'Dirección',
-      field: 'address',
-      sort: 'asc',
-      width: 200
-    },
-    {
-      label: 'Rol',
-      field: 'role',
-      sort: 'asc',
-      width: 150
-    },
-    {
-      label: 'Ver',
-      field: 'accion',
-      width: 100
-    }
+    {label: 'Email', field: 'email', sort: 'asc', width: 150},
+    { label: 'DNI', field: 'dni', sort: 'asc', width: 150},
+    { label: 'Nombre', field: 'name', sort: 'asc', width: 150},
+    { label: 'Apellido', field: 'lastname', sort: 'asc', width: 150},
+    { label: 'Teléfono', field: 'phone', sort: 'asc', width: 150},
+    { label: 'Dirección', field: 'address', sort: 'asc', width: 200},
+    { label: 'Rol', field: 'role', sort: 'asc', width: 150},
+    { label: 'Ver', field: 'accion', width: 100}
   ];
 
-  // Mapea los datos de servicios en el formato adecuado
+
+  // Mapeamos los usuarios
   const rows = usuarios.map((usuario) => ({
     email: usuario.email,
     dni: usuario.dni,
@@ -105,6 +71,9 @@ const ServicesAdm = () => {
       </button>)
   }));
 
+
+
+  // Renderizado
   return (
     <div>
 
@@ -124,63 +93,3 @@ const ServicesAdm = () => {
 }
 
 export default ServicesAdm;
-
-
-
-// import { useDispatch, useSelector } from "react-redux";
-// import { useEffect } from "react";
-// import { getAllUsers } from "../../../redux/actions";
-// import "./Usuarios.css"
-
-// const Usuarios = () => {
-
-//     const dispatch = useDispatch();
-//     const usuarios = useSelector((state) => state.allUsers); 
-  
-//     // Despachamos accion para obtener usuarios
-//     useEffect(() => {
-//       const obtenerUsuarios = async () => {
-//         try {
-//           await dispatch(getAllUsers());
-//         } catch (error) { console.error('Error al obtener usuarios:', error);}
-//       };
-  
-//     obtenerUsuarios(); // Llamamos a la función al cargar el componente
-//     }, [dispatch]); 
-  
-
-// // Renderizado
-// return (
-//       <div>
-//         <h1>Usuarios</h1>
-        
-//         <table className="usuarios-table">
-
-//           <thead>
-//             <tr>
-//                <th>Email</th>
-//                <th>Nombre</th>
-//                <th>Apellido</th>
-//                <th>Rol</th>
-//                <th>DNI</th>
-//                <th>Direccion</th>
-//             </tr>
-//           </thead>
-
-//           <tbody>
-//             {usuarios.map((usuario) => (
-//               <tr key={usuario.email}>
-//                  <td>{usuario.email}</td>
-//                  <td>{usuario.name}</td>
-//                  <td>{usuario.lastname}</td>
-//                  <td>{usuario.role}</td>
-//                  <td>{usuario.dni}</td>
-//                  <td>{usuario.address}</td>
-//               </tr>))}
-//           </tbody>
-
-//         </table>
-//       </div>);
-// };
-  
-// export default Usuarios;

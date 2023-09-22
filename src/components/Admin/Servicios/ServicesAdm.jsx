@@ -5,6 +5,7 @@ import { MDBDataTable } from 'mdbreact';
 import "./ServicesAdm.css";
 
 const ServicesAdm = () => {
+  
   const dispatch = useDispatch();
   const servicios = useSelector((state) => state.services);
 
@@ -17,76 +18,45 @@ const ServicesAdm = () => {
         console.error('Error al obtener servicios:', error);
       }
     };
-
-    obtenerServicios(); // Llamamos a la función al cargar el componente
+    obtenerServicios(); 
   }, [dispatch]);
 
-  // Verifica si los datos de servicios están disponibles antes de mostrar la tabla
+
+  // Verificamos si los datos están disponibles antes de mostrar la tabla
   if (!servicios || servicios.length === 0) {
     return <div>Cargando datos...</div>;
   }
 
-  // Define una función para asignar clases de estilo condicionales en función del estado
+
+  // Definimos una función para asignar clases de estilo segun el status
   const getCellStyle = (status) => {
     if (status === 'available') {
-      return 'available-cell'; // Clase para servicios disponibles (verde)
+      return 'available-cell'; 
     } else {
-      return 'unavailable-cell'; // Clase para servicios no disponibles (rojo)
+      return 'unavailable-cell'; 
     }
   };
   
+
   // Boton de opciones
   const handleRowClick = (rowData) => {
     alert(`Haz hecho clic en ${rowData.name}`);
   };
   
 
-  // Define las columnas de la tabla
+  // Definimos las columnas de la tabla
   const columns = [
-    {
-      label: 'ID',
-      field: 'id',
-      sort: 'asc',
-      width: 150
-    },
-    {
-      label: 'Type',
-      field: 'type',
-      sort: 'asc',
-      width: 150
-    },
-    {
-      label: 'Name',
-      field: 'name',
-      sort: 'asc',
-      width: 150
-    },
-    {
-      label: 'Provider',
-      field: 'provider',
-      sort: 'asc',
-      width: 200
-    },
-    {
-      label: 'Price',
-      field: 'price',
-      sort: 'asc',
-      width: 100
-    },
-    {
-      label: 'Status',
-      field: 'status',
-      sort: 'asc',
-      width: 100
-    },
-    {
-      label: 'Ver',
-      field: 'accion',
-      width: 100
-    }
+    {label: 'ID', field: 'id', sort: 'asc', width: 150},
+    {label: 'Type', field: 'type', sort: 'asc', width: 150},
+    {label: 'Name', field: 'name', sort: 'asc', width: 150},
+    {label: 'Provider', field: 'provider', sort: 'asc', width: 200},
+    {label: 'Price', field: 'price', sort: 'asc', width: 100},
+    {label: 'Status', field: 'status', sort: 'asc', width: 100},
+    {label: 'Ver', field: 'ver', width: 100}
   ];
 
-  // Mapea los datos de servicios en el formato adecuado
+
+  // Mapeamos los servicios
   const rows = servicios.map((servicio) => ({
     id: servicio.id,
     type: servicio.type,
@@ -94,12 +64,15 @@ const ServicesAdm = () => {
     provider: servicio.provider,
     price: servicio.price,
     status: <span className={getCellStyle(servicio.status)}>{servicio.status}</span>,
-    accion:(
+    ver:(
       <button onClick={() => handleRowClick(servicio)} className="accion-button">
         <i class="bi bi-three-dots-vertical"></i>
       </button>)
   }));
 
+
+
+  // Renderizado
   return (
     <div>
 
