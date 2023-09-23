@@ -1,0 +1,52 @@
+*{
+    font-family: 'Montserrat', sans-serif;
+}
+ 
+#introToServicesAdmin{
+     display: flex;
+     flex-direction: row;
+     justify-content: space-between;
+     margin-top: 0.5rem;
+}
+ 
+.addService{
+     background-color: #0d59e6;
+     border-radius: 1rem;
+     border-color: white;
+     color: white; 
+}
+ 
+.addService:hover {
+     background-color: #6696ee;
+     transition: 1s;
+}
+ 
+.custom-datatable {
+     max-height: 550px; 
+     overflow-y: auto; 
+     overflow-x: hidden; 
+}
+ 
+.compra-cell{
+     color: rgb(16, 134, 212);
+     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); 
+     text-decoration: bold;
+}
+ 
+.trabajo-cell{
+     color: rgb(226, 171, 67);
+     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); 
+     text-decoration: bold;
+}
+
+.clasificadoDeleteBut {
+    color: rgb(0, 0, 0);
+    border: none;
+    cursor: pointer;
+}
+  
+.clasificadoDeleteBut:hover {
+    color: rgb(255, 0, 0);
+    transition: 1s;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); 
+}

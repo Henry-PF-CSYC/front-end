@@ -5,7 +5,7 @@ const SideBar = () =>{
         <section className="bg-white" id="container">
 
             <div className="m-2">
-                <span className="brand-name fs-4">Administrador</span>
+                <span className="brand-name fs-4">Administración</span>
             </div>
 
             <hr className="text-dark"/>
@@ -18,18 +18,23 @@ const SideBar = () =>{
                 </a>
 
                 <a href="/admin/servicesAdm" className="list-group-item list-group-item-action my-2">
-                    <i className="bi bi-table fs-5 me-2"></i>
+                    <i className="bi bi-nut fs-5 me-2"></i>
                     <span className="fs-5">Servicios</span>
-                </a>
-
-                <a href="/admin/reclamos" className="list-group-item list-group-item-action my-2">
-                    <i className="bi bi-clipboard fs-5 me-2"></i>
-                    <span className="fs-5">Reportes</span>
                 </a>
 
                 <a href="/admin/usuarios" className="list-group-item list-group-item-action my-2">
                     <i className="bi bi-people fs-5 me-2"></i>
                     <span className="fs-5">Usuarios</span>
+                </a>
+
+                <a href="/admin/clasificados" className="list-group-item list-group-item-action my-2">
+                    <i class="bi bi-bag-heart-fill fs-5 me-2"></i>
+                    <span className="fs-5">Clasificados</span>
+                </a>
+
+                <a href="/admin/reclamos" className="list-group-item list-group-item-action my-2">
+                    <i className="bi bi-clipboard fs-5 me-2"></i>
+                    <span className="fs-5">Reportes</span>
                 </a>
 
                 <a href="/" className="list-group-item list-group-item-action my-2">

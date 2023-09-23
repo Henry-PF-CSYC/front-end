@@ -24,16 +24,13 @@
      text-decoration: bold;
 }
 
-.accion-button {
-    background-color: #bebbbb;
-    color: white;
+.userOptionBut {
+    color: rgb(0, 0, 0);
     border: none;
     cursor: pointer;
-    border-radius: 1rem;
 }
   
-.accion-button:hover {
-    background-color: #ffffff;
-    color: black;
+.userOptionBut:hover {
+    color: rgb(31, 87, 240);
     transition: 1s;
 }

@@ -164,3 +164,13 @@ export const deleteServiceCart = (service) => {
     }
 }
 
+
+export const addService = (service) => {
+    return async () => {
+        try {
+            await axios.post('https://csyc.onrender.com/services', service);
+        } catch (error) {
+            alert('Error al crear el servicio', error);
+        }
+    };
+};
