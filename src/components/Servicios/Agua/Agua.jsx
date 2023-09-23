@@ -35,8 +35,10 @@ const Agua = () =>{
                             titulo={service.name}
                             nombreBoton="Lo quiero!"
                             descripcion={service.description}
-                            precio={`$${service.price}`}
+                            precio={service.price}
                             estado={service.status}
+                            type={service.type}
+                            id={service.id}
                         />
                     </div>
                 ))}

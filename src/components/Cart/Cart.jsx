@@ -3,9 +3,13 @@ import './Cart.module.css'
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteServiceCart } from '../../redux/actions';
+import { Wallet, initMercadoPago } from '@mercadopago/sdk-react';
+import axios from 'axios';
 
 export const Cart = ({ isTerms }) => {
 
+    initMercadoPago('TEST-a51a5ecf-c904-40f5-b7a5-e50bf6984933')
+    const [preferenceId, setPreferenceId] = useState(null)
     const [proceed, setProceed] = useState(true)
     const dispatch = useDispatch()
     const checkProceed = () => {
@@ -16,12 +20,27 @@ export const Cart = ({ isTerms }) => {
         dispatch(deleteServiceCart(name))
     }
 
-    const data = {
-        usuario: 'correo.com',
-        id_services: ['1','2']
+    const viewMercadoPago = async () => {
+        const data = {
+            name: servicesCart[0].titulo,
+            price: servicesCart[0].precio,
+            quantity: servicesCart[0].quantity,
+        }
+        console.log(data)
+        // const responseMercado = await axios.post('http://localhost:3001/mercadopago/order', data)
+        const responseMercado = await axios.post('https://csyc.onrender.com/mercadopago/order', data)
+        console.log(responseMercado)
+        //window.location.href = responseMercado.data.response.body.init_point
+        // setPreferenceId(responseMercado.data.response.body.id)
+        setPreferenceId(responseMercado.data.body.id)
+
     }
 
     const servicesCart = useSelector(state => state.cartServices)
+    let sumTotal = servicesCart.reduce((acummulator, currentValue) => acummulator + currentValue.precio, 0)
+    servicesCart.forEach(service => {
+        if (service.quantity > 1) sumTotal = sumTotal + (service.precio * (service.quantity - 1))
+    });
 
     return (
         <div className={isTerms ? 'pt-5' : ''}>
@@ -41,8 +60,9 @@ export const Cart = ({ isTerms }) => {
                                 <thead>
                                     <tr>
                                         <th className='col-2'>Producto</th>
-                                        <th className='col-3'>Nombre</th>
+                                        <th className='col-2'>Nombre</th>
                                         <th className='col-2'>Precio</th>
+                                        <th className='col-2'>Cantidad</th>
                                         <th className='col-1'></th>
                                     </tr>
                                 </thead>
@@ -56,7 +76,10 @@ export const Cart = ({ isTerms }) => {
                                                         <p>{service.titulo}</p>
                                                     </td>
                                                     <td className='col-2'>
-                                                        <p>{service.precio}</p>
+                                                    <p>{new Intl.NumberFormat('en-US', { style: 'currency', currency: 'ARS' }).format(service.precio)}</p>
+                                                    </td>
+                                                    <td>
+                                                        <p>{service.quantity}</p>
                                                     </td>
                                                     <td className='col-1'><button onClick={() => deleteService(service.titulo)} type="button" class="btn btn-outline-danger">X</button></td>
                                                 </tr>
@@ -74,7 +97,7 @@ export const Cart = ({ isTerms }) => {
                                             <p className='fs-4 fw-bold'>Total</p>
                                         </div>
                                         <div className='my-3 mx-3'>
-                                            <p className='fs-4 fw-bold' style={{ textAlign: 'end' }}>$1.000</p>
+                                            <p className='fs-4 fw-bold' style={{ textAlign: 'end' }}>{new Intl.NumberFormat('en-US', { style: 'currency', currency: 'ARS' }).format(sumTotal)}</p>
                                         </div>
                                     </div>
                                     <div>
@@ -87,15 +110,22 @@ export const Cart = ({ isTerms }) => {
                                     </div>
                                     <div style={{ backgroundColor: '#F5F5F5' }}>
                                         <div className='my-3'>
-                                            <button disabled={proceed} type="button" class="btn btn-outline-success w-100 border rounded-4">Continuar con el pago</button>
+                                            <button onClick={viewMercadoPago} disabled={proceed} type="button" class="btn btn-outline-success w-100 border rounded-4">Continuar con el pago</button>
                                         </div>
+                                        {
+                                            preferenceId && (
+                                                <div className='my-3'>
+                                                    <Wallet initialization={{preferenceId}}/>
+                                                </div>
+                                            )
+                                        }
                                     </div>
                                 </div>
                             )
                         }
                     </div>
                 ) : (
-                    <div className='d-flex align-items-center justify-content-center' style={{height: '284px'}}>
+                    <div className='d-flex align-items-center justify-content-center' style={{ height: '284px' }}>
                         <h1>Actualmente no tienes productos agregados al carrito</h1>
                     </div>
                 )
