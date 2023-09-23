@@ -174,3 +174,14 @@ export const addService = (service) => {
         }
     };
 };
+
+
+export const updateService = (id, service) =>{
+    return async () => {
+        try {
+            await axios.put(`https://csyc.onrender.com/services/${id}`, service);
+        } catch (error) {
+            alert('Error al editar el servicio', error);
+        }
+    };
+}

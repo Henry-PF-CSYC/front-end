@@ -4,7 +4,7 @@ import { getServices } from "../../../redux/actions";
 import { MDBDataTable } from 'mdbreact';
 
 import NewServiceModal from "./NewServiceModal";
-import OptionsModal from "./OptionsModal";
+import EditServiceModal from "./EditServiceModal";
 import "./ServicesAdm.css";
 
 
@@ -96,7 +96,7 @@ const ServicesAdm = () => {
         
         <NewServiceModal show={showNewServiceModal} handleClose={closeNewServiceModal}/>
 
-        <OptionsModal show={showOptionsModal} handleClose={closeOptionsModal} serviceData={selectedRow} />
+        <EditServiceModal show={showOptionsModal} handleClose={closeOptionsModal} serviceData={selectedRow} />
 
         <MDBDataTable striped bordered small data={{ columns, rows }}
         infoLabel={['Mostrando del', 'al', 'de', 'clasificados disponibles']} 
