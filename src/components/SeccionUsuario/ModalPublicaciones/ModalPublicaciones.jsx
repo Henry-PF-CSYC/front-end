@@ -4,7 +4,11 @@ const ModalPublicaciones = ({
     show,
     handleClose,
     publicaciones,
-    deletPublicacion
+    deletPublicacion,
+    email,
+    getOfferByEmail,
+    limpiarClasificados,
+    restoreOffer
 }) => {
     const cardStyle = {
         maxWidth: '20rem',
@@ -77,9 +81,10 @@ const ModalPublicaciones = ({
                                         {publicacion.price}
                                     </p>{' '}
                                     <Button
-                                        onClick={() =>
-                                            deletPublicacion(publicacion.id)
-                                        }
+                                        onClick={() => {
+                                            deletPublicacion(publicacion.id);
+                                            getOfferByEmail(email);
+                                        }}
                                     >
                                         Borrar
                                     </Button>
@@ -120,9 +125,9 @@ const ModalPublicaciones = ({
                                         {publicacion.price}
                                     </p>{' '}
                                     <Button
-                                        onClick={() =>
-                                            deletPublicacion(publicacion.id)
-                                        }
+                                        onClick={() => {
+                                            restoreOffer(publicacion.id);
+                                        }}
                                     >
                                         Restaurar
                                     </Button>

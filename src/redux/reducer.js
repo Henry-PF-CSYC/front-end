@@ -7,7 +7,8 @@ import {
     DELETECARTSERVICES,
     GET_CLASIFICADO,
     GETOFFERBYEMAIL,
-    DELETECLASIFICADOS
+    DELETECLASIFICADOS,
+    RESTOREOFFER
 } from './action-types';
 
 // Estado global
@@ -77,7 +78,13 @@ const reducer = (state = initialState, action) => {
         case DELETECLASIFICADOS:
             return {
                 ...state,
-                clasificados: []
+                clasificados: [],
+                publicacionesusuario: []
+            };
+        case RESTOREOFFER:
+            return {
+                ...state,
+                clasificados: [...state.clasificados, action.payload]
             };
         default:
             return { ...state };

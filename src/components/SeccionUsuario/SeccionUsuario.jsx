@@ -7,7 +7,9 @@ import {
     getUser,
     postUser,
     getOfferByEmail,
-    deleteOffer
+    deleteOffer,
+    restaurarOffer,
+    clearClasificados
 } from '../../redux/actions';
 import { useAuth0 } from '@auth0/auth0-react';
 import ModalPublicaciones from './ModalPublicaciones/ModalPublicaciones';
@@ -25,7 +27,7 @@ const SeccionUsuario = () => {
     const [show, setShow] = useState(false);
     const [show2, setShow2] = useState(false);
     const { user, isAuthenticated } = useAuth0();
-    const usuario = useSelector((state) => state.dataUser);
+    let usuario = useSelector((state) => state.dataUser);
     let publicaciones = useSelector((state) => state.publicacionesusuario);
 
     const [dataUser, setDataUser] = useState({
@@ -74,6 +76,9 @@ const SeccionUsuario = () => {
     };
     const deletPublicacion = (id) => {
         dispatch(deleteOffer(id));
+    };
+    const restoreOffer = (id) => {
+        dispatch(restaurarOffer(id));
     };
 
     const updateUser = (data) => {
@@ -154,10 +159,13 @@ const SeccionUsuario = () => {
                 </div>
             </div>
             <ModalPublicaciones
+                email={usuario.email}
                 show={show2}
                 handleClose={handleClose}
                 publicaciones={publicaciones}
                 deletPublicacion={deletPublicacion}
+                restoreOffer={restoreOffer}
+                getOfferByEmail={getOfferByEmail}
             />
             <ModalUsuario
                 show={show}

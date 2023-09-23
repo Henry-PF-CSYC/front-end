@@ -5,7 +5,8 @@ import {
     GETPAGINATEDSERVICES,
     GETUSER,
     GETOFFERBYEMAIL,
-    DELETECLASIFICADOS
+    DELETECLASIFICADOS,
+    RESTOREOFFER
 } from './action-types';
 import { GETSERVICES } from './action-types';
 import { EMPTY_USER } from './action-types';
@@ -178,6 +179,21 @@ export const deleteOffer = (id) => {
             await axios.delete(`https://csyc.onrender.com/offer/${id}`);
         } catch (error) {
             console.error(`Error al borrar la publicacion`, error);
+        }
+    };
+};
+export const restaurarOffer = (id) => {
+    return async (dispatch) => {
+        try {
+            const { data } = await axios.put(
+                `https://csyc.onrender.com/offer/${id}`
+            );
+            dispatch({
+                type: RESTOREOFFER,
+                payload: data
+            });
+        } catch (error) {
+            console.error(`Error al restaurar la publicacion`, error);
         }
     };
 };
