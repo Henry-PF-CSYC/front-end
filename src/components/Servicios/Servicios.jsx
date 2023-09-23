@@ -145,7 +145,8 @@ const Services = () => {
 
       <div className="col-md-10">
       <section className="row">
-        {serviciosInPage.map((servicio, index) => (
+        {serviciosInPage.length!==0 ?
+         serviciosInPage.map((servicio, index) => (
           <div key={index} className="col-4">
             <CardsServicios
               imagen={servicio.image}
@@ -156,7 +157,11 @@ const Services = () => {
               estado={servicio.status}
             />
           </div>
-        ))}
+        )):
+        <div className="errorCards">
+          <img src="https://grupoleiros.com/static/product-not-found.png" alt="" />
+          
+        </div>}
       </section>
     </div>
       <div className="pagination justify-content-center">

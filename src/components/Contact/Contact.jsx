@@ -74,7 +74,7 @@ function Contact() {
 
 
     return (
-        <div className="content">
+        <div className="contentContact">
         <h2 className="contact-title">Contacto</h2>
         <div className="contact-container">
             <div className="contact-info">
@@ -145,7 +145,7 @@ function Contact() {
                 onChange={handlerInputChange} 
                 required></textarea>
               </div>
-              <button type="submit" className="contact-button">Enviar</button> 
+              <button type="submit" className="buttonSubmit">Enviar</button> 
             </form>
             <Modal show={showModal} onHide={closeModal} centered>
               <Modal.Header closeButton>

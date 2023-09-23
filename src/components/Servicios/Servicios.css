@@ -129,3 +129,16 @@ select {
     font-size: medium;
     margin-left: 8%; /* Ajusta el margen izquierdo según sea necesario */
   }
+  .errorCards {
+    height: 300px; /* Ajusta la altura según tus necesidades */
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    text-align: left;
+    font-size: 4rem;
+    font-weight: bolder;
+    color: rgb(16, 14, 14); /* Cambia el color de texto según tus preferencias */
+    margin-top: 1rem; /* Ajusta el margen superior según tus necesidades */
+    margin-left: 8rem;
+  }
+  
