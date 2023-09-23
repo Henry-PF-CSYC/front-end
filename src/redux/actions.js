@@ -185,3 +185,14 @@ export const updateService = (id, service) =>{
         }
     };
 }
+
+
+export const deleteService = (id) =>{
+    return async () => {
+        try {
+            await axios.put(`https://csyc.onrender.com/services/delete/${id}`);
+        } catch (error) {
+            alert('Error al borrar el servicio', error);
+        }
+    };
+}

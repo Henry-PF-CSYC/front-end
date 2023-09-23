@@ -1,7 +1,7 @@
 import { Modal, Button, Form } from "react-bootstrap";
 import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { updateService } from "../../../redux/actions";
+import { updateService, deleteService } from "../../../redux/actions";
 
 
 const EditServiceModal = ({ show, handleClose, serviceData }) => {
@@ -103,7 +103,7 @@ return (
 
 
       <Modal.Footer>
-        <Button variant="danger"> Eliminar servicio </Button>
+        <Button variant="danger" onClick={() => dispatch(deleteService(serviceData.id))}> Eliminar servicio </Button>
         <Button variant="primary" type="submit" form="editServiceForm"> Guardar Cambios </Button>
         <Button variant="secondary" onClick={handleClose}> Descartar </Button>
         <Button variant="secondary" onClick={() => console.log(serviceData, serviceData.id)}> Ver </Button>
