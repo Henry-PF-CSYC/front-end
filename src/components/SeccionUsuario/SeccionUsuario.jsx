@@ -12,8 +12,10 @@ import {
     clearClasificados
 } from '../../redux/actions';
 import { useAuth0 } from '@auth0/auth0-react';
+
 import { useSearchParams } from 'react-router-dom';
 import axios from 'axios';
+
 import ModalPublicaciones from './ModalPublicaciones/ModalPublicaciones';
 
 const gas =
@@ -28,12 +30,14 @@ const SeccionUsuario = () => {
 
     const [params] = useSearchParams() 
     const [show, setShow] = useState(false);
+
     const [servicios, setServicios] = useState([])
     const susbcriptions = useSelector(state => state.cartServices)
 
     const pstUser = () => {
         dispatch(postUser(dataUser));
     };
+
     const [show2, setShow2] = useState(false);
     const { user, isAuthenticated } = useAuth0();
     let usuario = useSelector((state) => state.dataUser);
