@@ -176,7 +176,6 @@ const Navbar = () => {
                     </button>
                 )}
 
-                <IconCart />
                 <div className="icon-market">
                 
                   

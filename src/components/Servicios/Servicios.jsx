@@ -153,8 +153,10 @@ const Servicios = () => {
               titulo={servicio.name}
               nombreBoton="Lo quiero!"
               descripcion={servicio.description}
-              precio={`$${servicio.price}`}
+              precio={servicio.price}
               estado={servicio.status}
+              id={servicio.id}
+              type={servicio.type}
             />
           </div>
         )):

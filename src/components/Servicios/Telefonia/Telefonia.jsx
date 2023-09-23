@@ -32,8 +32,10 @@ const Telefonia = () =>{
                             titulo={service.name}
                             nombreBoton="Lo quiero!"
                             descripcion={service.description}
-                            precio={`$${service.price}`}
+                            precio={service.price}
                             estado={service.status}
+                            id={service.id}
+                            type={service.type}
                         />
                     </div>
                 ))}

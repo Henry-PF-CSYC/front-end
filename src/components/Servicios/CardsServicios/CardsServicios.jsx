@@ -1,13 +1,39 @@
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import style from './CardsServicios.module.css'
 import { addServiceCart } from '../../../redux/actions'
+import Swal from 'sweetalert2'
 
-const CardsServicios = ({ imagen, titulo, descripcion, nombreBoton, estado, precio }) => {
+const CardsServicios = ({ imagen, titulo, descripcion, nombreBoton, estado, precio, id, type }) => {
 
     const dispatch = useDispatch()
+    const serviceCarts = useSelector(state => state.cartServices)
 
     const addCart = () => {
-        dispatch(addServiceCart({ imagen, titulo, descripcion, nombreBoton, estado, precio }))
+        const isService = serviceCarts.filter(service => service.id === id) 
+        if(type === 'streaming'){
+            if(nombreBoton === 'Lo quiero!'){
+                const isStreaming = serviceCarts.find(service => service.id === id)
+                let quantity = 1
+                if(isStreaming){
+                    quantity = isStreaming.quantity + 1
+                    dispatch(addServiceCart({ imagen, titulo, descripcion, nombreBoton, estado, precio, id, quantity}))
+                }else{
+                    dispatch(addServiceCart({ imagen, titulo, descripcion, nombreBoton, estado, precio, id, quantity}))
+                }
+            }
+        }else{
+            if(isService.length > 0){  
+                Swal.fire({
+                    title: 'Advertencia',
+                    text: 'El servicio ya se agrego al carrito',
+                    icon: 'warning'
+                })
+            }else{
+                if(nombreBoton === 'Lo quiero!'){
+                    dispatch(addServiceCart({ imagen, titulo, descripcion, nombreBoton, estado, precio, id, quantity: 1 }))
+                }
+            }
+        }
     }
 
     return (
@@ -19,7 +45,11 @@ const CardsServicios = ({ imagen, titulo, descripcion, nombreBoton, estado, prec
             <div className={`${style.face} ${style.back}`}>
                 <h3>{titulo}</h3>
                 <p className={style.description}>{`${descripcion.slice(0,155)}`}</p>
-                    <p className={style.price}>{precio}</p>
+                    {
+                        precio && (
+                            <p className={style.price}>{`$${precio}`}</p>
+                        )
+                    } 
                     <button onClick={addCart} className="btn btn-primary">{nombreBoton}</button>
                     <div>
                         {
