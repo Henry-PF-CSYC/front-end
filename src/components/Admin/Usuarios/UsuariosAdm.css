@@ -1,0 +1,36 @@
+*{
+    font-family: 'Montserrat', sans-serif;
+ }
+
+#titleAdminUsers{
+    margin-top: 0.8rem;
+}
+ 
+.custom-datatable {
+     max-height: 600px; 
+     overflow-y: auto; 
+     overflow-x: hidden; 
+}
+ 
+.user-cell{
+     color: rgb(204, 30, 160);
+     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); 
+     text-decoration: bold;
+}
+ 
+.admin-cell{
+     color: rgb(19, 16, 212);
+     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); 
+     text-decoration: bold;
+}
+
+.userOptionBut {
+    color: rgb(0, 0, 0);
+    border: none;
+    cursor: pointer;
+}
+  
+.userOptionBut:hover {
+    color: rgb(31, 87, 240);
+    transition: 1s;
+}

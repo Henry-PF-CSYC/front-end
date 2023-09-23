@@ -11,6 +11,7 @@ import {
     RESTOREOFFER
 } from './action-types';
 
+
 // Estado global
 const initialState = {
     dataUser: {},
@@ -20,10 +21,13 @@ const initialState = {
     currentServicesPage: [],
     cartServices: [],
     clasificados: [],
-    publicacionesusuario: []
+    publicacionesusuario: [],
+    allUsers:[]
 };
 
+
 console.log(initialState.currentServicesPage);
+
 
 // Reducer
 const reducer = (state = initialState, action) => {
@@ -33,29 +37,40 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 dataUser: action.payload
             };
+
+        case GETALLUSERS:
+            return {
+                ...state,
+                allUsers: action.payload
+            };
+
         case EMPTY_USER:
             return {
                 ...state,
                 dataUser: {},
                 publicacionesusuario: {}
             };
+
         case GETSERVICES:
             return {
                 ...state,
                 services: action.payload,
                 backUpServices: action.payload
             };
+
         case GETPAGINATEDSERVICES:
             return {
                 ...state,
                 currentServicesPage: action.payload.services,
                 totalPages: action.payload.totalCount // Almacena el número total de páginas en el estado
             };
+        
         case ADDCARTSERVICES:
             return {
                 ...state,
                 cartServices: [...state.cartServices, action.payload]
             };
+        
         case DELETECARTSERVICES:
             const filterServices = state.cartServices.filter(
                 (service) => service.titulo !== action.payload
@@ -86,8 +101,8 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 clasificados: [...state.clasificados, action.payload]
             };
-        default:
-            return { ...state };
+        
+        default: return { ...state };
     }
 };
 

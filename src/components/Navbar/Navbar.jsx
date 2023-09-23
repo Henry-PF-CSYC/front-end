@@ -172,11 +172,15 @@ const Navbar = () => {
                     <button
                         className="button"
                         onClick={() => loginWithRedirect()}
-                    >
-                        <span title="Inicia sesión">Ingresa</span>
+                    >Ingresa
                     </button>
                 )}
+
                 <IconCart />
+                <div className="icon-market">
+                <IconCart/>
+                  
+                </div>
             </div>
         </section>
     );
