@@ -1,9 +1,8 @@
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { getClasificados } from "../../../redux/actions";
 import { MDBDataTable } from 'mdbreact';
-
-
+import { deleteClasificado } from "../../../redux/actions";
 import "./ClasificadosAdm.css";
 
 
@@ -24,19 +23,28 @@ const ClasificadosAdm = () => {
 
   // Verificamos si los datos están disponibles antes de mostrar la tabla
   if (!clasificados || clasificados.length === 0) {
-    return <div>Cargando datos...</div>;}
+    return <div>Cargando datos... esto suele suceder cuando no los hay!</div>;}
 
   
-  // Definimos una función para asignar clase segun status
+  // Definimos una función para asignar clase segun tipo de publicacion
   const getCellStyle = (status) => {
     if (status === 'compra') {return 'compra-cell'; } 
     else { return 'trabajo-cell'; } };
 
-    const handleRowClick = (clasificado) => {
-        alert("¿Seguro que quieres borrar esta oferta?");
-      };
 
+  // Manejando borrado permanente de servicio
+  const handleDeleteOffer = (clasificadoId) => {
+  // Alert para confirmar la acción
+  const isConfirmed = window.confirm("¿Estás seguro de que deseas eliminar este clasificado?");
 
+  if (isConfirmed) {
+    // Si el usuario confirmó, realiza la acción de eliminación
+    dispatch(deleteClasificado(clasificadoId));
+    alert("Clasificado eliminado correctamente");
+
+    // Recargamos página
+    setTimeout(() => {window.location.reload()}, 300);}
+  };
 
 
   // Definimos las columnas de la tabla
@@ -59,7 +67,7 @@ const ClasificadosAdm = () => {
     description: clasificado.description,
     contact: clasificado.contact,
     type: <span className={getCellStyle(clasificado.type)}>{clasificado.type}</span>,
-    delete: <i onClick={() => handleRowClick(clasificado)} class="bi bi-trash3-fill clasificadoDeleteBut"></i>
+    delete: <i onClick={() => handleDeleteOffer(clasificado.id)} class="bi bi-trash3-fill clasificadoDeleteBut"></i>
   }))
   
 

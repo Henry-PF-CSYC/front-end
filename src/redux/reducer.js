@@ -1,4 +1,16 @@
-import { GETSERVICES, GETUSER, GETALLUSERS, GETPAGINATEDSERVICES, EMPTY_USER, ADDCARTSERVICES, DELETECARTSERVICES, GET_CLASIFICADO } from "./action-types";
+import {
+    GETSERVICES,
+    GETUSER,
+    GETPAGINATEDSERVICES,
+    EMPTY_USER,
+    ADDCARTSERVICES,
+    DELETECARTSERVICES,
+    GET_CLASIFICADO,
+    GETOFFERBYEMAIL,
+    DELETECLASIFICADOS,
+    RESTOREOFFER
+} from './action-types';
+
 
 // Estado global
 const initialState = {
@@ -9,10 +21,13 @@ const initialState = {
     currentServicesPage: [],
     cartServices: [],
     clasificados: [],
+    publicacionesusuario: [],
     allUsers:[]
 };
 
+
 console.log(initialState.currentServicesPage);
+
 
 // Reducer
 const reducer = (state = initialState, action) => {
@@ -32,7 +47,8 @@ const reducer = (state = initialState, action) => {
         case EMPTY_USER:
             return {
                 ...state,
-                dataUser: {}
+                dataUser: {},
+                publicacionesusuario: {}
             };
 
         case GETSERVICES:
@@ -47,9 +63,10 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 currentServicesPage: action.payload.services,
                 totalPages: action.payload.totalCount // Almacena el número total de páginas en el estado
-            }
-
+            };
+        
         case ADDCARTSERVICES:
+
             const index = state.cartServices.findIndex((service) => service.id === action.payload.id)
             if(index > -1){
                 state.cartServices[index].quantity = action.payload.quantity
@@ -63,20 +80,42 @@ const reducer = (state = initialState, action) => {
                     cartServices: [...state.cartServices, action.payload]
                 }
             }
+            return {
+                ...state,
+                cartServices: [...state.cartServices, action.payload]
+            }
         case DELETECARTSERVICES:
-            const filterServices = state.cartServices.filter( service => service.titulo !== action.payload)
+            const filterServices = state.cartServices.filter(
+                (service) => service.titulo !== action.payload
+            );
             return {
                 ...state,
                 cartServices: filterServices
-            }
-           
+            };
+
         case GET_CLASIFICADO:
             return {
                 ...state,
                 clasificados: action.payload
             };
-        default:
-            return { ...state };
+        case GETOFFERBYEMAIL:
+            return {
+                ...state,
+                publicacionesusuario: action.payload
+            };
+        case DELETECLASIFICADOS:
+            return {
+                ...state,
+                clasificados: [],
+                publicacionesusuario: []
+            };
+        case RESTOREOFFER:
+            return {
+                ...state,
+                clasificados: [...state.clasificados, action.payload]
+            };
+        
+        default: return { ...state };
     }
 };
 

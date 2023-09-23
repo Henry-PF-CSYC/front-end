@@ -3,10 +3,19 @@ import ModalUsuario from './ModalUsuario/ModalUsuario';
 import { useEffect, useState } from 'react';
 import { Button } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
-import { getUser, postUser } from '../../redux/actions';
+import {
+    getUser,
+    postUser,
+    getOfferByEmail,
+    deleteOffer,
+    restaurarOffer,
+    clearClasificados
+} from '../../redux/actions';
 import { useAuth0 } from '@auth0/auth0-react';
 import { useSearchParams } from 'react-router-dom';
 import axios from 'axios';
+import ModalPublicaciones from './ModalPublicaciones/ModalPublicaciones';
+
 
 const gas =
     'https://firebasestorage.googleapis.com/v0/b/pf-henry-16edc.appspot.com/o/servicios-landing%2Fgas.webp?alt=media&token=9a8899a4-88be-4150-bafa-0b7738e557e8';
@@ -20,6 +29,7 @@ const SeccionUsuario = () => {
 
     const [params] = useSearchParams() 
     const [show, setShow] = useState(false);
+
     const [servicios, setServicios] = useState([])
     const { user, isAuthenticated } = useAuth0();
     const usuario = useSelector((state) => state.dataUser);
@@ -28,6 +38,11 @@ const SeccionUsuario = () => {
     const pstUser = () => {
         dispatch(postUser(dataUser));
     };
+
+    const [show2, setShow2] = useState(false);
+    const { user, isAuthenticated } = useAuth0();
+    let usuario = useSelector((state) => state.dataUser);
+    let publicaciones = useSelector((state) => state.publicacionesusuario);
 
     const [dataUser, setDataUser] = useState({
         name: '',
@@ -40,8 +55,8 @@ const SeccionUsuario = () => {
     });
     useEffect(async() => {
         if (isAuthenticated) {
-            console.log('me ejecute');
             dispatch(getUser(user.email));
+            dispatch(getOfferByEmail(user.email));
             setDataUser(usuario);
             usuario.email = user.email;
         }
@@ -64,10 +79,18 @@ const SeccionUsuario = () => {
 
     const handleClose = () => {
         setShow(false);
+        setShow2(false);
+    };
+    const deletPublicacion = (id) => {
+        dispatch(deleteOffer(id));
+    };
+    const restoreOffer = (id) => {
+        dispatch(restaurarOffer(id));
     };
 
     const updateUser = (data) => {
         setDataUser(data);
+        dispatch(postUser(dataUser));
         setShow(false);
     };
 
@@ -111,8 +134,14 @@ const SeccionUsuario = () => {
                     />
                 </div>
                 <div class="col-12 ps-5">
-                    <button class="btn btn-dark p-1 ms-2" onClick={pstUser}>
-                        Confirmar Datos
+                    <button
+                        class="btn btn-dark p-1 ms-2"
+                        onClick={() => {
+                            setShow2(true);
+                            console.log(publicaciones);
+                        }}
+                    >
+                        Mis publicaciones
                     </button>
                 </div>
             </div>
@@ -138,6 +167,15 @@ const SeccionUsuario = () => {
                     })}
                 </div>
             </div>
+            <ModalPublicaciones
+                email={usuario.email}
+                show={show2}
+                handleClose={handleClose}
+                publicaciones={publicaciones}
+                deletPublicacion={deletPublicacion}
+                restoreOffer={restoreOffer}
+                getOfferByEmail={getOfferByEmail}
+            />
             <ModalUsuario
                 show={show}
                 dataUser={dataUser}
