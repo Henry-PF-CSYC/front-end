@@ -66,11 +66,19 @@ const reducer = (state = initialState, action) => {
             };
         
         case ADDCARTSERVICES:
-            return {
-                ...state,
-                cartServices: [...state.cartServices, action.payload]
-            };
-        
+            const index = state.cartServices.findIndex((service) => service.id === action.payload.id)
+            if(index > -1){
+                state.cartServices[index].quantity = action.payload.quantity
+                return {
+                    ...state,
+                    cartServices: state.cartServices
+                }
+            }else{
+                return {
+                    ...state,
+                    cartServices: [...state.cartServices, action.payload]
+                }
+            }
         case DELETECARTSERVICES:
             const filterServices = state.cartServices.filter(
                 (service) => service.titulo !== action.payload
