@@ -178,7 +178,7 @@ const Navbar = () => {
 
                 <IconCart />
                 <div className="icon-market">
-                <IconCart/>
+                
                   
                 </div>
             </div>

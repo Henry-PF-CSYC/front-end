@@ -84,6 +84,8 @@ const ModalPublicaciones = ({
                                         onClick={() => {
                                             deletPublicacion(publicacion.id);
                                             getOfferByEmail(email);
+                                            // Recarga la página
+                                            setTimeout(() => {window.location.reload()}, 300);
                                         }}
                                     >
                                         Borrar
@@ -127,6 +129,8 @@ const ModalPublicaciones = ({
                                     <Button
                                         onClick={() => {
                                             restoreOffer(publicacion.id);
+                                             // Recarga la página
+                                             setTimeout(() => {window.location.reload()}, 300);
                                         }}
                                     >
                                         Restaurar
