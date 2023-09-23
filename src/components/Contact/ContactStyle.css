@@ -1,28 +1,25 @@
-.content{
-    background:#181818;
+.contentContact{
+    background:  #0b3070;
     padding: 2.5rem;
 }
 .contact-container {
-    background: #181818;
-    color: #fff;
-    font-family: 'Rajdhani';
+    background: #05011d63;
+    color: #fcfcfc;
     display: flex;
     justify-content: space-between;
     max-width: 1170px;
     margin-left: auto;
     margin-right: auto;
-    padding: 1.0em;
-    box-shadow: 0 0 20px 0 rgba(255, 255, 255, .3);
+    padding: 0.8rem;
+    box-shadow: 0 0 4px 0 rgb(244, 244, 244);
     margin-top: 50px;
-
-  }
+}
 .contact-title {
-    color: rgb(31, 170, 180);
+    color: rgb(255, 255, 255);
     font-size: 3.5rem;
     text-align: center; 
-    margin-bottom: 20px;
-    font-family: 'Rajdhani', sans-serif; 
-    margin-top: 50px;
+    margin-bottom: -2px;
+    margin-top: 60px;
 }
 .contact-info {
     flex-basis: 30%; 
@@ -37,20 +34,16 @@
     font-weight: bold;
 }
 .contact-form {
-    background: rgb(0, 0, 0);
     padding: 1rem;
-    height: max-content;
+    background:  #0b3070;
 }
 
 .contact-form form input,
 .contact-form form textarea {
     width: 100%;
     padding: .7em;
-    border: none;
-    background: none;
-    outline: 0;
-    color: #fff;
-    border-bottom: 1px solid  rgb(31, 170, 180);
+    background: white;
+    color: #000000;
 }
 .contact-form h5{
     font-size: 1.2rem;
@@ -69,25 +62,19 @@
     border: 1px solid #ccc;
     font-size: 1.0rem;
 }
-.contact-error {
-    color: red;
-    font-size: 0.9rem;
-    margin-top: 5px;
-}
-.contact-button {
+.buttonSubmit {
     width: 150px;
-    background-color:  rgb(31, 170, 180);
-    font-weight: bold;
+    background-color:  #05011d63;
+    font-weight: bolder;
     color: white;
     border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    padding: 10px;
-    margin: 10px;
+    border-radius: 4px;
+    padding: 0.8rem
+    
 }
-.contact-button:hover {
-    background-color:  rgb(14, 81, 86);
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+.buttonSubmit:hover {
+    background-color: #00275a;
+    box-shadow: 0px 0px 10px rgb(247, 245, 245);
 }
 .contact-label-text {
     text-align: center;

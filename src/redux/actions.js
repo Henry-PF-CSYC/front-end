@@ -99,6 +99,7 @@ export const getServicesPaginated = ({
             const queryString = new URLSearchParams(queries).toString();
 
             // Construye la URL de la solicitud con las consultas válidas.
+       
             const url = `https://csyc.onrender.com/services?${queryString}`;
             console.log(url);
             const response = await axios.get(url);
@@ -114,7 +115,13 @@ export const getServicesPaginated = ({
             });
             console.log(services);
         } catch (error) {
-            console.log(error);
+            dispatch({
+                type: GETPAGINATEDSERVICES,
+                payload: {
+                    services:[],
+                    totalCount:0 // Incluye el número total de páginas en el payload.
+                }
+            });
         }
     };
 };
