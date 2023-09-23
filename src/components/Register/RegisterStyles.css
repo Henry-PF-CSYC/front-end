@@ -1,82 +1,82 @@
-.formStyles{
-  background-color: rgba(233, 230, 230, 0.473);
-  background-size: cover;
-  background-attachment: fixed;
-  border-radius: 5px;
-  font-family: 'Rajdhani', sans-serif;
-  text-align: center;
-  margin-top: 20px;
-  margin-bottom: 15px;
-  padding-top: 1.5rem;
-  padding-bottom: 1rem;
+.formStyles {
+    background-color: rgba(233, 230, 230, 0.473);
+    background-size: cover;
+    background-attachment: fixed;
+    border-radius: 5px;
+    font-family: 'Rajdhani', sans-serif;
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 15px;
+    padding-top: 1.5rem;
+    padding-bottom: 1rem;
 }
-.container{
-  display: flex;
-  justify-content: center;
+.container {
+    display: flex;
+    justify-content: center;
 }
-.fila{
-  width: 100%;
-  align-items: center;
+.fila {
+    width: 100%;
+    align-items: center;
 }
-.cardStyles{
-  display: flex;
-  border-radius: 25px;
+.cardStyles {
+    display: flex;
+    border-radius: 25px;
 }
-.tagStyle{
-  font-size: 1.2rem;
+.tagStyle {
+    font-size: 1.2rem;
 }
-.inputStyle{
-  font-size: 1.1rem;
+.inputStyle {
+    font-size: 1.1rem;
 }
-.inputError{
-  border-color: red;
+.inputError {
+    border-color: red;
 }
-.errorText{
-  font-size: 1.1rem;
-  color: red;
+.errorText {
+    font-size: 1.1rem;
+    color: red;
 }
-.site{
-  background-color: rgb(31, 170, 180);
+.site {
+    background-color: rgb(31, 170, 180);
 }
 .errorContainer {
-  height: 1.1rem;
+    height: 1.1rem;
 }
-.linksReg{
-  color: rgb(11, 81, 230);
-  text-decoration: none;
+.linksReg {
+    color: rgb(11, 81, 230);
+    text-decoration: none;
 }
-.submitButton{
-  align-items: center;
-  width: 150px;
-  background: black;
-  font-weight: bold;
-  color: white;
-  border: 0 none;
-  border-radius: 1px;
-  cursor: pointer;
-  padding: 10px 5px;
-  margin: 10px 5px;
-}
-.boton{
-  display: flex;
- justify-content: space-around;
-}
-@media (max-width:720px) {
-  .formContainer{
-    padding: 5rem;
-  }
-  .inputContainer{
-    width: auto;
-  }
-  .tagStyle{
-    white-space:unset;
-  }
-  .inputStyle{
-    display: block;
-  }
-  .submitButton{
-    font-size: 12px;
-    padding: 5px 10px;
+.submitButton {
     align-items: center;
-  }
+    width: 150px;
+    background: black;
+    font-weight: bold;
+    color: white;
+    border: 0 none;
+    border-radius: 1px;
+    cursor: pointer;
+    padding: 10px 5px;
+    margin: 10px 5px;
+}
+.boton {
+    display: flex;
+    justify-content: space-around;
+}
+@media (max-width: 720px) {
+    .formContainer {
+        padding: 5rem;
+    }
+    .inputContainer {
+        width: auto;
+    }
+    .tagStyle {
+        white-space: unset;
+    }
+    .inputStyle {
+        display: block;
+    }
+    .submitButton {
+        font-size: 12px;
+        padding: 5px 10px;
+        align-items: center;
+    }
 }

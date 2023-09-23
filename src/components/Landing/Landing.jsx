@@ -4,8 +4,8 @@ import { useDispatch } from "react-redux"
 import { getServices } from "../../redux/actions"
 import { Link } from 'react-router-dom';
 
+
 // Imagenes
-const bg = "https://firebasestorage.googleapis.com/v0/b/pf-henry-16edc.appspot.com/o/servicios-landing%2Flanding.webp?alt=media&token=a654afc7-9a4d-429e-84fd-aa3f93eef26d"
 
 const combo1 = "https://firebasestorage.googleapis.com/v0/b/pf-henry-16edc.appspot.com/o/combos%2F1.webp?alt=media&token=324b0140-2d49-4647-b8de-4cd8d99f459b"
 const combo2 = "https://firebasestorage.googleapis.com/v0/b/pf-henry-16edc.appspot.com/o/combos%2F2.webp?alt=media&token=817903bd-886f-4f15-8b97-68208f4b4eee"
@@ -30,11 +30,12 @@ const Landing = () =>{
 
     return (
         <section>
-            <section id="intro">
-                <img src={bg} id="bgImage" alt="stock" />
-
-                <div id="presentation">
-                    <h1>Donde entre todos nos ayudamos</h1>
+            <section>
+                <div className="presentation">
+                    <div className='title-group'>
+                        <h1>Donde todos nos </h1>
+                        <h2>Ayudamos.</h2>
+                    </div>
                     <p>
                         Pasión y compromiso son nuestras prioridades para
                         ofrecerte servicios de vanguardia. Nuestra experiencia y
@@ -44,33 +45,51 @@ const Landing = () =>{
                 </div>
             </section>
 
-            <section id="csa">
-                <h1>Nuestros combos</h1>
+            <section id="service-notications">
+                <h1>Combos de Servicios</h1>
 
-                <swiper-container
-                    class="mySwiper"
-                    id="comboCarr"
-                    navigation="true"
-                    pagination="true"
-                >
-                    <swiper-slide class="comboSlide">
-                        <img src={combo1} alt="Offer 1" />
-                        <p>Oferta 1</p>
-                        <Link to="/servicios/"></Link>
-                        <button>Lo quiero!</button>
-                    </swiper-slide>
-                    <swiper-slide class="comboSlide">
-                        <img src={combo2} alt="Offer 2" />
-                        <p>Oferta 2</p>
-                        <Link to="/servicios/"></Link>
-                        <button>Lo quiero!</button>
-                    </swiper-slide>
-                    <swiper-slide class="comboSlide">
-                        <img src={combo3} alt="Offer 3" />
-                        <p>Oferta 3</p>
-                        <button>Lo quiero!</button>
-                    </swiper-slide>
-                </swiper-container>
+                <swiper-container class="mySwiper" id="comboCarr" navigation="true" pagination="true">
+  <swiper-slide class="comboSlide">
+    <div class="container">
+      
+      <div class="card">
+        <div class="box">
+          <div class="content">
+            <h2>01</h2>
+            <h3>Agua + Luz</h3>
+            <p>Combina los servicios esenciales de agua y luz para tu hogar. Mantén tu casa iluminada y con agua fresca todo el tiempo.</p>
+            <button class="buttonPacks">Lo Quiero</button>
+          </div>
+        </div>
+      </div>
+
+      
+      <div class="card">
+        <div class="box">
+          <div class="content">
+            <h2>02</h2>
+            <h3>Internet + Cable</h3>
+            <p>Disfruta de la velocidad de Internet de alta calidad y una amplia selección de canales de cable. Entretenimiento y conectividad en uno solo.</p>
+            <button class="buttonPacks">Lo Quiero</button>
+          </div>
+        </div>
+      </div>
+
+      
+      <div class="card">
+        <div class="box">
+          <div class="content">
+            <h2>03</h2>
+            <h3>Streaming + Telefonía</h3>
+            <p>Accede a los mejores servicios de streaming y mantente en contacto con tus seres queridos con telefonía de calidad.</p>
+            <button class="buttonPacks">Lo Quiero</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </swiper-slide>
+</swiper-container>
+
 
                 <hr />
 

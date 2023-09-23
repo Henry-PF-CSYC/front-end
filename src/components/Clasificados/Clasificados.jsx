@@ -2,7 +2,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import CardsClasificados from './CardsClasificados/CardsClasificados';
 import style from './Clasificados.module.css';
 import { useEffect, useState } from 'react';
-import { getClasificados, postClasificados } from '../../redux/actions';
+import {
+    clearClasificados,
+    getClasificados,
+    postClasificados
+} from '../../redux/actions';
 import ModalClasificado from './ModalClasificado/ModalClasificado';
 import ModalPublicacion from './ModalPublicacion/ModalPublicacion';
 import { useAuth0 } from '@auth0/auth0-react';
@@ -25,6 +29,7 @@ const Clasificados = () => {
     };
 
     useEffect(() => {
+        dispatch(clearClasificados());
         dispatch(getClasificados());
     }, []);
 
@@ -33,25 +38,28 @@ const Clasificados = () => {
     return (
         <div className={style.page}>
             <div className={style.container}>
-                {clasi.map((clasificado) => (
-                    <button
-                        onClick={() => {
-                            console.log('click');
-                            setPublicacion(clasificado);
-                            setShow2(true);
-                        }}
-                        className={style.boton}
-                    >
-                        <CardsClasificados
-                            picture={clasificado.image}
-                            tipo={clasificado.type}
-                            titulo={clasificado.title}
-                            descripcion={clasificado.description}
-                            contacto={clasificado.contact}
-                            precio={clasificado.price}
-                        />
-                    </button>
-                ))}
+                {clasi.map(
+                    (clasificado) =>
+                        clasificado.deletedAt !== {} && (
+                            <button
+                                onClick={() => {
+                                    console.log('click');
+                                    setPublicacion(clasificado);
+                                    setShow2(true);
+                                }}
+                                className={style.boton}
+                            >
+                                <CardsClasificados
+                                    picture={clasificado.image}
+                                    tipo={clasificado.type}
+                                    titulo={clasificado.title}
+                                    descripcion={clasificado.description}
+                                    contacto={clasificado.contact}
+                                    precio={clasificado.price}
+                                />
+                            </button>
+                        )
+                )}
             </div>
             {isAuthenticated && (
                 <button

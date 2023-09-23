@@ -1,109 +1,124 @@
-#bgImage{
-    width: 100%;
+/* Estilos generales para la presentación */
+.presentation {
+    padding: 8rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    background-color: white;
+    color: #010204;
 }
-
-/*Intro*/
-#presentation{
-    padding: 3rem;
-    align-items: center;
-}
-
-#presentation p{
-    font-size: 18px;
-}
-
-
-/*Combos Servicios y Avisos*/
-#csa{
-    background-color: #75B3AC;
-    text-align: center;
-    color: white;
-    padding:1rem
-}
-
-#csa h1{
-    color: black;
-    margin: 1.5rem;
-}
-
-
-/*Carrusel Combos*/
-#comboCarr{
-    width:auto;
-    height: auto;
-}
-
-.comboSlide{
-    text-align: center;
-    font-size: 18px;
-    background-color: #75B3AC;
+.presentation .title-group {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    align-items: flex-start;
 }
-
-.comboSlide img {
-    width: 30%;
-    height: 30%;
+.presentation h1 {
+    font-size: 2.8rem;
     margin-bottom: 1rem;
 }
-
-.comboSlide p{
-    margin-bottom: 1rem; 
+.presentation h2 {
+    font-size: 3rem;
+    font-weight: bold;
+    color: transparent;
+    background-image: linear-gradient(to right, #073e9c, #038e4a, #05011d);
+    -webkit-background-clip: text;
+    background-clip: text;
+    display: inline-block;
+}
+.presentation p {
+    font-size: 1.2rem;
+    width: 40%;
+}
+/* Estilos para Combos Servicios y Avisos */
+#service-notications {
+    background-color: #05011d;
+    text-align: center;
+    color: white;
+    padding: 1rem;
+}
+#service-notications h1 {
+    font-size: 3rem;
+}
+#service-notications button {
+    font-size: 1.2rem;
+    font-weight: bolder;
+    transition: transform 0.3s, background-color 0.3s, box-shadow 0.3s;
+    color: white;
+    background-color: #05011d;
+    border: none;
+    border-radius: 8px;
+    padding: 5px 20px;
+}
+#service-notications button:hover {
+    background-color: #044299;
+    box-shadow: 0px 0px 10px rgb(255, 255, 255);
 }
 
+#service-notications button:active {
+    transform: scale(1.1);
+}
+/* Estilos para el Carrusel de Combos */
+#comboCarr {
+    width: auto;
+    height: auto;
+}
+.comboSlide {
+    text-align: center;
+    font-size: 1rem;
+    background-color: #073e9c;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.comboSlide img {
+    width: 15%;
+    height: 15%;
+    margin-bottom: 1rem;
+}
+.comboSlide p {
+    margin-bottom: 1rem;
+}
 .comboSlide button {
-    margin-bottom: 2.8rem; 
+    margin-bottom: 2.8rem;
 }
-
-
-
-/*Carrusel Servicios*/
-#serviceCarr{
-    width:100%;
+/* Estilos para el Carrusel de Servicios */
+#serviceCarr {
+    width: 100%;
     height: 100%;
-    background-color: #75B3AC;
+    background-color: #073e9c;
     border-radius: 1rem;
 }
-
-/*si le pueden hagregar a lospuntitos del carrocel delas card de los servicios paraque se vean mas abajo*/
-.swiper{
+.swiper {
     padding-bottom: 25px;
 }
-
-.serviceSlide{
+.serviceSlide {
     text-align: center;
     font-size: 18px;
-    background-color: #5f948e;
+    background-color: #073e9c;
     border-radius: 1rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
-
-.serviceSlide img{
+.serviceSlide img {
     width: 300px;
     height: 300px;
     border-radius: 1rem;
     margin: 1rem;
-
     background-color: #f3f3f3;
     padding: 15px;
 }
-
-.serviceSlide p{
+.serviceSlide p {
     height: 10rem;
     width: 30rem;
     font-size: 1rem;
-    margin-bottom: 14px; 
+    margin-bottom: 14px;
 }
-
-.serviceSlide h4{
+.serviceSlide h4 {
     margin-top: 1rem;
 }
-
 .serviceSlide button {
     margin-top: auto;
     margin-bottom: 1.8rem;
@@ -112,24 +127,87 @@
     border-radius: 18px;
     padding: 10px 20px;
     border: 1px solid #fff;
-    transition: .5s;
+    transition: 0.5s;
     background: transparent;
     font-weight: bold;
 }
-.serviceSlide button:hover{
-    background-color:  rgb(11, 67, 78);
+.serviceSlide button:hover {
+    background-color: #044299;
+    box-shadow: 0px 0px 10px rgb(255, 255, 255);
 }
-
-
-/*Novedades*/
-#whatsnew{
-    color: rgb(68, 68, 68);
-    background-color: #99EEFF;
+/* Estilos para Novedades */
+#whatsnew {
+    color: white;
+    background-color: #073e9c;
     border-radius: 1rem;
     padding: 1rem;
- }
- 
-
-
-
- 
+}
+/* Estilos para CardsPacks */
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 1200px;
+    flex-wrap: wrap;
+    padding: 40px 0;
+}
+.container .card {
+    position: relative;
+    width: 320px;
+    height: 440px;
+    box-shadow: inset 5px 5px 5px rgba(0, 0, 0, 0.05), inset -5px -5px 5px rgba(255, 255, 255, 0.5), 5px 5px 5px rgba(0, 0, 0, 0.05), -5px -5px 5px rgba(255, 255, 255, 0.5);
+    border-radius: 15px;
+    margin: 30px;
+}
+.container .card .box {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    right: 20px;
+    bottom: 20px;
+    background: #0b3070;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.5s;
+}
+.container .card:hover .box {
+    transform: translateY(-50px);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+    background: linear-gradient(45deg, #000000, #243ae3);
+}
+.container .card .box .content {
+    padding: 20px;
+    text-align: center;
+}
+.container .card .box .content h2 {
+    position: absolute;
+    top: -10px;
+    right: 30px;
+    font-size: 8em;
+    color: rgba(0, 0, 0, 0.02);
+    transition: 0.5s;
+    pointer-events: none;
+}
+.container .card:hover .box .content h2 {
+    color: rgba(162, 137, 137, 0.123);
+}
+.container .card .box .content h3 {
+    font-size: 1.8em;
+    color: #c8c7c7;
+    z-index: 1;
+    transition: 0.5s;
+}
+.container .card .box .content p {
+    font-size: 1em;
+    font-weight: 300;
+    color: #777;
+    z-index: 1;
+    transition: 0.5s;
+}
+.container .card:hover .box .content h3,
+.container .card:hover .box .content p {
+    color: #fff;
+}
