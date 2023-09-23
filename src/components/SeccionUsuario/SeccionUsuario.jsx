@@ -5,6 +5,8 @@ import { Button } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { getUser, postUser } from '../../redux/actions';
 import { useAuth0 } from '@auth0/auth0-react';
+import { useSearchParams } from 'react-router-dom';
+import axios from 'axios';
 
 const gas =
     'https://firebasestorage.googleapis.com/v0/b/pf-henry-16edc.appspot.com/o/servicios-landing%2Fgas.webp?alt=media&token=9a8899a4-88be-4150-bafa-0b7738e557e8';
@@ -16,9 +18,13 @@ const agua =
 const SeccionUsuario = () => {
     const dispatch = useDispatch();
 
+    const [params] = useSearchParams() 
     const [show, setShow] = useState(false);
+    const [servicios, setServicios] = useState([])
     const { user, isAuthenticated } = useAuth0();
     const usuario = useSelector((state) => state.dataUser);
+    const susbcriptions = useSelector(state => state.cartServices)
+
     const pstUser = () => {
         dispatch(postUser(dataUser));
     };
@@ -32,36 +38,29 @@ const SeccionUsuario = () => {
         phone: 0,
         image: isAuthenticated ? user.picture : 'loading'
     });
-    useEffect(() => {
+    useEffect(async() => {
         if (isAuthenticated) {
             console.log('me ejecute');
             dispatch(getUser(user.email));
             setDataUser(usuario);
             usuario.email = user.email;
         }
-    }, []);
-
-    const servicios = [
-        {
-            imagen: internet,
-            titulo: 'Internet',
-            descripcion: 'Navegando a toda velocidad, ¡Internet conectado!',
-            nombreBoton: 'Mas informacion'
-        },
-        {
-            imagen: agua,
-            titulo: 'Agua',
-            descripcion: 'Pureza Garantizada en Tu Hogar ¡Suscripción Activa!',
-            nombreBoton: 'Mas informacion'
-        },
-        {
-            imagen: gas,
-            titulo: 'Gas',
-            descripcion:
-                'Calor Confiable Siempre Listo¡Ya Eres Parte de Nuestra Familia!',
-            nombreBoton: 'Mas informacion'
+        if(params.get('status')) {
+            const ids = []
+            susbcriptions.forEach(susbcription => {
+                ids.push(susbcription.id)
+            });
+            const data = {
+                user_email: usuario.email,
+                service_ids: ids
+            }
+            const saveSuscription = await axios.post('https://csyc.onrender.com/subscription',data)
+            let cardServices = []
+            saveSuscription.data.subscriptions.forEach((service) => cardServices.push(service.service))
+            setServicios(cardServices)
         }
-    ];
+
+    }, []);
 
     const handleClose = () => {
         setShow(false);
@@ -122,15 +121,17 @@ const SeccionUsuario = () => {
                     <div class="col-12 d-flex justify-content-center mt-5">
                         <h1>Mis servicios activos:</h1>
                     </div>
-                    {servicios.map((servicio, index) => {
+                    {
+                        servicios.length > 0 && 
+                        servicios.map((servicio, index) => {
                         return (
                             <div class="col-4 ps-5 my-5">
                                 <CardsServicios
                                     key={index}
-                                    imagen={servicio.imagen}
-                                    titulo={servicio.titulo}
-                                    descripcion={servicio.descripcion}
-                                    nombreBoton={servicio.nombreBoton}
+                                    imagen={servicio.image}
+                                    titulo={servicio.name}
+                                    descripcion={servicio.description}
+                                    nombreBoton='Mas Informacion'
                                 />
                             </div>
                         );

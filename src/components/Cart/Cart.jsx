@@ -5,12 +5,15 @@ import { useDispatch, useSelector } from 'react-redux';
 import { deleteServiceCart } from '../../redux/actions';
 import { Wallet, initMercadoPago } from '@mercadopago/sdk-react';
 import axios from 'axios';
+import Swal from 'sweetalert2';
 
 export const Cart = ({ isTerms }) => {
 
-    initMercadoPago('TEST-a51a5ecf-c904-40f5-b7a5-e50bf6984933')
+    initMercadoPago('APP_USR-4cc18a60-413f-4ac0-ae3e-9c9772649256')
     const [preferenceId, setPreferenceId] = useState(null)
     const [proceed, setProceed] = useState(true)
+    const user = useSelector(state => state.dataUser)
+
     const dispatch = useDispatch()
     const checkProceed = () => {
         setProceed(!proceed)
@@ -21,19 +24,22 @@ export const Cart = ({ isTerms }) => {
     }
 
     const viewMercadoPago = async () => {
-        const data = {
-            name: servicesCart[0].titulo,
-            price: servicesCart[0].precio,
-            quantity: servicesCart[0].quantity,
+        console.log(user)
+        if(Object.keys(user).length > 0){
+            const data = []
+            servicesCart.forEach(service => data.push({id:service.id, title: service.titulo, unit_price: service.precio, quantity: service.quantity, currency_id: 'ARS'}))
+    
+            // const responseMercado = await axios.post('http://localhost:3001/mercadopago/order', data)
+            const responseMercado = await axios.post('https://csyc.onrender.com/mercadopago/order', data)
+    
+            setPreferenceId(responseMercado.data.response.body.id)
+        }else{
+            Swal.fire({
+                title: 'Atencion',
+                text: 'Debe iniciar sesion para completar su compra',
+                icon: 'error'
+            })
         }
-        console.log(data)
-        // const responseMercado = await axios.post('http://localhost:3001/mercadopago/order', data)
-        const responseMercado = await axios.post('https://csyc.onrender.com/mercadopago/order', data)
-        console.log(responseMercado)
-        //window.location.href = responseMercado.data.response.body.init_point
-        // setPreferenceId(responseMercado.data.response.body.id)
-        setPreferenceId(responseMercado.data.body.id)
-
     }
 
     const servicesCart = useSelector(state => state.cartServices)

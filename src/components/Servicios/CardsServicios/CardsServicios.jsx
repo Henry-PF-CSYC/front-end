@@ -45,7 +45,11 @@ const CardsServicios = ({ imagen, titulo, descripcion, nombreBoton, estado, prec
             <div className={`${style.face} ${style.back}`}>
                 <h3>{titulo}</h3>
                 <p className={style.description}>{`${descripcion.slice(0,155)}`}</p>
-                    <p className={style.price}>{`$${precio}`}</p>
+                    {
+                        precio && (
+                            <p className={style.price}>{`$${precio}`}</p>
+                        )
+                    } 
                     <button onClick={addCart} className="btn btn-primary">{nombreBoton}</button>
                     <div>
                         {
