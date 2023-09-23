@@ -1,4 +1,14 @@
-import { GETSERVICES, GETUSER, GETPAGINATEDSERVICES, EMPTY_USER, ADDCARTSERVICES, DELETECARTSERVICES, GET_CLASIFICADO } from "./action-types";
+import {
+    GETSERVICES,
+    GETUSER,
+    GETPAGINATEDSERVICES,
+    EMPTY_USER,
+    ADDCARTSERVICES,
+    DELETECARTSERVICES,
+    GET_CLASIFICADO,
+    GETOFFERBYEMAIL,
+    DELETECLASIFICADOS
+} from './action-types';
 
 // Estado global
 const initialState = {
@@ -8,7 +18,8 @@ const initialState = {
     totalPages: 1,
     currentServicesPage: [],
     cartServices: [],
-    clasificados: []
+    clasificados: [],
+    publicacionesusuario: []
 };
 
 console.log(initialState.currentServicesPage);
@@ -24,7 +35,8 @@ const reducer = (state = initialState, action) => {
         case EMPTY_USER:
             return {
                 ...state,
-                dataUser: {}
+                dataUser: {},
+                publicacionesusuario: {}
             };
         case GETSERVICES:
             return {
@@ -37,23 +49,35 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 currentServicesPage: action.payload.services,
                 totalPages: action.payload.totalCount // Almacena el número total de páginas en el estado
-            }
+            };
         case ADDCARTSERVICES:
             return {
                 ...state,
                 cartServices: [...state.cartServices, action.payload]
-            }
+            };
         case DELETECARTSERVICES:
-            const filterServices = state.cartServices.filter( service => service.titulo !== action.payload)
+            const filterServices = state.cartServices.filter(
+                (service) => service.titulo !== action.payload
+            );
             return {
                 ...state,
                 cartServices: filterServices
-            }
-           
+            };
+
         case GET_CLASIFICADO:
             return {
                 ...state,
                 clasificados: action.payload
+            };
+        case GETOFFERBYEMAIL:
+            return {
+                ...state,
+                publicacionesusuario: action.payload
+            };
+        case DELETECLASIFICADOS:
+            return {
+                ...state,
+                clasificados: []
             };
         default:
             return { ...state };

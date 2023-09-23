@@ -1,5 +1,12 @@
 import axios from 'axios';
-import { ADDCARTSERVICES, DELETECARTSERVICES, GETPAGINATEDSERVICES, GETUSER } from './action-types';
+import {
+    ADDCARTSERVICES,
+    DELETECARTSERVICES,
+    GETPAGINATEDSERVICES,
+    GETUSER,
+    GETOFFERBYEMAIL,
+    DELETECLASIFICADOS
+} from './action-types';
 import { GETSERVICES } from './action-types';
 import { EMPTY_USER } from './action-types';
 import { GET_CLASIFICADO } from './action-types';
@@ -101,7 +108,6 @@ export const getServicesPaginated = ({
     };
 };
 
-
 export const getClasificados = () => {
     return async (dispatch) => {
         try {
@@ -118,10 +124,8 @@ export const getClasificados = () => {
     };
 };
 
-
 export const postClasificados = (clasificado) => {
     return async () => {
-        console.log(clasificado);
         try {
             await axios.post('https://csyc.onrender.com/offer/', clasificado);
         } catch (error) {
@@ -135,14 +139,45 @@ export const addServiceCart = (service) => {
     return {
         type: ADDCARTSERVICES,
         payload: service
-    }
-}
-
+    };
+};
 
 export const deleteServiceCart = (service) => {
     return {
         type: DELETECARTSERVICES,
         payload: service
-    }
-}
+    };
+};
 
+export const getOfferByEmail = (email) => {
+    return async (dispatch) => {
+        try {
+            const { data } = await axios.get(
+                `https://csyc.onrender.com/offer/${email}`
+            );
+            console.log('data', data);
+            dispatch({
+                type: GETOFFERBYEMAIL,
+                payload: data
+            });
+        } catch (error) {
+            console.error(`Error al traer publicaciones`, error);
+        }
+    };
+};
+
+export const clearClasificados = () => {
+    return {
+        type: DELETECLASIFICADOS
+    };
+};
+
+export const deleteOffer = (id) => {
+    return async () => {
+        try {
+            await axios.delete(`https://csyc.onrender.com/offer/${id}`);
+        } catch (error) {
+            console.error(`Error al borrar la publicacion`, error);
+        }
+    };
+};
