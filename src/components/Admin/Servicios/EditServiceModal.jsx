@@ -2,41 +2,80 @@ import { Modal, Button, Form } from "react-bootstrap";
 import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { updateService, deleteService } from "../../../redux/actions";
-
+import { firebase } from "../../Firebase/firebase"
 
 const EditServiceModal = ({ show, handleClose, serviceData }) => {
 
     const dispatch = useDispatch()
 
-
-    // Inicializa el estado local con los datos del servicio al abrir el modal
+    // Inicializamos un estado local con los datos del servicio al abrir modal
     const [editData, setEditData] = useState(serviceData);
 
+    // Estado local para nueva imagen a subir
+    const [selectedImageFile, setSelectedImageFile] = useState("");
 
+    // Cambios enlazados al estado local
     const handleChange = (e) => {
       const { name, value } = e.target;
       setEditData({ ...editData, [name]: value });
     };
   
-
-    // Si el servicioData cambia, actualiza el estado local editData
+    // Al cambiar de modal, cambian los datos de cada servicio
     useEffect(() => {
       setEditData(serviceData);
     }, [serviceData]);
 
 
-    // Manejar el envío del formulario
-    const handleFormSubmit = (event) => {
-      
-      event.preventDefault()
+    // Manejo del cambio de imagenes
+    const handleImageChange = (event) => {
+      const imageFile = event.target.files[0];
+      setSelectedImageFile(imageFile);
+    };
+  
 
-      // Realiza la actualización en la base de datos
-      dispatch(updateService(serviceData.id, editData)); // Asumiendo que tienes una acción llamada "updateService"
 
-      alert("El servicio fue editado correctamente")
+    const handleFormSubmit = async (event) => {
+      event.preventDefault();
+    
+      try {
+        // Si hay una nueva imagen seleccionada
+        if (selectedImageFile) {
+          // Usamos la función de Firebase para obtener la URL de la nueva imagen
+          const newImageUrl = await firebase(selectedImageFile, "admin-services/");
+    
+          // Actualiza el estado local con la nueva URL de la imagen
+          setEditData({ ...editData, image: newImageUrl });
+        
+          // Despacha la acción para actualizar el servicio con los datos editados
+          dispatch(updateService(serviceData.id, { ...editData, image: newImageUrl }));
+          
+          alert("El servicio fue editado correctamente")
+        }
+          // Recarga la página
+          setTimeout(() => {window.location.reload()}, 300);
+    
+          // Cierra el modal
+          handleClose();
+        } catch (error) {console.error("Error al editar el servicio:", error)}
+    };
 
-      // Cierra el modal después de guardar
-      handleClose();
+
+
+  // Manejando borrado permanente de servicio
+  const handleDeleteService = () => {
+    // Alert para confirmar la acción
+    const isConfirmed = window.confirm("¿Estás seguro de que deseas eliminar este servicio?");
+
+    if (isConfirmed) {
+      // Si el usuario confirmó, realiza la acción de eliminación
+      dispatch(deleteService(serviceData.id));
+      alert("Servicio eliminado correctamente");
+
+      // Recargamos página
+      setTimeout(() => {window.location.reload()}, 300);
+
+      // Cerramos modal 
+      handleClose()}
   };
 
 
@@ -82,10 +121,9 @@ return (
             value={editData ? editData.price : "No disponible"}/>
           </Form.Group>
 
-          <Form.Group controlId="image" className="mb-2">
-            <Form.Label>Imagen</Form.Label>
-            <Form.Control type="text" name="image" onChange={handleChange}
-            value={editData ? editData.image : "Nombre no disponible"}/>
+          <Form.Group controlId="newImage" className="mb-2">
+            <Form.Label>Nueva Imagen</Form.Label>
+            <Form.Control type="file" name="newImage" onChange={handleImageChange} />
           </Form.Group>
 
           <Form.Group controlId="status" className="mb-2">
@@ -101,12 +139,10 @@ return (
 
       </Modal.Body>
 
-
       <Modal.Footer>
-        <Button variant="danger" onClick={() => dispatch(deleteService(serviceData.id))}> Eliminar servicio </Button>
+        <Button variant="danger" onClick={handleDeleteService}> Eliminar servicio </Button>
         <Button variant="primary" type="submit" form="editServiceForm"> Guardar Cambios </Button>
         <Button variant="secondary" onClick={handleClose}> Descartar </Button>
-        <Button variant="secondary" onClick={() => console.log(serviceData, serviceData.id)}> Ver </Button>
       </Modal.Footer>
 
     </Modal>);

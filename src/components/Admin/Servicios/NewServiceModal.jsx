@@ -2,7 +2,7 @@ import { Modal, Button, Form } from "react-bootstrap";
 import { addService } from "../../../redux/actions";
 import { useDispatch } from "react-redux";
 import { useState } from "react";
-import {firebase} from "../../Firebase/firebase"
+import { firebase } from "../../Firebase/firebase"
 
 const NewServiceModal = ({ show, handleClose }) => {
 
@@ -39,7 +39,7 @@ const handleFormSubmit = async (event) => {
     // Si hay imagen
     if (selectedImage) {
       // Usamos la función firebase para quedarnos con la URL a subir
-      const imageUrl = await firebase(selectedImage);
+      const imageUrl = await firebase(selectedImage, "admin-services/");
       console.log(imageUrl);
       // Actualiza el estado local con la nueva imagen
       setServiceData({ ...serviceData, image: imageUrl });
@@ -52,7 +52,7 @@ const handleFormSubmit = async (event) => {
       dispatch(addService(serviceData));
     }
     
-    alert("Servicio subido");
+    alert("Servicio subido correctamente");
   } catch (error) {
     console.error("Error al subir la imagen:", error);
   }

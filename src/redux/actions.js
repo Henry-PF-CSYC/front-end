@@ -190,9 +190,20 @@ export const updateService = (id, service) =>{
 export const deleteService = (id) =>{
     return async () => {
         try {
-            await axios.put(`https://csyc.onrender.com/services/delete/${id}`);
+            await axios.delete(`https://csyc.onrender.com/services/delete/${id}`);
         } catch (error) {
             alert('Error al borrar el servicio', error);
+        }
+    };
+}
+
+
+export const deleteClasificado = (id) =>{
+    return async () => {
+        try {
+            await axios.delete(`https://csyc.onrender.com/offer/${id}`);
+        } catch (error) {
+            alert('Error al borrar el clasificado', error);
         }
     };
 }
