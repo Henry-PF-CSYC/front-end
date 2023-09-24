@@ -3,14 +3,7 @@ import ModalUsuario from './ModalUsuario/ModalUsuario';
 import { useEffect, useState } from 'react';
 import { Button } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
-import {
-    getUser,
-    postUser,
-    getOfferByEmail,
-    deleteOffer,
-    restaurarOffer,
-    clearClasificados
-} from '../../redux/actions';
+import { getUser, postUser, getOfferByEmail } from '../../redux/actions';
 import { useAuth0 } from '@auth0/auth0-react';
 
 import { useSearchParams } from 'react-router-dom';
@@ -28,11 +21,11 @@ const agua =
 const SeccionUsuario = () => {
     const dispatch = useDispatch();
 
-    const [params] = useSearchParams() 
+    const [params] = useSearchParams();
     const [show, setShow] = useState(false);
 
-    const [servicios, setServicios] = useState([])
-    const susbcriptions = useSelector(state => state.cartServices)
+    const [servicios, setServicios] = useState([]);
+    const susbcriptions = useSelector((state) => state.cartServices);
 
     const pstUser = () => {
         dispatch(postUser(dataUser));
@@ -41,7 +34,6 @@ const SeccionUsuario = () => {
     const [show2, setShow2] = useState(false);
     const { user, isAuthenticated } = useAuth0();
     let usuario = useSelector((state) => state.dataUser);
-    let publicaciones = useSelector((state) => state.publicacionesusuario);
 
     const [dataUser, setDataUser] = useState({
         name: '',
@@ -53,22 +45,27 @@ const SeccionUsuario = () => {
         image: isAuthenticated ? user.picture : 'loading'
     });
 
-    const submitSuscription = async() => {
-        if(params.get('status')) {
-            const ids = []
-            susbcriptions.forEach(susbcription => {
-                ids.push(susbcription.id)
+    const submitSuscription = async () => {
+        if (params.get('status')) {
+            const ids = [];
+            susbcriptions.forEach((susbcription) => {
+                ids.push(susbcription.id);
             });
             const data = {
                 user_email: usuario.email,
                 service_ids: ids
-            }
-            const saveSuscription = await axios.post('https://csyc.onrender.com/subscription',data)
-            let cardServices = []
-            saveSuscription.data.subscriptions.forEach((service) => cardServices.push(service.service))
-            setServicios(cardServices)
+            };
+            const saveSuscription = await axios.post(
+                'https://csyc.onrender.com/subscription',
+                data
+            );
+            let cardServices = [];
+            saveSuscription.data.subscriptions.forEach((service) =>
+                cardServices.push(service.service)
+            );
+            setServicios(cardServices);
         }
-    } 
+    };
 
     useEffect(() => {
         if (isAuthenticated) {
@@ -78,18 +75,12 @@ const SeccionUsuario = () => {
             usuario.email = user.email;
         }
 
-        submitSuscription()
+        submitSuscription();
     }, []);
 
     const handleClose = () => {
         setShow(false);
         setShow2(false);
-    };
-    const deletPublicacion = (id) => {
-        dispatch(deleteOffer(id));
-    };
-    const restoreOffer = (id) => {
-        dispatch(restaurarOffer(id));
     };
 
     const updateUser = (data) => {
@@ -142,7 +133,6 @@ const SeccionUsuario = () => {
                         class="btn btn-dark p-1 ms-2"
                         onClick={() => {
                             setShow2(true);
-                            console.log(publicaciones);
                         }}
                     >
                         Mis publicaciones
@@ -154,31 +144,26 @@ const SeccionUsuario = () => {
                     <div class="col-12 d-flex justify-content-center mt-5">
                         <h1>Mis servicios activos:</h1>
                     </div>
-                    {
-                        servicios.length > 0 && 
+                    {servicios.length > 0 &&
                         servicios.map((servicio, index) => {
-                        return (
-                            <div class="col-4 ps-5 my-5">
-                                <CardsServicios
-                                    key={index}
-                                    imagen={servicio.image}
-                                    titulo={servicio.name}
-                                    descripcion={servicio.description}
-                                    nombreBoton='Mas Informacion'
-                                />
-                            </div>
-                        );
-                    })}
+                            return (
+                                <div class="col-4 ps-5 my-5">
+                                    <CardsServicios
+                                        key={index}
+                                        imagen={servicio.image}
+                                        titulo={servicio.name}
+                                        descripcion={servicio.description}
+                                        nombreBoton="Mas Informacion"
+                                    />
+                                </div>
+                            );
+                        })}
                 </div>
             </div>
             <ModalPublicaciones
                 email={usuario.email}
                 show={show2}
                 handleClose={handleClose}
-                publicaciones={publicaciones}
-                deletPublicacion={deletPublicacion}
-                restoreOffer={restoreOffer}
-                getOfferByEmail={getOfferByEmail}
             />
             <ModalUsuario
                 show={show}

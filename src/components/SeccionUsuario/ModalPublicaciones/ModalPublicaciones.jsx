@@ -1,15 +1,13 @@
+import { useEffect } from 'react';
 import { Modal, Button } from 'react-bootstrap';
-
-const ModalPublicaciones = ({
-    show,
-    handleClose,
-    publicaciones,
-    deletPublicacion,
-    email,
+import {
+    deleteOffer,
     getOfferByEmail,
-    limpiarClasificados,
-    restoreOffer
-}) => {
+    restaurarOffer
+} from '../../../redux/actions';
+import { useDispatch, useSelector } from 'react-redux';
+
+const ModalPublicaciones = ({ show, handleClose, email }) => {
     const cardStyle = {
         maxWidth: '20rem',
         width: '20rem',
@@ -39,6 +37,18 @@ const ModalPublicaciones = ({
         marginLeft: '15px',
         marginRight: '15px'
     };
+    const dispatch = useDispatch();
+    let publicaciones = useSelector((state) => state.publicacionesusuario);
+    const deletPublicacion = (id) => {
+        dispatch(deleteOffer(id));
+        dispatch(getOfferByEmail(email));
+    };
+    useEffect(() => dispatch(getOfferByEmail(email)), []);
+    const restoreOffer = (id) => {
+        dispatch(restaurarOffer(id));
+        dispatch(getOfferByEmail(email));
+    };
+
     return (
         <Modal
             size="xl"
@@ -85,7 +95,6 @@ const ModalPublicaciones = ({
                                             deletPublicacion(publicacion.id);
                                             getOfferByEmail(email);
                                             // Recarga la página
-                                            setTimeout(() => {window.location.reload()}, 300);
                                         }}
                                     >
                                         Borrar
@@ -129,8 +138,7 @@ const ModalPublicaciones = ({
                                     <Button
                                         onClick={() => {
                                             restoreOffer(publicacion.id);
-                                             // Recarga la página
-                                             setTimeout(() => {window.location.reload()}, 300);
+                                            // Recarga la página
                                         }}
                                     >
                                         Restaurar
