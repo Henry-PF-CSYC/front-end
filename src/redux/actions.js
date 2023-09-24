@@ -274,3 +274,16 @@ export const deleteClasificado = (id) =>{
     };
 }
 
+
+export const createOrDesignAdmin = (userEmail,type) =>{
+    return async () => {
+        try {
+            await axios.put(`https://csyc.onrender.com/users/admin/${userEmail}?type=${type}`);
+
+        } catch (error) {
+            console.log('Error al designar como administrador', error);
+        }
+    };
+};
+
+
