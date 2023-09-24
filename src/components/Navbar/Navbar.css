@@ -1,8 +1,9 @@
+@import url('https://fonts.googleapis.com/css2? family= Fjalla+One & family= Josefin+Sans & family= Montserrat:ital,wght@0,200;0,400;0,600;1,500 & display= intercambio');
 .navbar {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background-color: black;
+    /* background-color: rgb(245, 8, 8); */
     position: fixed;
     z-index: 1000;
 }
@@ -20,20 +21,24 @@
 
 .options h5 {
     margin-left:2rem;
-    margin-left:2rem;
+    margin-left:7rem;
     border-bottom: 2px solid transparent;
     transition: border-bottom 0.3s ease;
     text-decoration: none;
+    font-family: 'Montserrat';
+    font-size: 111%;
 }
 
 .options h5:hover {
     border-bottom: 1px solid white;
+    transition: .5s;
 }
 
 .options button {
     border-radius: 10px;
-    margin-left: 2rem;
-    margin-left:2rem;
+    margin-left:6rem;
+    background-color: transparent;
+    border: transparent;
 }
 
 #logo{
@@ -50,6 +55,7 @@
     border-radius: 100%;
     margin-left: 3px;
     margin-bottom: 5px;
+    background-color: transparent;
 }
 
 .ProfileBtn {
@@ -90,6 +96,7 @@ background-color:  rgb(31, 170, 180);
 padding: 1px 24px;
 border-radius: 6px;
 transition: .3s;
+border: transparent;
 }
 
 .button:hover span {
@@ -98,4 +105,16 @@ transition: .3s;
 
 .button:active {
 	transform: scale(0.9);
+}
+.trolley{
+    margin-left: 15rem;
+}
+.ms-3 {
+    margin-left: 6rem!important;
+    margin-bottom: 2%;
+}
+
+.abajo{
+    background-color: #000000;
+    transition: .4s;
 }

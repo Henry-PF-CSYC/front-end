@@ -23,6 +23,19 @@ const Navbar = () => {
         dispatch(getUser(user.email));
     };
 
+        const handleScroll = () => {
+            let section = document.querySelector(".navbar");
+            if (section) {
+              section.classList.toggle("abajo", window.scrollY > 0);
+            }
+          };
+      useEffect(() => {
+        window.addEventListener("scroll", handleScroll);
+        return () => {
+          window.removeEventListener("scroll", handleScroll);
+        };
+      }, []);
+
     return (
         <section className="container-fluid navbar">
             <div id="logoContainer">
@@ -123,6 +136,7 @@ const Navbar = () => {
                         Clasificados
                     </Link>
                 </h5>
+                <IconCart className="trolley"/>
 
                 {isAuthenticated ? (
                     <div class="dropdown">
@@ -150,11 +164,11 @@ const Navbar = () => {
                                 <Link
                                     to="/usuario"
                                     style={{ textDecoration: 'none' }}
-                                >
+                                    >
                                     <a
                                         class="dropdown-item userDropdown"
                                         href="."
-                                    >
+                                        >
                                         Ver mi perfil
                                     </a>
                                 </Link>
@@ -169,13 +183,12 @@ const Navbar = () => {
                     </div>
                 ) : (
                     <button
-                        className="button"
-                        onClick={() => loginWithRedirect()}
+                    className="button"
+                    onClick={() => loginWithRedirect()}
                     >
                         <span title="Inicia sesión">Ingresa</span>
                     </button>
                 )}
-                <IconCart/>
             </div>
         </section>
     );
