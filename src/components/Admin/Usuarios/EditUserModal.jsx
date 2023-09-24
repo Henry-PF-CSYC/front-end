@@ -1,8 +1,24 @@
 import { Modal, Button } from "react-bootstrap";
+import { useDispatch } from "react-redux";
+
+import { createOrDesignAdmin } from "../../../redux/actions";
+
 
 const EditUserModal = ({ show, handleClose, userData }) => {
      
-    
+const dispatch = useDispatch()
+const type = "set"
+
+const handleAddAdmin = async () => {
+    dispatch(await createOrDesignAdmin(userData.email,type))
+    alert("Usuario designado como administrador correctamente")
+}
+
+
+
+
+
+// Renderizado    
 return (
     <Modal show={show} onHide={handleClose}>
 
@@ -18,7 +34,7 @@ return (
             </div>
 
             <div>
-                <Button variant="warning"> Designar usuario como administrador </Button> 
+                <Button variant="warning" onClick={()=>{handleAddAdmin()}}> Designar usuario como administrador </Button> 
                 <p>{userData ? userData.name : "---"} tendrá acceso al panel de administrador y todas sus funciones y privilegios.</p>
             </div>
 
@@ -26,6 +42,10 @@ return (
                 <Button variant="danger"> Banear Usuario </Button> 
                 <p>Si {userData ? userData.name : "---"} ha inflingido las normas del sitio, prohibe su acceso al mismo, 
                 desactivando su cuenta.</p>
+            </div>
+
+            <div>
+                <Button variant="secondary" onClick={()=>{console.log(userData)}}> Ver datos </Button> 
             </div>
 
         </Modal.Body>

@@ -128,7 +128,7 @@ const ModalClasificado = ({ show, handleSubmit, handleClose, email }) => {
                                 resetForm();
                             }}
                         >
-                            Guaradar cambios
+                            Crear Publicacion
                         </Button>
                     </Modal.Footer>
                 </form>

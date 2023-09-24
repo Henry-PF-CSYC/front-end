@@ -12,7 +12,6 @@ import {
     RESTOREOFFER
 } from './action-types';
 
-
 // Estado global
 const initialState = {
     dataUser: {},
@@ -23,12 +22,10 @@ const initialState = {
     cartServices: [],
     clasificados: [],
     publicacionesusuario: [],
-    allUsers:[]
+    allUsers: []
 };
 
-
 console.log(initialState.currentServicesPage);
-
 
 // Reducer
 const reducer = (state = initialState, action) => {
@@ -65,20 +62,22 @@ const reducer = (state = initialState, action) => {
                 currentServicesPage: action.payload.services,
                 totalPages: action.payload.totalCount // Almacena el número total de páginas en el estado
             };
-        
+
         case ADDCARTSERVICES:
-            const index = state.cartServices.findIndex((service) => service.id === action.payload.id)
-            if(index > -1){
-                state.cartServices[index].quantity = action.payload.quantity
+            const index = state.cartServices.findIndex(
+                (service) => service.id === action.payload.id
+            );
+            if (index > -1) {
+                state.cartServices[index].quantity = action.payload.quantity;
                 return {
                     ...state,
                     cartServices: state.cartServices
-                }
-            }else{
+                };
+            } else {
                 return {
                     ...state,
                     cartServices: [...state.cartServices, action.payload]
-                }
+                };
             }
         case DELETECARTSERVICES:
             const filterServices = state.cartServices.filter(
@@ -105,13 +104,9 @@ const reducer = (state = initialState, action) => {
                 clasificados: [],
                 publicacionesusuario: []
             };
-        case RESTOREOFFER:
-            return {
-                ...state,
-                clasificados: [...state.clasificados, action.payload]
-            };
-        
-        default: return { ...state };
+
+        default:
+            return { ...state };
     }
 };
 
