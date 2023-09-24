@@ -52,13 +52,8 @@ const SeccionUsuario = () => {
         phone: 0,
         image: isAuthenticated ? user.picture : 'loading'
     });
-    useEffect(async() => {
-        if (isAuthenticated) {
-            dispatch(getUser(user.email));
-            dispatch(getOfferByEmail(user.email));
-            setDataUser(usuario);
-            usuario.email = user.email;
-        }
+
+    const submitSuscription = async() => {
         if(params.get('status')) {
             const ids = []
             susbcriptions.forEach(susbcription => {
@@ -73,7 +68,17 @@ const SeccionUsuario = () => {
             saveSuscription.data.subscriptions.forEach((service) => cardServices.push(service.service))
             setServicios(cardServices)
         }
+    } 
 
+    useEffect(() => {
+        if (isAuthenticated) {
+            dispatch(getUser(user.email));
+            dispatch(getOfferByEmail(user.email));
+            setDataUser(usuario);
+            usuario.email = user.email;
+        }
+
+        submitSuscription()
     }, []);
 
     const handleClose = () => {
