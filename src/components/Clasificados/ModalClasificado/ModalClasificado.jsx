@@ -123,7 +123,7 @@ const ModalClasificado = ({ show, handleSubmit, handleClose, email }) => {
                         <Button
                             type="submit"
                             variant="success"
-                            onClick={() => {
+                            onClick={(event) => {
                                 handleSubmit(values, event);
                                 resetForm();
                             }}

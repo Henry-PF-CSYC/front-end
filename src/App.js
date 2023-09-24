@@ -10,7 +10,6 @@ import Login from "./components/Login/login"
 import Register from "./components/Register/Register"
 import SeccionUsuario from './components/SeccionUsuario/SeccionUsuario'
 import Clasificados from "./components/Clasificados/Clasificados";
-import Firebase from "./components/Firebase/Firebase";
 
 // Servicios
 import Servicios from "./components/Servicios/Servicios";
@@ -26,9 +25,12 @@ import { Cart } from "./components/Cart/Cart";
 //Administrador
 import Admin from "./components/Admin/Admin";
 import Dashboard from "./components/Admin/Dashboard/Dashboard";
-import Usuarios from "./components/Admin/Usuarios/Usuarios";
-import Productos from "./components/Admin/Productos/Productos";
+import ServicesAdm from "./components/Admin/Servicios/ServicesAdm";
+import UsuariosAdm from "./components/Admin/Usuarios/UsuariosAdm";
+import ClasificadosAdm from "./components/Admin/Clasificados/ClasificadosAdm";
 import Reclamos from "./components/Admin/Reclamos/Reclamos";
+
+
 
 // Renderizado
 function App() {
@@ -48,7 +50,6 @@ function App() {
           <Route path="/usuario" element={<SeccionUsuario/>}/>
           <Route path="/clasificados" element={<Clasificados/>}/>
           <Route path="/contacto" element={<Contact/>}/>
-          <Route path="/firebase" element={<Firebase/>}/>
 
           
            {/*Servicios*/}
@@ -63,12 +64,14 @@ function App() {
           <Route path="/cart" element={<Cart isTerms={true}/>} /> 
 
           {/* Administrador */}
-          <Route path="/admin/*" element={<Admin />}>
-          <Route index element={<Dashboard />} />
-          <Route path="dashboard" element={<Dashboard />} />
-          <Route path="productos" element={<Productos />} />
-          <Route path="reclamos" element={<Reclamos />} />
-          <Route path="usuarios" element={<Usuarios />} />
+          <Route path="/admin/*" element={<Admin/>}>
+          <Route index element={<Dashboard/>}/>
+          <Route path="dashboard" element={<Dashboard/>}/>
+          <Route path="servicesAdm" element={<ServicesAdm/>}/>
+          <Route path="usuarios" element={<UsuariosAdm/>}/>
+          <Route path="clasificados" element={<ClasificadosAdm/>}/>
+          <Route path="reclamos" element={<Reclamos/>}/>
+          
         </Route>
              
         </Routes>  

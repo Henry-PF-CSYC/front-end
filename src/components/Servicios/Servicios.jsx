@@ -2,10 +2,10 @@ import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getServicesPaginated} from "../../redux/actions";
 import "./Servicios.css";
-import CardsServicios from "../Servicios/CardsServicios/CardsServicios";
+import CardsServicios from "./CardsServicios/CardsServicios";
 
 
-const Services = () => {
+const Servicios = () => {
   const dispatch = useDispatch();
   const totalPages = useSelector((state) => state.totalPages); //el numero de paginas del estado global
   const serviciosInPage = useSelector((state) => state.currentServicesPage); // suscrito a lo que guardo en el estado cuando hago dispatch de paginate pasandole la pagina  
@@ -145,18 +145,25 @@ const Services = () => {
 
       <div className="col-md-10">
       <section className="row">
-        {serviciosInPage.map((servicio, index) => (
+        {serviciosInPage.length!==0 ?
+         serviciosInPage.map((servicio, index) => (
           <div key={index} className="col-4">
             <CardsServicios
               imagen={servicio.image}
               titulo={servicio.name}
               nombreBoton="Lo quiero!"
               descripcion={servicio.description}
-              precio={`$${servicio.price}`}
+              precio={servicio.price}
               estado={servicio.status}
+              id={servicio.id}
+              type={servicio.type}
             />
           </div>
-        ))}
+        )):
+        <div className="errorCards">
+          <img src="https://grupoleiros.com/static/product-not-found.png" alt="" />
+          
+        </div>}
       </section>
     </div>
       <div className="pagination justify-content-center">
@@ -196,4 +203,4 @@ const Services = () => {
         );
     };
 
-export default Services;
+export default Servicios;
