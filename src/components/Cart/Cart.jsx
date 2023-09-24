@@ -24,7 +24,6 @@ export const Cart = ({ isTerms }) => {
     }
 
     const viewMercadoPago = async () => {
-        console.log(user)
         if(Object.keys(user).length > 0){
             const data = []
             servicesCart.forEach(service => data.push({id:service.id, title: service.titulo, unit_price: service.precio, quantity: service.quantity, currency_id: 'ARS'}))
