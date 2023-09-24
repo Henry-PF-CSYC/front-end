@@ -43,7 +43,9 @@ const ModalPublicaciones = ({ show, handleClose, email }) => {
         dispatch(deleteOffer(id));
         dispatch(getOfferByEmail(email));
     };
-    useEffect(() => dispatch(getOfferByEmail(email)), []);
+    useEffect(() => {
+        dispatch(getOfferByEmail(email));
+    }, []);
     const restoreOffer = (id) => {
         dispatch(restaurarOffer(id));
         dispatch(getOfferByEmail(email));

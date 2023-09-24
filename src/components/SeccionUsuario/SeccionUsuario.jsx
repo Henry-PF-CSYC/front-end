@@ -27,10 +27,6 @@ const SeccionUsuario = () => {
     const [servicios, setServicios] = useState([]);
     const susbcriptions = useSelector((state) => state.cartServices);
 
-    const pstUser = () => {
-        dispatch(postUser(dataUser));
-    };
-
     const [show2, setShow2] = useState(false);
     const { user, isAuthenticated } = useAuth0();
     let usuario = useSelector((state) => state.dataUser);
@@ -44,7 +40,6 @@ const SeccionUsuario = () => {
         phone: 0,
         image: isAuthenticated ? user.picture : 'loading'
     });
-
     const submitSuscription = async () => {
         if (params.get('status')) {
             const ids = [];
