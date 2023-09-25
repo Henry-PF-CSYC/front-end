@@ -22,11 +22,11 @@ const Register = () => {
         if (isAuthenticated) {
             dispatch(getUser(user.email));
             usuario.email = user.email;
-            if (usuario.name !== '') {
+            if (usuario.name !== undefined) {
                 navigate('/');
             }
         }
-    }, []);
+    });
 
     let { values, errors, touched, handleBlur, handleChange, handleSubmit } =
         useFormik({
@@ -41,7 +41,6 @@ const Register = () => {
             onSubmit: () => {
                 values.email = user.email;
                 dispatch(postUser(values));
-                dispatch(getUser(values.email));
                 navigate('/');
             }
         });
