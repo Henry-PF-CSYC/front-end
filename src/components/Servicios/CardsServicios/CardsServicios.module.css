@@ -71,3 +71,9 @@
 .description{
     font-size: medium;
 }
+.disabledCard {
+    opacity: 0.5; 
+  }
+.disabledButton {
+    cursor: not-allowed !important; 
+}
