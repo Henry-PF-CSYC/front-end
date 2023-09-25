@@ -1,8 +1,9 @@
+@import url('https://fonts.googleapis.com/css2? family= Fjalla+One & family= Josefin+Sans & family= Montserrat:ital,wght@0,200;0,400;0,600;1,500 & display= intercambio');
 .navbar {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background-color: black;
+    /* background-color: rgb(245, 8, 8); */
     position: fixed;
     z-index: 1000;
 }
@@ -12,28 +13,32 @@
     flex-direction: row;
     margin-right: 4rem;
     margin-top: 0.5rem;
-    color: rgb(196, 192, 192);
+    color: #1faab4;
     align-items: center;
     text-decoration: none;
-    color: white;
+    color: #1faab4;
 }
 
 .options h5 {
     margin-left:2rem;
-    margin-left:2rem;
+    margin-left:7rem;
     border-bottom: 2px solid transparent;
     transition: border-bottom 0.3s ease;
     text-decoration: none;
+    font-family: 'Montserrat';
+    font-size: 111%;
 }
 
 .options h5:hover {
-    border-bottom: 1px solid white;
+    border-bottom: 1px solid #16b9b1;
+    transition: .5s;
 }
 
 .options button {
     border-radius: 10px;
-    margin-left: 2rem;
-    margin-left:2rem;
+    margin-left:6rem;
+    background-color: transparent;
+    border: transparent;
 }
 
 #logo{
@@ -50,6 +55,7 @@
     border-radius: 100%;
     margin-left: 3px;
     margin-bottom: 5px;
+    background-color: transparent;
 }
 
 .ProfileBtn {
@@ -62,32 +68,53 @@
 }
 
 .linkh5{
-    color: white;
+    color: #1faab4;
     text-decoration: none;
 }
 
-.button {
-    font-size: 1.3rem;
-    transition: transform 0.3s, background-color 0.3s, box-shadow 0.3s;
-    color: white;
-    background-color: #073e9c;
-    border: none;
-    border-radius: 5x;
-    font: bold;
-    margin-top: -9px;
-    margin-left: -20px;
-    padding: 5px 20px;
-  }
-  
-  .button:hover {
-    background-color: #044299;
-    box-shadow: 0px 0px 10px rgb(255, 255, 255);
-  }
-  
-  .button:active {
-    transform: scale(1.1);
-  }
-  .icon-market{
-    margin-top: -9px;
-    margin-right: -20px;
-  }
+.button{
+	border: 0;
+	background-image: linear-gradient(
+		150deg,
+        rgb(11, 67, 78),
+        rgb(28, 150, 159),
+        rgb(26, 165, 175)
+	);
+	border-radius: 8px;
+	color: #fff;
+	display: flex;
+	font-size: 18px;
+	padding: 3px;
+	cursor: pointer;
+	transition: .3s;
+    margin-top: -10px;
+   
+}
+
+.button span {
+background-color:  #1faab4;
+padding: 1px 24px;
+border-radius: 6px;
+transition: .3s;
+border: transparent;
+}
+
+.button:hover span {
+	background: none;
+}
+
+.button:active {
+	transform: scale(0.9);
+}
+.trolley{
+    margin-left: 15rem;
+}
+.ms-3 {
+    margin-left: 6rem!important;
+    margin-bottom: 2%;
+}
+
+.abajo{
+    background-color: #000000;
+    transition: .4s;
+}
