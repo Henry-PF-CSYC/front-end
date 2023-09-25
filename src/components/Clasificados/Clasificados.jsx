@@ -61,7 +61,7 @@ const Clasificados = () => {
                         )
                 )}
             </div>
-           
+            {isAuthenticated && (
                 <button
                     className={style.button}
                     onClick={() => {
@@ -70,7 +70,7 @@ const Clasificados = () => {
                 >
                     <span className={style.span}>Crear publicacion</span>
                 </button>
-            
+            )}
             <ModalClasificado
                 show={show}
                 handleSubmit={handleSubmit}
