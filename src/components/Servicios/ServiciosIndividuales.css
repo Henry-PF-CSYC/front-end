@@ -1,4 +1,4 @@
-.aguaContainer {
+.serviceNowContainer {
     display: flex;
     background: linear-gradient(135deg, #051b3f, #073e9c, #051b3f, #073e9c);
     background-size: cover;
@@ -6,11 +6,11 @@
     justify-content: space-between;
     text-align: center;
     font-size: larger;
-    padding-top: 5rem;
+    padding-top: 1.8rem;
     color: white;
 }
 
-.aguaContainer h1 {
+.serviceNowContainer h1 {
     font-size: 4rem;
     font-weight: bolder;
     color: white;
@@ -34,14 +34,14 @@
 }
 
 
-.aguaContainer p {
-    font-size: small;
+.serviceNowContainer p {
+    font-size: 1rem;
 }
-#aguaInfo {
+#servicInfo {
     margin-top: 50px;
 }
 
-.aguaCards {
+.serviceCards {
     display: flex;
     justify-content: center;
     width: 100%; 
@@ -50,6 +50,8 @@
     display: flex;
     justify-content: space-between; 
     margin-top: 2%;
+    margin-left: 2%;
+    margin-right: 2%;
 }
 .textoIzquierda {
     text-align: left;

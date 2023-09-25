@@ -11,10 +11,6 @@ const mySchema = Yup.object().shape({
         .max(12, 'El máximo de caracteres es de 12')
         .required('Por favor, ingrese un apellido'),
 
-    email: Yup.string()
-        .email('El email no es valido')
-        .required('Por favor, ingrese un email'),
-
     dni: Yup.string()
         .matches(/^\d+$/, 'Ingrese un DNI válido')
         .min(5, 'El número es muy pequeño')
@@ -27,9 +23,7 @@ const mySchema = Yup.object().shape({
         .matches(/^\d+$/, 'Ingrese un número válido')
         .min(5, 'El número es muy pequeño')
         .max(14, 'El número es muy extenso')
-        .required('Por favor, ingrese un número'),
-
-    picfile: Yup.mixed().required('Debes adjuntar tu foto')
+        .required('Por favor, ingrese un número')
 });
 
 export default mySchema;

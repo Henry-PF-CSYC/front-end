@@ -2,16 +2,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import CardsClasificados from './CardsClasificados/CardsClasificados';
 import style from './Clasificados.module.css';
 import { useEffect, useState } from 'react';
-import {
-    clearClasificados,
-    getClasificados,
-    postClasificados
-} from '../../redux/actions';
+import { clearClasificados, getClasificados, postClasificados} from '../../redux/actions';
 import ModalClasificado from './ModalClasificado/ModalClasificado';
 import ModalPublicacion from './ModalPublicacion/ModalPublicacion';
 import { useAuth0 } from '@auth0/auth0-react';
 
+
 const Clasificados = () => {
+
     const [show, setShow] = useState(false);
     const [show2, setShow2] = useState(false);
     const [publicacion, setPublicacion] = useState({});
@@ -19,14 +17,10 @@ const Clasificados = () => {
         setShow(false);
         setShow2(false);
     };
+
     const dispatch = useDispatch();
     const { user, isAuthenticated } = useAuth0();
-    const handleSubmit = (value, event) => {
-        event.preventDefault();
-        console.log(value);
-        dispatch(postClasificados(value));
-        setShow(false);
-    };
+
 
     useEffect(() => {
         dispatch(clearClasificados());
@@ -35,6 +29,8 @@ const Clasificados = () => {
 
     const clasi = useSelector((state) => state.clasificados);
 
+
+    
     return (
         <div className={style.page}>
             <div className={style.container}>
@@ -73,7 +69,6 @@ const Clasificados = () => {
             )}
             <ModalClasificado
                 show={show}
-                handleSubmit={handleSubmit}
                 handleClose={handleClose}
                 email={isAuthenticated ? user.email : ''}
             />
