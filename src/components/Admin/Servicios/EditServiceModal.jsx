@@ -34,31 +34,37 @@ const EditServiceModal = ({ show, handleClose, serviceData }) => {
   
 
 
+    // Manejo de envio de formulario
     const handleFormSubmit = async (event) => {
       event.preventDefault();
     
       try {
+       
+         // Inicializamos la nueva imagen como nula
+        let newImageUrl = null;
+    
         // Si hay una nueva imagen seleccionada
         if (selectedImageFile) {
-          // Usamos la función de Firebase para obtener la URL de la nueva imagen
-          const newImageUrl = await firebase(selectedImageFile, "admin-services/");
-    
-          // Actualiza el estado local con la nueva URL de la imagen
-          setEditData({ ...editData, image: newImageUrl });
-        
-          // Despacha la acción para actualizar el servicio con los datos editados
-          dispatch(updateService(serviceData.id, { ...editData, image: newImageUrl }));
-          
-          alert("El servicio fue editado correctamente")
+          // Usamos la función de Firebase para obtener URL de la nueva imagen
+          newImageUrl = await firebase(selectedImageFile, "admin-services/");
+        } else {
+          // Si no hay una nueva imagen seleccionada, usamos la URL existente
+          newImageUrl = editData.image;
         }
-          // Recarga la página
-          setTimeout(() => {window.location.reload()}, 300);
     
-          // Cierra el modal
-          handleClose();
-        } catch (error) {console.error("Error al editar el servicio:", error)}
+        // Actualizamos el estado local con la nueva URL de la nuevo imagen o existente
+        setEditData({ ...editData, image: newImageUrl });
+    
+        // Despachamos la acción para actualizar el servicio con los datos editados
+        dispatch(updateService(editData.id, { ...editData, image: newImageUrl }));
+  
+        alert("El servicio fue editado correctamente");
+        setTimeout(() => {window.location.reload();}, 300);
+    
+      } catch (error) {
+        console.error("Error al editar el servicio:", error);
+      }
     };
-
 
 
   // Manejando borrado permanente de servicio
@@ -142,7 +148,7 @@ return (
       <Modal.Footer>
         <Button variant="danger" onClick={handleDeleteService}> Eliminar servicio </Button>
         <Button variant="primary" type="submit" form="editServiceForm"> Guardar Cambios </Button>
-        <Button variant="secondary" onClick={handleClose}> Descartar </Button>
+        <Button variant="secondary" onClick={()=>{handleClose()}}> Descartar </Button>
       </Modal.Footer>
 
     </Modal>);

@@ -29,14 +29,16 @@
 
 .available-cell{
     color: rgb(127, 212, 16);
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); 
-    text-decoration: bold;
+    text-shadow: 2px 2px 4px rgba(170, 165, 165, 0.1); 
+    text-transform: capitalize;
+    font-weight: bold; 
 }
 
 .unavailable-cell{
     color: rgb(255, 0, 0);
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); 
-    text-decoration: bold;
+    text-shadow: 2px 2px 4px rgba(170, 165, 165, 0.1); 
+    text-transform: capitalize;
+    font-weight: bold; 
 }
 
 .serviceOptionBut {
@@ -47,5 +49,5 @@
   
 .serviceOptionBut:hover {
     color: rgb(31, 87, 240);
-    transition: 1s;
+    transition: 1s; 
 }
