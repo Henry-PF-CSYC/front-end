@@ -1,21 +1,16 @@
-import { type } from '@testing-library/user-event/dist/type';
 import { useFormik } from 'formik';
 import { Button, Modal } from 'react-bootstrap';
+import { firebase } from '../../Firebase/firebase';
 
 const ModalClasificado = ({ show, handleSubmit, handleClose, email }) => {
+    
     const { values, handleBlur, handleChange, resetForm } = useFormik({
         initialValues: {
-            user_email: email,
-            image: '',
-            type: '',
-            title: '',
-            description: '',
-            contact: '',
-            price: ''
-        },
-        enableReinitialize: true
+            user_email: email,  image: '',  type: '',
+            title: '',  description: '',  contact: '', price: ''},
+        enableReinitialize: true});
         // validationSchema:validations,
-    });
+
     const options = [
         { value: 'Seleccionar una opcion' },
         { value: 'compra', label: 'Compra' },
@@ -23,18 +18,17 @@ const ModalClasificado = ({ show, handleSubmit, handleClose, email }) => {
         { value: 'laboral', label: 'Se busca' }
     ];
 
-    return (
+
+
+// Renderizado
+return (
         <>
-            <Modal
-                show={show}
-                onHide={() => {
-                    handleClose();
-                    resetForm();
-                }}
-            >
+            <Modal show={show} onHide={() => {handleClose(); resetForm();}}>
                 <Modal.Header closeButton>
                     <Modal.Title>Crear Publicacion</Modal.Title>
                 </Modal.Header>
+
+
                 <form onSubmit={handleSubmit}>
                     <Modal.Body>
                         <div className="form-floatin mb-2">
@@ -46,9 +40,10 @@ const ModalClasificado = ({ show, handleSubmit, handleClose, email }) => {
                                 value={values.image}
                                 onChange={handleChange}
                                 onBlur={handleBlur}
-                                className="form-control"
-                            />
+                                className="form-control"/>
                         </div>
+
+
                         <div className="form-floatin mb-2">
                             <select
                                 className="form-control"
@@ -56,13 +51,13 @@ const ModalClasificado = ({ show, handleSubmit, handleClose, email }) => {
                                 name="type"
                                 value={values.type}
                                 onChange={handleChange}
-                                onBlur={handleBlur}
-                            >
+                                onBlur={handleBlur}>
                                 {options.map((opcion) => (
-                                    <option>{opcion.value}</option>
-                                ))}
+                                    <option>{opcion.value}</option>))}
                             </select>
                         </div>
+
+
                         <div className="form-floatin mb-2">
                             <input
                                 type="string"
@@ -72,9 +67,10 @@ const ModalClasificado = ({ show, handleSubmit, handleClose, email }) => {
                                 value={values.title}
                                 onChange={handleChange}
                                 onBlur={handleBlur}
-                                className="form-control"
-                            />
+                                className="form-control"/>
                         </div>
+
+
                         <div className="form-floatin mb-2">
                             <textarea
                                 type="string"
@@ -85,9 +81,10 @@ const ModalClasificado = ({ show, handleSubmit, handleClose, email }) => {
                                 onChange={handleChange}
                                 onBlur={handleBlur}
                                 rows="4"
-                                className="form-control"
-                            />
+                                className="form-control"/>
                         </div>
+
+
                         <div className="form-floatin mb-2">
                             <input
                                 type="number"
@@ -97,9 +94,10 @@ const ModalClasificado = ({ show, handleSubmit, handleClose, email }) => {
                                 value={values.contact}
                                 onChange={handleChange}
                                 onBlur={handleBlur}
-                                className="form-control"
-                            />
+                                className="form-control"/>
                         </div>
+
+
                         <div className="form-floatin mb-2">
                             <input
                                 type="number"
@@ -109,32 +107,20 @@ const ModalClasificado = ({ show, handleSubmit, handleClose, email }) => {
                                 value={values.price}
                                 onChange={handleChange}
                                 onBlur={handleBlur}
-                                className="form-control"
-                            />
+                                className="form-control"/>
                         </div>
                     </Modal.Body>
+
+
                     <Modal.Footer>
-                        <Button
-                            variant="secondary"
-                            onClick={() => handleClose()}
-                        >
-                            Cancelar
-                        </Button>
-                        <Button
-                            type="submit"
-                            variant="success"
-                            onClick={(event) => {
-                                handleSubmit(values, event);
-                                resetForm();
-                            }}
-                        >
-                            Crear Publicacion
-                        </Button>
+                        <Button variant="secondary" onClick={() => handleClose()}> Descartar </Button>
+                        <Button type="submit" variant="success" 
+                        onClick={(event) => { handleSubmit(values, event); resetForm();}}> Crear Publicacion </Button>
                     </Modal.Footer>
+
                 </form>
             </Modal>
-        </>
-    );
+        </>);
 };
 
 export default ModalClasificado;
