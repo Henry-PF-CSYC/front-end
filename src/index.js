@@ -25,7 +25,7 @@ root.render(
                 <Auth0Provider
                     domain={domain}
                     clientId={clientId}
-                    redirectUri={'https://front-end-nu45-git-dev-csyc.vercel.app/register'}
+                    redirectUri={'https://localhost:3000/register'}
                 >
                     <App />
                 </Auth0Provider>
