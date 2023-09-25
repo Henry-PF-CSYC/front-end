@@ -20,8 +20,7 @@
 }
 
 .options h5 {
-    margin-left:2rem;
-    margin-left:7rem;
+    margin-left:3rem;
     border-bottom: 2px solid transparent;
     transition: border-bottom 0.3s ease;
     text-decoration: none;
@@ -36,7 +35,7 @@
 
 .options button {
     border-radius: 10px;
-    margin-left:6rem;
+    margin-left:4rem;
     background-color: transparent;
     border: transparent;
 }
