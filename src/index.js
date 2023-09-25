@@ -25,7 +25,7 @@ root.render(
                 <Auth0Provider
                     domain={domain}
                     clientId={clientId}
-                    redirectUri={'https://localhost:3000/register'}
+                    redirectUri={'http://localhost:3000/register'}
                 >
                     <App />
                 </Auth0Provider>
