@@ -50,7 +50,9 @@ const handleFormSubmit = async (event) => {
     } else {
       // Si no hay imagen, simplemente despacha la acción sin la URL
       dispatch(addService(serviceData));
-    }
+
+      // Recarga la página
+      setTimeout(() => {window.location.reload();}, 300)}
     
     alert("Servicio subido correctamente");
   } catch (error) {

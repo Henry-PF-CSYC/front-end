@@ -13,15 +13,28 @@
 }
  
 .user-cell{
-     color: rgb(204, 30, 160);
+     color: rgb(0, 58, 247);
      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); 
-     text-decoration: bold;
+     text-transform: capitalize;
 }
  
-.admin-cell{
-     color: rgb(19, 16, 212);
-     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); 
-     text-decoration: bold;
+.admin-cell {
+    color: rgb(0, 0, 0);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    text-transform: capitalize;
+    font-weight: bold; 
+  }
+
+.banned-cell{
+    color: rgb(255, 0, 0);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); 
+    text-transform: capitalize;
+}
+
+.contact_admin-cell{
+    color: rgb(204, 0, 255);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); 
+    text-transform: capitalize;
 }
 
 .userOptionBut {

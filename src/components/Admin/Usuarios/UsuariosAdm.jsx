@@ -39,7 +39,9 @@ const UsuariosAdm = () => {
   
   // Definimos una función para asignar clase segun status
   const getCellStyle = (status) => {
-    if (status === 'user') {return 'user-cell'; } 
+    if (status === 'user') return 'user-cell';  
+    if (status === 'banned') return 'banned-cell';  
+    if (status === 'contact_admin') return 'contact_admin-cell';  
     else { return 'admin-cell'; } };
 
 
@@ -51,7 +53,7 @@ const UsuariosAdm = () => {
 
   // Definimos las columnas de la tabla
   const columns = [
-    {label: 'Email', field: 'email', sort: 'asc', width: 150},
+    { label: 'Email', field: 'email', sort: 'asc', width: 150},
     { label: 'DNI', field: 'dni', sort: 'asc', width: 150},
     { label: 'Nombre', field: 'name', sort: 'asc', width: 150},
     { label: 'Apellido', field: 'lastname', sort: 'asc', width: 150},
