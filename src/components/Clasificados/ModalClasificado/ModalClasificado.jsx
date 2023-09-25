@@ -1,8 +1,11 @@
 import { useFormik } from 'formik';
 import { Button, Modal } from 'react-bootstrap';
+import { useState } from 'react';
 import { firebase } from '../../Firebase/firebase';
+import { useDispatch } from 'react-redux';
+import { postClasificados } from '../../../redux/actions';
 
-const ModalClasificado = ({ show, handleSubmit, handleClose, email }) => {
+const ModalClasificado = ({ show, handleClose, email }) => {
     
     const { values, handleBlur, handleChange, resetForm } = useFormik({
         initialValues: {
@@ -10,6 +13,7 @@ const ModalClasificado = ({ show, handleSubmit, handleClose, email }) => {
             title: '',  description: '',  contact: '', price: ''},
         enableReinitialize: true});
         // validationSchema:validations,
+
 
     const options = [
         { value: 'Seleccionar una opcion' },
@@ -19,7 +23,54 @@ const ModalClasificado = ({ show, handleSubmit, handleClose, email }) => {
     ];
 
 
+    const dispatch = useDispatch()
 
+    const [selectedImageFile, setSelectedImageFile] = useState(""); // Estado para la imagen seleccionada
+
+    
+    const handleImageChange = (event) => {
+        const imageFile = event.target.files[0];
+        setSelectedImageFile(imageFile);
+      };
+
+
+    const handleSubmit = async (values, event) => {
+        event.preventDefault();
+      
+        try {
+          // Si hay una nueva imagen seleccionada
+          if (selectedImageFile) {
+          // Usamos la función de Firebase para obtener la URL de la nueva imagen
+          const newImageUrl = await firebase(selectedImageFile, "clasificados/");
+      
+          // Actualiza los valores del formulario, incluida la nueva URL de la imagen
+          const updatedValues = { ...values, image: newImageUrl };
+      
+          // Vemos valores
+          console.log(updatedValues);
+
+          // Realiza la acción para enviar los datos del formulario, incluida la nueva URL de la imagen
+          dispatch(postClasificados(updatedValues)); // Asumiendo que tienes una acción llamada "postClasificados"
+      
+          } else {
+
+          // Si no se seleccionó una imagen, simplemente realiza la acción para enviar los datos del formulario
+          dispatch(postClasificados(values)); // Asumiendo que tienes una acción llamada "postClasificados"
+      
+          alert("La publicación fue creada correctamente")}
+      
+          // Cierra el modal después de guardar
+          handleClose();
+
+          // Recarga la página
+          setTimeout(() => {window.location.reload();}, 300)
+
+        } catch (error) {
+          console.error("Error al crear la publicación:", error)}
+      };
+
+
+    
 // Renderizado
 return (
         <>
@@ -38,7 +89,10 @@ return (
                                 id="image"
                                 name="image"
                                 value={values.image}
-                                onChange={handleChange}
+                                onChange={(event) => {
+                                    handleChange(event);
+                                    handleImageChange(event); 
+                                }}
                                 onBlur={handleBlur}
                                 className="form-control"/>
                         </div>

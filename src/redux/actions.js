@@ -260,7 +260,7 @@ export const deleteService = (id) => {
 export const deleteClasificado = (offer) => {
     return async () => {
         try {
-            await axios.delete(`https://csyc.onrender.com/offer/${offer.id}`);
+            await axios.delete(`https://csyc.onrender.com/offer/${offer}`);
         } catch (error) {
             alert('Error al borrar el clasificado', error);
         }

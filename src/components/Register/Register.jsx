@@ -41,6 +41,7 @@ const Register = () => {
             onSubmit: () => {
                 values.email = user.email;
                 dispatch(postUser(values));
+                dispatch(getUser(values.email));
                 navigate('/');
             }
         });
