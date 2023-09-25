@@ -29,19 +29,26 @@ export const getUser = (email) => {
     };
 };
 
+
 export const getAllUsers = () => {
     return async (dispatch) => {
         try {
-            const { data } = await axios.get(`https://csyc.onrender.com/users`);
-            dispatch({
-                type: GETALLUSERS,
-                payload: data
-            });
+            const [usersResponse, adminsResponse] = await Promise.all([
+                axios.get(`https://csyc.onrender.com/users`),
+                axios.get(`https://csyc.onrender.com/users/admin`),
+            ]);
+
+            const usersData = usersResponse.data;
+            const adminsData = adminsResponse.data;
+            const data = [...usersData, ...adminsData];
+
+            dispatch({ type: GETALLUSERS, payload: data,});
         } catch (error) {
             console.error(`Error encontrando los usuarios`, error);
         }
     };
 };
+
 
 export const postUser = (user) => {
     return async () => {
@@ -274,3 +281,30 @@ export const createOrDesignAdmin = (userEmail,type) =>{
         }
     };
 };
+
+
+export const designNewContactEmail = (email) =>{
+    return async () => {
+        try {
+            await axios.put(`https://csyc.onrender.com/contact/set_target/${email}`);
+
+        } catch (error) {
+            console.log('Error al cambiar el email de contacto por defecto', error);
+        }
+    };
+};
+
+
+
+export const banOrUnbanUser = (email,type) =>{
+    return async () => {
+        try {
+            await axios.put(`https://csyc.onrender.com/users/ban/${email}?type=${type}`);
+
+        } catch (error) {
+            console.log('Error al cambiar el estado del usuario', error);
+        }
+    };
+};
+
+

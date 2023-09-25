@@ -1,20 +1,46 @@
 import { Modal, Button } from "react-bootstrap";
 import { useDispatch } from "react-redux";
 
-import { createOrDesignAdmin } from "../../../redux/actions";
+import { createOrDesignAdmin, designNewContactEmail, banOrUnbanUser } from "../../../redux/actions";
 
 
 const EditUserModal = ({ show, handleClose, userData }) => {
      
 const dispatch = useDispatch()
+
 const type = "set"
+const ban = "ban"
+
 
 const handleAddAdmin = async () => {
+    const isConfirmed = window.confirm("¿Estás seguro de que deseas designar a este usuario como administrador?");
+    if(isConfirmed){
     dispatch(await createOrDesignAdmin(userData.email,type))
     alert("Usuario designado como administrador correctamente")
+    console.log("Admin ortorgado correctamente")
+    setTimeout(() => {window.location.reload()}, 300);}
+    else return;
 }
 
+const handleDesignContact = async () => {
+    const isConfirmed = window.confirm("¿Estás seguro de que deseas designar a este correo de como contacto por defecto?");
+    if(isConfirmed){
+    dispatch(await designNewContactEmail(userData.email))
+    alert("Email de usuario designado como contacto por defecto correctamente")
+    console.log("Contacto designado")
+    setTimeout(() => {window.location.reload()}, 300);}
+    else return;
+}
 
+const handleBanUser = async () => {
+    const isConfirmed = window.confirm("¿Estás seguro de que deseas banear a este usuario?");
+    if(isConfirmed){
+    dispatch(await banOrUnbanUser(userData.email,ban))
+    alert("Usuario baneado de manera exitosa")
+    console.log("Baneo exitoso")
+    setTimeout(() => {window.location.reload()}, 300);}
+    else return;
+}
 
 
 
@@ -29,7 +55,7 @@ return (
         <Modal.Body>
 
             <div>
-                <Button variant="primary"> Designar correo como contacto del sitio</Button> 
+                <Button variant="primary" onClick={()=>{handleDesignContact()}}> Designar correo como contacto del sitio</Button> 
                 <p>El correo de {userData ? userData.name : "---"} será el que reciba los mensajes y reclamos al sitio.</p>
             </div>
 
@@ -39,7 +65,7 @@ return (
             </div>
 
             <div>
-                <Button variant="danger"> Banear Usuario </Button> 
+                <Button variant="danger" onClick={()=>{handleBanUser()}}> Banear Usuario </Button> 
                 <p>Si {userData ? userData.name : "---"} ha inflingido las normas del sitio, prohibe su acceso al mismo, 
                 desactivando su cuenta.</p>
             </div>
