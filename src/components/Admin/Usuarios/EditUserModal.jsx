@@ -13,16 +13,19 @@ const dispatch = useDispatch()
 // Textos de botones con condicion:
 
 // Contacto por defecto
-const contactButtonText = userData && userData.role === "contact_admin" ? "Ya es contacto del sitio" : "Designar correo como contacto del sitio";
+const contactButtonText = userData && userData.role === "contact_admin" ? "Ya es contacto del sitio" : "Designar como contacto y administrador del sitio";
 const contactInfoText = userData && userData.role === "contact_admin"
-  ? ` El correo de administrador "${userData ? userData.email : "---"}" ya es contacto del sitio, si quiere cambiarlo, elija otro correo.`
-  : ` El correo de administrador "${userData ? userData.email : "---"}" será el que reciba los mensajes y reclamos hechos al sitio.`;
+  ? ` El usuario con correo "${userData ? userData.email : "---"}" 
+  ya es contacto del sitio, si quiere cambiarlo, elija a otro.`
+
+  : ` Al usuario con correo "${userData ? userData.email : "---"}" 
+  le serán otorgados permiso de administrador, y será el que reciba los mensajes y reclamos hechos al sitio.`;
 
 // Rol admin o user
-const roleButtonText = userData && userData.role === "admin" ? "Revocar rol de administrador" : "Designar usuario como administrador";
+const roleButtonText = userData && userData.role === "admin" ? "Revocar rol de administrador" : "Designar como administrador unicamente";
 const roleInfoText = userData && userData.role === "admin"
-  ? `${userData ? userData.name : "---"} perderá acceso al panel de administrador, sus funciones y privilegios!`
-  : `${userData ? userData.name : "---"} tendrá acceso al panel de administrador y todas sus funciones y privilegios.`;
+  ? ` A ${userData ? userData.name : "---"} se le dará el rol de usuario, perdiendo acceso al panel de administrador, sus funciones y privilegios.`
+  : `${userData ? userData.name : "---"} tendrá acceso al panel de administrador y todas sus funciones y privilegios. Si es el contacto por defecto, este quedara vacío.`;
 
 // Ban or Unban
 const banButtonText = userData && userData.role === "banned" ? "Desbanear usuario" : "Banear Usuario";

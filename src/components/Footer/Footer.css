@@ -49,6 +49,4 @@
     height: 1px;
     background-color: white;
     margin-left: 9.2rem;
-    position: absolute; /* Cambia la posición a absoluta */
-    bottom: 0; /* Lo coloca al final del footer */
 }

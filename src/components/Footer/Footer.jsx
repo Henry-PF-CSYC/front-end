@@ -65,7 +65,8 @@ const Footer = () => {
                     </div>
                 </div>
             </section>
-            <hr id="myHr" />
+
+            <hr id="myHr"/>
 
             <div className="footerB">
                 <div id="footerLeft">
