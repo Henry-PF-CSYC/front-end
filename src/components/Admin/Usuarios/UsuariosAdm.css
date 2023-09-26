@@ -29,12 +29,14 @@
     color: rgb(255, 0, 0);
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); 
     text-transform: capitalize;
+    font-weight: bold; 
 }
 
 .contact_admin-cell{
     color: rgb(204, 0, 255);
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); 
     text-transform: capitalize;
+    font-weight: bold; 
 }
 
 .userOptionBut {

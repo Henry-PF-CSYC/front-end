@@ -7,37 +7,50 @@ import { createOrDesignAdmin, designNewContactEmail, banOrUnbanUser } from "../.
 const EditUserModal = ({ show, handleClose, userData }) => {
   
     
-const dispatch = useDispatch()
+  const dispatch = useDispatch()
+
+  // Status de usuario para evaluar disposicion de botones y textos
+  const isContactAdmin = userData && userData.role === "contact_admin";
+  const isAdmin = userData && userData.role === "admin";
+  const isBanned = userData && userData.role === "banned";
 
 
-// Textos de botones con condicion:
+  // Textos de botones y su respectivo texto según el status previamente adquirido:
+  let contactButtonText = "Designar administrador como contacto del sitio";
+  let contactInfoText = `El usuario con correo "${userData && userData.email}", será el que reciba los mensajes y reclamos hechos al sitio, 
+  manteniendo los permisos y beneficios de administrador.`;
 
-// Contacto por defecto
-const contactButtonText = userData && userData.role === "contact_admin" ? "Ya es contacto del sitio" : "Designar como contacto y administrador del sitio";
-const contactInfoText = userData && userData.role === "contact_admin"
-  ? ` El usuario con correo "${userData ? userData.email : "---"}" 
-  ya es contacto del sitio, si quiere cambiarlo, elija a otro.`
+  let roleButtonText = "Designar como administrador";
+  let roleInfoText = `Al usuario con correo " ${userData && userData.email}" le serán otorgados permisos de administrador y 
+  será el que reciba los mensajes y reclamos hechos al sitio.`;
 
-  : ` Al usuario con correo "${userData ? userData.email : "---"}" 
-  le serán otorgados permiso de administrador, y será el que reciba los mensajes y reclamos hechos al sitio.`;
+  let banButtonText = "Banear Usuario";
+  let banInfoText = `Si el usuario ha infringido las normas del sitio, se le prohibirá el acceso al mismo, desactivando su cuenta.`;
 
-// Rol admin o user
-const roleButtonText = userData && userData.role === "admin" ? "Revocar rol de administrador" : "Designar como administrador unicamente";
-const roleInfoText = userData && userData.role === "admin"
-  ? ` A ${userData ? userData.name : "---"} se le dará el rol de usuario, perdiendo acceso al panel de administrador, sus funciones y privilegios.`
-  : `${userData ? userData.name : "---"} tendrá acceso al panel de administrador y todas sus funciones y privilegios. Si es el contacto por defecto, este quedara vacío.`;
+  // Verificamos el rol del usuario
+  if (userData) {
+    
+    if (userData.role === "contact_admin") {
+      contactButtonText = "Ya es contacto del sitio";
+      contactInfoText = `El usuario con correo "${userData && userData.email}" es el contacto predeterminado del sitio. Si quiere realizar alguna
+      accion con este usuario, primero designe a otro como contacto para proceder. Recuerde que al hacer esto, "${ userData && userData.name}" obtendrá
+      el rol de administrador normal.`;
 
-// Ban or Unban
-const banButtonText = userData && userData.role === "banned" ? "Desbanear usuario" : "Banear Usuario";
-const banInfoText = userData && userData.role === "banned"
-  ? ` ${userData ? userData.name : "---"} recuparará acceso a su cuenta y al sitio.`
-  : ` Si ${userData ? userData.name : "---"} ha inflingido las normas del sitio, prohibe su acceso al mismo, desactivando su cuenta.`;
+    } else if (userData.role === "admin") {
+      roleButtonText = "Revocar rol de administrador";
+      roleInfoText = `A ${userData && userData.name} se le dará el rol de usuario, perdiendo acceso al panel de administrador, sus funciones y privilegios.`;
+
+    
+    } else if (userData.role === "banned") {
+      banButtonText = "Desbanear usuario";
+      banInfoText = `${userData && userData.name} recuperará acceso a su cuenta y al sitio.`;
+    }
+  };
 
 
 
-
-// Manejador de designio de administradores
-const handleAddAdmin = async () => {
+    // Controlador de designio de administradores
+    const handleAddAdmin = async () => {
 
     if (!userData) {return console.log("Datos no cargados aún");}
 
@@ -62,7 +75,7 @@ const handleAddAdmin = async () => {
   };
 
 
-
+  // Controlador para designar contactos
   const handleDesignContact = async () => {
     if (!userData) {
       return console.log("Datos no cargados aún");}
@@ -92,43 +105,38 @@ const handleAddAdmin = async () => {
       }
   
       dispatch(action);
-      setTimeout(() => {
-        window.location.reload();
-      }, 300);
-    } else {
-      return;
-    }
-  };
-
-
-
-// Manejador de ban de usuarios
-const handleBanUser = async () => {
-    if (!userData) {return console.log("Datos no cargados aún")}
-  
-    const isBanned = userData.role === "banned";
-  
-    const actionType = isBanned ? "unban" : "ban";
-    const banConfirmation = isBanned ? "desbanear" : "banear";
-    const confirmationMessage = `¿Estás seguro de que deseas ${banConfirmation} a ${userData.name}?`;
-  
-    const isConfirmed = window.confirm(confirmationMessage);
-  
-    if (isConfirmed) {
-      const action = await banOrUnbanUser(userData.email, actionType);
-  
-      if (isBanned) {
-        alert("Usuario desbaneado exitosamente");
-        console.log("Usuario desbaneado exitosamente");
-      } else {
-        alert("Usuario baneado exitosamente");
-        console.log("Usuario baneado exitosamente");
-      }
-  
-      dispatch(action);
       setTimeout(() => {window.location.reload();}, 300);
-    } else { return alert("Ha ocurrido un error al banear/desbanear al usuario")}
+    } else { return;}
   };
+
+
+
+  // Controlador de ban de usuarios
+  const handleBanUser = async () => {
+      if (!userData) {return console.log("Datos no cargados aún")}
+    
+      const isBanned = userData.role === "banned";
+      const actionType = isBanned ? "unban" : "ban";
+      const banConfirmation = isBanned ? "desbanear" : "banear";
+      const confirmationMessage = `¿Estás seguro de que deseas ${banConfirmation} a ${userData.name}?`;
+    
+      const isConfirmed = window.confirm(confirmationMessage);
+    
+      if (isConfirmed) {
+        const action = await banOrUnbanUser(userData.email, actionType);
+    
+        if (isBanned) {
+          alert("Usuario desbaneado exitosamente");
+          console.log("Usuario desbaneado exitosamente");
+        } else {
+          alert("Usuario baneado exitosamente");
+          console.log("Usuario baneado exitosamente");
+        }
+    
+        dispatch(action);
+        setTimeout(() => {window.location.reload();}, 300);
+      } else { return alert("Ha ocurrido un error al banear/desbanear al usuario")}
+    };
 
 
 
@@ -144,21 +152,22 @@ return (
 
         <Modal.Body>
 
-            <div>
+            {!isBanned &&  ( <div>
                 <Button variant={userData && userData.role === "contact_admin" ? "secondary" : "primary"} onClick={handleDesignContact}
                 disabled={userData && userData.role === "contact_admin"}>{contactButtonText}</Button><p>{contactInfoText}</p>
-            </div>
+            </div>)}
 
-            <div>
+            {!isBanned && !isContactAdmin &&  ( <div>
                 <Button variant={userData && userData.role === "admin" ? "danger" : "warning"}
                 onClick={handleAddAdmin} disabled={!userData}>{roleButtonText}</Button><p>{roleInfoText}</p>
-            </div>
+            </div>)}
+   
 
-            <div>
+            {!isContactAdmin && !isAdmin && ( <div>
                 <Button variant={userData && userData.role === "banned" ? "primary" : "danger"}
                 onClick={handleBanUser} disabled={!userData}>{banButtonText}</Button><p>{banInfoText}</p>
-            </div>
-
+            </div>)}
+   
         </Modal.Body>
 
         <Modal.Footer>
