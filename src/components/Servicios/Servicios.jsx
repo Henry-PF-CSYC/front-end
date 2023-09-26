@@ -101,14 +101,13 @@ const Servicios = () => {
                 <p className="descriptionGeneral">
                     En CSYC te ofrecemos una amplia gama de soluciones para
                     satisfacer todas tus necesidades en el hogar, aquí
-                    encontrarás todo lo que necesitas en un solo lugar, explorar
-                    información detallada sobre cada uno de nuestros servicios y
-                    conocer las ofertas disponibles! Nuestra misión es
+                    encontrarás todo lo que necesitas en un solo lugar. Nuestra misión es
                     proporcionarte acceso fácil y conveniente a servicios
-                    esenciales de alta calidad
+                    esenciales de alta calidad.
                 </p>
             </div>
             <div className="barraLateral">
+                <div>
                 <p>Busqueda por Nombre</p>
                 <input
                     type="text"
@@ -141,6 +140,7 @@ const Servicios = () => {
                         }
                     }}
                 />
+                </div>
 
                 <div>
                     <label>Filtrar por tipo:</label>

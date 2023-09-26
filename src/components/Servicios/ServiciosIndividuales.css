@@ -1,6 +1,6 @@
 .serviceNowContainer {
     display: flex;
-    background: linear-gradient(135deg, #051b3f, #073e9c, #051b3f, #073e9c);
+    background-image: url("https://mooka.ie/img/sliderimages/slider-services-background.jpg");
     background-size: cover;
     flex-wrap: wrap;
     justify-content: space-between;
@@ -11,7 +11,7 @@
 }
 
 .serviceNowContainer h1 {
-    font-size: 4rem;
+    font-size: 2rem;
     font-weight: bolder;
     color: white;
     background-image: white;

@@ -33,7 +33,7 @@ const Landing = () =>{
             <section>
                 <div className="presentation">
                     <div className='title-group'>
-                        <h1>Donde todos nos </h1>
+                        <h1>CSyC, donde todos nos </h1>
                         <h2>Ayudamos.</h2>
                     </div>
                     <p>

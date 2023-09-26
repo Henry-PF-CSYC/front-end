@@ -36,14 +36,16 @@ const Navbar = () => {
     }, []);
 
     return (
+        <div className='containerPrimary'>
         <section className="container-fluid navbar">
             <div id="logoContainer">
                 <Link to="/">
                     <img
-                        src={logo}
+                        src="https://www.amucss.org/images/logos/engranajes1.gif"  
                         id="logo"
                         alt="logo"
                         title="Volver al inicio"
+                        style={{ width: '50px', height: 'auto' }} 
                     />
                 </Link>
             </div>
@@ -193,6 +195,7 @@ const Navbar = () => {
                 </div>
             </div>
         </section>
+        </div>
     );
 };
 
