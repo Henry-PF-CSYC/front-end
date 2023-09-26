@@ -61,14 +61,14 @@ export const Cart = ({ isTerms }) => {
                     <div className={isTerms ? 'row m-5 d-flex justify-content-between' : 'row'}>
                         <div className={isTerms ? 'col-8' : "col-12"}  >
                             {/* <h3 className='mb-3'>Tienes {productos.length} producto en tu carrito</h3> */}
-                            <Table variant='secondary' striped hover style={{borderCollapse: 'collapse', borderRadius: '11px', overflow: 'hidden'}}>
+                            <Table variant='secondary' striped hover style={{borderCollapse: 'collapse', borderRadius: '4px', overflow: 'hidden'}}>
                                 <thead>
                                     <tr>
-                                        <th className='col-2'>Producto</th>
-                                        <th className='col-2'>Nombre</th>
-                                        <th className='col-2'>Precio</th>
-                                        <th className='col-2'>Cantidad</th>
-                                        <th className='col-1'></th>
+                                        <th className='col-2' style={{ fontSize: '17px' }}>Producto</th>
+                                        <th className='col-2' style={{ fontSize: '17px' }}>Nombre</th>
+                                        <th className='col-2' style={{ fontSize: '17px' }}>Precio</th>
+                                        <th className='col-2' style={{ fontSize: '17px' }}>Cantidad</th>
+                                        <th className='col-1' style={{ fontSize: '17px' }}></th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -76,17 +76,17 @@ export const Cart = ({ isTerms }) => {
                                         servicesCart.map((service, index) => {
                                             return (
                                                 <tr key={index}>
-                                                    <td className='p-0 col-2'><img className='m-3' width={'80px'} height={'50px'} src={service.imagen} /></td>
-                                                    <td className='col-3'>
+                                                    <td className='p-0 col-2'><img className='m-3' style={{borderRadius: '4px'}} width={'80px'} height={'50px'} src={service.imagen} /></td>
+                                                    <td className='col-3' style={{verticalAlign: 'middle'}}>
                                                         <p>{service.titulo}</p>
                                                     </td>
-                                                    <td className='col-2'>
+                                                    <td className='col-2' style={{verticalAlign: 'middle'}}>
                                                     <p>{new Intl.NumberFormat('en-US', { style: 'currency', currency: 'ARS' }).format(service.precio)}</p>
                                                     </td>
-                                                    <td>
+                                                    <td style={{verticalAlign: 'middle'}}>
                                                         <p>{service.quantity}</p>
                                                     </td>
-                                                    <td className='col-1'><button onClick={() => deleteService(service.titulo)} type="button" class="btn btn-outline-danger">X</button></td>
+                                                    <td style={{verticalAlign: 'middle'}} className='col-1'><button onClick={() => deleteService(service.titulo)} type="button" class="btn btn-outline-dark px-2 py-1 mb-2">X</button></td>
                                                 </tr>
                                             )
                                         })

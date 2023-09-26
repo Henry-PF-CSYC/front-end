@@ -12,9 +12,9 @@ export const IconCart = () => {
 
     return (
         <div className="ms-3">
-            <Button className="py-0 ps-1" variant="dark" onClick={openModal}>
+            <Button className="py-1 ps-2 pe-3" variant="dark" onClick={openModal}>
                 <i class="bi bi-cart fs-3"></i>
-                <Badge bg="outline-dark" className="fs-5 ps-1 pe-0">{servicesCart.length}</Badge>
+                <Badge bg="outline-dark" className="fs-4 ps-1 pe-0">{servicesCart.length}</Badge>
             </Button>
 
             <Modal show={show} onHide={openModal} size="lg" className="border-0">
@@ -28,9 +28,9 @@ export const IconCart = () => {
                         <Cart />
                     </div>
                 </Modal.Body>
-                <Modal.Footer className="border-0">
+                <Modal.Footer className="border-0 me-5">
                     <Link to={'cart'}>
-                        <Button variant="outline-success" onClick={openModal}>
+                        <Button variant="outline-dark" className="px-4" onClick={openModal}>
                             Ir al carrito
                         </Button>
                     </Link>

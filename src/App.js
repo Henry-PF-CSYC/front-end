@@ -1,5 +1,5 @@
 // Ruteado
-import {Routes, Route, useLocation} from "react-router-dom"
+import { Routes, Route, useLocation } from "react-router-dom"
 
 // Componentes importados
 import Navbar from "./components/Navbar/Navbar";
@@ -29,7 +29,9 @@ import ServicesAdm from "./components/Admin/Servicios/ServicesAdm";
 import UsuariosAdm from "./components/Admin/Usuarios/UsuariosAdm";
 import ClasificadosAdm from "./components/Admin/Clasificados/ClasificadosAdm";
 import Reclamos from "./components/Admin/Reclamos/Reclamos";
-
+import { IconCart } from "./components/Cart/IconCart";
+import './App.css'
+import { useSelector } from "react-redux";
 
 
 // Renderizado
@@ -38,44 +40,55 @@ function App() {
   const location = useLocation();
   const isAdminRouted = location.pathname.includes('/admin');
 
+  const cartServices = useSelector(state => state.cartServices)
+
   return (
-    <div className="App">
+    <div>
+      {
+        cartServices.length > 0 && (
+          <div className="btn-flotante">
+            <div className="icon-market">
+              <IconCart />
+            </div>
+          </div>
+        )
+      }
       {!isAdminRouted && <Navbar />}
-        <Routes>
-          
-          {/*Componentes principales*/}
-          <Route path="/" element={<Landing/>}/>
-          <Route path="/login" element={<Login/>}/>
-          <Route path="/register" element={<Register/>}/>
-          <Route path="/usuario" element={<SeccionUsuario/>}/>
-          <Route path="/clasificados" element={<Clasificados/>}/>
-          <Route path="/contacto" element={<Contact/>}/>
+      <Routes>
 
-          
-           {/*Servicios*/}
-          <Route path="/servicios" element={<Servicios/>}/>
-          <Route path="/servicios/internet" element={<Internet/>}/>
-          <Route path="/servicios/agua" element={<Agua/>}/>
-          <Route path="/servicios/gas" element={<Gas/>}/>
-          <Route path="/servicios/luz" element={<Luz/>}/> 
-          <Route path="/servicios/cable" element={<Cable/>}/> 
-          <Route path="/servicios/telefonia" element={<Telefonia/>}/> 
-          <Route path="/servicios/streaming" element={<Streaming/>}/> 
-          <Route path="/cart" element={<Cart isTerms={true}/>} /> 
+        {/*Componentes principales*/}
+        <Route path="/" element={<Landing />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/usuario" element={<SeccionUsuario />} />
+        <Route path="/clasificados" element={<Clasificados />} />
+        <Route path="/contacto" element={<Contact />} />
 
-          {/* Administrador */}
-          <Route path="/admin/*" element={<Admin/>}>
-          <Route index element={<Dashboard/>}/>
-          <Route path="dashboard" element={<Dashboard/>}/>
-          <Route path="servicesAdm" element={<ServicesAdm/>}/>
-          <Route path="usuarios" element={<UsuariosAdm/>}/>
-          <Route path="clasificados" element={<ClasificadosAdm/>}/>
-          <Route path="reclamos" element={<Reclamos/>}/>
-          
+
+        {/*Servicios*/}
+        <Route path="/servicios" element={<Servicios />} />
+        <Route path="/servicios/internet" element={<Internet />} />
+        <Route path="/servicios/agua" element={<Agua />} />
+        <Route path="/servicios/gas" element={<Gas />} />
+        <Route path="/servicios/luz" element={<Luz />} />
+        <Route path="/servicios/cable" element={<Cable />} />
+        <Route path="/servicios/telefonia" element={<Telefonia />} />
+        <Route path="/servicios/streaming" element={<Streaming />} />
+        <Route path="/cart" element={<Cart isTerms={true} />} />
+
+        {/* Administrador */}
+        <Route path="/admin/*" element={<Admin />}>
+          <Route index element={<Dashboard />} />
+          <Route path="dashboard" element={<Dashboard />} />
+          <Route path="servicesAdm" element={<ServicesAdm />} />
+          <Route path="usuarios" element={<UsuariosAdm />} />
+          <Route path="clasificados" element={<ClasificadosAdm />} />
+          <Route path="reclamos" element={<Reclamos />} />
+
         </Route>
-             
-        </Routes>  
-      {!isAdminRouted && <Footer />} 
+
+      </Routes>
+      {!isAdminRouted && <Footer />}
     </div>);
 }
 
