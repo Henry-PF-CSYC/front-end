@@ -57,6 +57,7 @@ const Servicios = () => {
         //para busqueda por name desde el filtro
         event.preventDefault();
         setName(event.target.value);
+        setCurrentPage(1)
     };
 
     const handlePageChange = (newPage) => {
@@ -85,13 +86,21 @@ const Servicios = () => {
     const handleRangeMinChange = (event) => {
         // Cambio del valor mínimo del rango
         event.preventDefault();
-        setRangeMin(event.target.value);
+        const newValue = event.target.value;
+        if (!isNaN(newValue)) {
+            // Verifica si el valor es un número
+            setRangeMin(newValue);
+        }
     };
 
     const handleRangeMaxChange = (event) => {
         // Cambio del valor máximo del rango
         event.preventDefault();
-        setRangeMax(event.target.value);
+        const newValue = event.target.value;
+        if (!isNaN(newValue)) {
+            // Verifica si el valor es un número
+            setRangeMax(newValue);
+        }
     };
 
     return (
@@ -120,25 +129,13 @@ const Servicios = () => {
                     type="number"
                     placeholder="Precio mínimo"
                     value={rangeMin}
-                    onChange={(event) => {
-                        const newValue = event.target.value;
-                        if (!isNaN(newValue)) {
-                            // Verifica si el valor es un número
-                            setRangeMin(newValue);
-                        }
-                    }}
+                    onChange={handleRangeMinChange}
                 />
                 <input
                     type="number"
                     placeholder="Precio máximo"
                     value={rangeMax}
-                    onChange={(event) => {
-                        const newValue = event.target.value;
-                        if (!isNaN(newValue)) {
-                            // Verifica si el valor es un número
-                            setRangeMax(newValue);
-                        }
-                    }}
+                    onChange={handleRangeMaxChange}
                 />
                 </div>
 

@@ -145,12 +145,13 @@ export const getServicesPaginated = ({
 export const getClasificados = () => {
     return async (dispatch) => {
         try {
-            const { data } = await axios.get(
+            const response = await axios.get(
                 `https://csyc.onrender.com/offer/`
             );
+            const offer=response.data.offers
             dispatch({
                 type: GET_CLASIFICADO,
-                payload: data
+                payload: offer
             });
         } catch (error) {
             console.error(`Error al traer los clasificados`, error);
