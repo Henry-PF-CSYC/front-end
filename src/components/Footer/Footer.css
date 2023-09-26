@@ -4,7 +4,8 @@
     position: relative; /* Agrega posición relativa */
     z-index: 10; /* Asegura que el footer tenga un z-index menor */
     margin-bottom: 0rem;
-    padding-bottom: 0;
+    padding-bottom: 0.5rem;
+    font-size: smaller;
 }
 
 .footerA {
@@ -20,7 +21,7 @@
 
 .footerOptions span {
     display: block;
-    color: rgb(116, 111, 111);
+    color: rgb(140, 137, 137);
     margin-bottom: 5px;
     margin-top: 10px;
 }
@@ -42,7 +43,7 @@
 .footerIco {
     margin-left: 0.4rem;
     margin-right: 0.4rem;
-    color: rgb(116, 111, 111);
+    color: rgb(255, 255, 255);
 }
 #myHr {
     width: 77%;

@@ -3,7 +3,7 @@
     background-size: cover;
     text-align: center;
     padding: 3rem;
-    margin-left: 10%;
+    margin-left: 15%;
     padding: 20px;
     position: relative;
 }
@@ -80,8 +80,8 @@
     margin-bottom: 10px;
     padding: 5px;
     border: none;
-    border-radius: 10px; /* Elimina la esquina redondeada en los elementos de entrada */
-    font-weight: lighter;
+    border-radius: 8px;
+    font-weight: normal;
 }
 
 /* Estilos para la disposición de los elementos en la barra lateral */
@@ -95,7 +95,7 @@
     display: flex;
     flex-direction: column;
     align-items: center; /* Alinea los elementos al centro del eje vertical */
-    margin-bottom: 8px; /* Añade espacio entre los divs */
+    margin-bottom: 12px; /* Añade espacio entre los divs */
 }
 
 .barraLateral p {
@@ -159,13 +159,3 @@ select {
 .page-link.active {
     background-color: #073e9c;
 }
-/* #service-notications button {
-    font-size: 1.2rem;
-    font-weight: bolder;
-    transition: transform 0.3s, background-color 0.3s, box-shadow 0.3s;
-    color: white;
-    background-color: #05011d;
-    border: none;
-    border-radius: 8px;
-    padding: 5px 20px;
-} */
