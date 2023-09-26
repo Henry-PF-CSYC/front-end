@@ -11,7 +11,7 @@
 .options {
     display: flex;
     flex-direction: row;
-    margin-right: 2rem;
+    margin-right: -2rem;
     margin-top: 0.5rem;
     align-items: center;
     text-decoration: none;
@@ -124,8 +124,11 @@ border: transparent;
     color: #1faab4;
 }
 .abajo .button{
-    background-color:#16b9b1;
+    background-color:#1faab4;
     color: #ffffff;
-    border-color: #ffffff;
+    border-color: #1faab4;
     border-radius: 4%;
+}
+.abajo .button:hover{
+    background-color: #0a5264;
 }
