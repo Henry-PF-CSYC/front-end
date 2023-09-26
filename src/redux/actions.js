@@ -10,7 +10,8 @@ import {
     EMPTY_USER,
     GET_CLASIFICADO,
     GETOFFERBYEMAIL,
-    DELETECLASIFICADOS
+    DELETECLASIFICADOS,
+    EMPTYCARTSERVICES
 } from './action-types';
 
 export const getUser = (email) => {
@@ -304,4 +305,8 @@ export const banOrUnbanUser = (email,type) =>{
     };
 };
 
-
+export const emptyCart = () => {
+    return {
+        type: EMPTYCARTSERVICES
+    }
+}
