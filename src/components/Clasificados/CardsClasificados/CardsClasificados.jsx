@@ -13,6 +13,7 @@ const CardsClasificados = ({
     };
     const imgStyle = {
         maxWidth: '16rem',
+        maxHeight: '16rem',
         padding: 'auto'
     };
     const descripcionStyle = {

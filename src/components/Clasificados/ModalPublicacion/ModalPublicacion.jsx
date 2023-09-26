@@ -8,7 +8,7 @@ const ModalPublicacion = ({ show, handleClose, publicacion }) => {
     };
     const imgStyle = {
         maxWidth: '16rem',
-        maxHeigth: '16rem',
+        maxHeight: '16rem',
         padding: 'auto'
     };
     const headerStyle = {
