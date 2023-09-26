@@ -178,39 +178,40 @@ const Servicios = () => {
                 </div>
             </div>
 
-            <div className="col-md-10">
-                <section className="row">
-                    {serviciosInPage.length !== 0 ? (
-                        serviciosInPage.map((servicio, index) => (
-                            <div key={index} className="col-4">
-                                <CardsServicios
-                                    imagen={servicio.image}
-                                    titulo={servicio.name}
-                                    nombreBoton="Lo quiero!"
-                                    descripcion={servicio.description}
-                                    precio={servicio.price}
-                                    estado={servicio.status}
-                                    id={servicio.id}
-                                    type={servicio.type}
+            <div className='row'>
+                <div className={serviciosInPage.length > 2 ? 'col-12 d-flex justify-content-end mb-5' : 'col-12 d-flex justify-content-center mb-5' } >
+                    <section className="row">
+                        {serviciosInPage.length !== 0 ? (
+                            serviciosInPage.map((servicio, index) => (
+                                <div key={index} className={serviciosInPage.length === 2 ? "col-6 px-5" : "col-4 px-5"}>
+                                    <CardsServicios
+                                        imagen={servicio.image}
+                                        titulo={servicio.name}
+                                        nombreBoton="Lo quiero!"
+                                        descripcion={servicio.description}
+                                        precio={servicio.price}
+                                        estado={servicio.status}
+                                        id={servicio.id}
+                                        type={servicio.type}
+                                    />
+                                </div>
+                            ))
+                        ) : (
+                            <div className="errorCards">
+                                <img
+                                    src="https://grupoleiros.com/static/product-not-found.png"
+                                    alt=""
                                 />
                             </div>
-                        ))
-                    ) : (
-                        <div className="errorCards">
-                            <img
-                                src="https://grupoleiros.com/static/product-not-found.png"
-                                alt=""
-                            />
-                        </div>
-                    )}
-                </section>
+                        )}
+                    </section>
+                </div>
             </div>
             <div className="pagination justify-content-center">
                 <ul className="pagination">
                     <li
-                        className={`page-item ${
-                            currentPage === 1 ? 'disabled' : ''
-                        }`}
+                        className={`page-item ${currentPage === 1 ? 'disabled' : ''
+                            }`}
                     >
                         <button
                             className="page-link"
@@ -222,14 +223,12 @@ const Servicios = () => {
                     {pageNumbers.map((pageNumber) => (
                         <li
                             key={pageNumber}
-                            className={`page-item ${
-                                currentPage === pageNumber ? 'active' : ''
-                            }`}
+                            className={`page-item ${currentPage === pageNumber ? 'active' : ''
+                                }`}
                         >
                             <button
-                                className={`page-link ${
-                                    currentPage === pageNumber ? 'active' : ''
-                                }`}
+                                className={`page-link ${currentPage === pageNumber ? 'active' : ''
+                                    }`}
                                 onClick={() => handlePageChange(pageNumber)}
                             >
                                 {pageNumber}
@@ -238,9 +237,8 @@ const Servicios = () => {
                     ))}
 
                     <li
-                        className={`page-item ${
-                            currentPage === totalPages ? 'disabled' : ''
-                        }`}
+                        className={`page-item ${currentPage === totalPages ? 'disabled' : ''
+                            }`}
                     >
                         <button
                             className="page-link"

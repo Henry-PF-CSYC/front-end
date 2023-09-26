@@ -3,7 +3,7 @@ import ModalUsuario from './ModalUsuario/ModalUsuario';
 import { useEffect, useState } from 'react';
 import { Button } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
-import { getUser, postUser, getOfferByEmail } from '../../redux/actions';
+import { getUser, postUser, getOfferByEmail, emptyCart } from '../../redux/actions';
 import { useAuth0 } from '@auth0/auth0-react';
 
 import { useSearchParams } from 'react-router-dom';
@@ -40,6 +40,12 @@ const SeccionUsuario = () => {
         phone: 0,
         image: isAuthenticated ? user.picture : 'loading'
     });
+
+    const allServicesUser = async() => {
+        const servicesUser = await axios.get(`https://csyc.onrender.com/subscription/user/${usuario.email}`)
+        setServicios(servicesUser.data.subscriptions);
+    }
+    
     const submitSuscription = async () => {
         if (params.get('status')) {
             const ids = [];
@@ -54,11 +60,10 @@ const SeccionUsuario = () => {
                 'https://csyc.onrender.com/subscription',
                 data
             );
-            let cardServices = [];
-            saveSuscription.data.subscriptions.forEach((service) =>
-                cardServices.push(service.service)
-            );
-            setServicios(cardServices);
+            dispatch(emptyCart())
+            allServicesUser()
+        }else{
+            allServicesUser()
         }
     };
 
@@ -142,12 +147,12 @@ const SeccionUsuario = () => {
                     {servicios.length > 0 &&
                         servicios.map((servicio, index) => {
                             return (
-                                <div class="col-4 ps-5 my-5">
+                                <div class="col-3 ps-5 my-5">
                                     <CardsServicios
                                         key={index}
-                                        imagen={servicio.image}
-                                        titulo={servicio.name}
-                                        descripcion={servicio.description}
+                                        imagen={servicio['service.image']}
+                                        titulo={servicio['service.name']}
+                                        descripcion={servicio['service.description']}
                                         nombreBoton="Mas Informacion"
                                     />
                                 </div>

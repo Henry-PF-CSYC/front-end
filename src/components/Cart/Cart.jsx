@@ -61,7 +61,7 @@ export const Cart = ({ isTerms }) => {
                     <div className={isTerms ? 'row m-5 d-flex justify-content-between' : 'row'}>
                         <div className={isTerms ? 'col-8' : "col-12"}  >
                             {/* <h3 className='mb-3'>Tienes {productos.length} producto en tu carrito</h3> */}
-                            <Table variant='dark' striped hover>
+                            <Table variant='secondary' striped hover style={{borderCollapse: 'collapse', borderRadius: '11px', overflow: 'hidden'}}>
                                 <thead>
                                     <tr>
                                         <th className='col-2'>Producto</th>

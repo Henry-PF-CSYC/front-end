@@ -9,7 +9,8 @@ import {
     GET_CLASIFICADO,
     GETOFFERBYEMAIL,
     DELETECLASIFICADOS,
-    RESTOREOFFER
+    RESTOREOFFER,
+    EMPTYCARTSERVICES
 } from './action-types';
 
 // Estado global
@@ -104,6 +105,11 @@ const reducer = (state = initialState, action) => {
                 clasificados: [],
                 publicacionesusuario: []
             };
+        case EMPTYCARTSERVICES:
+            return {
+                ...state,
+                cartServices: []
+            }
 
         default:
             return { ...state };
