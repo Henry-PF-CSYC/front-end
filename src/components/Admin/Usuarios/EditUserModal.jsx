@@ -1,12 +1,10 @@
 import { Modal, Button } from "react-bootstrap";
 import { useDispatch } from "react-redux";
-
 import { createOrDesignAdmin, designNewContactEmail, banOrUnbanUser } from "../../../redux/actions";
 
 
 const EditUserModal = ({ show, handleClose, userData }) => {
   
-    
   const dispatch = useDispatch()
 
   // Status de usuario para evaluar disposicion de botones y textos
@@ -28,9 +26,9 @@ const EditUserModal = ({ show, handleClose, userData }) => {
   let banButtonText = "Banear Usuario";
   let banInfoText = `Si ${userData && userData.name} ha infringido las normas del sitio, se le prohibirá el acceso al mismo, desactivando su cuenta.`;
 
+
   // Verificamos el rol del usuario
   if (userData) {
-    
     if (userData.role === "contact_admin") {
       contactButtonText = "Ya es contacto del sitio";
       contactInfoText = `El usuario con correo "${userData && userData.email}" es el contacto predeterminado del sitio. Si quiere 
@@ -45,8 +43,7 @@ const EditUserModal = ({ show, handleClose, userData }) => {
     } else if (userData.role === "banned") {
       banButtonText = "Desbanear usuario";
       banInfoText = ` Para realizar acciones con este usuario, tendrá que desbanearlo. Al hacer esto, ${userData && userData.name} 
-      recuperará acceso a su cuenta y al sitio, adquiriendo el rol de usuario,`;
-    }
+      recuperará acceso a su cuenta y al sitio, adquiriendo el rol de usuario,`}
   };
 
 
