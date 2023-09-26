@@ -52,26 +52,24 @@ const NewServiceModal = ({ show, handleClose }) => {
   try {
     // Si hay imagen
     if (selectedImage) {
+
       // Usamos la función firebase para quedarnos con la URL a subir
       const imageUrl = await firebase(selectedImage, "admin-services/");
-      console.log(imageUrl);
+
       // Actualiza el estado local con la nueva imagen
       setServiceData({ ...serviceData, image: imageUrl });
-      console.log(serviceData);
 
       // Despacha acción para agregar el servicio después de que serviceData se haya actualizado
-      dispatch(addService({ ...serviceData, image: imageUrl }));
+      dispatch(await addService({ ...serviceData, image: imageUrl }));
+
     } else {
       // Si no hay imagen, simplemente despacha la acción sin la URL
-      dispatch(addService(serviceData));
+      dispatch(await addService(serviceData));}
 
-      // Recarga la página
-      setTimeout(() => {window.location.reload();}, 300)}
+      alert("Servicio subido correctamente");
+      setTimeout(() => {window.location.reload();}, 300)
     
-    alert("Servicio subido correctamente");
-  } catch (error) {
-    console.error("Error al subir la imagen:", error);
-  }
+  } catch (error) { console.error("Error al subir la imagen:", error);}
 };
 
 

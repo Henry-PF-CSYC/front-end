@@ -16,17 +16,17 @@ const EditUserModal = ({ show, handleClose, userData }) => {
   const isBanned = userData && userData.role === "banned";
 
 
-  // Textos de botones y su respectivo texto según el status previamente adquirido:
+  // Textos de botones y su respectivo texto según el status del usuario:
   let contactButtonText = "Designar administrador como contacto del sitio";
   let contactInfoText = `El usuario con correo "${userData && userData.email}", será el que reciba los mensajes y reclamos hechos al sitio, 
   manteniendo los permisos y beneficios de administrador.`;
 
   let roleButtonText = "Designar como administrador";
-  let roleInfoText = `Al usuario con correo " ${userData && userData.email}" le serán otorgados permisos de administrador y 
-  será el que reciba los mensajes y reclamos hechos al sitio.`;
+  let roleInfoText = ` ${userData && userData.name} recibirá permisos de administrador, pudiendo acceder al panel y modificar los
+  parámetros de la página.`;
 
   let banButtonText = "Banear Usuario";
-  let banInfoText = `Si el usuario ha infringido las normas del sitio, se le prohibirá el acceso al mismo, desactivando su cuenta.`;
+  let banInfoText = `Si ${userData && userData.name} ha infringido las normas del sitio, se le prohibirá el acceso al mismo, desactivando su cuenta.`;
 
   // Verificamos el rol del usuario
   if (userData) {
@@ -51,36 +51,33 @@ const EditUserModal = ({ show, handleClose, userData }) => {
 
 
 
-    // Controlador de designio de administradores
-    const handleAddAdmin = async () => {
+  // Controlador de designio de administradores
+  const handleAddAdmin = async () => {
 
-    if (!userData) {return console.log("Datos no cargados aún");}
+  if (!userData) {return console.log("Datos no cargados aún");}
 
-    const isConfirmed = window.confirm(
-    `¿Estás seguro de ${userData.role === "admin" ? "revocar el rol de administrador a" : "designar como administrador a"} ${userData.name}?`);
+  const isConfirmed = window.confirm(`¿Estás seguro de ${userData.role === "admin" ? "revocar el rol de administrador a" : "designar como administrador a"} ${userData.name}?`);
 
-    if (isConfirmed) {
-      const type = userData.role === "admin" ? "unset" : "set";
-      const action = await createOrDesignAdmin(userData.email, type);
+  if (isConfirmed) {
+    const type = userData.role === "admin" ? "unset" : "set";
+    const action = createOrDesignAdmin(userData.email, type);
 
-    if (userData.role === "admin") {
-        alert("Rol de administrador revocado exitosamente");
-        console.log("Rol de administrador revocado exitosamente")} 
+  if (userData.role === "admin") { await dispatch(action);
+    alert("Rol de administrador revocado exitosamente")} 
 
-    else{
-        alert("Usuario designado como administrador correctamente");
-        console.log("Usuario designado como administrador correctamente")}
+  else{ await dispatch(action);
+    alert("Usuario designado como administrador correctamente")}
 
-      dispatch(action);
-      setTimeout(() => {window.location.reload();}, 300);
+  setTimeout(() => {window.location.reload();}, 300);
     } else { return alert("Ha ocurrido un error designando administrador/es")}
   };
+
 
 
   // Controlador para designar contactos
   const handleDesignContact = async () => {
     if (!userData) {
-      return console.log("Datos no cargados aún");}
+      console.log("Datos no cargados aún");}
       const isConfirmed = window.confirm(`¿Estás seguro de que deseas designar como contacto a ${userData.name}?`);
   
     if (isConfirmed) {
@@ -88,8 +85,9 @@ const EditUserModal = ({ show, handleClose, userData }) => {
       alert("Usuario designado como contacto correctamente");
       setTimeout(() => {window.location.reload();}, 300);
 
-    } else { return;}
+    } else { return alert("Ha ocurrido un error al designar como contacto");}
   };
+
 
 
   // Controlador de ban de usuarios
@@ -100,21 +98,17 @@ const EditUserModal = ({ show, handleClose, userData }) => {
       const actionType = isBanned ? "unban" : "ban";
       const banConfirmation = isBanned ? "desbanear" : "banear";
       const confirmationMessage = `¿Estás seguro de que deseas ${banConfirmation} a ${userData.name}?`;
-    
       const isConfirmed = window.confirm(confirmationMessage);
     
       if (isConfirmed) {
-        const action = await banOrUnbanUser(userData.email, actionType);
+        const action = banOrUnbanUser(userData.email, actionType);
     
-        if (isBanned) {
-          alert("Usuario desbaneado exitosamente");
-          console.log("Usuario desbaneado exitosamente");
-        } else {
-          alert("Usuario baneado exitosamente");
-          console.log("Usuario baneado exitosamente");
-        }
+        if (isBanned) { await dispatch(action);
+        alert("Usuario desbaneado exitosamente")
+
+        } else {await dispatch(action);
+        alert("Usuario baneado exitosamente")}
     
-        dispatch(action);
         setTimeout(() => {window.location.reload();}, 300);
       } else { return alert("Ha ocurrido un error al banear/desbanear al usuario")}
     };

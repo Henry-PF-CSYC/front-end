@@ -10,7 +10,7 @@ const UsuariosAdm = () => {
 
   const dispatch = useDispatch();
   const usuarios = useSelector((state) => state.allUsers); 
-  
+
 
   // Controlar la visibilidad del modales
   const [showEditUserModal, setShowEditUserModal] = useState(false);
@@ -58,9 +58,9 @@ const UsuariosAdm = () => {
     { label: 'Nombre', field: 'name', sort: 'asc', width: 150},
     { label: 'Apellido', field: 'lastname', sort: 'asc', width: 150},
     { label: 'Teléfono', field: 'phone', sort: 'asc', width: 150},
-    { label: 'Dirección', field: 'address', sort: 'asc', width: 200},
+    { label: 'Dirección', field: 'address', sort: 'asc', width: 150},
     { label: 'Rol', field: 'role', sort: 'asc', width: 150},
-    { label: 'Opción', field: 'option', width: 100}
+    { label: 'Acción', field: 'action', width: 100}
   ];
 
 
@@ -73,29 +73,21 @@ const UsuariosAdm = () => {
     phone: usuario.phone,
     address: usuario.address,
     role: <span className={getCellStyle(usuario.role)}>{usuario.role}</span>,
-    option:<i onClick={() => handleRowClick(usuario)} class="bi bi-pencil-square userOptionBut"></i>
+    action:<i onClick={() => handleRowClick(usuario)} class="bi bi-pencil-square userOptionBut"></i>
   }));
 
 
 
-  // Renderizado
-  return (
+// Renderizado
+return(
     <div>
-
         <h1 id="titleAdminUsers">Usuarios activos:</h1>
 
         <EditUserModal show={showEditUserModal} handleClose={closeEditUserModal} userData={selectedRow}/>
 
-        <MDBDataTable
-        striped
-        bordered
-        small
-        data={{ columns, rows }}
+        <MDBDataTable striped  bordered  small  data={{ columns, rows }}
         infoLabel={['Mostrando del', 'al', 'de', 'usuarios disponibles']} 
-        searchLabel="Buscar" 
-        entriesLabel="Entradas a desplegar:"
-        className="custom-datatable"/>
-
+        searchLabel="Buscar"  entriesLabel="Entradas a desplegar:"  className="custom-datatable"/>
     </div>);
 }
 
