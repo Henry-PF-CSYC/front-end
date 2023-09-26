@@ -8,7 +8,12 @@ const ModalPublicacion = ({ show, handleClose, publicacion }) => {
     };
     const imgStyle = {
         maxWidth: '16rem',
+        maxHeight: '16rem',
         padding: 'auto'
+    };
+    const headerStyle = {
+        display: 'flex',
+        justifyContent: 'center'
     };
     return (
         <Modal
@@ -18,7 +23,7 @@ const ModalPublicacion = ({ show, handleClose, publicacion }) => {
             }}
         >
             <div className="card bg-light mb-0" style={cardStyle}>
-                <div className="card-header">
+                <div className="card-header " style={headerStyle}>
                     <img
                         src={publicacion.image}
                         alt="imagen"
@@ -30,8 +35,10 @@ const ModalPublicacion = ({ show, handleClose, publicacion }) => {
                         {publicacion.type}: {publicacion.title}
                     </h5>
                     <p className="card-text">{publicacion.description}</p>
-                    <p className="card-text">{publicacion.contact}</p>
-                    <p className="card-text">{publicacion.price}</p>
+                    <p className="card-text">
+                        Numero de contacto: {publicacion.contact}
+                    </p>
+                    <p className="card-text">Precio: ${publicacion.price}</p>
                 </div>
             </div>
         </Modal>

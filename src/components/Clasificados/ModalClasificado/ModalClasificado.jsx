@@ -3,15 +3,27 @@ import { Button, Modal } from 'react-bootstrap';
 import { useState } from 'react';
 import { firebase } from '../../Firebase/firebase';
 import { useDispatch } from 'react-redux';
-import { postClasificados } from '../../../redux/actions';
+import {
+    getClasificados,
+    getOfferByEmail,
+    postClasificados
+} from '../../../redux/actions';
 
 const ModalClasificado = ({ show, handleClose, email }) => {
-    
-    const dispatch = useDispatch()
-    const [selectedImageFile, setSelectedImageFile] = useState("");
+    const dispatch = useDispatch();
+    const [selectedImageFile, setSelectedImageFile] = useState('');
 
     const { values, handleBlur, handleChange, resetForm } = useFormik({
-        initialValues: { user_email: email,  image: '',  type: '', title: '',  description: '',  contact: '', price: ''}});
+        initialValues: {
+            user_email: email,
+            image: '',
+            type: '',
+            title: '',
+            description: '',
+            contact: '',
+            price: ''
+        }
+    });
 
     const options = [
         { value: 'Seleccionar una opcion' },
@@ -20,65 +32,72 @@ const ModalClasificado = ({ show, handleClose, email }) => {
         { value: 'se busca', label: 'Se busca' }
     ];
 
+    // Manejador para subida de imágenes seguras
+    const handleImageChange = (event) => {
+        const imageFile = event.target.files[0];
 
-   
-// Manejador para subida de imágenes seguras
-const handleImageChange = (event) => {
-    const imageFile = event.target.files[0];
-  
-    // Verificar si se seleccionó un archivo
-    if (imageFile) {
-      // Verificar si el tipo de archivo es una imagen (por ejemplo, png, jpeg, jpg, gif)
-      const allowedImageTypes = ["image/png", "image/jpeg", "image/jpg"];
-      if (allowedImageTypes.includes(imageFile.type)) {
-        // El archivo es una imagen válida, puedes continuar con el manejo de la imagen
-        setSelectedImageFile(imageFile);
-      } else {
-        // El archivo no es una imagen válida, muestra un mensaje de error o realiza alguna acción
-        alert("Por favor, seleccione una imagen válida (png, jpeg, jpg).");
-        event.target.value = null; // Restablece el valor del input a null para evitar el error
-      }
-    }
-  };
+        // Verificar si se seleccionó un archivo
+        if (imageFile) {
+            // Verificar si el tipo de archivo es una imagen (por ejemplo, png, jpeg, jpg, gif)
+            const allowedImageTypes = ['image/png', 'image/jpeg', 'image/jpg'];
+            if (allowedImageTypes.includes(imageFile.type)) {
+                // El archivo es una imagen válida, puedes continuar con el manejo de la imagen
+                setSelectedImageFile(imageFile);
+            } else {
+                // El archivo no es una imagen válida, muestra un mensaje de error o realiza alguna acción
+                alert(
+                    'Por favor, seleccione una imagen válida (png, jpeg, jpg).'
+                );
+                event.target.value = null; // Restablece el valor del input a null para evitar el error
+            }
+        }
+    };
 
+    // Submit
+    const handleSubmit = async (values, event) => {
+        event.preventDefault();
 
+        try {
+            // Si hay una nueva imagen seleccionada
 
-// Submit
-const handleSubmit = async (values, event) => {
-    event.preventDefault();
-      
-    try {
-      // Si hay una nueva imagen seleccionada
+            if (selectedImageFile) {
+                // Usamos la función de Firebase para obtener la URL de la nueva imagen
+                const newImageUrl = await firebase(
+                    selectedImageFile,
+                    'clasificados/'
+                );
 
-      if (selectedImageFile) {
-      // Usamos la función de Firebase para obtener la URL de la nueva imagen
-      const newImageUrl = await firebase(selectedImageFile, "clasificados/");
-      
-      // Actualiza los valores del formulario, incluida la nueva URL de la imagen
-      const updatedValues = { ...values, image: newImageUrl };
+                // Actualiza los valores del formulario, incluida la nueva URL de la imagen
+                const updatedValues = { ...values, image: newImageUrl };
 
-      // Realiza la acción para enviar los datos del formulario, incluida la nueva URL de la imagen
-      dispatch(await postClasificados(updatedValues)); // Asumiendo que tienes una acción llamada "postClasificados"
-      console.log(updatedValues);
+                // Realiza la acción para enviar los datos del formulario, incluida la nueva URL de la imagen
+                dispatch(await postClasificados(updatedValues)); // Asumiendo que tienes una acción llamada "postClasificados"
+                console.log(updatedValues);
+                handleClose();
+            } else {
+                dispatch(await postClasificados(values)); // Si no se seleccionó una imagen, se envia la acción sin la misma
+                console.log(values);
+            }
 
-      } else {
-      dispatch(await postClasificados(values)); // Si no se seleccionó una imagen, se envia la acción sin la misma
-      console.log(values)}
+            alert('La publicación fue creada correctamente');
+        } catch (error) {
+            console.log('Error al crear la publicación:', error);
+        }
+    };
 
-      alert("La publicación fue creada correctamente")
-
-    } catch (error) { console.log("Error al crear la publicación:", error)}
-};
-
-    
-// Renderizado
-return (
+    // Renderizado
+    return (
         <>
-            <Modal show={show} onHide={() => {handleClose(); resetForm();}}>
+            <Modal
+                show={show}
+                onHide={() => {
+                    handleClose();
+                    resetForm();
+                }}
+            >
                 <Modal.Header closeButton>
                     <Modal.Title>Crear Publicacion</Modal.Title>
                 </Modal.Header>
-
 
                 <form onSubmit={handleSubmit}>
                     <Modal.Body>
@@ -92,12 +111,12 @@ return (
                                 value={values.image}
                                 onChange={(event) => {
                                     handleChange(event);
-                                    handleImageChange(event); 
+                                    handleImageChange(event);
                                 }}
                                 onBlur={handleBlur}
-                                className="form-control"/>
+                                className="form-control"
+                            />
                         </div>
-
 
                         <div className="form-floatin mb-2">
                             <select
@@ -106,12 +125,13 @@ return (
                                 name="type"
                                 value={values.type}
                                 onChange={handleChange}
-                                onBlur={handleBlur}>
+                                onBlur={handleBlur}
+                            >
                                 {options.map((opcion) => (
-                                    <option>{opcion.value}</option>))}
+                                    <option>{opcion.value}</option>
+                                ))}
                             </select>
                         </div>
-
 
                         <div className="form-floatin mb-2">
                             <input
@@ -122,9 +142,9 @@ return (
                                 value={values.title}
                                 onChange={handleChange}
                                 onBlur={handleBlur}
-                                className="form-control"/>
+                                className="form-control"
+                            />
                         </div>
-
 
                         <div className="form-floatin mb-2">
                             <textarea
@@ -136,9 +156,9 @@ return (
                                 onChange={handleChange}
                                 onBlur={handleBlur}
                                 rows="4"
-                                className="form-control"/>
+                                className="form-control"
+                            />
                         </div>
-
 
                         <div className="form-floatin mb-2">
                             <input
@@ -149,9 +169,9 @@ return (
                                 value={values.contact}
                                 onChange={handleChange}
                                 onBlur={handleBlur}
-                                className="form-control"/>
+                                className="form-control"
+                            />
                         </div>
-
 
                         <div className="form-floatin mb-2">
                             <input
@@ -162,20 +182,34 @@ return (
                                 value={values.price}
                                 onChange={handleChange}
                                 onBlur={handleBlur}
-                                className="form-control"/>
+                                className="form-control"
+                            />
                         </div>
                     </Modal.Body>
 
-
                     <Modal.Footer>
-                        <Button variant="secondary" onClick={() => handleClose()}> Descartar </Button>
-                        <Button type="submit" variant="success" 
-                        onClick={(event) => { handleSubmit(values, event);}}> Crear Publicacion </Button>
+                        <Button
+                            variant="secondary"
+                            onClick={() => handleClose()}
+                        >
+                            {' '}
+                            Descartar{' '}
+                        </Button>
+                        <Button
+                            type="submit"
+                            variant="success"
+                            onClick={(event) => {
+                                handleSubmit(values, event);
+                            }}
+                        >
+                            {' '}
+                            Crear Publicacion{' '}
+                        </Button>
                     </Modal.Footer>
-
                 </form>
             </Modal>
-        </>);
+        </>
+    );
 };
 
 export default ModalClasificado;
