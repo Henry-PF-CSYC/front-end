@@ -1,8 +1,8 @@
 .card {
     position: relative;
-    width: 250px;
-    height: 350px;
-    margin: 100px;
+    width: 312px;
+    height: 287px;
+    /* margin: 100px; */
     
 }
 .card .face{
@@ -70,4 +70,10 @@
 }
 .description{
     font-size: medium;
+}
+.disabledCard {
+    opacity: 0.5; 
+  }
+.disabledButton {
+    cursor: not-allowed !important; 
 }

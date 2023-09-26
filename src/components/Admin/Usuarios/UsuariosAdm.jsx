@@ -10,7 +10,7 @@ const UsuariosAdm = () => {
 
   const dispatch = useDispatch();
   const usuarios = useSelector((state) => state.allUsers); 
-  
+
 
   // Controlar la visibilidad del modales
   const [showEditUserModal, setShowEditUserModal] = useState(false);
@@ -39,7 +39,9 @@ const UsuariosAdm = () => {
   
   // Definimos una función para asignar clase segun status
   const getCellStyle = (status) => {
-    if (status === 'user') {return 'user-cell'; } 
+    if (status === 'user') return 'user-cell';  
+    if (status === 'banned') return 'banned-cell';  
+    if (status === 'contact_admin') return 'contact_admin-cell';  
     else { return 'admin-cell'; } };
 
 
@@ -51,14 +53,14 @@ const UsuariosAdm = () => {
 
   // Definimos las columnas de la tabla
   const columns = [
-    {label: 'Email', field: 'email', sort: 'asc', width: 150},
+    { label: 'Email', field: 'email', sort: 'asc', width: 150},
     { label: 'DNI', field: 'dni', sort: 'asc', width: 150},
     { label: 'Nombre', field: 'name', sort: 'asc', width: 150},
     { label: 'Apellido', field: 'lastname', sort: 'asc', width: 150},
     { label: 'Teléfono', field: 'phone', sort: 'asc', width: 150},
-    { label: 'Dirección', field: 'address', sort: 'asc', width: 200},
+    { label: 'Dirección', field: 'address', sort: 'asc', width: 150},
     { label: 'Rol', field: 'role', sort: 'asc', width: 150},
-    { label: 'Opción', field: 'option', width: 100}
+    { label: 'Acción', field: 'action', width: 100}
   ];
 
 
@@ -71,29 +73,21 @@ const UsuariosAdm = () => {
     phone: usuario.phone,
     address: usuario.address,
     role: <span className={getCellStyle(usuario.role)}>{usuario.role}</span>,
-    option:<i onClick={() => handleRowClick(usuario)} class="bi bi-pencil-square userOptionBut"></i>
+    action:<i onClick={() => handleRowClick(usuario)} class="bi bi-pencil-square userOptionBut"></i>
   }));
 
 
 
-  // Renderizado
-  return (
+// Renderizado
+return(
     <div>
-
         <h1 id="titleAdminUsers">Usuarios activos:</h1>
 
         <EditUserModal show={showEditUserModal} handleClose={closeEditUserModal} userData={selectedRow}/>
 
-        <MDBDataTable
-        striped
-        bordered
-        small
-        data={{ columns, rows }}
+        <MDBDataTable striped  bordered  small  data={{ columns, rows }}
         infoLabel={['Mostrando del', 'al', 'de', 'usuarios disponibles']} 
-        searchLabel="Buscar" 
-        entriesLabel="Entradas a desplegar:"
-        className="custom-datatable"/>
-
+        searchLabel="Buscar"  entriesLabel="Entradas a desplegar:"  className="custom-datatable"/>
     </div>);
 }
 

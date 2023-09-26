@@ -62,93 +62,99 @@ const ModalPublicaciones = ({ show, handleClose, email }) => {
             <div style={container}>
                 <h3 style={line}>Publicaciones Activas:</h3>
                 <hr style={line} />
-                {publicaciones.map(
-                    (publicacion) =>
-                        !publicacion.deletedAt && (
-                            <div
-                                className="card bg-light mb-0"
-                                style={cardStyle}
-                            >
-                                <div className="card-header">
-                                    <img
-                                        src={publicacion.image}
-                                        alt="imagen"
-                                        style={imgStyle}
-                                    />
+                {publicaciones.length > 0 &&
+                    publicaciones.map(
+                        (publicacion) =>
+                            !publicacion.deletedAt && (
+                                <div
+                                    className="card bg-light mb-0"
+                                    style={cardStyle}
+                                >
+                                    <div className="card-header">
+                                        <img
+                                            src={publicacion.image}
+                                            alt="imagen"
+                                            style={imgStyle}
+                                        />
+                                    </div>
+                                    <div className="card-body">
+                                        <h5 className="card-title">
+                                            {publicacion.type}:{' '}
+                                            {publicacion.title}
+                                        </h5>
+                                        <p
+                                            className="card-text"
+                                            style={descripcionStyle}
+                                        >
+                                            {publicacion.description}
+                                        </p>
+                                        <p className="card-text">
+                                            {publicacion.contact}
+                                        </p>
+                                        <p className="card-text">
+                                            {publicacion.price}
+                                        </p>{' '}
+                                        <Button
+                                            onClick={() => {
+                                                deletPublicacion(
+                                                    publicacion.id
+                                                );
+                                                getOfferByEmail(email);
+                                                // Recarga la página
+                                            }}
+                                        >
+                                            Borrar
+                                        </Button>
+                                    </div>
                                 </div>
-                                <div className="card-body">
-                                    <h5 className="card-title">
-                                        {publicacion.type}: {publicacion.title}
-                                    </h5>
-                                    <p
-                                        className="card-text"
-                                        style={descripcionStyle}
-                                    >
-                                        {publicacion.description}
-                                    </p>
-                                    <p className="card-text">
-                                        {publicacion.contact}
-                                    </p>
-                                    <p className="card-text">
-                                        {publicacion.price}
-                                    </p>{' '}
-                                    <Button
-                                        onClick={() => {
-                                            deletPublicacion(publicacion.id);
-                                            getOfferByEmail(email);
-                                            // Recarga la página
-                                        }}
-                                    >
-                                        Borrar
-                                    </Button>
-                                </div>
-                            </div>
-                        )
-                )}
+                            )
+                    )}
                 <h3 style={line}>Publicaciones borradas:</h3>
                 <hr style={line} />
-                {publicaciones.map(
-                    (publicacion) =>
-                        publicacion.deletedAt && (
-                            <div
-                                className="card bg-light mb-0"
-                                style={cardStyle}
-                            >
-                                <div className="card-header">
-                                    <img
-                                        src={publicacion.image}
-                                        alt="imagen"
-                                        style={imgStyle}
-                                    />
+                {publicaciones.length > 0 &&
+                    publicaciones.map(
+                        (publicacion) =>
+                            publicacion.deletedAt && (
+                                <div
+                                    className="card bg-light mb-0"
+                                    style={cardStyle}
+                                >
+                                    <div className="card-header">
+                                        <img
+                                            src={publicacion.image}
+                                            alt="imagen"
+                                            style={imgStyle}
+                                        />
+                                    </div>
+                                    <div className="card-body">
+                                        <h5 className="card-title">
+                                            {publicacion.type}:{' '}
+                                            {publicacion.title}
+                                        </h5>
+                                        <p
+                                            className="card-text"
+                                            style={descripcionStyle}
+                                        >
+                                            {publicacion.description}
+                                        </p>
+                                        <p className="card-text">
+                                            {publicacion.contact}
+                                        </p>
+                                        <p className="card-text">
+                                            {publicacion.price}
+                                        </p>{' '}
+                                        <Button
+                                            onClick={() => {
+                                                restoreOffer(publicacion.id);
+                                                // Recarga la página
+                                            }}
+                                        >
+                                            Restaurar
+                                        </Button>
+                                    </div>
                                 </div>
-                                <div className="card-body">
-                                    <h5 className="card-title">
-                                        {publicacion.type}: {publicacion.title}
-                                    </h5>
-                                    <p
-                                        className="card-text"
-                                        style={descripcionStyle}
-                                    >
-                                        {publicacion.description}
-                                    </p>
-                                    <p className="card-text">
-                                        {publicacion.contact}
-                                    </p>
-                                    <p className="card-text">
-                                        {publicacion.price}
-                                    </p>{' '}
-                                    <Button
-                                        onClick={() => {
-                                            restoreOffer(publicacion.id);
-                                            // Recarga la página
-                                        }}
-                                    >
-                                        Restaurar
-                                    </Button>
-                                </div>
-                            </div>
-                        )
-                )}
+                            )
+                    )}
             </div>
         </Modal>
     );

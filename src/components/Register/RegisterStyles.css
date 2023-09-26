@@ -1,22 +1,27 @@
 .formStyles {
-    background-color: rgba(233, 230, 230, 0.473);
+    background-color: rgb(0, 0, 0);
     background-size: cover;
     background-attachment: fixed;
-    border-radius: 5px;
+    border-radius: 10px;
     font-family: 'Rajdhani', sans-serif;
     text-align: center;
     margin-top: 20px;
+    max-width: 500px;
+    width: 500px;
     margin-bottom: 15px;
     padding-top: 1.5rem;
     padding-bottom: 1rem;
+    color: white;
 }
 .container {
     display: flex;
     justify-content: center;
+    padding-top: 100px;
 }
 .fila {
     width: 100%;
     align-items: center;
+    padding-left: 10px;
 }
 .cardStyles {
     display: flex;
@@ -36,7 +41,7 @@
     color: red;
 }
 .site {
-    background-color: rgb(31, 170, 180);
+    background-color: white;
 }
 .errorContainer {
     height: 1.1rem;

@@ -32,9 +32,9 @@ const SideBar = () =>{
                     <span className="fs-5">Clasificados</span>
                 </a>
 
-                <a href="/admin/reclamos" className="list-group-item list-group-item-action my-2">
-                    <i className="bi bi-clipboard fs-5 me-2"></i>
-                    <span className="fs-5">Reportes</span>
+                <a href="/admin/novedades" className="list-group-item list-group-item-action my-2">
+                    <i className="bi bi-calendar-check fs-5 me-2"></i>
+                    <span className="fs-5">Novedades</span>
                 </a>
 
                 <a href="/" className="list-group-item list-group-item-action my-2">

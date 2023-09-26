@@ -37,7 +37,7 @@ const CardsServicios = ({ imagen, titulo, descripcion, nombreBoton, estado, prec
     }
 
     return (
-        <div className={style.card}>
+        <div className={`${style.card} ${estado === 'unavailable' ? style.disabledCard : ''}`}>
             <div className={`${style.face} ${style.front}`}>
                 <img src={imagen}  alt={titulo}/>
                 <h3>{titulo}</h3>
@@ -50,7 +50,9 @@ const CardsServicios = ({ imagen, titulo, descripcion, nombreBoton, estado, prec
                             <p className={style.price}>{`$${precio}`}</p>
                         )
                     } 
-                    <button onClick={addCart} className="btn btn-primary">{nombreBoton}</button>
+                    <button onClick={estado === 'available' ? addCart : null} className={`btn btn-primary ${estado === 'unavailable' ? style.disabledButton : ''}`}>
+                        {nombreBoton}
+                    </button>
                     <div>
                         {
                         estado === 'available' ?(

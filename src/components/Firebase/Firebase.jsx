@@ -11,7 +11,7 @@
    // Estado para checar si la carga de la imagen está en progreso
    const [isUploading, setIsUploading] = useState(false);
 
-   // Arreglo para almacenar la URL de la imagen subida
+   // Estado para almacenar la URL de la imagen subida
    const [imageUrl, setImageUrl] = useState("");
 
 
@@ -49,7 +49,7 @@
          return getDownloadURL(imgRef);})
 
      .then((url) => {
-         // Agregamos la URL al array contenedor de las mismas
+         // Seteamos la URL
          setImageUrl(url);
          return alert("Imagen subida correctamente");
        })
@@ -70,15 +70,14 @@
    return (
      <div>
 
-       <h1 style={{"margin":"4rem"}}>PRUEBA</h1>
+       <h1 style={{"margin":"4rem"}}> Firebase </h1>
 
        <input id="uploadFile" type="file" onChange={(event) => setImg(event.target.files[0])} />
 
        {/* El botón se deshabilita automáticamente durante la carga */}
        <button id="uploadButton" onClick={uploadImage}> Subir imagen </button>
 
-       {/* Muestra las URLs públicas de las imágenes subidas */}
-      
+       {/* Muestra la URL de las imagen subida */}
          <div>
            <h2>URL de imagen subida:</h2>
            <p>{imageUrl}</p>

@@ -35,10 +35,12 @@ const ClasificadosAdm = () => {
   // Manejando borrado permanente de servicio
   const handleDeleteOffer = (clasificadoId) => {
   // Alert para confirmar la acción
+  console.log(clasificadoId);
   const isConfirmed = window.confirm("¿Estás seguro de que deseas eliminar este clasificado?");
 
   if (isConfirmed) {
     // Si el usuario confirmó, realiza la acción de eliminación
+    
     dispatch(deleteClasificado(clasificadoId));
     alert("Clasificado eliminado correctamente");
 

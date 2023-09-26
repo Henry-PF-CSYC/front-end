@@ -1,8 +1,18 @@
-import { type } from '@testing-library/user-event/dist/type';
 import { useFormik } from 'formik';
 import { Button, Modal } from 'react-bootstrap';
+import { useState } from 'react';
+import { firebase } from '../../Firebase/firebase';
+import { useDispatch } from 'react-redux';
+import {
+    getClasificados,
+    getOfferByEmail,
+    postClasificados
+} from '../../../redux/actions';
 
-const ModalClasificado = ({ show, handleSubmit, handleClose, email }) => {
+const ModalClasificado = ({ show, handleClose, email }) => {
+    const dispatch = useDispatch();
+    const [selectedImageFile, setSelectedImageFile] = useState('');
+
     const { values, handleBlur, handleChange, resetForm } = useFormik({
         initialValues: {
             user_email: email,
@@ -12,17 +22,70 @@ const ModalClasificado = ({ show, handleSubmit, handleClose, email }) => {
             description: '',
             contact: '',
             price: ''
-        },
-        enableReinitialize: true
-        // validationSchema:validations,
+        }
     });
+
     const options = [
         { value: 'Seleccionar una opcion' },
         { value: 'compra', label: 'Compra' },
         { value: 'venta', label: 'Venta' },
-        { value: 'laboral', label: 'Se busca' }
+        { value: 'se busca', label: 'Se busca' }
     ];
 
+    // Manejador para subida de imágenes seguras
+    const handleImageChange = (event) => {
+        const imageFile = event.target.files[0];
+
+        // Verificar si se seleccionó un archivo
+        if (imageFile) {
+            // Verificar si el tipo de archivo es una imagen (por ejemplo, png, jpeg, jpg, gif)
+            const allowedImageTypes = ['image/png', 'image/jpeg', 'image/jpg'];
+            if (allowedImageTypes.includes(imageFile.type)) {
+                // El archivo es una imagen válida, puedes continuar con el manejo de la imagen
+                setSelectedImageFile(imageFile);
+            } else {
+                // El archivo no es una imagen válida, muestra un mensaje de error o realiza alguna acción
+                alert(
+                    'Por favor, seleccione una imagen válida (png, jpeg, jpg).'
+                );
+                event.target.value = null; // Restablece el valor del input a null para evitar el error
+            }
+        }
+    };
+
+    // Submit
+    const handleSubmit = async (values, event) => {
+        event.preventDefault();
+
+        try {
+            // Si hay una nueva imagen seleccionada
+
+            if (selectedImageFile) {
+                // Usamos la función de Firebase para obtener la URL de la nueva imagen
+                const newImageUrl = await firebase(
+                    selectedImageFile,
+                    'clasificados/'
+                );
+
+                // Actualiza los valores del formulario, incluida la nueva URL de la imagen
+                const updatedValues = { ...values, image: newImageUrl };
+
+                // Realiza la acción para enviar los datos del formulario, incluida la nueva URL de la imagen
+                dispatch(await postClasificados(updatedValues)); // Asumiendo que tienes una acción llamada "postClasificados"
+                console.log(updatedValues);
+                handleClose();
+            } else {
+                dispatch(await postClasificados(values)); // Si no se seleccionó una imagen, se envia la acción sin la misma
+                console.log(values);
+            }
+
+            alert('La publicación fue creada correctamente');
+        } catch (error) {
+            console.log('Error al crear la publicación:', error);
+        }
+    };
+
+    // Renderizado
     return (
         <>
             <Modal
@@ -35,20 +98,26 @@ const ModalClasificado = ({ show, handleSubmit, handleClose, email }) => {
                 <Modal.Header closeButton>
                     <Modal.Title>Crear Publicacion</Modal.Title>
                 </Modal.Header>
+
                 <form onSubmit={handleSubmit}>
                     <Modal.Body>
                         <div className="form-floatin mb-2">
                             <input
+                                accept="image/*"
                                 type="file"
                                 placeholder="Imagen"
                                 id="image"
                                 name="image"
                                 value={values.image}
-                                onChange={handleChange}
+                                onChange={(event) => {
+                                    handleChange(event);
+                                    handleImageChange(event);
+                                }}
                                 onBlur={handleBlur}
                                 className="form-control"
                             />
                         </div>
+
                         <div className="form-floatin mb-2">
                             <select
                                 className="form-control"
@@ -63,6 +132,7 @@ const ModalClasificado = ({ show, handleSubmit, handleClose, email }) => {
                                 ))}
                             </select>
                         </div>
+
                         <div className="form-floatin mb-2">
                             <input
                                 type="string"
@@ -75,6 +145,7 @@ const ModalClasificado = ({ show, handleSubmit, handleClose, email }) => {
                                 className="form-control"
                             />
                         </div>
+
                         <div className="form-floatin mb-2">
                             <textarea
                                 type="string"
@@ -88,6 +159,7 @@ const ModalClasificado = ({ show, handleSubmit, handleClose, email }) => {
                                 className="form-control"
                             />
                         </div>
+
                         <div className="form-floatin mb-2">
                             <input
                                 type="number"
@@ -100,6 +172,7 @@ const ModalClasificado = ({ show, handleSubmit, handleClose, email }) => {
                                 className="form-control"
                             />
                         </div>
+
                         <div className="form-floatin mb-2">
                             <input
                                 type="number"
@@ -113,22 +186,24 @@ const ModalClasificado = ({ show, handleSubmit, handleClose, email }) => {
                             />
                         </div>
                     </Modal.Body>
+
                     <Modal.Footer>
                         <Button
                             variant="secondary"
                             onClick={() => handleClose()}
                         >
-                            Cancelar
+                            {' '}
+                            Descartar{' '}
                         </Button>
                         <Button
                             type="submit"
                             variant="success"
                             onClick={(event) => {
                                 handleSubmit(values, event);
-                                resetForm();
                             }}
                         >
-                            Crear Publicacion
+                            {' '}
+                            Crear Publicacion{' '}
                         </Button>
                     </Modal.Footer>
                 </form>

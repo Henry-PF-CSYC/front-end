@@ -1,11 +1,12 @@
-@import url('https://fonts.googleapis.com/css2? family= Fjalla+One & family= Josefin+Sans & family= Montserrat:ital,wght@0,200;0,400;0,600;1,500 & display= intercambio');
 .navbar {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    /* background-color: rgb(245, 8, 8); */
+    background-color: hsla(0, 100%, 99%, 0.231);
+    box-shadow: 0 8px 10px -10px #000;
     position: fixed;
     z-index: 1000;
+    backdrop-filter: blur(20px); /* Aplicar un efecto de difuminado */
 }
 
 .options {
@@ -13,30 +14,26 @@
     flex-direction: row;
     margin-right: -2rem;
     margin-top: 0.5rem;
+    color: rgb(196, 192, 192);
     align-items: center;
     text-decoration: none;
-    color: #000000;
+    color: rgb(0, 0, 0);
 }
 
 .options h5 {
-    margin-left:4rem;
+    margin-left:2rem;
     border-bottom: 2px solid transparent;
     transition: border-bottom 0.3s ease;
     text-decoration: none;
-    font-family: 'Montserrat';
-    font-size: 111%;
 }
 
 .options h5:hover {
-    border-bottom: 1px solid #16b9b1;
-    transition: .5s;
+    border-bottom: 1px solid white;
 }
 
 .options button {
     border-radius: 10px;
-    margin-left: 6rem;
-    /* background-color: #ffffff;
-    color: #000000; */
+    margin-left: 2rem;
 }
 
 #logo{
@@ -53,7 +50,6 @@
     border-radius: 100%;
     margin-left: 3px;
     margin-bottom: 5px;
-    background-color: transparent;
 }
 
 .ProfileBtn {
@@ -66,69 +62,40 @@
 }
 
 .linkh5{
-    color: black;
+    color: rgb(15, 14, 14);
     text-decoration: none;
 }
 
-.button{
-	background-color: #ffffff;
-	border-radius: 8px;
-	color:  #1faab4;
-	display: flex;
-	font-size: 18px;
-	padding: 5px;
-	cursor: pointer;
-	transition: .3s;
-    margin-top: -5px;
-    border-color: #1faab4;
-
-}
-
-.button span {
-background-color:  #1faab4;
-padding: 1px 24px;
-border-radius: 6px;
-transition: .3s;
-border: transparent;
-}
-
-.button:hover span {
-	background: none;
-}
-
-.button:active {
-	transform: scale(0.9);
-}
-.trolley{
-    margin-left: 15rem;
-}
-.ms-3 {
-    margin-left: 0rem!important;
-    margin-bottom: 4%;
-}
-
-.abajo{
-    background-color: #000000;
-    transition: .4s;
-}
-.button:hover {
-	background-color: #1faab4;
+.button {
+    font-size: 1rem;
+    font-weight: bolder;
+    transition: transform 0.3s, background-color 0.3s, box-shadow 0.3s;
     color: white;
-}
-
-.abajo  .linkh5{
-    color: #1faab4;
+    background-color: #073e9c;
+    border: none;
+    border-radius: 5x;
+    font: bolder;
+    margin-top: -8px;
+    margin-right: -20px;
+    padding: 5px 25px;
+  }
+  
+  .button:hover {
+    background-color: #044299;
+    box-shadow: 0px 0px 10px rgb(255, 255, 255);
+    transform: scale(1.1);
+  }
+  
+  .button:active {
+    transform: scale(1.1);
+  }
+  .icon-market{
+    margin-top: -9px;
+    margin-right: -45px;
+  }
+.title{
     text-decoration: none;
-}
-.abajo .options{
-    color: #1faab4;
-}
-.abajo .button{
-    background-color:#1faab4;
-    color: #ffffff;
-    border-color: #1faab4;
-    border-radius: 4%;
-}
-.abajo .button:hover{
-    background-color: #0a5264;
+    display: inline-block;
+    font-family: 'Montserrat';
+    padding-top: 10px;
 }

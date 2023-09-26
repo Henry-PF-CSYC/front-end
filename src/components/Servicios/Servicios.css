@@ -3,36 +3,36 @@
     background-size: cover;
     text-align: center;
     padding: 3rem;
-    margin-left: 10%;
+    margin-left: 15%;
     padding: 20px;
     position: relative;
-  }
-  #servicesContainer h1{
+}
+#servicesContainer h1 {
     padding: 2%;
-  }
-  
-  /* Estilos para la información general */
-  #generalInfo {
+}
+
+/* Estilos para la información general */
+#generalInfo {
     font-size: larger;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
     margin-top: 50px;
-  }
-  
-  /* Estilos para el contenedor de filtros */
-  #filterContainer {
+}
+
+/* Estilos para el contenedor de filtros */
+#filterContainer {
     display: flex;
     flex-direction: row; /* Cambia la dirección de disposición a fila */
     align-items: flex-end; /* Alinea los elementos al final del eje vertical */
     justify-content: space-between; /* Espacio entre elementos */
-  }
-  
-  /* Estilos para los filtros */
-  .servicesFilter {
+}
+
+/* Estilos para los filtros */
+.servicesFilter {
     margin: 0.7rem;
-  }
-  
-  /* Estilos para la barra lateral en pantallas más grandes */
-  .barraLateral {
+}
+
+/* Estilos para la barra lateral en pantallas más grandes */
+.barraLateral {
     position: fixed; /* Fija la barra lateral en la pantalla */
     left: 0;
     top: 70px; /* Asegura que la barra lateral comience desde la parte superior */
@@ -45,75 +45,75 @@
     border-radius: 0;
     z-index: 1;
     font-size: 0.9rem;
-  }
-  
-  /* Estilos para la barra lateral en pantallas más pequeñas */
-  @media screen and (max-width: 768px) {
+}
+
+/* Estilos para la barra lateral en pantallas más pequeñas */
+@media screen and (max-width: 768px) {
     .barraLateral {
-      width: 0;
-      padding: 0;
-      overflow-y: hidden;
-      background: rgba(175, 175, 175, 0.6);
-      transition: width 0.3s ease;
-      z-index: 1;
+        width: 0;
+        padding: 0;
+        overflow-y: hidden;
+        background: rgba(175, 175, 175, 0.6);
+        transition: width 0.3s ease;
+        z-index: 1;
     }
-  
+
     .barraLateral:hover {
-      width: 15%;
+        width: 15%;
     }
-  
+
     /* Agrega un botón para abrir la barra lateral en pantallas pequeñas */
     #openSidebarBtn {
-      position: fixed;
-      top: 70px;
-      left: 0;
-      padding: 10px;
-      cursor: pointer;
-      z-index: 2;
+        position: fixed;
+        top: 70px;
+        left: 0;
+        padding: 10px;
+        cursor: pointer;
+        z-index: 2;
     }
-  }
-  
-  /* Estilos para los elementos de entrada en la barra lateral */
-  .barraLateral input,
-  .barraLateral select {
+}
+
+/* Estilos para los elementos de entrada en la barra lateral */
+.barraLateral input,
+.barraLateral select {
     width: 100%;
     margin-bottom: 10px;
     padding: 5px;
     border: none;
-    border-radius: 10px; /* Elimina la esquina redondeada en los elementos de entrada */
-    font-weight: lighter;
-  }
-  
-  /* Estilos para la disposición de los elementos en la barra lateral */
-  .barraLateral {
+    border-radius: 8px;
+    font-weight: normal;
+}
+
+/* Estilos para la disposición de los elementos en la barra lateral */
+.barraLateral {
     display: flex;
     flex-direction: column;
-  }
-  
- /* Estilos para la disposición de los elementos en la barra lateral */
+}
+
+/* Estilos para la disposición de los elementos en la barra lateral */
 .barraLateral div {
     display: flex;
     flex-direction: column;
     align-items: center; /* Alinea los elementos al centro del eje vertical */
-    margin-bottom: 8px; /* Añade espacio entre los divs */
-  }
+    margin-bottom: 12px; /* Añade espacio entre los divs */
+}
 
-.barraLateral p{
+.barraLateral p {
     font-weight: bold;
 }
-  
-  /* Estilos para las etiquetas de texto en la barra lateral */
+
+/* Estilos para las etiquetas de texto en la barra lateral */
 .barraLateral label {
     margin-right: 5px;
     margin-bottom: 5px; /* Espacio entre las etiquetas y los elementos de selección */
     text-align: center !important; /* Centra el texto horizontalmente */
     font-weight: bold;
-  }
-input[type="number"]::-webkit-inner-spin-button,
-input[type="number"]::-webkit-outer-spin-button {
-  -webkit-appearance: none;
-  appearance: none;
-  margin: 0;
+}
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    appearance: none;
+    margin: 0;
 }
 /* Estilo para deshabilitar la flecha de apertura en los selects */
 select {
@@ -123,22 +123,39 @@ select {
     appearance: none;
     /* Ajusta el padding para dar espacio al icono personalizado */
     padding-right: 20px; /* Ajusta el valor según sea necesario */
-  }
-  .descriptionGeneral {
+}
+.descriptionGeneral {
     padding: 2%;
     font-size: medium;
     margin-left: 8%; /* Ajusta el margen izquierdo según sea necesario */
-  }
-  .errorCards {
+}
+.errorCards {
     height: 300px; /* Ajusta la altura según tus necesidades */
-    display:flex;
+    display: flex;
     align-items: center;
     justify-content: center;
     text-align: left;
     font-size: 4rem;
     font-weight: bolder;
-    color: rgb(16, 14, 14); /* Cambia el color de texto según tus preferencias */
+    color: rgb(
+        16,
+        14,
+        14
+    ); /* Cambia el color de texto según tus preferencias */
     margin-top: 1rem; /* Ajusta el margen superior según tus necesidades */
     margin-left: 8rem;
-  }
-  
+}
+
+.page-link {
+    font-size: 1.2rem;
+    font-weight: bolder;
+    transition: transform 0.3s, background-color 0.3s, box-shadow 0.3s;
+    color: white;
+    background-color: #05011d;
+    border: none;
+    border-radius: 0;
+    padding: 5px 20px;
+}
+.page-link.active {
+    background-color: #073e9c;
+}

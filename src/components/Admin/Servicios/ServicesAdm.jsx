@@ -68,7 +68,7 @@ const ServicesAdm = () => {
     {label: 'Provider', field: 'provider', sort: 'asc', width: 200},
     {label: 'Price', field: 'price', sort: 'asc', width: 100},
     {label: 'Status', field: 'status', sort: 'asc', width: 100},
-    {label: 'Opción', field: 'option', width: 100}
+    {label: 'Editar', field: 'edit', width: 100}
   ];
 
 
@@ -80,7 +80,7 @@ const ServicesAdm = () => {
     provider: servicio.provider,
     price: servicio.price,
     status: <span className={getCellStyle(servicio.status)}>{servicio.status}</span>,
-    option:<i onClick={() => handleRowClick(servicio)} class="bi bi-pencil-square serviceOptionBut"></i>
+    edit:<i onClick={() => handleRowClick(servicio)} class="bi bi-pencil-square serviceOptionBut"></i>
   }));
 
 

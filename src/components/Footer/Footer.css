@@ -3,51 +3,51 @@
     padding: 2rem;
     position: relative; /* Agrega posición relativa */
     z-index: 10; /* Asegura que el footer tenga un z-index menor */
-  }
+    margin-bottom: 0rem;
+    padding-bottom: 0.5rem;
+    font-size: smaller;
+}
 
-.footerA { 
+.footerA {
     display: flex;
     flex-direction: row;
-    justify-content: space-around;  
+    justify-content: space-around;
 }
-  
+
 .footerTitle {
     text-decoration: solid;
     color: white;
 }
 
-.footerOptions span{
-    display: block; 
-    color: rgb(116, 111, 111);
-    margin-bottom: 5px; 
+.footerOptions span {
+    display: block;
+    color: rgb(140, 137, 137);
+    margin-bottom: 5px;
     margin-top: 10px;
 }
 
-.footerB { 
+.footerB {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;  
+    justify-content: space-between;
 }
 
-#footerLeft{
+#footerLeft {
     margin-left: 9.2rem;
 }
 
-#footerRight{
+#footerRight {
     margin-right: 9.2rem;
 }
-   
-.footerIco{
+
+.footerIco {
     margin-left: 0.4rem;
     margin-right: 0.4rem;
-    color: rgb(116, 111, 111);
+    color: rgb(255, 255, 255);
 }
 #myHr {
     width: 77%;
     height: 1px;
     background-color: white;
     margin-left: 9.2rem;
-    position: absolute; /* Cambia la posición a absoluta */
-    bottom: 0; /* Lo coloca al final del footer */
-  }
-  
+}

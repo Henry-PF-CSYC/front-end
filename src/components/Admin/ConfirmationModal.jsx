@@ -1,22 +1,18 @@
-import React from "react";
-import { Modal, Button } from "react-bootstrap";
+import React from 'react';
+import { Modal, Button } from 'react-bootstrap';
 
-const ConfirmationModal = ({ show, handleClose, handleConfirm }) => {
+const ConfirmationModal = ({ show, onHide, onConfirm, title, message}) => {
   return (
-    <Modal show={show} onHide={handleClose}>
+    <Modal show={show} onHide={onHide} centered>
       <Modal.Header closeButton>
-        <Modal.Title>Confirmar acción</Modal.Title>
+        <Modal.Title>{title}</Modal.Title>
       </Modal.Header>
-
-      <Modal.Body>
-        ¿Estás seguro de que deseas realizar esta acción?
-      </Modal.Body>
-
+      <Modal.Body>{message}</Modal.Body>
       <Modal.Footer>
-        <Button variant="secondary" onClick={handleClose}>
+        <Button variant="secondary" onClick={onHide}>
           Cancelar
         </Button>
-        <Button variant="danger" onClick={handleConfirm}>
+        <Button variant="primary" onClick={onConfirm}>
           Confirmar
         </Button>
       </Modal.Footer>

@@ -2,8 +2,8 @@ import './Navbar.css';
 import { Link } from 'react-router-dom';
 import { useAuth0 } from '@auth0/auth0-react';
 import { emptyUser, getOfferByEmail, getUser } from '../../redux/actions';
-import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import { IconCart } from '../Cart/IconCart';
 // import {blanco} from './iconos/blanco.jpeg';
 
@@ -39,15 +39,20 @@ const Navbar = () => {
     }, []);
 
     return (
+        <div className='containerPrimary'>
         <section className="container-fluid navbar">
             <div id="logoContainer">
                 <Link to="/">
                     <img
-                        src={logo}
+                        src="https://www.amucss.org/images/logos/engranajes1.gif"  
                         id="logo"
                         alt="logo"
                         title="Volver al inicio"
+                        style={{ width: '50px', height: 'auto' }} 
                     />
+                    <h2 className='title'>
+                        CYSC
+                    </h2>
                 </Link>
             </div>
 
@@ -189,13 +194,9 @@ const Navbar = () => {
                     >Ingresa
                     </button>
                 )}
-
-                <div className="icon-market">
-                <IconCart/>
-                  
-                </div>
             </div>
         </section>
+        </div>
     );
 };
 
