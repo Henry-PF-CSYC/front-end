@@ -36,8 +36,8 @@ const CardsClasificados = ({
                 <p className="card-text" style={descripcionStyle}>
                     {descripcion}
                 </p>
-                <p className="card-text">{contacto}</p>
-                <p className="card-text">{precio}</p>
+                <p className="card-text">Numero de contacto: {contacto}</p>
+                <p className="card-text">Precio: ${precio}</p>
             </div>
         </div>
     );

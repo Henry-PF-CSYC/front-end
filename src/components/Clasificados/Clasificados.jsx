@@ -14,10 +14,11 @@ const Clasificados = () => {
     const handleClose = () => {
         setShow(false);
         setShow2(false);
+        dispatch(getClasificados());
     };
 
     const dispatch = useDispatch();
-    const { user, isAuthenticated } = useAuth0();
+    const { isAuthenticated } = useAuth0();
     let usuario = useSelector((state) => state.dataUser);
     console.log('email', usuario.email);
     useEffect(() => {
