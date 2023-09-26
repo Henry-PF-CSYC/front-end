@@ -188,11 +188,6 @@ const Navbar = () => {
                     >Ingresa
                     </button>
                 )}
-
-                <div className="icon-market">
-                <IconCart/>
-                  
-                </div>
             </div>
         </section>
         </div>
