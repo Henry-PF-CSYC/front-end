@@ -57,6 +57,7 @@ const Servicios = () => {
         //para busqueda por name desde el filtro
         event.preventDefault();
         setName(event.target.value);
+        setCurrentPage(1)
     };
 
     const handlePageChange = (newPage) => {
@@ -68,31 +69,44 @@ const Servicios = () => {
         // cambio de tipo
         event.preventDefault();
         setFilterType(event.target.value);
+        setCurrentPage(1)
     };
 
     const handleOrderChange = (event) => {
         // cambio de orden
         event.preventDefault();
         setOrderOption(event.target.value);
+        setCurrentPage(1)
     };
 
     const handleOrderByChange = (event) => {
         // Cambio de criterio de ordenación
         event.preventDefault();
         setOrderBy(event.target.value);
+        setCurrentPage(1)
     };
 
     const handleRangeMinChange = (event) => {
         // Cambio del valor mínimo del rango
         event.preventDefault();
-        setRangeMin(event.target.value);
+        const newValue = event.target.value;
+        if (!isNaN(newValue)) {
+            // Verifica si el valor es un número
+            setRangeMin(newValue);
+        }
+        setCurrentPage(1)
     };
 
     const handleRangeMaxChange = (event) => {
         // Cambio del valor máximo del rango
         event.preventDefault();
-        setRangeMax(event.target.value);
-    };
+        const newValue = event.target.value
+        if (!isNaN(newValue)) {
+            // Verifica si el valor es un número
+            setRangeMax(newValue);
+        }
+        setCurrentPage(1)
+    }
 
     return (
         <section id="servicesContainer">
@@ -120,25 +134,13 @@ const Servicios = () => {
                     type="number"
                     placeholder="Precio mínimo"
                     value={rangeMin}
-                    onChange={(event) => {
-                        const newValue = event.target.value;
-                        if (!isNaN(newValue)) {
-                            // Verifica si el valor es un número
-                            setRangeMin(newValue);
-                        }
-                    }}
+                    onChange={handleRangeMinChange}
                 />
                 <input
                     type="number"
                     placeholder="Precio máximo"
                     value={rangeMax}
-                    onChange={(event) => {
-                        const newValue = event.target.value;
-                        if (!isNaN(newValue)) {
-                            // Verifica si el valor es un número
-                            setRangeMax(newValue);
-                        }
-                    }}
+                    onChange={handleRangeMaxChange}
                 />
                 </div>
 
