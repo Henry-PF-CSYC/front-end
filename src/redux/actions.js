@@ -156,7 +156,7 @@ export const getClasificados = ({title,type,order,orderBy,page,size}) => {
             size ? queriesAds.size = size : null ;
 
             const queryAdsString = new URLSearchParams(queriesAds).toString();
-            const url=https://csyc.onrender.com/offer?${queryAdsString};
+            const url = `https://csyc.onrender.com/offer?${queryAdsString}`;
             console.log(url)
             const response= await axios.get(url);
             const offer= response.data.offers;
@@ -177,7 +177,7 @@ export const getClasificados = ({title,type,order,orderBy,page,size}) => {
                     pagesOffer:0
                 }
             });
-            console.error(Error al traer los clasificados, error);
+            console.error("Error al traer los clasificados", error);
         }
     };
 };

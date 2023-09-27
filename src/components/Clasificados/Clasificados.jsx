@@ -30,7 +30,7 @@ const Clasificados = () => {
     const handleClose = () => {
         setShow(false);
         setShow2(false);
-        dispatch(getClasificados());
+        dispatch(loadAdvertisements);
     };
     
     const loadAdvertisements=()=>{
