@@ -22,6 +22,7 @@ const initialState = {
     currentServicesPage: [],
     cartServices: [],
     clasificados: [],
+    pagesClasificados: [],
     publicacionesusuario: [],
     allUsers: []
 };
@@ -92,7 +93,8 @@ const reducer = (state = initialState, action) => {
         case GET_CLASIFICADO:
             return {
                 ...state,
-                clasificados: action.payload
+                clasificados: action.payload.offer,
+                pagesClasificados: action.payload.pagesOffer
             };
         case GETOFFERBYEMAIL:
             return {

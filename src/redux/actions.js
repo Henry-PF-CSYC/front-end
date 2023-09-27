@@ -1,7 +1,18 @@
 import axios from 'axios';
-import { ADDCARTSERVICES, GETSERVICES, DELETECARTSERVICES, GETPAGINATEDSERVICES, GETALLUSERS, GETUSER, EMPTY_USER, GET_CLASIFICADO,
-    GETOFFERBYEMAIL, DELETECLASIFICADOS, EMPTYCARTSERVICES} from './action-types';
 
+import {
+    ADDCARTSERVICES,
+    GETSERVICES,
+    DELETECARTSERVICES,
+    GETPAGINATEDSERVICES,
+    GETALLUSERS,
+    GETUSER,
+    EMPTY_USER,
+    GET_CLASIFICADO,
+    GETOFFERBYEMAIL,
+    DELETECLASIFICADOS,
+    EMPTYCARTSERVICES
+} from './action-types';
 
 export const getUser = (email) => {
     return async (dispatch) => {
@@ -51,13 +62,11 @@ export const postUser = (user) => {
     };
 };
 
-
 export const emptyUser = () => {
     return {
         type: EMPTY_USER
     };
 };
-
 
 export const getServices = () => {
     return async (dispatch) => {
@@ -76,7 +85,6 @@ export const getServices = () => {
         }
     };
 };
-
 
 export const getServicesPaginated = ({
     name,
@@ -134,23 +142,45 @@ export const getServicesPaginated = ({
     };
 };
 
+export const getClasificados = ({title,type,order,orderBy,page,size}) => {
 
-export const getClasificados = () => {
     return async (dispatch) => {
         try {
-            const response = await axios.get("https://csyc.onrender.com/offer/");
-            const offer=response.data.offers
+            const queriesAds={}
+
+            title ? queriesAds.title = title : null ;
+            type ? queriesAds.type = type : null ;
+            order ? queriesAds.order = order : null ;
+            orderBy ? queriesAds.orderBy = orderBy : null ;
+            page ? queriesAds.page = page : null ;
+            size ? queriesAds.size = size : null ;
+
+            const queryAdsString = new URLSearchParams(queriesAds).toString();
+            const url=`https://csyc.onrender.com/offer?${queryAdsString}`;
+            console.log(url)
+            const response= await axios.get(url);
+            const offer= response.data.offers;
+            const pagesOffer= response.data.totalPages;
+            console.log(offer)
             dispatch({
                 type: GET_CLASIFICADO,
-                payload: offer
+                payload: {
+                    offer,
+                    pagesOffer
+                }
             });
         } catch (error) {
-            console.error("Error al traer los clasificados", error);
-        }
-    };
+            dispatch({ 
+                type: GET_CLASIFICADO,
+                payload: {
+                    offer:[],
+                    pagesOffer:0
+                }
+            });
+            console.error(`Error al traer los clasificados`, error);
+        }
+    };
 };
-
-
 
 export const postClasificados = (clasificado) => {
     return async () => {
@@ -163,7 +193,6 @@ export const postClasificados = (clasificado) => {
     };
 };
 
-
 export const addServiceCart = (service) => {
     return {
         type: ADDCARTSERVICES,
@@ -171,14 +200,12 @@ export const addServiceCart = (service) => {
     };
 };
 
-
 export const deleteServiceCart = (service) => {
     return {
         type: DELETECARTSERVICES,
         payload: service
     };
 };
-
 
 export const getOfferByEmail = (email) => {
     return async (dispatch) => {
@@ -197,13 +224,11 @@ export const getOfferByEmail = (email) => {
     };
 };
 
-
 export const clearClasificados = () => {
     return {
         type: DELETECLASIFICADOS
     };
 };
-
 
 export const deleteOffer = (id) => {
     return async () => {
@@ -215,7 +240,6 @@ export const deleteOffer = (id) => {
     };
 };
 
-
 export const restaurarOffer = (id) => {
     return async () => {
         try {
@@ -225,7 +249,6 @@ export const restaurarOffer = (id) => {
         }
     };
 };
-
 
 export const addService = (service) => {
     return async () => {
@@ -237,7 +260,6 @@ export const addService = (service) => {
     };
 };
 
-
 export const updateService = (id, service) => {
     return async () => {
         try {
@@ -247,7 +269,6 @@ export const updateService = (id, service) => {
         }
     };
 };
-
 
 export const deleteService = (id) => {
     return async () => {
@@ -260,7 +281,6 @@ export const deleteService = (id) => {
         }
     };
 };
-
 
 export const deleteClasificado = (offer) => {
     return async () => {
@@ -297,6 +317,7 @@ export const designNewContactEmail = (email) =>{
 };
 
 
+
 export const banOrUnbanUser = (email,type) =>{
     return async () => {
         try {
@@ -307,7 +328,6 @@ export const banOrUnbanUser = (email,type) =>{
         }
     };
 };
-
 
 export const emptyCart = () => {
     return {
