@@ -156,7 +156,7 @@ export const getClasificados = ({title,type,order,orderBy,page,size}) => {
             size ? queriesAds.size = size : null ;
 
             const queryAdsString = new URLSearchParams(queriesAds).toString();
-            const url=`https://csyc.onrender.com/offer?${queryAdsString}`;
+            const url=https://csyc.onrender.com/offer?${queryAdsString};
             console.log(url)
             const response= await axios.get(url);
             const offer= response.data.offers;
@@ -177,10 +177,11 @@ export const getClasificados = ({title,type,order,orderBy,page,size}) => {
                     pagesOffer:0
                 }
             });
-            console.error(`Error al traer los clasificados`, error);
-        }
-    };
+            console.error(Error al traer los clasificados, error);
+        }
+    };
 };
+
 
 export const postClasificados = (clasificado) => {
     return async () => {
@@ -230,10 +231,11 @@ export const clearClasificados = () => {
     };
 };
 
-export const deleteOffer = (id) => {
+
+export const deleteOffer = (id,type) => {
     return async () => {
         try {
-            await axios.delete(`https://csyc.onrender.com/offer/${id}`);
+            await axios.delete(`https://csyc.onrender.com/offer/${id}?type=${type}`);
         } catch (error) {
             console.error(`Error al borrar la publicacion`, error);
         }
@@ -278,16 +280,6 @@ export const deleteService = (id) => {
             );
         } catch (error) {
             alert('Error al borrar el servicio', error);
-        }
-    };
-};
-
-export const deleteClasificado = (offer) => {
-    return async () => {
-        try {
-            await axios.delete(`https://csyc.onrender.com/offer/${offer}`);
-        } catch (error) {
-            alert('Error al borrar el clasificado', error);
         }
     };
 };
