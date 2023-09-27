@@ -2,7 +2,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { getClasificados } from "../../../redux/actions";
 import { MDBDataTable } from 'mdbreact';
-import { deleteClasificado } from "../../../redux/actions";
+import { deleteOffer } from "../../../redux/actions";
+import Swal from 'sweetalert2'; // Importa SweetAlert
 import "./ClasificadosAdm.css";
 
 
@@ -10,6 +11,7 @@ const ClasificadosAdm = () => {
 
   const dispatch = useDispatch();
   const clasificados = useSelector((state) => state.clasificados); 
+  const type = "hard"
 
   // Despachamos accion para obtener clasificados
   useEffect(() => {
@@ -32,21 +34,27 @@ const ClasificadosAdm = () => {
     else return 'se-busca-cell';}
 
 
-  // Manejando borrado permanente de servicio
-  const handleDeleteOffer = (clasificadoId) => {
-  // Alert para confirmar la acción
-  console.log(clasificadoId);
-  const isConfirmed = window.confirm("¿Estás seguro de que deseas eliminar este clasificado?");
 
-  if (isConfirmed) {
-    // Si el usuario confirmó, realiza la acción de eliminación
-    
-    dispatch(deleteClasificado(clasificadoId));
-    alert("Clasificado eliminado correctamente");
-
-    // Recargamos página
-    setTimeout(() => {window.location.reload()}, 300);}
-  };
+ // Manejando borrado permanente de clasificado con SweetAlert
+const handleDeleteOffer = (clasificadoId) => {
+  Swal.fire({
+    title: "¿Estás seguro de que deseas eliminar este clasificado?",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonText: "Sí",
+    cancelButtonText: "Cancelar",
+  }).then(async (result) => {
+    if (result.isConfirmed) {
+      try {
+        await dispatch(deleteOffer(clasificadoId, "hard"));
+        Swal.fire("Clasificado eliminado correctamente", "", "success")
+        //.then(() => {window.location.reload(200);});
+      } catch (error) {
+        Swal.fire("Ha ocurrido un error al eliminar el clasificado", "", "error");
+      }
+    }
+  });
+};
 
 
   // Definimos las columnas de la tabla
@@ -78,13 +86,11 @@ const ClasificadosAdm = () => {
   // Renderizado
   return (
     <div>
-
         <h1 id="titleAdminUsers">Clasificados activos:</h1>
         
         <MDBDataTable striped bordered small data={{ columns, rows }}  noBottomColumns  responsive
         infoLabel={['Mostrando del', 'al', 'de', 'clasificados disponibles']}  paginationLabel={"<>"} 
         searchLabel="Buscar" entriesLabel="Entradas a desplegar:" className="custom-datatable"/>
-
     </div>);
 }
 

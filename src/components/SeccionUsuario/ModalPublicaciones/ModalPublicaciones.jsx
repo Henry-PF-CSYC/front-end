@@ -7,6 +7,7 @@ import {
 } from '../../../redux/actions';
 import { useDispatch, useSelector } from 'react-redux';
 
+
 const ModalPublicaciones = ({ show, handleClose, email }) => {
     const cardStyle = {
         maxWidth: '20rem',
@@ -38,9 +39,10 @@ const ModalPublicaciones = ({ show, handleClose, email }) => {
         marginRight: '15px'
     };
     const dispatch = useDispatch();
+    const type = "soft"
     let publicaciones = useSelector((state) => state.publicacionesusuario);
     const deletPublicacion = (id) => {
-        dispatch(deleteOffer(id));
+        dispatch(deleteOffer(id,type));
         dispatch(getOfferByEmail(email));
     };
     useEffect(() => {
