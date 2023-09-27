@@ -1,18 +1,7 @@
 import axios from 'axios';
+import { ADDCARTSERVICES, GETSERVICES, DELETECARTSERVICES, GETPAGINATEDSERVICES, GETALLUSERS, GETUSER, EMPTY_USER, GET_CLASIFICADO,
+    GETOFFERBYEMAIL, DELETECLASIFICADOS, EMPTYCARTSERVICES} from './action-types';
 
-import {
-    ADDCARTSERVICES,
-    GETSERVICES,
-    DELETECARTSERVICES,
-    GETPAGINATEDSERVICES,
-    GETALLUSERS,
-    GETUSER,
-    EMPTY_USER,
-    GET_CLASIFICADO,
-    GETOFFERBYEMAIL,
-    DELETECLASIFICADOS,
-    EMPTYCARTSERVICES
-} from './action-types';
 
 export const getUser = (email) => {
     return async (dispatch) => {
@@ -62,11 +51,13 @@ export const postUser = (user) => {
     };
 };
 
+
 export const emptyUser = () => {
     return {
         type: EMPTY_USER
     };
 };
+
 
 export const getServices = () => {
     return async (dispatch) => {
@@ -85,6 +76,7 @@ export const getServices = () => {
         }
     };
 };
+
 
 export const getServicesPaginated = ({
     name,
@@ -142,21 +134,23 @@ export const getServicesPaginated = ({
     };
 };
 
+
 export const getClasificados = () => {
     return async (dispatch) => {
         try {
-            const { data } = await axios.get(
-                `https://csyc.onrender.com/offer/`
-            );
+            const response = await axios.get("https://csyc.onrender.com/offer/");
+            const offer=response.data.offers
             dispatch({
                 type: GET_CLASIFICADO,
-                payload: data
+                payload: offer
             });
         } catch (error) {
-            console.error(`Error al traer los clasificados`, error);
-        }
-    };
+            console.error("Error al traer los clasificados", error);
+        }
+    };
 };
+
+
 
 export const postClasificados = (clasificado) => {
     return async () => {
@@ -169,6 +163,7 @@ export const postClasificados = (clasificado) => {
     };
 };
 
+
 export const addServiceCart = (service) => {
     return {
         type: ADDCARTSERVICES,
@@ -176,12 +171,14 @@ export const addServiceCart = (service) => {
     };
 };
 
+
 export const deleteServiceCart = (service) => {
     return {
         type: DELETECARTSERVICES,
         payload: service
     };
 };
+
 
 export const getOfferByEmail = (email) => {
     return async (dispatch) => {
@@ -200,11 +197,13 @@ export const getOfferByEmail = (email) => {
     };
 };
 
+
 export const clearClasificados = () => {
     return {
         type: DELETECLASIFICADOS
     };
 };
+
 
 export const deleteOffer = (id) => {
     return async () => {
@@ -216,6 +215,7 @@ export const deleteOffer = (id) => {
     };
 };
 
+
 export const restaurarOffer = (id) => {
     return async () => {
         try {
@@ -225,6 +225,7 @@ export const restaurarOffer = (id) => {
         }
     };
 };
+
 
 export const addService = (service) => {
     return async () => {
@@ -236,6 +237,7 @@ export const addService = (service) => {
     };
 };
 
+
 export const updateService = (id, service) => {
     return async () => {
         try {
@@ -245,6 +247,7 @@ export const updateService = (id, service) => {
         }
     };
 };
+
 
 export const deleteService = (id) => {
     return async () => {
@@ -257,6 +260,7 @@ export const deleteService = (id) => {
         }
     };
 };
+
 
 export const deleteClasificado = (offer) => {
     return async () => {
@@ -293,7 +297,6 @@ export const designNewContactEmail = (email) =>{
 };
 
 
-
 export const banOrUnbanUser = (email,type) =>{
     return async () => {
         try {
@@ -304,6 +307,7 @@ export const banOrUnbanUser = (email,type) =>{
         }
     };
 };
+
 
 export const emptyCart = () => {
     return {

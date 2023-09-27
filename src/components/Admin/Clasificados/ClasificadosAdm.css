@@ -2,6 +2,12 @@
     font-family: 'Montserrat', sans-serif;
 }
  
+
+
+.page-item.active .page-link .sr-only {
+     display: none;
+}
+
 #introToServicesAdmin{
      display: flex;
      flex-direction: row;
@@ -34,8 +40,15 @@
      font-weight: bold; 
 }
  
-.trabajo-cell{
+.venta-cell{
      color: rgb(255, 123, 0);
+     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1); 
+     text-transform: capitalize;
+     font-weight: bold; 
+}
+
+.se-busca-cell{
+     color: rgb(16, 192, 139);
      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1); 
      text-transform: capitalize;
      font-weight: bold; 

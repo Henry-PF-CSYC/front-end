@@ -2,6 +2,11 @@
    font-family: 'Montserrat', sans-serif;
 }
 
+.page-item.active .page-link .sr-only {
+    display: none;
+}
+
+
 #introToServicesAdmin{
     display: flex;
     flex-direction: row;

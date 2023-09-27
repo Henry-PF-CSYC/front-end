@@ -3,11 +3,7 @@ import { Button, Modal } from 'react-bootstrap';
 import { useState } from 'react';
 import { firebase } from '../../Firebase/firebase';
 import { useDispatch } from 'react-redux';
-import {
-    getClasificados,
-    getOfferByEmail,
-    postClasificados
-} from '../../../redux/actions';
+import { postClasificados } from '../../../redux/actions';
 
 const ModalClasificado = ({ show, handleClose, email }) => {
     const dispatch = useDispatch();
@@ -53,30 +49,26 @@ const ModalClasificado = ({ show, handleClose, email }) => {
         }
     };
 
+
     // Submit
     const handleSubmit = async (values, event) => {
         event.preventDefault();
 
         try {
             // Si hay una nueva imagen seleccionada
-
             if (selectedImageFile) {
                 // Usamos la función de Firebase para obtener la URL de la nueva imagen
-                const newImageUrl = await firebase(
-                    selectedImageFile,
-                    'clasificados/'
-                );
+                const newImageUrl = await firebase( selectedImageFile,'clasificados/');
 
                 // Actualiza los valores del formulario, incluida la nueva URL de la imagen
                 const updatedValues = { ...values, image: newImageUrl };
 
                 // Realiza la acción para enviar los datos del formulario, incluida la nueva URL de la imagen
                 dispatch(await postClasificados(updatedValues)); // Asumiendo que tienes una acción llamada "postClasificados"
-                console.log(updatedValues);
-                handleClose();
+                setTimeout(() => {window.location.reload();}, 300)
             } else {
                 dispatch(await postClasificados(values)); // Si no se seleccionó una imagen, se envia la acción sin la misma
-                console.log(values);
+                setTimeout(() => {window.location.reload();}, 300)
             }
 
             alert('La publicación fue creada correctamente');

@@ -99,9 +99,8 @@ const ServicesAdm = () => {
         <EditServiceModal show={showOptionsModal} handleClose={closeOptionsModal} serviceData={selectedRow} />
 
         <MDBDataTable striped bordered small data={{ columns, rows }}
-        infoLabel={['Mostrando del', 'al', 'de', 'clasificados disponibles']} 
-        searchLabel="Buscar" 
-        entriesLabel="Entradas a desplegar:"
+        infoLabel={['Mostrando del', 'al', 'de', 'clasificados disponibles']} searchLabel="Buscar" 
+        entriesLabel="Entradas a desplegar:" paginationLabel={"<>"} noBottomColumns responsive
         className="custom-datatable"/>
 
     </div>);

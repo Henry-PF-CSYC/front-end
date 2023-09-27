@@ -1,6 +1,8 @@
 import { Modal, Button } from "react-bootstrap";
 import { useDispatch } from "react-redux";
 import { createOrDesignAdmin, designNewContactEmail, banOrUnbanUser } from "../../../redux/actions";
+import Swal from 'sweetalert2';
+import 'sweetalert2/dist/sweetalert2.min.css';
 
 
 const EditUserModal = ({ show, handleClose, userData }) => {
@@ -50,66 +52,85 @@ const EditUserModal = ({ show, handleClose, userData }) => {
 
   // Controlador de designio de administradores
   const handleAddAdmin = async () => {
-
-  if (!userData) {return console.log("Datos no cargados aún");}
-
-  const isConfirmed = window.confirm(`¿Estás seguro de ${userData.role === "admin" ? "revocar el rol de administrador a" : "designar como administrador a"} ${userData.name}?`);
-
-  if (isConfirmed) {
+    
+    if (!userData) {console.log("Datos no cargados aún");}
     const type = userData.role === "admin" ? "unset" : "set";
     const action = createOrDesignAdmin(userData.email, type);
+  
+    Swal.fire({
+      title: `¿Estás seguro de ${userData.role === "admin"
+          ? `revocar el rol de administrador a`
+          : `designar como administrador a `} ${userData.name}?`,
+      icon: "question", showCancelButton: true, confirmButtonText: "Sí", cancelButtonText: "Cancelar"})
+      
+      .then(async (result) => {if (result.isConfirmed){
+        try {
+          await dispatch(action);
+          if (userData.role === "admin") {
+          Swal.fire("Rol de administrador revocado exitosamente", "", "success")
+          
+          .then(() => {window.location.reload(200);});
 
-  if (userData.role === "admin") { await dispatch(action);
-    alert("Rol de administrador revocado exitosamente")} 
+        } else {
+            Swal.fire( "Usuario designado como administrador correctamente", "", "success")
+            .then(() => {window.location.reload(200);}); }
 
-  else{ await dispatch(action);
-    alert("Usuario designado como administrador correctamente")}
-
-  setTimeout(() => {window.location.reload();}, 300);
-    } else { return alert("Ha ocurrido un error designando administrador/es")}
-  };
-
-
+        } catch (error) {Swal.fire("Ha ocurrido un error designando administrador/es", "", "error");}
+      }
+  })};
+  
+  
 
   // Controlador para designar contactos
   const handleDesignContact = async () => {
-    if (!userData) {
-      console.log("Datos no cargados aún");}
-      const isConfirmed = window.confirm(`¿Estás seguro de que deseas designar como contacto a ${userData.name}?`);
+    
+    if (!userData) {console.log("Datos no cargados aún");}
   
-    if (isConfirmed) {
-      await dispatch(designNewContactEmail(userData.email));
-      alert("Usuario designado como contacto correctamente");
-      setTimeout(() => {window.location.reload();}, 300);
-
-    } else { return alert("Ha ocurrido un error al designar como contacto");}
-  };
-
+    Swal.fire({title: `¿Estás seguro de que deseas designar como contacto por defecto a ${userData.name}?`,
+      icon: "question", showCancelButton: true, confirmButtonText: "Sí", cancelButtonText: "Cancelar",})
+      
+      .then(async (result) => {
+      if (result.isConfirmed) {
+        try {
+          await dispatch(designNewContactEmail(userData.email));
+          Swal.fire("Usuario designado como contacto correctamente", "", "success")
+          .then(() => {window.location.reload(200);});
+        
+        } catch (error) {Swal.fire("Ha ocurrido un error al designar como contacto", "", "error");}
+      }
+  })};
+  
 
 
   // Controlador de ban de usuarios
   const handleBanUser = async () => {
-      if (!userData) {return console.log("Datos no cargados aún")}
     
-      const isBanned = userData.role === "banned";
-      const actionType = isBanned ? "unban" : "ban";
-      const banConfirmation = isBanned ? "desbanear" : "banear";
-      const confirmationMessage = `¿Estás seguro de que deseas ${banConfirmation} a ${userData.name}?`;
-      const isConfirmed = window.confirm(confirmationMessage);
-    
-      if (isConfirmed) {
-        const action = banOrUnbanUser(userData.email, actionType);
-    
-        if (isBanned) { await dispatch(action);
-        alert("Usuario desbaneado exitosamente")
+    if (!userData) {return console.log("Datos no cargados aún")}
+    const isBanned = userData.role === "banned";
+    const actionType = isBanned ? "unban" : "ban";
+    const banConfirmation = isBanned ? "desbanear" : "banear";
+  
+    Swal.fire({title: `¿Estás seguro de que deseas ${banConfirmation} a ${userData.name}?`,
+      icon: "question", showCancelButton: true, confirmButtonText: "Sí", cancelButtonText: "Cancelar"})
+      
+      .then(async (result) => {if (result.isConfirmed) {
+        try {
+          const action = banOrUnbanUser(userData.email, actionType);
+          if (isBanned) {
+            await dispatch(action);
+            Swal.fire(`${userData.name} ha sido  desbaneado exitosamente`, "", "success")
+            .then(() => {window.location.reload()});
 
-        } else {await dispatch(action);
-        alert("Usuario baneado exitosamente")}
-    
-        setTimeout(() => {window.location.reload();}, 300);
-      } else { return alert("Ha ocurrido un error al banear/desbanear al usuario")}
-    };
+          } else {
+            await dispatch(action);
+            Swal.fire(`${userData.name} ha sido  baneado exitosamente`, "", "success")
+            .then(() => {window.location.reload()})}
 
+        } catch (error) {
+          Swal.fire("Ha ocurrido un error al banear/desbanear al usuario", "", "error");}
+    }});
+  };
+  
 
 
 

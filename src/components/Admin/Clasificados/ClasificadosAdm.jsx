@@ -10,7 +10,6 @@ const ClasificadosAdm = () => {
 
   const dispatch = useDispatch();
   const clasificados = useSelector((state) => state.clasificados); 
-  
 
   // Despachamos accion para obtener clasificados
   useEffect(() => {
@@ -29,7 +28,8 @@ const ClasificadosAdm = () => {
   // Definimos una función para asignar clase segun tipo de publicacion
   const getCellStyle = (status) => {
     if (status === 'compra') {return 'compra-cell'; } 
-    else { return 'trabajo-cell'; } };
+    else if (status === 'venta') {return 'venta-cell'; } 
+    else return 'se-busca-cell';}
 
 
   // Manejando borrado permanente de servicio
@@ -81,15 +81,9 @@ const ClasificadosAdm = () => {
 
         <h1 id="titleAdminUsers">Clasificados activos:</h1>
         
-        <MDBDataTable
-        striped
-        bordered
-        small
-        data={{ columns, rows }}
-        infoLabel={['Mostrando del', 'al', 'de', 'clasificados disponibles']} 
-        searchLabel="Buscar" 
-        entriesLabel="Entradas a desplegar:"
-        className="custom-datatable"/>
+        <MDBDataTable striped bordered small data={{ columns, rows }}  noBottomColumns  responsive
+        infoLabel={['Mostrando del', 'al', 'de', 'clasificados disponibles']}  paginationLabel={"<>"} 
+        searchLabel="Buscar" entriesLabel="Entradas a desplegar:" className="custom-datatable"/>
 
     </div>);
 }

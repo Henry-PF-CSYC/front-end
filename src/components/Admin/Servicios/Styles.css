@@ -10,5 +10,17 @@
   cursor: pointer;
 }
  
-  
-  
+.pagination-button {
+  /* Estilos personalizados aquí */
+  background-color: #007bff; /* Cambia el color de fondo */
+  color: #fff; /* Cambia el color del texto */
+  border-radius: 5px; /* Agrega bordes redondeados */
+  padding: 5px 10px; /* Ajusta el espaciado interno */
+  /* Otros estilos personalizados */
+}
+
+.pagination-button:hover {
+  /* Estilos personalizados para el estado de hover */
+  background-color: #0056b3; /* Cambia el color de fondo al pasar el mouse */
+  /* Otros estilos personalizados para hover */
+}
