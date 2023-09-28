@@ -9,11 +9,12 @@ const CardsClasificados = ({
     const cardStyle = {
         maxWidth: '20rem',
         width: '20rem',
-        margin: '15px'
+        margin: '10px',
+        boxShadow: '4px 4px 4px 1px rgba(0, 0, 0,0.1)'
     };
     const imgStyle = {
         maxWidth: '16rem',
-        maxHeight: '16rem',
+        maxHeight: '200px',
         padding: 'auto'
     };
     const descripcionStyle = {
