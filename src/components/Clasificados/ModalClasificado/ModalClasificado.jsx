@@ -8,12 +8,15 @@ import {
     getOfferByEmail,
     postClasificados
 } from '../../../redux/actions';
+import * as Yup from 'yup';
+
+
 
 const ModalClasificado = ({ show, handleClose, email }) => {
     const dispatch = useDispatch();
     const [selectedImageFile, setSelectedImageFile] = useState('');
 
-    const { values, handleBlur, handleChange, resetForm } = useFormik({
+    const { values, handleBlur, handleChange, resetForm, errors, touched } = useFormik({
         initialValues: {
             user_email: email,
             image: '',
@@ -22,7 +25,24 @@ const ModalClasificado = ({ show, handleClose, email }) => {
             description: '',
             contact: '',
             price: ''
-        }
+        },
+        validationSchema,
+    });
+    
+    const validationSchema = Yup.object().shape({
+        user_email: Yup.string().required('El correo electrónico es obligatorio'),
+        image: Yup.string().when('type', {
+            is: (type) => type !== 'Seleccionar una opcion',
+            then: Yup.string().required('La imagen es obligatoria'),
+            otherwise: Yup.string(),
+        }),
+        type: Yup.string().notOneOf(['Seleccionar una opcion'], 'Seleccione un tipo válido').required('El tipo de clasificado es obligatorio'),
+        title: Yup.string().required('El título es obligatorio'),
+        description: Yup.string().required('La descripción es obligatoria'),
+        contact: Yup.string().required('El número de contacto es obligatorio'),
+        price: Yup.number()
+          .required('El precio es obligatorio')
+          .positive('El precio debe ser un número positivo'),
     });
 
     const options = [
@@ -85,6 +105,8 @@ const ModalClasificado = ({ show, handleClose, email }) => {
         }
     };
 
+
+
     // Renderizado
     return (
         <>
@@ -114,13 +136,13 @@ const ModalClasificado = ({ show, handleClose, email }) => {
                                     handleImageChange(event);
                                 }}
                                 onBlur={handleBlur}
-                                className="form-control"
+                                className={`form-control ${errors.type && touched.type ? 'is-invalid' : ''}`}
                             />
                         </div>
 
                         <div className="form-floatin mb-2">
                             <select
-                                className="form-control"
+                                className={`form-control ${errors.type && touched.type ? 'is-invalid' : ''}`}
                                 id="type"
                                 name="type"
                                 value={values.type}
@@ -142,7 +164,7 @@ const ModalClasificado = ({ show, handleClose, email }) => {
                                 value={values.title}
                                 onChange={handleChange}
                                 onBlur={handleBlur}
-                                className="form-control"
+                                className={`form-control ${errors.type && touched.type ? 'is-invalid' : ''}`}
                             />
                         </div>
 
@@ -156,7 +178,7 @@ const ModalClasificado = ({ show, handleClose, email }) => {
                                 onChange={handleChange}
                                 onBlur={handleBlur}
                                 rows="4"
-                                className="form-control"
+                                className={`form-control ${errors.type && touched.type ? 'is-invalid' : ''}`}
                             />
                         </div>
 
@@ -169,7 +191,7 @@ const ModalClasificado = ({ show, handleClose, email }) => {
                                 value={values.contact}
                                 onChange={handleChange}
                                 onBlur={handleBlur}
-                                className="form-control"
+                                className={`form-control ${errors.type && touched.type ? 'is-invalid' : ''}`}
                             />
                         </div>
 
@@ -182,7 +204,7 @@ const ModalClasificado = ({ show, handleClose, email }) => {
                                 value={values.price}
                                 onChange={handleChange}
                                 onBlur={handleBlur}
-                                className="form-control"
+                                className={`form-control ${errors.type && touched.type ? 'is-invalid' : ''}`}
                             />
                         </div>
                     </Modal.Body>

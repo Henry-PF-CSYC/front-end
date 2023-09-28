@@ -5,9 +5,9 @@ import { emptyUser, getOfferByEmail, getUser } from '../../redux/actions';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { IconCart } from '../Cart/IconCart';
-// import {blanco} from './iconos/blanco.jpeg';
+ import {logoluki} from './iconos/logoluki.png';
 
-let logo ='https://firebasestorage.googleapis.com/v0/b/pf-henry-16edc.appspot.com/o/logos%2FlogoB.png?alt=media&token=d3cbfd94-84f2-47d4-983e-a34ebab9dde4';
+// let logo ='https://firebasestorage.googleapis.com/v0/b/pf-henry-16edc.appspot.com/o/logos%2FlogoB.png?alt=media&token=d3cbfd94-84f2-47d4-983e-a34ebab9dde4';
 
 const Navbar = () => {
     const { loginWithRedirect, isAuthenticated, user, logout } = useAuth0();
@@ -25,7 +25,6 @@ const Navbar = () => {
     };
     const handleScroll = () => {
         let section = document.querySelector(".navbar", ); 
-        logo = './iconos/blanco.jpeg'
         if (section) {
           section.classList.toggle("abajo", window.scrollY > 0);
 
@@ -44,7 +43,7 @@ const Navbar = () => {
             <div id="logoContainer">
                 <Link to="/">
                     <img
-                        src="https://www.amucss.org/images/logos/engranajes1.gif"  
+                        src="logoluki"  
                         id="logo"
                         alt="logo"
                         title="Volver al inicio"
