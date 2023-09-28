@@ -66,10 +66,12 @@ const ModalClasificado = ({ show, handleClose, email }) => {
                 const updatedValues = { ...values, image: newImageUrl };
 
                 // Realiza la acción para enviar los datos del formulario, incluida la nueva URL de la imagen
-                dispatch(await postClasificados(updatedValues)); // Asumiendo que tienes una acción llamada "postClasificados"
+                dispatch(await postClasificados(updatedValues)); 
+                console.log(values)  
                 handleClose();
             } else {
                 dispatch(await postClasificados(values)); // Si no se seleccionó una imagen, se envia la acción sin la misma
+                console.log(values)
                 handleClose();
             }
 
