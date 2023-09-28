@@ -1,4 +1,6 @@
 import {
+    SHOW_LOADER, 
+    HIDE_LOADER,
     GETSERVICES,
     GETUSER,
     GETPAGINATEDSERVICES,
@@ -24,7 +26,8 @@ const initialState = {
     clasificados: [],
     pagesClasificados: [],
     publicacionesusuario: [],
-    allUsers: []
+    allUsers: [],
+    isLoading: false
 };
 
 console.log(initialState.currentServicesPage);
@@ -32,6 +35,18 @@ console.log(initialState.currentServicesPage);
 // Reducer
 const reducer = (state = initialState, action) => {
     switch (action.type) {
+        case SHOW_LOADER:
+            return {
+                ...state,
+                isLoading: true 
+            };
+
+        case HIDE_LOADER:
+            return {
+                ...state,
+                isLoading: false 
+            };
+
         case GETUSER:
             return {
                 ...state,

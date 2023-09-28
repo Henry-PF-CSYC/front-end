@@ -1,6 +1,8 @@
 import axios from 'axios';
 
 import {
+    SHOW_LOADER,
+    HIDE_LOADER,
     ADDCARTSERVICES,
     GETSERVICES,
     DELETECARTSERVICES,
@@ -11,8 +13,24 @@ import {
     GET_CLASIFICADO,
     GETOFFERBYEMAIL,
     DELETECLASIFICADOS,
-    EMPTYCARTSERVICES
+    EMPTYCARTSERVICES,
 } from './action-types';
+
+
+
+export const showLoader = () => {
+    return {
+        type: SHOW_LOADER
+    };
+};
+
+
+export const hideLoader = () => {
+    return {
+        type: HIDE_LOADER
+    };
+};
+
 
 export const getUser = (email) => {
     return async (dispatch) => {
@@ -178,8 +196,8 @@ export const getClasificados = ({title,type,order,orderBy,page,size}) => {
                 }
             });
             console.error("Error al traer los clasificados", error);
-        }
-    };
+        }
+    };
 };
 
 

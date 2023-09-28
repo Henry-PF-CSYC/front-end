@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { updateService, deleteService } from "../../../redux/actions";
 import { firebase } from "../../Firebase/firebase"
+import Swal from 'sweetalert2';
 import "./Styles.css"
 
 const EditServiceModal = ({ show, handleClose, serviceData }) => {
@@ -80,25 +81,32 @@ const EditServiceModal = ({ show, handleClose, serviceData }) => {
     };
 
 
-  // Manejando borrado permanente de servicio
-  const handleDeleteService = () => {
-    // Alert para confirmar la acción
-    const isConfirmed = window.confirm("¿Estás seguro de que deseas eliminar este servicio?");
-
-    if (isConfirmed) {
-      // Si el usuario confirmó, realiza la acción de eliminación
-      dispatch(deleteService(serviceData.id));
-      alert("Servicio eliminado correctamente");
-
-      // Recargamos página
-      setTimeout(() => {window.location.reload()}, 300);
-
-      // Cerramos modal 
-      handleClose()}
-  };
-
-
-
+    // Manejando borrado permanente de servicio
+    const handleDeleteService = () => {
+      
+      Swal.fire({
+        title: "¿Estás seguro de que deseas eliminar este servicio?",
+        icon: "warning", showCancelButton: true, confirmButtonText: "Sí", cancelButtonText: "Cancelar",
+      }).then(async (result) => {
+        if (result.isConfirmed) {
+          try {
+            await dispatch(deleteService(serviceData.id));
+            
+            Swal.fire({
+              title: "Servicio eliminado correctamente",
+              icon: "success", confirmButtonText: "OK",})
+              
+              .then(() => { window.location.reload(); });
+              handleClose();
+          
+            } catch (error) {
+            Swal.fire("Ha ocurrido un error al eliminar el servicio", "", "error")}}
+      });
+    };
+  
+    
+    
+    
 
 // Renderizado
 return (

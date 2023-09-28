@@ -35,7 +35,7 @@ const ServicesAdm = () => {
   useEffect(() => {
     const obtenerServicios = async () => {
       try {
-        await dispatch(getServices());
+        await dispatch(getServices({ randomParam: Date.now() }));
       } catch (error) { console.error('Error al obtener servicios:', error)}
     };
     obtenerServicios()}, [dispatch]);

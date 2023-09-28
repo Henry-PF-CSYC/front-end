@@ -1,3 +1,6 @@
+export const SHOW_LOADER = 'SHOW_LOADER';
+export const HIDE_LOADER = 'HIDE_LOADER';
+
 export const GETUSER = 'GETUSER';
 export const GETALLUSERS = 'GETALLUSERS';
 export const GETSERVICES = 'GETSERVICES';

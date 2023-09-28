@@ -25,7 +25,7 @@ const UsuariosAdm = () => {
   useEffect(() => {
     const obtenerUsuarios = async () => {
       try {
-        await dispatch(getAllUsers());
+        await dispatch(getAllUsers({ randomParam: Date.now() }));
       } catch (error) { console.error('Error al obtener usuarios:', error);}};
   obtenerUsuarios()}, [dispatch]); 
 

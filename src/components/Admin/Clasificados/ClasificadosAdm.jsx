@@ -15,11 +15,11 @@ const ClasificadosAdm = () => {
 
   // Despachamos accion para obtener clasificados
   useEffect(() => {
-    const obtenerUsuarios = async () => {
+    const obtenerClasificados = async () => {
       try {
-        await dispatch(getClasificados());
+        await dispatch(getClasificados({ randomParam: Date.now() }));
       } catch (error) { console.error('Error al obtener clasificados:', error);}};
-  obtenerUsuarios()}, [dispatch]); 
+  obtenerClasificados()}, [dispatch]); 
 
 
   // Verificamos si los datos están disponibles antes de mostrar la tabla
@@ -48,7 +48,7 @@ const handleDeleteOffer = (clasificadoId) => {
       try {
         await dispatch(deleteOffer(clasificadoId, "hard"));
         Swal.fire("Clasificado eliminado correctamente", "", "success")
-        //.then(() => {window.location.reload(200);});
+        .then(() => {window.location.reload(200);});
       } catch (error) {
         Swal.fire("Ha ocurrido un error al eliminar el clasificado", "", "error");
       }

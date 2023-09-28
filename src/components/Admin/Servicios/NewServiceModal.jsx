@@ -1,7 +1,8 @@
 import { Modal, Button, Form } from "react-bootstrap";
-import { addService } from "../../../redux/actions";
-import { useDispatch } from "react-redux";
-import { useState } from "react";
+import { addService, showLoader, hideLoader } from "../../../redux/actions";
+import { ProgressBar } from 'react-loader-spinner';
+import { useDispatch, useSelector } from "react-redux";
+import { useState, useEffect } from "react";
 import { firebase } from "../../Firebase/firebase"
 
 const NewServiceModal = ({ show, handleClose }) => {
@@ -16,6 +17,8 @@ const NewServiceModal = ({ show, handleClose }) => {
   // Estado para el archivo de imagen seleccionado
   const [selectedImage, setSelectedImage] = useState("");
 
+  // Loader
+  const isLoading = useSelector((state) => state.isLoading);
 
   // Función para manejar el cambio en los campos del formulario
   const handleChange = (e) => {
@@ -23,6 +26,14 @@ const NewServiceModal = ({ show, handleClose }) => {
       setServiceData({...serviceData, [name]: value});
   };
 
+
+  useEffect(() => {
+    if (isLoading) {
+      document.body.style.overflow = "hidden"; // Deshabilitar el scroll del cuerpo
+    } else {
+      document.body.style.overflow = "auto"; // Habilitar el scroll del cuerpo
+    }
+  }, [isLoading]);
 
   // Manejador para subida de imágenes seguras
   const handleImageChange = (event) => {
@@ -52,6 +63,7 @@ const NewServiceModal = ({ show, handleClose }) => {
   try {
     // Si hay imagen
     if (selectedImage) {
+      dispatch(showLoader());
 
       // Usamos la función firebase para quedarnos con la URL a subir
       const imageUrl = await firebase(selectedImage, "admin-services/");
@@ -65,6 +77,7 @@ const NewServiceModal = ({ show, handleClose }) => {
     } else {
       // Si no hay imagen, simplemente despacha la acción sin la URL
       dispatch(await addService(serviceData));}
+      dispatch(hideLoader());
 
       alert("Servicio subido correctamente");
       setTimeout(() => {window.location.reload();}, 300)
@@ -76,7 +89,7 @@ const NewServiceModal = ({ show, handleClose }) => {
 
 // Renderizado
 return (
-    <Modal show={show} onHide={handleClose}  dialogClassName="modal-lg">
+    <Modal show={show} onHide={handleClose}  dialogClassName="modal-lg" backdrop="static" keyboard={false} >
 
         <Modal.Header closeButton>
             <Modal.Title>Añadir Servicio</Modal.Title>
@@ -84,6 +97,13 @@ return (
 
         <Modal.Body>
         
+        {isLoading && (
+          <div className="loader-overlay">
+            <div className="loader-container">
+              <ProgressBar color="#007bff" height={80} width={80} />
+            </div>
+          </div>)}
+
         <Form id="serviceForm" onSubmit={handleFormSubmit}>
 
         <div className="row p-2">
