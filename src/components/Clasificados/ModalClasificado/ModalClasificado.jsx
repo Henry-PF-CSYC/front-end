@@ -4,12 +4,13 @@ import { useState } from 'react';
 import { firebase } from '../../Firebase/firebase';
 import { useDispatch } from 'react-redux';
 import { postClasificados } from '../../../redux/actions';
+import validations from "../validations"
 
 const ModalClasificado = ({ show, handleClose, email }) => {
     const dispatch = useDispatch();
     const [selectedImageFile, setSelectedImageFile] = useState('');
 
-    const { values, handleBlur, handleChange, resetForm } = useFormik({
+    const { values, handleBlur , errors, touched, handleChange, resetForm } = useFormik({
         initialValues: {
             user_email: email,
             image: '',
@@ -18,7 +19,8 @@ const ModalClasificado = ({ show, handleClose, email }) => {
             description: '',
             contact: '',
             price: ''
-        }
+        },
+        validationSchema: validations,
     });
 
     const options = [
@@ -65,10 +67,10 @@ const ModalClasificado = ({ show, handleClose, email }) => {
 
                 // Realiza la acción para enviar los datos del formulario, incluida la nueva URL de la imagen
                 dispatch(await postClasificados(updatedValues)); // Asumiendo que tienes una acción llamada "postClasificados"
-                setTimeout(() => {window.location.reload();}, 300)
+                handleClose();
             } else {
                 dispatch(await postClasificados(values)); // Si no se seleccionó una imagen, se envia la acción sin la misma
-                setTimeout(() => {window.location.reload();}, 300)
+                handleClose();
             }
 
             alert('La publicación fue creada correctamente');
@@ -112,17 +114,24 @@ const ModalClasificado = ({ show, handleClose, email }) => {
 
                         <div className="form-floatin mb-2">
                             <select
-                                className="form-control"
                                 id="type"
                                 name="type"
                                 value={values.type}
                                 onChange={handleChange}
                                 onBlur={handleBlur}
+                                className={
+                                    'form-control form-control-lg inputStyle' +
+                                    (errors.name && touched.name
+                                        ? ' inputError'
+                                        : '')
+                                }
                             >
                                 {options.map((opcion) => (
                                     <option>{opcion.value}</option>
                                 ))}
-                            </select>
+                            </select>{errors.type && touched.type && (
+                                    <p className="errorText">{errors.type}</p>
+                                )}
                         </div>
 
                         <div className="form-floatin mb-2">
@@ -134,8 +143,15 @@ const ModalClasificado = ({ show, handleClose, email }) => {
                                 value={values.title}
                                 onChange={handleChange}
                                 onBlur={handleBlur}
-                                className="form-control"
-                            />
+                                className={
+                                    'form-control form-control-lg inputStyle' +
+                                    (errors.name && touched.name
+                                        ? ' inputError'
+                                        : '')
+                                }
+                            />{errors.title && touched.title && (
+                                    <p className="errorText">{errors.title}</p>
+                                )}
                         </div>
 
                         <div className="form-floatin mb-2">
@@ -148,8 +164,15 @@ const ModalClasificado = ({ show, handleClose, email }) => {
                                 onChange={handleChange}
                                 onBlur={handleBlur}
                                 rows="4"
-                                className="form-control"
-                            />
+                                className={
+                                    'form-control form-control-lg inputStyle' +
+                                    (errors.name && touched.name
+                                        ? ' inputError'
+                                        : '')
+                                }
+                            />{errors.description && touched.description && (
+                                    <p className="errorText">{errors.description}</p>
+                                )}
                         </div>
 
                         <div className="form-floatin mb-2">
@@ -161,8 +184,15 @@ const ModalClasificado = ({ show, handleClose, email }) => {
                                 value={values.contact}
                                 onChange={handleChange}
                                 onBlur={handleBlur}
-                                className="form-control"
-                            />
+                                className={
+                                    'form-control form-control-lg inputStyle' +
+                                    (errors.name && touched.name
+                                        ? ' inputError'
+                                        : '')
+                                }
+                            />{errors.contact && touched.contact && (
+                                <p className="errorText">{errors.contact}</p>
+                            )}
                         </div>
 
                         <div className="form-floatin mb-2">
@@ -174,8 +204,15 @@ const ModalClasificado = ({ show, handleClose, email }) => {
                                 value={values.price}
                                 onChange={handleChange}
                                 onBlur={handleBlur}
-                                className="form-control"
-                            />
+                                className={
+                                    'form-control form-control-lg inputStyle' +
+                                    (errors.name && touched.name
+                                        ? ' inputError'
+                                        : '')
+                                }
+                            />{errors.price && touched.price && (
+                                    <p className="errorText">{errors.price}</p>
+                                )}
                         </div>
                     </Modal.Body>
 
