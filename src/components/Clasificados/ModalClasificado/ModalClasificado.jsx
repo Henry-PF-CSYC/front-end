@@ -65,10 +65,11 @@ const ModalClasificado = ({ show, handleClose, email }) => {
 
                 // Realiza la acción para enviar los datos del formulario, incluida la nueva URL de la imagen
                 dispatch(await postClasificados(updatedValues)); // Asumiendo que tienes una acción llamada "postClasificados"
-                setTimeout(() => {window.location.reload();}, 300)
+            
+                console.log(values)
             } else {
                 dispatch(await postClasificados(values)); // Si no se seleccionó una imagen, se envia la acción sin la misma
-                setTimeout(() => {window.location.reload();}, 300)
+        
             }
 
             alert('La publicación fue creada correctamente');

@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { getUser, postUser } from '../../redux/actions';
 import { useNavigate } from 'react-router-dom';
+import loader from "../../loading.gif"
 
 const Register = () => {
     const onSubmit = (values, actions) => {
@@ -47,7 +48,7 @@ const Register = () => {
 
     return (
         <div className="site">
-            {isAuthenticated && (
+            {isAuthenticated ? (
                 <div className="container">
                     <form
                         onSubmit={handleSubmit}
@@ -213,7 +214,11 @@ const Register = () => {
                         </div>
                     </form>
                 </div>
-            )}
+            ):(<div class="d-flex justify-content-center " >
+            <img 
+            src={loader}
+            />
+        </div>)}
         </div>
     );
 };
