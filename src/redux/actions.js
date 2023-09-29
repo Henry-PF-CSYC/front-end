@@ -76,6 +76,7 @@ export const postUser = (user) => {
             console.log('me cree');
         } catch (error) {
             console.error('Error creando el usuario', error);
+            throw error;
         }
     };
 };
