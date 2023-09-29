@@ -7,7 +7,7 @@ import { getUser, postUser, getOfferByEmail, emptyCart } from '../../redux/actio
 import { useAuth0 } from '@auth0/auth0-react';
 import loader from "../../loading.gif"
 
-import { useSearchParams } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 import axios from 'axios';
 
 import ModalPublicaciones from './ModalPublicaciones/ModalPublicaciones';
@@ -103,9 +103,9 @@ const SeccionUsuario = () => {
 
     return (
         <>{isAuthenticated?
-            (<div class="row" style={seccion}>
-                <div class="col-12 d-flex justify-content-end">
-                    {/* <button class='btn btn-dark' type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">Modificar datos personales</button> */}
+            (<div className="row m-0" style={seccion}>
+                <div className="col-12 d-flex justify-content-end">
+                    {/* <button className='btn btn-dark' type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">Modificar datos personales</button> */}
                     <Button
                         variant="dark"
                         onClick={() => {
@@ -115,10 +115,11 @@ const SeccionUsuario = () => {
                         Modificar datos personales
                     </Button>
                 </div>
-                <div class="col-12 d-flex justify-content-center mb-3">
+                <div className="col-12 d-flex justify-content-center mb-3">
                     <h1>Mi perfil</h1>
                 </div>
-                <div class="col-10 ps-5">
+                <div className='col-3'></div>
+                <div className="col-4">
                     <p>Nombre: {dataUser.name}</p>
                     <p>Apellido: {dataUser.lastname}</p>
                     <p>Email: {isAuthenticated ? user.email : 'Loading'}</p>
@@ -126,7 +127,7 @@ const SeccionUsuario = () => {
                     <p>Direcion: {dataUser.address}</p>
                     <p>Telefono: {dataUser.phone}</p>
                 </div>
-                <div class="col-2">
+                <div className="col-2">
                     <img
                         src={isAuthenticated ? user.picture : loader}
                         width={'163px'}
@@ -134,9 +135,10 @@ const SeccionUsuario = () => {
                         alt="si funciona"
                     />
                 </div>
-                <div class="col-12 ps-5">
+                <div className='col-5'></div>
+                <div className="col-2">
                     <button
-                        class="btn btn-dark p-1 ms-2"
+                        className="btn btn-dark p-1 ms-2"
                         onClick={() => {
                             setShow2(true);
                         }}
@@ -145,20 +147,37 @@ const SeccionUsuario = () => {
                     </button>
                 </div>
             </div>): 
-            (<div class="d-flex justify-content-center" >
+            (<div className="d-flex justify-content-center" >
                 <img 
                 src={loader}
                 />
             </div>)}
-            <div style={{ backgroundColor: '#75B3Ac' }} class="pb-1">
-                <div class="row m-5">
-                    <div class="col-12 d-flex justify-content-center mt-5">
-                        <h1>Mis servicios activos:</h1>
+            <div style={{ backgroundColor: '#75B3Ac' }} className="pb-1">
+                <div className="row m-5 d-flex justify-content-center">
+                    <div className="col-12 mt-5 d-flex justify-content-center">
+                    {
+                            servicios.length > 0 ? (
+                                <h1>Mis servicios activos:</h1>
+                            ) : (
+                                <div className='row'>
+                                    <div className='col-12 d-flex justify-content-center'>
+                                        <h1>En el momento no tiene servicios adquiridos</h1>
+                                    </div>
+                                    <div className='col-12 d-flex justify-content-center'>
+                                        <Link to='/servicios'>
+                                            <Button variant='dark'>
+                                                Adquirir servicios
+                                            </Button>
+                                        </Link>
+                                    </div>
+                                </div>
+                            )
+                        }
                     </div>
                     {servicios.length > 0 &&
                         servicios.map((servicio, index) => {
                             return (
-                                <div class="col-3 ps-5 my-5">
+                                <div className="col-3 ps-5 my-5">
                                     <CardsServicios
                                         key={index}
                                         imagen={servicio['service.image']}
