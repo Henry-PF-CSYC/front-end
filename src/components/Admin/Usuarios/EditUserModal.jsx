@@ -1,13 +1,22 @@
 import { Modal, Button } from "react-bootstrap";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { createOrDesignAdmin, designNewContactEmail, banOrUnbanUser } from "../../../redux/actions";
 import Swal from 'sweetalert2';
 import 'sweetalert2/dist/sweetalert2.min.css';
+
+// Loader
+import { Rings } from "react-loader-spinner";
+import { showLoader, hideLoader } from "../../../redux/actions";
 
 
 const EditUserModal = ({ show, handleClose, userData }) => {
   
   const dispatch = useDispatch()
+
+   // Accedemos al estado global del loader
+   const isLoading = useSelector((state) => state.isLoading); 
+
+
 
   // Status de usuario para evaluar disposicion de botones y textos
   const isUser = userData && userData.role === "user";
@@ -65,7 +74,10 @@ const EditUserModal = ({ show, handleClose, userData }) => {
       
       .then(async (result) => {if (result.isConfirmed){
         try {
+          dispatch(showLoader());
           await dispatch(action);
+          dispatch(hideLoader());
+
           if (userData.role === "admin") {
           Swal.fire("Rol de administrador revocado exitosamente", "", "success")
           
@@ -92,7 +104,9 @@ const EditUserModal = ({ show, handleClose, userData }) => {
       .then(async (result) => {
       if (result.isConfirmed) {
         try {
+          dispatch(showLoader());
           await dispatch(designNewContactEmail(userData.email));
+          dispatch(hideLoader());
           Swal.fire("Usuario designado como contacto correctamente", "", "success")
           .then(() => {window.location.reload(200);});
         
@@ -105,6 +119,7 @@ const EditUserModal = ({ show, handleClose, userData }) => {
   // Controlador de ban de usuarios
   const handleBanUser = async () => {
     
+  
     if (!userData) {return console.log("Datos no cargados aún")}
     const isBanned = userData.role === "banned";
     const actionType = isBanned ? "unban" : "ban";
@@ -115,14 +130,17 @@ const EditUserModal = ({ show, handleClose, userData }) => {
       
       .then(async (result) => {if (result.isConfirmed) {
         try {
+          dispatch(showLoader());
           const action = banOrUnbanUser(userData.email, actionType);
           if (isBanned) {
             await dispatch(action);
+            dispatch(hideLoader());
             Swal.fire(`${userData.name} ha sido  desbaneado exitosamente`, "", "success")
             .then(() => {window.location.reload()});
 
           } else {
             await dispatch(action);
+            dispatch(hideLoader());
             Swal.fire(`${userData.name} ha sido  baneado exitosamente`, "", "success")
             .then(() => {window.location.reload()})}
 
@@ -137,37 +155,44 @@ const EditUserModal = ({ show, handleClose, userData }) => {
 
 // Renderizado    
 return (
-    <Modal show={show} onHide={handleClose}>
+      <>
+            {isLoading && (<div className="loader-background">
+                              <div className="loader-container"><Rings color="#007bff"/></div>
+                          </div>)}
 
-        <Modal.Header closeButton>
-            <Modal.Title>Acciones de usuario</Modal.Title>
-        </Modal.Header>
+            <Modal show={show} onHide={handleClose}  dialogClassName={`${isLoading ? 'admin-modal-active' : ''}`}
+            backdrop="static" keyboard={false}>
 
-        <Modal.Body>
+                <Modal.Header closeButton>
+                    <Modal.Title>Acciones de usuario</Modal.Title>
+                </Modal.Header>
 
-            {!isBanned &&  !isUser &&( <div>
-                <Button variant={userData && userData.role === "contact_admin" ? "secondary" : "primary"} onClick={handleDesignContact}
-                disabled={userData && userData.role === "contact_admin"}>{contactButtonText}</Button><p>{contactInfoText}</p>
-            </div>)}
+                <Modal.Body>
 
-            {!isBanned && !isContactAdmin &&  ( <div>
-                <Button variant={userData && userData.role === "admin" ? "danger" : "warning"}
-                onClick={handleAddAdmin} disabled={!userData}>{roleButtonText}</Button><p>{roleInfoText}</p>
-            </div>)}
-   
+                {!isBanned &&  !isUser &&( <div>
+                    <Button variant={userData && userData.role === "contact_admin" ? "secondary" : "primary"} onClick={handleDesignContact}
+                    disabled={userData && userData.role === "contact_admin"}>{contactButtonText}</Button><p>{contactInfoText}</p>
+                </div>)}
 
-            {!isContactAdmin && !isAdmin && ( <div>
-                <Button variant={userData && userData.role === "banned" ? "primary" : "danger"}
-                onClick={handleBanUser} disabled={!userData}>{banButtonText}</Button><p>{banInfoText}</p>
-            </div>)}
-   
-        </Modal.Body>
+                {!isBanned && !isContactAdmin &&  ( <div>
+                    <Button variant={userData && userData.role === "admin" ? "danger" : "warning"}
+                    onClick={handleAddAdmin} disabled={!userData}>{roleButtonText}</Button><p>{roleInfoText}</p>
+                </div>)}
+      
 
-        <Modal.Footer>
-            <Button variant="secondary" onClick={handleClose}> Cerrar </Button> 
-        </Modal.Footer>
+                {!isContactAdmin && !isAdmin && ( <div>
+                    <Button variant={userData && userData.role === "banned" ? "primary" : "danger"}
+                    onClick={handleBanUser} disabled={!userData}>{banButtonText}</Button><p>{banInfoText}</p>
+                </div>)}
+      
+            </Modal.Body>
 
-    </Modal>);
+            <Modal.Footer>
+                <Button variant="secondary" onClick={handleClose}> Cerrar </Button> 
+            </Modal.Footer>
+
+        </Modal>
+    </>)
 };
 
 export default EditUserModal;

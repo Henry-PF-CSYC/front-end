@@ -3,15 +3,31 @@ import { useEffect } from "react";
 import { getClasificados } from "../../../redux/actions";
 import { MDBDataTable } from 'mdbreact';
 import { deleteOffer } from "../../../redux/actions";
-import Swal from 'sweetalert2'; // Importa SweetAlert
 import "./ClasificadosAdm.css";
+
+// Sweetalert
+import Swal from 'sweetalert2'; 
+import 'sweetalert2/dist/sweetalert2.min.css';
+
+// Loader
+import { Rings } from "react-loader-spinner";
+import "../Admin.css"
+import { showLoader, hideLoader } from "../../../redux/actions";
+
 
 
 const ClasificadosAdm = () => {
 
   const dispatch = useDispatch();
+
+  // Traemos clasificados
   const clasificados = useSelector((state) => state.clasificados); 
-  const type = "hard"
+
+  // Accedemos al estado global del loader
+  const isLoading = useSelector((state) => state.isLoading); 
+
+
+
 
   // Despachamos accion para obtener clasificados
   useEffect(() => {
@@ -46,7 +62,9 @@ const handleDeleteOffer = (clasificadoId) => {
   }).then(async (result) => {
     if (result.isConfirmed) {
       try {
+        dispatch(showLoader());
         await dispatch(deleteOffer(clasificadoId, "hard"));
+        dispatch(hideLoader());
         Swal.fire("Clasificado eliminado correctamente", "", "success")
         .then(() => {window.location.reload(200);});
       } catch (error) {
@@ -85,7 +103,10 @@ const handleDeleteOffer = (clasificadoId) => {
 
   // Renderizado
   return (
-    <div>
+      <div>
+
+        {isLoading && (<div className="loader-offer"><Rings color="#007bff"/></div>)}
+
         <h1 id="titleAdminUsers">Clasificados activos:</h1>
         
         <MDBDataTable striped bordered small data={{ columns, rows }}  noBottomColumns  responsive

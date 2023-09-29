@@ -1,10 +1,17 @@
 import { Modal, Button, Form } from "react-bootstrap";
 import { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { updateService, deleteService } from "../../../redux/actions";
 import { firebase } from "../../Firebase/firebase"
 import Swal from 'sweetalert2';
-import "./Styles.css"
+import 'sweetalert2/dist/sweetalert2.min.css';
+import "../Admin.css"
+
+// Loader
+import { Rings } from "react-loader-spinner";
+import { showLoader, hideLoader } from "../../../redux/actions";
+
+
 
 const EditServiceModal = ({ show, handleClose, serviceData }) => {
 
@@ -13,8 +20,14 @@ const EditServiceModal = ({ show, handleClose, serviceData }) => {
     // Inicializamos un estado local con los datos del servicio al abrir modal
     const [editData, setEditData] = useState(serviceData);
 
+    // Accedemos al estado global del loader
+    const isLoading = useSelector((state) => state.isLoading); 
+
     // Estado local para nueva imagen a subir
     const [selectedImage, setSelectedImage] = useState("");
+
+
+
 
     // Cambios enlazados al estado local
     const handleChange = (e) => {
@@ -22,6 +35,7 @@ const EditServiceModal = ({ show, handleClose, serviceData }) => {
       setEditData({ ...editData, [name]: value });
     };
   
+
     // Al cambiar de modal, cambian los datos de cada servicio
     useEffect(() => {
       setEditData(serviceData);
@@ -29,9 +43,11 @@ const EditServiceModal = ({ show, handleClose, serviceData }) => {
 
 
     // Manejador para subida de imágenes seguras
-  const handleImageChange = (event) => {
+    const handleImageChange = (event) => {
     const imageFile = event.target.files[0];
     
+
+
     // Verificar si se seleccionó un archivo
     if (imageFile) {
     // Verificar si el tipo de archivo es una imagen (por ejemplo, png, jpeg, jpg, gif)
@@ -42,18 +58,16 @@ const EditServiceModal = ({ show, handleClose, serviceData }) => {
     } else {
         // El archivo no es una imagen válida, muestra un mensaje de error o realiza alguna acción
         alert("Por favor, seleccione una imagen válida (png, jpeg, jpg, gif).");
-        event.target.value = null;}
-    }
-  };
+        event.target.value = null;}}
+    };
   
 
 
     // Manejo de envio de formulario
     const handleFormSubmit = async (event) => {
       event.preventDefault();
-    
       try {
-       
+        dispatch(showLoader());
          // Inicializamos la nueva imagen como nula
         let newImageUrl = null;
     
@@ -70,13 +84,14 @@ const EditServiceModal = ({ show, handleClose, serviceData }) => {
         setEditData({ ...editData, image: newImageUrl });
     
         // Despachamos la acción para actualizar el servicio con los datos editados
-        dispatch(updateService(editData.id, { ...editData, image: newImageUrl }));
-  
-        alert("El servicio fue editado correctamente");
-        setTimeout(() => {window.location.reload();}, 300);
+        dispatch(await updateService(editData.id, { ...editData, image: newImageUrl }));
+        dispatch(hideLoader());
+
+        Swal.fire("El servicio fue editado exitosamente","", "success").
+        then(() => {window.location.reload(300);});
     
       } catch (error) {
-        console.error("Error al editar el servicio:", error);
+        Swal.fire("No se pudo editar el servicio","", "error")
       }
     };
 
@@ -90,8 +105,10 @@ const EditServiceModal = ({ show, handleClose, serviceData }) => {
       }).then(async (result) => {
         if (result.isConfirmed) {
           try {
+            dispatch(showLoader());
             await dispatch(deleteService(serviceData.id));
-            
+            dispatch(hideLoader());
+
             Swal.fire({
               title: "Servicio eliminado correctamente",
               icon: "success", confirmButtonText: "OK",})
@@ -110,7 +127,14 @@ const EditServiceModal = ({ show, handleClose, serviceData }) => {
 
 // Renderizado
 return (
-    <Modal show={show} onHide={handleClose} dialogClassName="modal-lg">
+  <>
+    {isLoading && (<div className="loader-background">
+                      <div className="loader-container"><Rings color="#007bff"/></div>
+                  </div>)}
+
+    <Modal show={show} onHide={handleClose} dialogClassName={`modal-lg ${isLoading ? 'admin-modal-active' : ''}`}
+    backdrop="static" keyboard={false}>
+
       <Modal.Header closeButton>
         <Modal.Title>{serviceData ? serviceData.name : "No disponible"}</Modal.Title>
       </Modal.Header>
@@ -184,7 +208,8 @@ return (
         <Button variant="secondary" onClick={()=>{handleClose()}}> Descartar </Button>
       </Modal.Footer>
 
-    </Modal>);
+    </Modal>
+   </>);
 };
 
 export default EditServiceModal; 
