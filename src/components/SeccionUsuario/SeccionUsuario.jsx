@@ -80,9 +80,9 @@ const SeccionUsuario = () => {
             setDataUser(usuario);
             usuario.email = user.email;
         }
-
         submitSuscription();
     },[isAuthenticated]);
+
 
     const handleClose = () => {
         setShow(false);

@@ -1,9 +1,10 @@
 import { Modal, Button, Form } from "react-bootstrap";
 import { addService, showLoader, hideLoader } from "../../../redux/actions";
-import { ProgressBar } from 'react-loader-spinner';
 import { useDispatch, useSelector } from "react-redux";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { firebase } from "../../Firebase/firebase"
+import { Rings } from "react-loader-spinner";
+import './Loader.css'; // Importa el archivo CSS de estilos
 
 const NewServiceModal = ({ show, handleClose }) => {
 
@@ -16,9 +17,8 @@ const NewServiceModal = ({ show, handleClose }) => {
 
   // Estado para el archivo de imagen seleccionado
   const [selectedImage, setSelectedImage] = useState("");
-
-  // Loader
-  const isLoading = useSelector((state) => state.isLoading);
+  
+  const isLoading = useSelector((state) => state.isLoading); // Accede al estado global del loader
 
   // Función para manejar el cambio en los campos del formulario
   const handleChange = (e) => {
@@ -26,14 +26,6 @@ const NewServiceModal = ({ show, handleClose }) => {
       setServiceData({...serviceData, [name]: value});
   };
 
-
-  useEffect(() => {
-    if (isLoading) {
-      document.body.style.overflow = "hidden"; // Deshabilitar el scroll del cuerpo
-    } else {
-      document.body.style.overflow = "auto"; // Habilitar el scroll del cuerpo
-    }
-  }, [isLoading]);
 
   // Manejador para subida de imágenes seguras
   const handleImageChange = (event) => {
@@ -89,20 +81,23 @@ const NewServiceModal = ({ show, handleClose }) => {
 
 // Renderizado
 return (
-    <Modal show={show} onHide={handleClose}  dialogClassName="modal-lg" backdrop="static" keyboard={false} >
+
+  <>
+  {isLoading && (
+    <div className="loader-background">
+      <div className="loader-container">
+        <Rings />
+      </div>
+    </div>
+  )}
+
+    <Modal show={show} onHide={handleClose} dialogClassName={`modal-lg ${isLoading ? 'custom-modal-active' : ''}`} backdrop="static" keyboard={false} >
 
         <Modal.Header closeButton>
             <Modal.Title>Añadir Servicio</Modal.Title>
         </Modal.Header>
 
         <Modal.Body>
-        
-        {isLoading && (
-          <div className="loader-overlay">
-            <div className="loader-container">
-              <ProgressBar color="#007bff" height={80} width={80} />
-            </div>
-          </div>)}
 
         <Form id="serviceForm" onSubmit={handleFormSubmit}>
 
@@ -156,7 +151,8 @@ return (
             <Button variant="primary" type="submit" form="serviceForm"> Añadir Servicio </Button>
         </Modal.Footer>
 
-    </Modal>);
+    </Modal>
+    </>);
 };
 
 export default NewServiceModal;
