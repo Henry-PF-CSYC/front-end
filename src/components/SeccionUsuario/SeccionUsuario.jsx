@@ -82,7 +82,7 @@ const SeccionUsuario = () => {
         }
 
         submitSuscription();
-    });
+    },[isAuthenticated]);
 
     const handleClose = () => {
         setShow(false);

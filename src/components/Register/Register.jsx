@@ -21,13 +21,15 @@ const Register = () => {
     const dispatch = useDispatch();
     useEffect(() => {
         if (isAuthenticated) {
+            
             dispatch(getUser(user.email));
             usuario.email = user.email;
-            if (usuario.name !== undefined) {
+            console.log("me ejecute",usuario)
+            if (usuario.name ) {
                 navigate('/');
             }
         }
-    });
+    },[isAuthenticated,usuario]);
 
     let { values, errors, touched, handleBlur, handleChange, handleSubmit } =
         useFormik({
@@ -48,7 +50,7 @@ const Register = () => {
 
     return (
         <div className="site">
-            {isAuthenticated ? (
+            {isAuthenticated  ? (
                 <div className="container">
                     <form
                         onSubmit={handleSubmit}
