@@ -13,16 +13,16 @@ const mySchema = Yup.object().shape({
 
     dni: Yup.string()
         .matches(/^\d+$/, 'Ingrese un DNI válido')
-        .min(5, 'El número es muy pequeño')
-        .max(14, 'El número es muy extenso')
+        .min(8, 'El número es muy pequeño')
+        .max(9, 'El número es muy extenso')
         .required('Por favor, ingrese su número DNI'),
 
     address: Yup.string().required('Por favor, ingrese una dirección'),
 
     phone: Yup.string()
         .matches(/^\d+$/, 'Ingrese un número válido')
-        .min(5, 'El número es muy pequeño')
-        .max(14, 'El número es muy extenso')
+        .min(8, 'El número es muy pequeño')
+        .max(10, 'El número es muy extenso')
         .required('Por favor, ingrese un número')
 });
 
