@@ -3,6 +3,7 @@ import style from './CardsServicios.module.css'
 import { addServiceCart } from '../../../redux/actions'
 import Swal from 'sweetalert2'
 
+
 const CardsServicios = ({ imagen, titulo, descripcion, nombreBoton, estado, precio, id, type }) => {
 
     const dispatch = useDispatch()

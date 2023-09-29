@@ -18,6 +18,7 @@ import {
 
 
 
+
 export const showLoader = () => {
     return {
         type: SHOW_LOADER
@@ -147,7 +148,6 @@ export const getServicesPaginated = ({
                     totalCount // Incluye el número total de páginas en el payload.
                 }
             });
-            console.log(services);
         } catch (error) {
             dispatch({
                 type: GETPAGINATEDSERVICES,
@@ -166,12 +166,29 @@ export const getClasificados = ({title,type,order,orderBy,page,size}) => {
         try {
             const queriesAds={}
 
-            title ? queriesAds.title = title : null ;
-            type ? queriesAds.type = type : null ;
-            order ? queriesAds.order = order : null ;
-            orderBy ? queriesAds.orderBy = orderBy : null ;
-            page ? queriesAds.page = page : null ;
-            size ? queriesAds.size = size : null ;
+            if (title) {
+                queriesAds.title = title;
+            }
+            
+            if (type) {
+                queriesAds.type = type;
+            }
+            
+            if (order) {
+                queriesAds.order = order;
+            }
+            
+            if (orderBy) {
+                queriesAds.orderBy = orderBy;
+            }
+            
+            if (page) {
+                queriesAds.page = page;
+            }
+            
+            if (size) {
+                queriesAds.size = size;
+            }
 
             const queryAdsString = new URLSearchParams(queriesAds).toString();
             const url = `https://csyc.onrender.com/offer?${queryAdsString}`;
@@ -232,7 +249,6 @@ export const getOfferByEmail = (email) => {
             const { data } = await axios.get(
                 `https://csyc.onrender.com/offer/${email}`
             );
-            console.log('data', data);
             dispatch({
                 type: GETOFFERBYEMAIL,
                 payload: data
@@ -342,5 +358,17 @@ export const banOrUnbanUser = (email,type) =>{
 export const emptyCart = () => {
     return {
         type: EMPTYCARTSERVICES
+    }
+}
+export const raitingPost = ({rating,comment,user_email,serviceId}) => {
+    return async () => {
+        try {
+            const response = await axios.post(`https://csyc.onrender.com/reviews`,{rating:parseInt(rating),comment,user_email,serviceId})
+            const dataRaiting = response.data
+            console.log(dataRaiting)
+            console.log(response)
+        } catch (error) {
+            console.log(error)
+        }
     }
 }
