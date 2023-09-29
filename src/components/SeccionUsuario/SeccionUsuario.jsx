@@ -80,9 +80,8 @@ const SeccionUsuario = () => {
             setDataUser(usuario);
             usuario.email = user.email;
         }
-
         submitSuscription();
-    });
+    },[]);
 
     const handleClose = () => {
         setShow(false);
