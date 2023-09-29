@@ -3,7 +3,7 @@ import ModalUsuario from './ModalUsuario/ModalUsuario';
 import { useEffect, useState } from 'react';
 import { Button } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
-import { getUser, postUser, getOfferByEmail, emptyCart } from '../../redux/actions';
+import { getUser, putUser, getOfferByEmail, emptyCart } from '../../redux/actions';
 import { useAuth0 } from '@auth0/auth0-react';
 import loader from "../../loading.gif"
 
@@ -82,7 +82,15 @@ const SeccionUsuario = () => {
         }
         submitSuscription();
     },[isAuthenticated]);
-
+    useEffect(() => {
+        if (isAuthenticated) {
+            dispatch(getUser(user.email));
+            dispatch(getOfferByEmail(user.email));
+            setDataUser(usuario);
+            usuario.email = user.email;
+        }
+        submitSuscription();
+    },[]);
 
     const handleClose = () => {
         setShow(false);
@@ -91,7 +99,7 @@ const SeccionUsuario = () => {
 
     const updateUser = (data) => {
         setDataUser(data);
-        dispatch(postUser(dataUser));
+        dispatch(putUser(dataUser));
         setShow(false);
     };
 

@@ -9,11 +9,7 @@ import { useNavigate } from 'react-router-dom';
 import loader from "../../loading.gif"
 
 const Register = () => {
-    const onSubmit = (values, actions) => {
-        alert('Registrado!');
-        console.log('Submitted!', values);
-        actions.resetForm();
-    };
+
 
     let usuario = useSelector((state) => state.dataUser);
     const navigate = useNavigate();
@@ -43,8 +39,8 @@ const Register = () => {
             validationSchema: validations,
             onSubmit: () => {
                 values.email = user.email;
-                dispatch(postUser(values));
-                navigate('/');
+                values.dni=Number(values.dni);
+                dispatch(postUser(values)).then(navigate("/"));   
             }
         });
 

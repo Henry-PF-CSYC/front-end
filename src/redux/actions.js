@@ -37,7 +37,7 @@ export const getUser = (email) => {
         try {
             const { data } = await axios.get(
                 `https://csyc.onrender.com/users/?email=${email}`
-            );
+            );  
             dispatch({
                 type: GETUSER,
                 payload: data
@@ -73,6 +73,16 @@ export const postUser = (user) => {
     return async () => {
         try {
             await axios.post('https://csyc.onrender.com/users', user);
+            console.log('me cree');
+        } catch (error) {
+            console.error('Error creando el usuario', error);
+        }
+    };
+};
+export const putUser = (user) => {
+    return async () => {
+        try {
+            await axios.put('https://csyc.onrender.com/users', user);
             console.log('me cree');
         } catch (error) {
             console.error('Error finding the user', error);

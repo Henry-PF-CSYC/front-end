@@ -19,6 +19,7 @@ const Navbar = () => {
     };
 
     const click = () => {
+        console.log("click")
         dispatch(getUser(user.email));
         dispatch(getOfferByEmail(user.email));
     };
@@ -143,6 +144,7 @@ const Navbar = () => {
                         <button
                             class="btn btn-secondary dropdown-toggle"
                             type="button"
+                            onClick={click}
                             id="dropdownMenuButton1"
                             data-bs-toggle="dropdown"
                             aria-expanded="false"
@@ -156,7 +158,7 @@ const Navbar = () => {
                             />
                         </button>
                         <ul
-                            onClick={click()}
+                            
                             className="dropdown-menu"
                             aria-labelledby="dropdownMenuButton1"
                         >
