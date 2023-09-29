@@ -37,12 +37,20 @@ const Register = () => {
                 phone: ''
             },
             validationSchema: validations,
-            onSubmit: () => {
+            onSubmit: async () => {
                 values.email = user.email;
-                values.dni=Number(values.dni);
-                dispatch(postUser(values)).then(navigate("/"));   
+                values.dni = Number(values.dni);
+                try {
+                    const response = await dispatch(postUser(values));
+                    navigate("/");
+                } catch (error) {
+                    if (error.response) {
+                        alert("El DNI ya esta registrado en nuestro sistema")
+                    }
+                }
             }
         });
+            
 
     return (
         <div className="site">
