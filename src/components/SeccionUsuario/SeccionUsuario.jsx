@@ -81,7 +81,8 @@ const SeccionUsuario = () => {
             usuario.email = user.email;
         }
         submitSuscription();
-    },[]);
+    },[isAuthenticated]);
+
 
     const handleClose = () => {
         setShow(false);
