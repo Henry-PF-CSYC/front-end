@@ -11,6 +11,7 @@ import Login from "./components/Login/login"
 import Register from "./components/Register/Register"
 import SeccionUsuario from './components/SeccionUsuario/SeccionUsuario'
 import Clasificados from "./components/Clasificados/Clasificados";
+import PruebaTailwind from "./components/PruebaTailwind";
 
 // Servicios
 import Servicios from "./components/Servicios/Servicios";
@@ -54,6 +55,7 @@ function App() {
           </div>)}
       {!isAdminRouted && <Navbar/>}
 
+
       <Routes>
         {/*Componentes principales*/}
         <Route path="/" element={<Landing/>}/>
@@ -62,6 +64,7 @@ function App() {
         <Route path="/usuario" element={<SeccionUsuario/>}/>
         <Route path="/clasificados" element={<Clasificados/>}/>
         <Route path="/contacto" element={<Contact/>}/>
+        <Route path="/prueba" element={<PruebaTailwind/>}/>
 
 
         {/*Servicios*/}
@@ -74,6 +77,7 @@ function App() {
         <Route path="/servicios/telefonia" element={<Telefonia/>}/>
         <Route path="/servicios/streaming" element={<Streaming/>}/>
         <Route path="/cart" element={<Cart isTerms={true}/>}/>
+
 
         {/* Administrador */}
         <Route path="/admin/*" element={<Admin/>}>
