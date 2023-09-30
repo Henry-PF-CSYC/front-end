@@ -30,7 +30,7 @@ const initialState = {
     isLoading: false
 };
 
-console.log(initialState.currentServicesPage);
+console.log(initialState.dataUser);
 
 // Reducer
 const reducer = (state = initialState, action) => {
