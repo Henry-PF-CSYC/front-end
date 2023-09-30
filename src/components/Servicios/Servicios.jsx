@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { getServicesPaginated } from '../../redux/actions';
 import './Servicios.css';
 import CardsServicios from './CardsServicios/CardsServicios';
+import ModalServicio from './Modal/Modal';
 
 const Servicios = () => {
     const dispatch = useDispatch();
@@ -19,6 +20,8 @@ const Servicios = () => {
     const [rangeMin, setRangeMin] = useState('');
     const [rangeMax, setRangeMax] = useState('');
     const size = 3; //las cartas que me tiene que traer
+    const [show, setShow] = useState(false);
+    const [service,setService]=useState({})
 
     const loadServices = () => {
         //para cargar los servicios voy a mandarlo a un use efect
@@ -107,7 +110,11 @@ const Servicios = () => {
         }
         setCurrentPage(1)
     }
-
+    
+    const handleClose = () => {
+        setShow(false);
+    };
+    
     return (
         <section id="servicesContainer">
             <div id="generalInfo">
@@ -186,10 +193,13 @@ const Servicios = () => {
                         {serviciosInPage.length !== 0 ? (
                             serviciosInPage.map((servicio, index) => (
                                 <div key={index} className={serviciosInPage.length === 2 ? "col-6 px-5" : "col-4 px-5"}>
-                                    <CardsServicios
+                                   <CardsServicios
                                         imagen={servicio.image}
                                         titulo={servicio.name}
                                         nombreBoton="Lo quiero!"
+                                        click={()=>{
+                                            setService(servicio);
+                                            setShow(true)}}
                                         descripcion={servicio.description}
                                         precio={servicio.price}
                                         estado={servicio.status}
@@ -251,6 +261,11 @@ const Servicios = () => {
                     </li>
                 </ul>
             </div>
+            <ModalServicio
+                show={show}
+                handleClose={handleClose}
+                service={service}
+            />
         </section>
     );
 };

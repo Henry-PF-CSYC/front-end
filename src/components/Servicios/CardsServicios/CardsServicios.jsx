@@ -3,7 +3,7 @@ import style from './CardsServicios.module.css'
 import { addServiceCart } from '../../../redux/actions'
 import Swal from 'sweetalert2'
 
-const CardsServicios = ({ imagen, titulo, descripcion, nombreBoton, estado, precio, id, type }) => {
+const CardsServicios = ({ imagen, titulo, descripcion, nombreBoton, estado, precio, id, type,click }) => {
 
     const dispatch = useDispatch()
     const serviceCarts = useSelector(state => state.cartServices)
@@ -45,7 +45,8 @@ const CardsServicios = ({ imagen, titulo, descripcion, nombreBoton, estado, prec
             <div className={`${style.face} ${style.back}`}>
                 <h3>{titulo}</h3>
                 <p className={style.description}>{`${descripcion.slice(0,155)}`}</p>
-                    {
+                 <p><button className="btn btn-primary" onClick={click}>Opiniones</button></p>
+                     {
                         precio && (
                             <p className={style.price}>{`$${precio}`}</p>
                         )
@@ -53,6 +54,7 @@ const CardsServicios = ({ imagen, titulo, descripcion, nombreBoton, estado, prec
                     <button onClick={estado === 'available' ? addCart : null} className={`btn btn-primary ${estado === 'unavailable' ? style.disabledButton : ''}`}>
                         {nombreBoton}
                     </button>
+                   
                     <div>
                         {
                         estado === 'available' ?(
