@@ -1,12 +1,13 @@
 import { Outlet } from "react-router-dom"; 
 import SideBar from "./Sidebar/Sidebar";
+import "./Admin.css"
 
 const Admin = () => {
   return (
-    <section className="container-fluid bg-secondary min-vh-100">
+    <section className="container-fluid min-vh-100 myAdmin">
       <div className="row">
         
-        <div className="col-2 vh-100 min-vh-100 bg-white">
+        <div className="col-2 min-vh-100 bg-white">
           <SideBar/>
         </div>
 

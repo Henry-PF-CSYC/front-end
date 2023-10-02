@@ -79,13 +79,14 @@ const UsuariosAdm = () => {
 // Renderizado
 return(
     <div>
-        <h1 id="titleAdminUsers">Usuarios activos:</h1>
+        <h2 id="titleAdminUsers" className="adminTitles">Usuarios activos:</h2>
 
         <EditUserModal show={showEditUserModal} handleClose={closeEditUserModal} userData={selectedRow}/>
 
         <MDBDataTable striped  bordered  small  data={{ columns, rows }}  paginationLabel={"<>"}
         infoLabel={['Mostrando del', 'al', 'de', 'usuarios disponibles']} noBottomColumns responsive
-        searchLabel="Buscar"  entriesLabel="Entradas a desplegar:"  className="custom-datatable"/>
+        searchLabel="Buscar"  entriesLabel="Entradas a desplegar:"  className="custom-datatable" info={false}
+        style={{ boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)'}}/>
     </div>);
 }
 

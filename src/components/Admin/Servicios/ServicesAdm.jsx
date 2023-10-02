@@ -89,8 +89,8 @@ const ServicesAdm = () => {
   return (
     <div>
 
-        <div id="introToServicesAdmin">
-          <h1>Servicios activos:</h1>
+        <div id="introToServicesAdmin" className="adminTitles">
+          <h2>Servicios activos:</h2>
           <button className="addService" onClick={openNewServiceModal}>Añadir Servicio</button>
         </div>
         
@@ -101,7 +101,7 @@ const ServicesAdm = () => {
         <MDBDataTable striped bordered small data={{ columns, rows }}
         infoLabel={['Mostrando del', 'al', 'de', 'clasificados disponibles']} searchLabel="Buscar" 
         entriesLabel="Entradas a desplegar:" paginationLabel={"<>"} noBottomColumns responsive
-        className="custom-datatable"/>
+        className="custom-datatable" style={{ boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)'}}  info={false}/>
 
     </div>);
 }

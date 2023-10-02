@@ -107,11 +107,12 @@ const handleDeleteOffer = (clasificadoId) => {
 
         {isLoading && (<div className="loader-offer"><Rings color="#007bff"/></div>)}
 
-        <h1 id="titleAdminUsers">Clasificados activos:</h1>
+        <h2 id="titleAdminUsers" className="adminTitles">Clasificados activos:</h2>
         
         <MDBDataTable striped bordered small data={{ columns, rows }}  noBottomColumns  responsive
         infoLabel={['Mostrando del', 'al', 'de', 'clasificados disponibles']}  paginationLabel={"<>"} 
-        searchLabel="Buscar" entriesLabel="Entradas a desplegar:" className="custom-datatable"/>
+        searchLabel="Buscar" entriesLabel="Entradas a desplegar:" className="custom-datatable" info={false}
+        style={{ boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)'}}/>
     </div>);
 }
 

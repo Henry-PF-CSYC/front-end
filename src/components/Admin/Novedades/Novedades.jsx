@@ -3,7 +3,7 @@ import "./Novedades.css"
 const Novedades = () =>{
     return(
         <div>
-            <h1 id="titleAdminReclamos">Últimas novedades:</h1>
+            <h2 id="titleAdminReclamos" className="adminTitles">Últimas novedades:</h2>
         </div>
     )
 }

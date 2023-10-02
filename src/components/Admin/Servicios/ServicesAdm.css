@@ -1,5 +1,5 @@
 *{
-   font-family: 'Montserrat', sans-serif;
+   font-family: 'Fira Sans';
 }
 
 .page-item.active .page-link .sr-only {
@@ -14,16 +14,17 @@
     margin-top: 0.5rem;
 }
 
-.addService{
+.addService {
     background-color: #0d59e6;
     border-radius: 1rem;
-    border-color: white;
-    color: white; 
+    border: 1px solid white;
+    color: white;
+    padding: 10px 20px; 
+    cursor: pointer; 
 }
 
 .addService:hover {
     background-color: #6696ee;
-    transition: 1s;
 }
 
 .custom-datatable {
@@ -31,6 +32,36 @@
     overflow-y: auto; 
     overflow-x: hidden; 
 }
+
+.dataTables_length {
+    display: none;
+  }
+
+
+.pagination {
+    display: flex;
+    list-style: none;
+    padding: 0;
+  }
+  
+  .page-item {
+    margin: 0 2px; 
+  }
+  
+  .page-link {
+    color: #007bff;
+    background-color: #fff; 
+    border: 1px solid #dee2e6; 
+    border-radius: .25rem;
+    padding: .375rem .75rem;
+  }
+  
+  .page-link:hover {
+    background-color: #007bff; 
+    color: #fff; 
+    border-color: #007bff; 
+  }
+
 
 .available-cell{
     color: rgb(127, 212, 16);

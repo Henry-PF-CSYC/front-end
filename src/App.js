@@ -1,6 +1,8 @@
 // Ruteado y estilos
 import { Routes, Route, useLocation } from "react-router-dom"
+import { useSelector } from "react-redux";
 import './App.css'
+
 
 // Componentes importados
 import Navbar from "./components/Navbar/Navbar";
@@ -11,7 +13,9 @@ import Login from "./components/Login/login"
 import Register from "./components/Register/Register"
 import SeccionUsuario from './components/SeccionUsuario/SeccionUsuario'
 import Clasificados from "./components/Clasificados/Clasificados";
+import { IconCart } from "./components/Cart/IconCart";
 import PruebaTailwind from "./components/PruebaTailwind";
+
 
 // Servicios
 import Servicios from "./components/Servicios/Servicios";
@@ -31,8 +35,10 @@ import ServicesAdm from "./components/Admin/Servicios/ServicesAdm";
 import UsuariosAdm from "./components/Admin/Usuarios/UsuariosAdm";
 import ClasificadosAdm from "./components/Admin/Clasificados/ClasificadosAdm";
 import Novedades from "./components/Admin/Novedades/Novedades";
-import { IconCart } from "./components/Cart/IconCart";
-import { useSelector } from "react-redux";
+import Reseñas from "./components/Admin/Reseñas/Reseñas";
+import Combos from "./components/Admin/Combos/Combos";
+
+
 
 
 // Renderizado
@@ -87,6 +93,8 @@ function App() {
           <Route path="usuarios" element={<UsuariosAdm />}/>
           <Route path="clasificados" element={<ClasificadosAdm/>}/>
           <Route path="novedades" element={<Novedades/>} />
+          <Route path="reseñas" element={<Reseñas/>} />
+          <Route path="combos" element={<Combos/>} />
         </Route>
 
       </Routes>

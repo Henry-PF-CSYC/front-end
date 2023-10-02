@@ -1,5 +1,10 @@
-.list-group a:hover{
-    background-color: rgb(35, 121, 121);
-    color: white;
-    transition: 0.7s;
-}
+.list-group-item {
+    margin-bottom: 2px;
+    border: 1px solid white
+  }
+  
+  .list-group-item:hover {
+    background-color: #C7E7FF;
+    color: rgb(0, 0, 0);
+    transition: 0.7s ease;
+  }
