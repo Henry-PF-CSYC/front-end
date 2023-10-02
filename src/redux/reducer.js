@@ -7,7 +7,9 @@ import {
    
     GET_CLASIFICADO, GETOFFERBYEMAIL, DELETECLASIFICADOS,
     
-    ADDCARTSERVICES, DELETECARTSERVICES, EMPTYCARTSERVICES
+    ADDCARTSERVICES, DELETECARTSERVICES, EMPTYCARTSERVICES,
+
+    GETALLRATING, GETRATINGBYSERVICE, GETALLRATINGBYUSER, GETRATINGBYID
 } from './action-types';
 
 // Estado global
@@ -32,6 +34,12 @@ const initialState = {
    
     // Cart
     cartServices: [],
+
+    // Rating 
+    allRating: [],
+    ratingService: [],
+    ratingByUser: [] ,
+    selectedReview: []
 };
 
 console.log(initialState.dataUser);
@@ -152,6 +160,28 @@ const reducer = (state = initialState, action) => {
                 clasificados: [],
                 publicacionesusuario: []
             };
+        
+        // Rating
+        case GETALLRATING:
+            return { 
+                ...state,
+                allRating: action.payload
+            }
+        case GETRATINGBYSERVICE:
+            return {
+                ...state,
+                ratingService: action.payload
+            }
+        case GETALLRATINGBYUSER:
+            return {
+                ...state,
+                ratingByUser: action.payload
+            }
+        case  GETRATINGBYID:
+            return {
+                ...state,
+                selectedReview: action.payload
+            }
 
        
 

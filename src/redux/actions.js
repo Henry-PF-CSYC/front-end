@@ -5,6 +5,7 @@ import {
     GETALLUSERS, GETUSER, EMPTY_USER,
     GET_CLASIFICADO, GETOFFERBYEMAIL, DELETECLASIFICADOS,
     ADDCARTSERVICES, DELETECARTSERVICES, EMPTYCARTSERVICES, 
+    GETALLRATING, GETRATINGBYSERVICE, GETALLRATINGBYUSER, GETRATINGBYID
 } from './action-types';
 
 
@@ -368,7 +369,70 @@ export const raitingPost = ({rating,comment,user_email,serviceId}) => {
         }
     }
 }
+export const getAllRating = () => {
+    return async () => {
+        try {
+            const { data } = await axios.get(`https://csyc.onrender.com/reviews`)
+            dispatch({
+                type: GETALLRATING,
+                payload: data
+            });
+        
+        } catch (error) {
+            console.log(error)
+        }
+    }
+}
+export const getRatingService = ({serviceId}) => {
+    return async () => {
+        try {
+            const { data } = await axios.get(`https://csyc.onrender.com/reviews/${serviceId}`)
+            dispatch({
+                type: GETRATINGBYSERVICE,
+                payload:data
+            });
 
+        } catch (error) {
+            console.log(error)
+        }
+    }
+}
+export const getAllRatingByUser = ({user_email}) => {
+    return async () => {
+        try {
+            const { data } = await axios.get(`https://csyc.onrender.com/reviews/byUser/${user_email}`)
+            dispatch({
+                type: GETALLRATINGBYUSER,
+                payload:data
+            });
+        } catch (error) {
+            console.log(error)
+        }
+    }
+}
+export const getRatingById = ({idReview}) => {
+    return async () => {
+        try {
+            const { data } = await axios.get(`https://csyc.onrender.com/reviews/${idReview}`)
+            dispatch({
+                type: GETRATINGBYID,
+                payload:data
+            });
+            
+        } catch (error) {
+            console.log(error)
+        }
+    }
+}
+export const deleteRatingById = ({idReview}) => {
+    return async () => {
+        try {
+            await axios.delete(`https://csyc.onrender.com/reviews/${idReview}`)
+        } catch (error) {
+            console.log(error)
+        }
+    }
+}
 
 
 
