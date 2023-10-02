@@ -96,7 +96,7 @@ return (
                           </div>)}
 
             <Modal show={show} onHide={handleClose} 
-            dialogClassName={`modal-lg ${isLoading ? 'admin-modal-active' : ''}`} backdrop="static" keyboard={false} >
+            dialogClassName={`modal-lg ${isLoading ? 'loader-modal' : ''}`} backdrop="static" keyboard={false} >
 
                 <Modal.Header closeButton>
                     <Modal.Title>Añadir Servicio</Modal.Title>

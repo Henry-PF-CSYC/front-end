@@ -1,3 +1,4 @@
+
 const PruebaTailwind = () => {
   return (
     <div>
