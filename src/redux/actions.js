@@ -385,6 +385,8 @@ export const getAllRating = () => {
         }
     }
 }
+
+
 export const getRatingService = ({serviceId}) => {
     return async (dispatch) => {
         try {
@@ -414,6 +416,8 @@ export const getAllRatingByUser = ({user_email}) => {
         }
     }
 }
+
+
 export const getRatingById = ({idReview}) => {
     return async (dispatch) => {
         try {
@@ -428,6 +432,8 @@ export const getRatingById = ({idReview}) => {
         }
     }
 }
+
+
 export const deleteRatingById = ({idReview}) => {
     return async () => {
         try {
@@ -437,7 +443,6 @@ export const deleteRatingById = ({idReview}) => {
         }
     }
 }
-
 
 
 // Admin actions

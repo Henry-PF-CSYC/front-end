@@ -132,7 +132,7 @@ return (
                       <div className="loader-container"><Rings color="#007bff"/></div>
                   </div>)}
 
-    <Modal show={show} onHide={handleClose} dialogClassName={`modal-lg ${isLoading ? 'admin-modal-active' : ''}`}
+    <Modal show={show} onHide={handleClose} dialogClassName={`modal-lg ${isLoading ? 'loader-modal' : ''}`}
     backdrop="static" keyboard={false}>
 
       <Modal.Header closeButton>
