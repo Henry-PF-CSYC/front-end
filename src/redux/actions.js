@@ -5,8 +5,9 @@ import {
     GETALLUSERS, GETUSER, EMPTY_USER,
     GET_CLASIFICADO, GETOFFERBYEMAIL, DELETECLASIFICADOS,
     ADDCARTSERVICES, DELETECARTSERVICES, EMPTYCARTSERVICES, 
-    GETALLRATING, GETRATINGBYSERVICE, GETALLRATINGBYUSER, GETRATINGBYID
-} from './action-types';
+    GETALLRATING, GETRATINGBYSERVICE, GETALLRATINGBYUSER, GETRATINGBYID,
+    GETNOTICES} 
+from './action-types';
 
 
 
@@ -443,6 +444,59 @@ export const deleteRatingById = ({idReview}) => {
         }
     }
 }
+
+
+
+
+// Notice Actions
+export const getNotices = () =>{
+    return async (dispatch) => {
+        try {
+            const { data } = await axios.get(`https://csyc.onrender.com/notices`);
+            dispatch({
+                type: GETNOTICES,
+                payload:data
+            });
+        } catch (error) {
+            console.log(error)
+        }
+    }
+}
+
+
+export const editNotice = (id, notice) =>{
+    return async () => {
+        try {
+            await axios.put(`https://csyc.onrender.com/notices/${id}`, notice);
+            } catch (error) {
+            alert('Error al editar el aviso', error);
+        }
+    };
+};
+
+
+export const addNotice = (notice) => {
+    return async () => {
+        try {
+            await axios.post('https://csyc.onrender.com/notices',notice);
+        } catch (error) {
+            alert('Error al crear el aviso', error);
+        }
+    };
+};
+
+
+export const deleteNotice = (id) => {
+    return async () => {
+        try {
+            await axios.delete(
+                `https://csyc.onrender.com/notices/${id}`
+            );
+        } catch (error) {
+            alert('Error al borrar el aviso', error);
+        }
+    };
+};
 
 
 // Admin actions

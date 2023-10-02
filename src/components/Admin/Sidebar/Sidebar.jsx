@@ -22,11 +22,6 @@ const SideBar = () =>{
                     <span className="fs-5">Servicios</span>
                 </a>
 
-                <a href="/admin/combos" className="list-group-item list-group-item-action my-2">
-                    <i className="bi bi-cart4 fs-5 me-2"></i>
-                    <span className="fs-5">Combos</span>
-                </a>
-
                 <a href="/admin/usuarios" className="list-group-item list-group-item-action my-2">
                     <i className="bi bi-people fs-5 me-2"></i>
                     <span className="fs-5">Usuarios</span>

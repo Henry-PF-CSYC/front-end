@@ -9,8 +9,10 @@ import {
     
     ADDCARTSERVICES, DELETECARTSERVICES, EMPTYCARTSERVICES,
 
-    GETALLRATING, GETRATINGBYSERVICE, GETALLRATINGBYUSER, GETRATINGBYID
-} from './action-types';
+    GETALLRATING, GETRATINGBYSERVICE, GETALLRATINGBYUSER, GETRATINGBYID,
+
+    GETNOTICES} 
+from './action-types';
 
 // Estado global
 const initialState = {
@@ -39,7 +41,10 @@ const initialState = {
     allRating: [],
     ratingService: [],
     ratingByUser: [] ,
-    selectedReview: []
+    selectedReview: [],
+
+    // Notices
+    notices: []
 };
 
 console.log(initialState.dataUser);
@@ -184,6 +189,14 @@ const reducer = (state = initialState, action) => {
             }
 
        
+
+        // Notices
+        case GETNOTICES:
+            return {
+                ...state,
+                notices: action.payload
+            }
+
 
         default: return { ...state };}
 };
