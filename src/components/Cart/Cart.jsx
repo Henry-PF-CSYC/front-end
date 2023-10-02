@@ -7,6 +7,7 @@ import { Wallet, initMercadoPago } from '@mercadopago/sdk-react';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 
+
 export const Cart = ({ isTerms }) => {
 
     initMercadoPago('APP_USR-4cc18a60-413f-4ac0-ae3e-9c9772649256')
@@ -76,7 +77,7 @@ export const Cart = ({ isTerms }) => {
                                         servicesCart.map((service, index) => {
                                             return (
                                                 <tr key={index}>
-                                                    <td className='p-0 col-2'><img className='m-3' style={{borderRadius: '4px'}} width={'80px'} height={'50px'} src={service.imagen} /></td>
+                                                    <td className='p-0 col-2'><img className='m-3' style={{borderRadius: '4px'}} width={'80px'} height={'50px'} src={service.imagen} alt='service'/></td>
                                                     <td className='col-3' style={{verticalAlign: 'middle'}}>
                                                         <p>{service.titulo}</p>
                                                     </td>

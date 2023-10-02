@@ -40,11 +40,10 @@ function App() {
 
   const location = useLocation();
   const isAdminRouted = location.pathname.includes('/admin');
-
   const cartServices = useSelector(state => state.cartServices)
 
+
   return (
-    
     <div>
 
       {cartServices.length > 0 && (
@@ -57,6 +56,7 @@ function App() {
 
 
       <Routes>
+
         {/*Componentes principales*/}
         <Route path="/" element={<Landing/>}/>
         <Route path="/login" element={<Login/>}/>
@@ -87,10 +87,10 @@ function App() {
           <Route path="usuarios" element={<UsuariosAdm />}/>
           <Route path="clasificados" element={<ClasificadosAdm/>}/>
           <Route path="novedades" element={<Novedades/>} />
-
         </Route>
 
       </Routes>
+
       {!isAdminRouted && <Footer />}
     </div>);
 }

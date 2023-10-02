@@ -12,12 +12,6 @@ import axios from 'axios';
 
 import ModalPublicaciones from './ModalPublicaciones/ModalPublicaciones';
 
-const gas =
-    'https://firebasestorage.googleapis.com/v0/b/pf-henry-16edc.appspot.com/o/servicios-landing%2Fgas.webp?alt=media&token=9a8899a4-88be-4150-bafa-0b7738e557e8';
-const internet =
-    'https://firebasestorage.googleapis.com/v0/b/pf-henry-16edc.appspot.com/o/servicios-landing%2Finternet.webp?alt=media&token=cb1c9a73-1eee-427a-9a93-6cefd5f7aa23';
-const agua =
-    'https://firebasestorage.googleapis.com/v0/b/pf-henry-16edc.appspot.com/o/servicios-landing%2Fagua.jpg?alt=media&token=b6629946-52ef-40df-9f02-02cf1dba940f';
 
 const SeccionUsuario = () => {
     const dispatch = useDispatch();

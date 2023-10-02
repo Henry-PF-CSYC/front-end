@@ -22,14 +22,19 @@ const SideBar = () =>{
                     <span className="fs-5">Servicios</span>
                 </a>
 
+                <a href="/admin/combos" className="list-group-item list-group-item-action my-2">
+                    <i className="bi bi-cart4 fs-5 me-2"></i>
+                    <span className="fs-5">Combos</span>
+                </a>
+
                 <a href="/admin/usuarios" className="list-group-item list-group-item-action my-2">
                     <i className="bi bi-people fs-5 me-2"></i>
                     <span className="fs-5">Usuarios</span>
                 </a>
 
-                <a href="/admin/clasificados" className="list-group-item list-group-item-action my-2">
-                    <i class="bi bi-bag-heart-fill fs-5 me-2"></i>
-                    <span className="fs-5">Clasificados</span>
+                <a href="/admin/reseñas" className="list-group-item list-group-item-action my-2">
+                    <i className="bi bi-star-half fs-5 me-2"></i>
+                    <span className="fs-5">Reseñas</span>
                 </a>
 
                 <a href="/admin/novedades" className="list-group-item list-group-item-action my-2">
