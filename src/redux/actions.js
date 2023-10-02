@@ -369,8 +369,10 @@ export const raitingPost = ({rating,comment,user_email,serviceId}) => {
         }
     }
 }
+
+
 export const getAllRating = () => {
-    return async () => {
+    return async (dispatch) => {
         try {
             const { data } = await axios.get(`https://csyc.onrender.com/reviews`)
             dispatch({
@@ -384,7 +386,7 @@ export const getAllRating = () => {
     }
 }
 export const getRatingService = ({serviceId}) => {
-    return async () => {
+    return async (dispatch) => {
         try {
             const { data } = await axios.get(`https://csyc.onrender.com/reviews/${serviceId}`)
             dispatch({
@@ -397,8 +399,10 @@ export const getRatingService = ({serviceId}) => {
         }
     }
 }
+
+
 export const getAllRatingByUser = ({user_email}) => {
-    return async () => {
+    return async (dispatch) => {
         try {
             const { data } = await axios.get(`https://csyc.onrender.com/reviews/byUser/${user_email}`)
             dispatch({
@@ -411,7 +415,7 @@ export const getAllRatingByUser = ({user_email}) => {
     }
 }
 export const getRatingById = ({idReview}) => {
-    return async () => {
+    return async (dispatch) => {
         try {
             const { data } = await axios.get(`https://csyc.onrender.com/reviews/${idReview}`)
             dispatch({

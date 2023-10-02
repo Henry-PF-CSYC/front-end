@@ -4,7 +4,12 @@ import { useState } from 'react';
 import { firebase } from '../../Firebase/firebase';
 import { useDispatch } from 'react-redux';
 import { postClasificados } from '../../../redux/actions';
+
+import Swal from 'sweetalert2';
+import 'sweetalert2/dist/sweetalert2.min.css';
 import validations from "../validations"
+const defaultImg = "https://firebasestorage.googleapis.com/v0/b/pf-henry-16edc.appspot.com/o/misc%2Fno-image.png?alt=media&token=9df889af-83fa-47c4-9ac0-c0b7c0fee097"
+
 
 const ModalClasificado = ({ show, handleClose, email }) => {
     const dispatch = useDispatch();
@@ -62,22 +67,24 @@ const ModalClasificado = ({ show, handleClose, email }) => {
                 // Usamos la función de Firebase para obtener la URL de la nueva imagen
                 const newImageUrl = await firebase( selectedImageFile,'clasificados/');
 
-                // Actualiza los valores del formulario, incluida la nueva URL de la imagen
+                // Actualizamos los valores del formulario, incluida la nueva URL de la imagen
                 const updatedValues = { ...values, image: newImageUrl };
 
-                // Realiza la acción para enviar los datos del formulario, incluida la nueva URL de la imagen
+                // Despachamos acción para enviar los datos del formulario, incluida la nueva URL de la imagen
                 dispatch(await postClasificados(updatedValues)); 
-                console.log(values)  
                 handleClose();
             } else {
-                dispatch(await postClasificados(values)); // Si no se seleccionó una imagen, se envia la acción sin la misma
-                console.log(values)
+                // De otro modo, acctualizamos los valores del formulario, con una imagen por defecto
+                const updatedValues = { ...values, image: defaultImg };
+                dispatch(await postClasificados(updatedValues)); 
                 handleClose();
             }
 
-            alert('La publicación fue creada correctamente');
+            Swal.fire("Publicación añadida correctamente", "", "success")
+            .then(() => {window.location.reload(250);}); 
+
         } catch (error) {
-            console.log('Error al crear la publicación:', error);
+            Swal.fire("Error al crear publicación", "", "error")
         }
     };
 
