@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { useAuth0 } from '@auth0/auth0-react';
 import { emptyUser, getOfferByEmail, getUser } from '../../redux/actions';
 import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 
 
@@ -16,7 +16,7 @@ const Navbar = () => {
         });
         dispatch(emptyUser());
     };
-
+    let usuario = useSelector((state) => state.dataUser);
     const click = () => {
         console.log("click")
         dispatch(getUser(user.email));
@@ -160,8 +160,8 @@ const Navbar = () => {
                             
                             className="dropdown-menu"
                             aria-labelledby="dropdownMenuButton1"
-                        >
-                            <li>
+                        >{(isAuthenticated &&usuario.name)?
+                            (<li>
                                 <Link
                                     to="/usuario"
                                     style={{ textDecoration: 'none' }}
@@ -173,7 +173,19 @@ const Navbar = () => {
                                         Ver mi perfil
                                     </a>
                                 </Link>
-                            </li>
+                            </li>):(<li>
+                                <Link
+                                    to="/register"
+                                    style={{ textDecoration: 'none' }}
+                                >
+                                    <a
+                                        class="dropdown-item userDropdown"
+                                        href="."
+                                    >
+                                        Ver mi perfil
+                                    </a>
+                                </Link>
+                            </li>)}
                             <li>
                                 {/* Call handleLogout function on logout click */}
                                 <a class="dropdown-item" onClick={handleLogout}>
