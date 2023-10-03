@@ -2,6 +2,23 @@
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
 
+
+@layer components {
+	.btn-primary {
+	@apply bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded}
+  
+	.btn-danger {
+	@apply bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded}
+
+	.btn-secondary {
+	@apply bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded}
+
+	.btn-warning {
+	@apply bg-yellow-400 hover:bg-yellow-400 text-white font-bold py-2 px-4 rounded}
+}
+
+
+
 .btn-flotante {
 	font-size: 16px; /* Cambiar el tamaño de la tipografia */
 	text-transform: uppercase; /* Texto en mayusculas */
@@ -19,4 +36,10 @@
 
 body {
     overflow-x: hidden;
+}
+
+.dangerButton{
+	background-color: red;
+	color: white;
+	border-radius: 1rem;
 }

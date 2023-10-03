@@ -203,9 +203,9 @@ return (
       </Modal.Body>
 
       <Modal.Footer>
-        <Button variant="danger" onClick={handleDeleteService}> Eliminar servicio </Button>
-        <Button variant="primary" type="submit" form="editServiceForm"> Guardar Cambios </Button>
-        <Button variant="secondary" onClick={()=>{handleClose()}}> Descartar </Button>
+        <Button className="btn-danger" onClick={handleDeleteService}> Eliminar servicio </Button>
+        <Button className="btn-primary" type="submit" form="editServiceForm"> Guardar Cambios </Button>
+        <Button className="btn-secondary" onClick={()=>{handleClose()}}> Descartar </Button>
       </Modal.Footer>
 
     </Modal>
