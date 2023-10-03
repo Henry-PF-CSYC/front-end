@@ -21,32 +21,6 @@ const Rating = ({ show, handleClose, serviceId }) => {
   };
 
 
-
-  // esto va ir en la seccion usuario 
-
-  <button onClick={openRatingModal}>
-  Calificar Servicio
-</button>
-{showRatingModal && (
-  <Rating
-    serviceId={servicio.id}
-    show={showRatingModal}
-    handleClose={closeRatingModal}
-  />
-)}  //
- // Función para abrir el modal de calificación
- const openRatingModal = () => {
-  setShowRatingModal(true);
-};
-const [showRatingModal, setShowRatingModal] = useState(false);// estado para el modal usuario 
-// Función para cerrar el modal de calificación
-const closeRatingModal = () => {
-  setShowRatingModal(false);
-};// siguen siendo de la seccion usuario 
-
-
-
-
   return (
     <Modal show={show} onHide={handleClose}>
       <Modal.Header closeButton>

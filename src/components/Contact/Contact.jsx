@@ -1,8 +1,17 @@
 import { useState } from "react"
+import { useDispatch, useSelector } from "react-redux";
 import "./ContactStyle.css"
 import { Modal, Button } from "react-bootstrap"
 
+// Loader
+import { Rings } from "react-loader-spinner";
+import { showLoader, hideLoader } from "../../redux/actions";
+
 function Contact() {
+
+    // Accedemos al estado global del loader
+    const isLoading = useSelector((state) => state.isLoading); 
+    const dispatch = useDispatch();
 
     const [formData, setFormData] = useState({
         name: "",
@@ -26,7 +35,8 @@ function Contact() {
                 message
             };
             try {
-              const response=await fetch("https://csyc.onrender.com/contact/send", {
+              dispatch(showLoader());
+              const response= await fetch("https://csyc.onrender.com/contact/send", {
                 method: "POST",
                 headers: {
                   "Content-Type": "application/json",
@@ -36,9 +46,11 @@ function Contact() {
               if (response.ok) {
                 setModalVariant("success")
                 setModalMessage("Su mensaje fue enviado con éxito.")
+                dispatch(hideLoader());
               } else {
                 setModalVariant("danger")
                 setModalMessage("Inténtelo más tarde. Hubo un error.")
+                dispatch(hideLoader());
               }
               setShowModal(true)
             } catch (error) {
@@ -46,6 +58,7 @@ function Contact() {
               setModalVariant("danger");
               setModalMessage("Hubo un error en la solicitud.");
               setShowModal(true);
+              dispatch(hideLoader());
             }
           } 
     }
@@ -74,7 +87,13 @@ function Contact() {
 
 
     return (
+      
         <div className="contentContact">
+           {isLoading && (
+      <div className="loader-overlay">
+        <div className="loader-container"><Rings color="#007bff" /></div>
+      </div>
+    )}
         <h2 className="contact-title">Contacto</h2>
         <div className="contact-container">
             <div className="contact-info">

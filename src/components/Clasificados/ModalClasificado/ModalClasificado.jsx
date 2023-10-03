@@ -106,15 +106,14 @@ const ModalClasificado = ({ show, handleClose, email }) => {
     // Renderizado
     return (
         <>
-            {isLoading && (<div className="loader-no-modal"><Rings color="#007bff"/></div>)}
+            {isLoading && (<div className="loader-background">
+                            <div className="loader-container"><Rings color="#007bff"/></div>
+                          </div>)}
 
-            <Modal
-                show={show}
-                onHide={() => {
-                    handleClose();
-                    resetForm();
-                }}
-            >
+           
+            <Modal show={show} onHide={handleClose} 
+            dialogClassName={`modal-lg ${isLoading ? 'loader-modal' : ''}`} backdrop="static" keyboard={false}>
+                    
                 <Modal.Header closeButton>
                     <Modal.Title>Crear Publicacion</Modal.Title>
                 </Modal.Header>

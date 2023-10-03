@@ -104,9 +104,11 @@ const handleDeleteOffer = (clasificadoId) => {
   // Renderizado
   return (
       <div>
-         {isLoading && (<div className="loader-background">
-                            <div className="loader-container"><Rings color="#007bff"/></div>
-                        </div>)}
+         {isLoading && (
+      <div className="loader-overlay">
+        <div className="loader-container"><Rings color="#007bff" /></div>
+      </div>
+    )}
 
         <h2 id="titleAdminUsers" className="adminTitles">Clasificados activos:</h2>
         
