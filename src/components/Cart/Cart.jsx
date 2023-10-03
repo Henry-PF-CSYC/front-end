@@ -17,6 +17,9 @@ export const Cart = ({ isTerms }) => {
     // Accedemos al estado global del loader
     const isLoading = useSelector((state) => state.isLoading); 
 
+    // Desactivando boton tras llamar
+    const [paymentButtonDisabled, setPaymentButtonDisabled] = useState(false);
+
     initMercadoPago('APP_USR-4cc18a60-413f-4ac0-ae3e-9c9772649256')
     const [preferenceId, setPreferenceId] = useState(null)
     const [proceed, setProceed] = useState(true)
@@ -42,6 +45,7 @@ export const Cart = ({ isTerms }) => {
     
             setPreferenceId(responseMercado.data.response.body.id)
             dispatch(hideLoader());
+            setPaymentButtonDisabled(true); // Deshabilitar el botón al hacer clic
         }else{
             Swal.fire({
                 title: 'Atencion',
@@ -49,6 +53,7 @@ export const Cart = ({ isTerms }) => {
                 icon: 'error'
             })
             dispatch(hideLoader());
+            setPaymentButtonDisabled(false); // Restablecer el estado en caso de error
         }
     }
 
@@ -135,7 +140,7 @@ export const Cart = ({ isTerms }) => {
                                     </div>
                                     <div style={{ backgroundColor: '#F5F5F5' }}>
                                         <div className='my-3'>
-                                            <button onClick={viewMercadoPago} disabled={proceed} type="button" class="btn btn-outline-success w-100 border rounded-4">Continuar con el pago</button>
+                                            <button onClick={viewMercadoPago} disabled={proceed || paymentButtonDisabled===true || !isTerms} type="button" class="btn btn-outline-success w-100 border rounded-4">Continuar con el pago</button>
                                         </div>
                                         {
                                             preferenceId && (
