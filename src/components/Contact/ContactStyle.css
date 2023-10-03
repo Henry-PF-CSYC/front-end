@@ -1,6 +1,7 @@
 .contactSection{
     background-image:  url("../../../public/rekt.png");  
     background-size: cover;
+    padding: 1.7rem;
 }
 
 .contact-container {
