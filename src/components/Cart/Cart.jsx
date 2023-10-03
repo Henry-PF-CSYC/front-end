@@ -43,9 +43,9 @@ export const Cart = ({ isTerms }) => {
     }
 
     const servicesCart = useSelector(state => state.cartServices)
-    let sumTotal = servicesCart.reduce((acummulator, currentValue) => acummulator + currentValue.precio, 0)
+    let sumTotal = servicesCart.reduce((acummulator, currentValue) => acummulator + Number(currentValue.precio), 0)
     servicesCart.forEach(service => {
-        if (service.quantity > 1) sumTotal = sumTotal + (service.precio * (service.quantity - 1))
+        if (service.quantity > 1) sumTotal = sumTotal + (Number(service.precio) * (service.quantity - 1))
     });
 
     return (
