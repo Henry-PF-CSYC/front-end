@@ -50,7 +50,7 @@ function App() {
 
 
   return (
-    <div>
+    <div className="bg-image1 bg-cover h-screen w-screen bg-center bg-backgroundBody">
 
       {cartServices.length > 0 && (
           <div className="btn-flotante">
