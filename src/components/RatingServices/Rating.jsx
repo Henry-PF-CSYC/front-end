@@ -7,19 +7,35 @@ const Rating = ({ show, handleClose, serviceId }) => {
   const [rating, setRating] = useState(0);
   const [comment, setComment] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
+  const [serverResponse, setServerResponse] = useState('');
+
   const dispatch = useDispatch();
   const userdata = useSelector((state) => state.dataUser);
 
   const handleSubmit = async () => {
     try {
-      console.log("Contenido del body:", { rating, comment,  user_email: userdata.email, serviceId });
-      await dispatch(raitingPost({ rating, comment, serviceId, user_email: userdata.email }));
-      handleClose(); // Cierra el modal después de enviar el formulario
+      const response = await dispatch(raitingPost({ rating, comment, serviceId, user_email: userdata.email }));
+  
+      if (response === 'ok') {
+        setServerResponse('La reseña se creó exitosamente.');
+        resetForm();
+        setTimeout(() => {
+          handleClose();
+        }, 3000);
+      } else {
+        setServerResponse('Ya tiene una reseña activa.');
+      }
     } catch (error) {
       setErrorMessage('Error al crear la reseña');
     }
   };
+  
 
+  const resetForm = () => {
+    setRating(0);
+    setComment('');
+    setErrorMessage('');
+  };
 
   return (
     <Modal show={show} onHide={handleClose}>
@@ -42,6 +58,7 @@ const Rating = ({ show, handleClose, serviceId }) => {
           <label>Comentario:</label>
           <textarea value={comment} onChange={(e) => setComment(e.target.value)} />
         </div>
+        {serverResponse && <p>{serverResponse}</p>}
         {errorMessage && <p>{errorMessage}</p>}
       </Modal.Body>
       <Modal.Footer>

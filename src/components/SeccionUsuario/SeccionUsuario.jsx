@@ -106,13 +106,24 @@ const SeccionUsuario = () => {
 
     const [showRatingModal, setShowRatingModal] = useState(false);// estado para el modal usuario 
     // Función para abrir el modal de calificación
-    const openRatingModal = () => {
-    setShowRatingModal(true);
-    };
-     // Función para cerrar el modal de calificación
-    const closeRatingModal = () => {
-    setShowRatingModal(false);
-    };// siguen siendo de la seccion usuario 
+    const openRatingModal = (serviceId) => {
+        setShowRatingModal((prev) => {
+          return {
+            ...prev,
+            [serviceId]: true, // Establece el estado para este servicio en true
+          };
+        });
+      };
+      
+      const closeRatingModal = (serviceId) => {
+        setShowRatingModal((prev) => {
+          return {
+            ...prev,
+            [serviceId]: false, // Establece el estado para este servicio en false
+          };
+        });
+      };
+      
 
     return (
         <>{isAuthenticated?
@@ -198,12 +209,14 @@ const SeccionUsuario = () => {
                                         descripcion={servicio['service.description']}
                                         nombreBoton="Mas Informacion"
                                     />
-                                      <button onClick={openRatingModal}>Calificar Servicio</button>{showRatingModal && (
-                                      <Rating 
-                                      serviceId={servicio.service_id}
-                                      show={showRatingModal}
-                                      handleClose={closeRatingModal}
-                                      />)}
+                                    <button onClick={() => openRatingModal(servicio.service_id)}>Calificar Servicio</button>
+                                    {showRatingModal[servicio.service_id] && (
+                                    <Rating
+                                    key={servicio.service_id}
+                                    serviceId={servicio.service_id}
+                                    show={showRatingModal[servicio.service_id]}
+                                    handleClose={() => closeRatingModal(servicio.service_id)}
+                                    />)}
                                 </div>
                                 
                             );

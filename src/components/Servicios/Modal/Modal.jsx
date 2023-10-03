@@ -5,7 +5,7 @@ import { Modal } from 'react-bootstrap';
 
 import "./Modal.css";
 
-const ModalServicio = ({ show, handleClose, serviceId }) => {
+const ModalServicio = ({ show, handleClose, service }) => {
     const cardStyle = {
         backgroundColor:"white",
         display:"flex",
@@ -33,12 +33,23 @@ const ModalServicio = ({ show, handleClose, serviceId }) => {
     const dispatch= useDispatch()
     const reviewsService=useSelector(state=>state.ratingService) //me suscribo a todas las reviews del servicio seleccionado
     
-    useEffect(()=>{
-        dispatch(getRatingService({serviceId})) //cuando se abre el modal renderiza las reviews
-    },[])
+    const serviceId=service.id 
     
-
-
+    let sumaCalificaciones = 0;
+    let cantidadOpiniones = 0;
+    let promedioCalificaciones = 0;
+    
+    useEffect(() => {
+        if (show) {
+            dispatch(getRatingService({ serviceId }));
+        }
+    }, [show, serviceId]);
+    
+    if (Array.isArray(reviewsService) && reviewsService.length !== 0) {
+        sumaCalificaciones = reviewsService.reduce((total, review) => total + parseInt(review.rating), 0);
+        cantidadOpiniones = reviewsService.length;
+        promedioCalificaciones = Math.round(sumaCalificaciones / cantidadOpiniones);
+    }
 
     return (
         <Modal
@@ -53,28 +64,24 @@ const ModalServicio = ({ show, handleClose, serviceId }) => {
                 <div style={container}>
                     <div><div>rating</div></div>
                     <div>
-                        <div>Ordenar: 
-                            <select>
-                                <option value="Mas Reciente">Fecha</option>
-                                <option value="Puntuacion">Puntuación</option>
-                            </select>
-                            Ordenar por:
-                            <select>
-                                <option value="Mayor">Mayor</option>
-                                <option value="Menor">Menor</option>
-                            </select>
-                        </div>
                         <div style={comentarios}>comentarios</div>
                         <div>
-                            {reviewsService.length !==0 
-                            ?(reviewsService.map((review) => (
-                                <div key={review.id}>
-                                    <p>Calificacion: {review.rating}</p>
-                                    <p>Fecha: {review.fecha}</p>
-                                    <p>Comentario: {review.comentario}</p>
-                                </div>
-                            )))
-                            : ( <p>"Sin opiniones"</p>)}
+                        {Array.isArray(reviewsService) && reviewsService.length !== 0 
+                        ? (reviewsService.map((review) => (
+                        <div key={review.id} style={{ border: '1px solid black' }}>
+                        <p>Calificacion: {review.rating}</p>
+                        <p>Fecha: {review.createdAt}</p>
+                        <p>Comentario: {review.comment}</p>
+                        <p>Usuario: {review.user_id}</p>
+                        </div>
+                        )))
+                        : (<p>"Aun no tiene Opiniones"</p>)
+                        }
+                        </div>
+                        <div>
+                        <div>
+                            Promedio de calificaciones: {promedioCalificaciones}
+                        </div> 
                         </div>
                     </div>
                 </div>

@@ -382,6 +382,7 @@ export const getAllRating = () => { // para el admin dario
 export const getRatingService = ({serviceId}) => { // la ocupamos para servicios modal que hizo cristian
     return async (dispatch) => {
         try {
+            
             const { data } = await axios.get(`https://csyc.onrender.com/reviews/${serviceId}`)
             dispatch({
                 type: GETRATINGBYSERVICE,
@@ -389,6 +390,10 @@ export const getRatingService = ({serviceId}) => { // la ocupamos para servicios
             });
 
         } catch (error) {
+            dispatch({
+                type: GETRATINGBYSERVICE,
+                payload:[]
+            });
             console.log(error)
         }
     }
