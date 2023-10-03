@@ -91,7 +91,7 @@ function Contact() {
 
             <div className="contact-info flex-col items-center w-5/12 p-4">
 
-            <h1 className="text-[1.4rem] font-bold mb-2  mt-1">Contacte con nosotros!</h1>
+            <h1 className="text-[1.5rem] font-bold mb-2  mt-1">Contacte con nosotros:</h1>
             <br />
 
                 <div className="d-flex align-items-center">
@@ -130,12 +130,13 @@ function Contact() {
             {/*2nda columna, Form*/}
             <div className="contact-form flex-col items-center w-7/12 p-4">
 
-                <h5 className="text-lg font-bold mb-4">¿Reclamos o sugerencias? Háganoslo saber y estaremos con usted lo antes posible</h5>
+                <h5 className="text-lg font-bold mb-4">¿Reclamos o sugerencias? 
+                Háganoslo saber y estaremos con usted lo antes posible.</h5>
                 
                 <form onSubmit={handlerSubmit}>
 
                   <div>
-                    <label for="name" className="contact-label-text">Nombre y Apellido</label>
+                    <label for="name" className="contact-label-text">Nombre y apellido</label>
                     <input type="text" id="name" name="name" required
                     className="contact-input" value={formData.name} onChange={handlerInputChange}/>
                   </div>
