@@ -2,17 +2,29 @@ import { useFormik } from 'formik';
 import { Button, Modal } from 'react-bootstrap';
 import { useState } from 'react';
 import { firebase } from '../../Firebase/firebase';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { postClasificados } from '../../../redux/actions';
 
 import Swal from 'sweetalert2';
 import 'sweetalert2/dist/sweetalert2.min.css';
 import validations from "../validations"
+
+// Loader
+import { Rings } from "react-loader-spinner";
+import { showLoader, hideLoader } from "../../../redux/actions";
+
 const defaultImg = "https://firebasestorage.googleapis.com/v0/b/pf-henry-16edc.appspot.com/o/misc%2Fno-image.png?alt=media&token=9df889af-83fa-47c4-9ac0-c0b7c0fee097"
 
 
+
+
 const ModalClasificado = ({ show, handleClose, email }) => {
+
     const dispatch = useDispatch();
+    
+    // Accedemos al estado global del loader
+    const isLoading = useSelector((state) => state.isLoading); 
+
     const [selectedImageFile, setSelectedImageFile] = useState('');
 
     const { values, handleBlur , errors, touched, handleChange, resetForm } = useFormik({
@@ -62,6 +74,7 @@ const ModalClasificado = ({ show, handleClose, email }) => {
         event.preventDefault();
 
         try {
+            dispatch(showLoader());
             // Si hay una nueva imagen seleccionada
             if (selectedImageFile) {
                 // Usamos la función de Firebase para obtener la URL de la nueva imagen
@@ -73,11 +86,13 @@ const ModalClasificado = ({ show, handleClose, email }) => {
                 // Despachamos acción para enviar los datos del formulario, incluida la nueva URL de la imagen
                 dispatch(await postClasificados(updatedValues)); 
                 handleClose();
+                dispatch(hideLoader());
             } else {
                 // De otro modo, acctualizamos los valores del formulario, con una imagen por defecto
                 const updatedValues = { ...values, image: defaultImg };
                 dispatch(await postClasificados(updatedValues)); 
                 handleClose();
+                dispatch(hideLoader());
             }
 
             Swal.fire("Publicación añadida correctamente", "", "success")
@@ -91,13 +106,14 @@ const ModalClasificado = ({ show, handleClose, email }) => {
     // Renderizado
     return (
         <>
-            <Modal
-                show={show}
-                onHide={() => {
-                    handleClose();
-                    resetForm();
-                }}
-            >
+            {isLoading && (<div className="loader-background">
+                            <div className="loader-container"><Rings color="#007bff"/></div>
+                          </div>)}
+
+           
+            <Modal show={show} onHide={handleClose} 
+            dialogClassName={`modal-lg ${isLoading ? 'loader-modal' : ''}`} backdrop="static" keyboard={false}>
+                    
                 <Modal.Header closeButton>
                     <Modal.Title>Crear Publicacion</Modal.Title>
                 </Modal.Header>
