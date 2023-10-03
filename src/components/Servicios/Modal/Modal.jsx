@@ -1,7 +1,11 @@
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { getRatingService } from '../../../redux/actions';
 import { Modal } from 'react-bootstrap';
+
 import "./Modal.css";
 
-const ModalServicio = ({ show, handleClose,service }) => {
+const ModalServicio = ({ show, handleClose, serviceId }) => {
     const cardStyle = {
         backgroundColor:"white",
         display:"flex",
@@ -25,6 +29,17 @@ const ModalServicio = ({ show, handleClose,service }) => {
     const comentarios={
         maxWidth:"50%"
     }
+    
+    const dispatch= useDispatch()
+    const reviewsService=useSelector(state=>state.ratingService) //me suscribo a todas las reviews del servicio seleccionado
+    
+    useEffect(()=>{
+        dispatch(getRatingService({serviceId})) //cuando se abre el modal renderiza las reviews
+    },[])
+    
+
+
+
     return (
         <Modal
             show={show}
@@ -34,7 +49,7 @@ const ModalServicio = ({ show, handleClose,service }) => {
             }}
         >
             <div style={cardStyle}>
-                <div style={header}>opiniones del producto</div>
+                <div style={header}>Opiniones del producto</div>
                 <div style={container}>
                     <div><div>rating</div></div>
                     <div>
@@ -50,6 +65,17 @@ const ModalServicio = ({ show, handleClose,service }) => {
                             </select>
                         </div>
                         <div style={comentarios}>comentarios</div>
+                        <div>
+                            {reviewsService.length !==0 
+                            ?(reviewsService.map((review) => (
+                                <div key={review.id}>
+                                    <p>Calificacion: {review.rating}</p>
+                                    <p>Fecha: {review.fecha}</p>
+                                    <p>Comentario: {review.comentario}</p>
+                                </div>
+                            )))
+                            : ( <p>"Sin opiniones"</p>)}
+                        </div>
                     </div>
                 </div>
                 

@@ -1,5 +1,6 @@
 import CardsServicios from '../Servicios/CardsServicios/CardsServicios';
 import ModalUsuario from './ModalUsuario/ModalUsuario';
+import Rating from '../RatingServices/Rating';
 import { useEffect, useState } from 'react';
 import { Button } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
@@ -103,6 +104,16 @@ const SeccionUsuario = () => {
         paddingRight: '100px'
     };
 
+    const [showRatingModal, setShowRatingModal] = useState(false);// estado para el modal usuario 
+    // Función para abrir el modal de calificación
+    const openRatingModal = () => {
+    setShowRatingModal(true);
+    };
+     // Función para cerrar el modal de calificación
+    const closeRatingModal = () => {
+    setShowRatingModal(false);
+    };// siguen siendo de la seccion usuario 
+
     return (
         <>{isAuthenticated?
             (<div className="row m-0" style={seccion}>
@@ -187,7 +198,14 @@ const SeccionUsuario = () => {
                                         descripcion={servicio['service.description']}
                                         nombreBoton="Mas Informacion"
                                     />
+                                      <button onClick={openRatingModal}>Calificar Servicio</button>{showRatingModal && (
+                                      <Rating 
+                                      serviceId={servicio.service_id}
+                                      show={showRatingModal}
+                                      handleClose={closeRatingModal}
+                                      />)}
                                 </div>
+                                
                             );
                         })}
                 </div>
