@@ -431,7 +431,7 @@ export const getRatingById = ({idReview}) => {
 }
 
 
-export const deleteRatingById = ({idReview}) => {
+export const deleteRatingById = (idReview) => {
     return async () => {
         try {
             await axios.delete(`https://csyc.onrender.com/reviews/${idReview}`)

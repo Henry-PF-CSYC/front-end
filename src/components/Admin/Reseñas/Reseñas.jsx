@@ -50,7 +50,9 @@ const Reseñas = () =>{
       if (result.isConfirmed) {
         try {
           dispatch(showLoader());
+          console.log(reseñaId);
           dispatch(await deleteRatingById(reseñaId));
+          
           dispatch(hideLoader());
           Swal.fire("Reseña eliminada correctamente", "", "success")
           .then(() => {window.location.reload(200);});
