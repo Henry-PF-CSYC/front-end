@@ -1,11 +1,16 @@
 import { useState } from "react"
 import { useDispatch, useSelector } from "react-redux";
 import "./ContactStyle.css"
-import { Modal, Button } from "react-bootstrap"
+
+// Sweetalert
+import Swal from 'sweetalert2'; 
+import 'sweetalert2/dist/sweetalert2.min.css';
 
 // Loader
 import { Rings } from "react-loader-spinner";
 import { showLoader, hideLoader } from "../../redux/actions";
+
+
 
 function Contact() {
 
@@ -13,178 +18,147 @@ function Contact() {
     const isLoading = useSelector((state) => state.isLoading); 
     const dispatch = useDispatch();
 
-    const [formData, setFormData] = useState({
-        name: "",
-        phone: "",
-        message: ""
-      })
-      const [showModal, setShowModal] = useState(false);
-      const [modalMessage, setModalMessage] = useState("");
-      const [modalVariant, setModalVariant] = useState("success")
+    // Datos del formulario
+    const [formData, setFormData] = useState({name: "", phone: "", message: ""})
+    
 
+
+
+    // Submit 
     const handlerSubmit=async(event)=>{
+      
         event.preventDefault()
-
         const { name, phone, message } = formData
-
         if (name && phone && message) {
 
-            const dataToSend={
-                name, 
-                phone,
-                message
-            };
+          const dataToSend={ name, phone, message};
             try {
               dispatch(showLoader());
               const response= await fetch("https://csyc.onrender.com/contact/send", {
                 method: "POST",
-                headers: {
-                  "Content-Type": "application/json",
-                },
-                body: JSON.stringify(dataToSend), 
-              })
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify(dataToSend)})
+
               if (response.ok) {
-                setModalVariant("success")
-                setModalMessage("Su mensaje fue enviado con éxito.")
                 dispatch(hideLoader());
+                Swal.fire("Mensaje enviado correctamente", "", "success")
+                .then(() => {window.location.reload(200);});
+                
               } else {
-                setModalVariant("danger")
-                setModalMessage("Inténtelo más tarde. Hubo un error.")
                 dispatch(hideLoader());
-              }
-              setShowModal(true)
+                Swal.fire("Hubo un error enviando el mensaje, inténtelo de nuevo más tarde", "", "error")}
+
             } catch (error) {
-              console.error(error);
-              setModalVariant("danger");
-              setModalMessage("Hubo un error en la solicitud.");
-              setShowModal(true);
               dispatch(hideLoader());
-            }
+              Swal.fire("Hubo un error en la solicitud", "", "error")}
           } 
     }
 
+
+
+    // Validacion
     const handlerInputChange = (event) => {
         const { name, value } = event.target
 
         if (name === "phone") {
             const numericValue = value.replace(/\D/g, "")
-            setFormData({
-              ...formData,
-              [name]: numericValue
-            })
-          } else {
-            setFormData({
-              ...formData,
-              [name]: value
-            })
-          }
-        }
-
-      const closeModal = () => {
-          setShowModal(false);
-          setModalMessage("");
-      }
+            setFormData({ ...formData, [name]: numericValue })
+          
+          } else {setFormData({ ...formData,[name]: value })
+       }
+    }
 
 
+
+
+
+    // Renderizado
     return (
-      
-        <div className="contentContact">
-           {isLoading && (
-      <div className="loader-overlay">
-        <div className="loader-container"><Rings color="#007bff" /></div>
-      </div>
-    )}
-        <h2 className="contact-title">Contacto</h2>
-        <div className="contact-container">
-            <div className="contact-info">
+      <section className="bg-blue-400 contactSection">
+
+        <div className="contentContact max-w-screen-lg mx-auto p-4">
+           
+        {/*Loader*/}
+        {isLoading && (<div className="loader-overlay">
+                          <div className="loader-container"><Rings color="#007bff" /></div>
+                      </div>)}
+
+       
+          <div className="contact-container flex">
+
+
+            {/*1era columna*/}
+
+            <div className="contact-info flex-col items-center w-5/12 p-4">
+
+            <h1 className="text-[1.4rem] font-bold mb-2  mt-1">Contacte con nosotros!</h1>
+            <br />
+
                 <div className="d-flex align-items-center">
-                    <i class="bi bi-person-check" style={{ fontSize: '1.9rem' }}></i>
+                    <i class="bi bi-person-check mr-2" style={{ fontSize: '1.9rem' }}></i>
                     <p className="contact-detail-options">Administrado por:</p>
                 </div>
-                <p>Juanito Bustos Segovia</p>
-                <div className="d-flex align-items-center">
-                    <i class="bi bi-house-check" style={{ fontSize: '1.9rem' }}></i>
+
+                <p>Cosme Fulanito</p>
+
+                <div className="d-flex align-items-center m-1">
+                    <i class="bi bi-house-check mr-2" style={{ fontSize: '1.9rem' }}></i>
                     <p className="contact-detail-options">Dirección:</p>
                 </div>
-                <p>Calle Falsa</p>
-                <div className="d-flex align-items-center">
-                    <i class="bi bi-telephone" style={{ fontSize: '1.9rem' }}></i>
+
+                <p>Calle Falsa 123</p>
+
+                <div className="d-flex align-items-center m-1">
+                    <i class="bi bi-telephone mr-2" style={{ fontSize: '1.9rem' }}></i>
                     <p className="contact-detail-options">Teléfono:</p>
                 </div>
+
                 <p>+54 9 0000 0000</p>
-                <div className="d-flex align-items-center">
-                    <i class="bi bi-envelope-at" style={{ fontSize: '1.9rem' }}></i>
+
+                <div className="d-flex align-items-center m-1">
+                    <i class="bi bi-envelope-at mr-2" style={{ fontSize: '1.9rem' }}></i>
                     <p className="contact-detail-options">Email:</p>
                 </div>
+
                 <p>dpto.cobranzas@csyc.com.ar</p>
             </div>
-         <div className="contact-detail">
-            <p className="contact-detail-options">Horario de Atención:</p>
-            <p>Lunes a viernes de 08:00 a 12:00 hs.</p>
-            <p>Sabados de 08:00 a 12:00 hs.</p>
-            <p className="contact-detail-options">Para una atencion personalizada presencial, diríjase a:</p>
-            <p>Municipalidad </p>
-            <p className="contact-detail-options">También puede solicitar asesoramiento personalizado telefónico llamando al:</p>
-            <p>03999-422000</p>
-            <p>0800 888 2335</p>
-         </div>
 
-         <div className="contact-form">
-            <h5>Para enviar consultas/sugerencias, complete el siguiente formulario:</h5>
-            <form className="contact-form" onSubmit={handlerSubmit}>
-              <div>
-                <label for="name" className="contact-label-text">Nombre y Apellido</label>
-                <input 
-                type="text" 
-                id="name" 
-                name="name"
-                className="contact-input" 
-                value={formData.name} 
-                onChange={handlerInputChange}
-                required />
-              </div>
-              <div>
-                <label for="phone" className="contact-label-text">Telefono Whatsapp</label>
-                <input 
-                type="tel" 
-                id="phone"
-                name="phone" 
-                className="contact-input" 
-                pattern="[0-9]{10}" 
-                value={formData.phone}  
-                onChange={handlerInputChange}required />
-              </div>
-              <div>
-                <label for="message" className="contact-label-text">Mensaje</label>
-                <textarea 
-                id="message" 
-                name="message" 
-                className="contact-input" 
-                value={formData.message}  
-                onChange={handlerInputChange} 
-                required></textarea>
-              </div>
-              <button type="submit" className="buttonSubmit">Enviar</button> 
-            </form>
-            <Modal show={showModal} onHide={closeModal} centered>
-              <Modal.Header closeButton>
-               <Modal.Title></Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
-                  <div className={`alert alert-${modalVariant}`} role="alert">
-                  {modalMessage}
+
+
+        
+
+            {/*2nda columna, Form*/}
+            <div className="contact-form flex-col items-center w-7/12 p-4">
+
+                <h5 className="text-lg font-bold mb-4">¿Reclamos o sugerencias? Háganoslo saber y estaremos con usted lo antes posible</h5>
+                
+                <form onSubmit={handlerSubmit}>
+
+                  <div>
+                    <label for="name" className="contact-label-text">Nombre y Apellido</label>
+                    <input type="text" id="name" name="name" required
+                    className="contact-input" value={formData.name} onChange={handlerInputChange}/>
                   </div>
-                </Modal.Body>
-                <Modal.Footer>
-                  <Button variant="secondary" onClick={closeModal}>
-                    Cerrar
-                  </Button>
-                </Modal.Footer>
-            </Modal>
-         </div>
+
+                  <div>
+                    <label for="phone" className="contact-label-text">Telefono / Whatsapp</label>
+                    <input type="tel" id="phone"name="phone" className="contact-input" 
+                    pattern="[0-9]{10}" value={formData.phone} onChange={handlerInputChange}required />
+                  </div>
+
+                  <div>
+                    <label for="message" className="contact-label-text">Su mensaje</label>
+                    <textarea id="message" name="message" className="contact-input" value={formData.message}  
+                    onChange={handlerInputChange} required></textarea>
+                  </div>
+
+                  <button type="submit" className="buttonSubmit">Enviar</button> 
+
+                </form>
+            </div>
+          </div>
         </div>
-       </div>
-      );
-    }
+    </section>);
+}
   
-  export default Contact;
+export default Contact;

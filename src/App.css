@@ -16,3 +16,7 @@
 	transition: all 300ms ease 0ms;
 	z-index: 99;
 }
+
+body {
+    overflow-x: hidden;
+}
