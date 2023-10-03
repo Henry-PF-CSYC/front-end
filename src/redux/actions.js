@@ -58,7 +58,7 @@ export const getAllUsers = () => {
             const adminsData = adminsResponse.data;
             const data = [...usersData, ...adminsData];
 
-            dispatch({ type: GETALLUSERS, payload: data,});
+            dispatch({ type: GETALLUSERS, payload: data});
         } catch (error) {
             console.error(`Error encontrando los usuarios`, error);
         }
