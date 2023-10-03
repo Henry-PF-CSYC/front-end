@@ -15,6 +15,7 @@ import SeccionUsuario from './components/SeccionUsuario/SeccionUsuario'
 import Clasificados from "./components/Clasificados/Clasificados";
 import { IconCart } from "./components/Cart/IconCart";
 import PruebaTailwind from "./components/PruebaTailwind";
+import AboutUs from "./components/AboutUs/AboutUs";
 
 
 // Servicios
@@ -50,7 +51,7 @@ function App() {
 
 
   return (
-    <div className="bg-image1 bg-cover h-screen w-screen bg-center bg-backgroundBody">
+    <div className="bg-image1 bg-cover w-screen bg-center bg-backgroundBody">
 
       {cartServices.length > 0 && (
           <div className="btn-flotante">
@@ -65,6 +66,7 @@ function App() {
 
         {/*Componentes principales*/}
         <Route path="/" element={<Landing/>}/>
+        <Route exact path='/about_us' element={<AboutUs />} />
         <Route path="/login" element={<Login/>}/>
         <Route path="/register" element={<Register/>}/>
         <Route path="/usuario" element={<SeccionUsuario/>}/>
