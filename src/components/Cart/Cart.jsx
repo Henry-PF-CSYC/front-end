@@ -6,16 +6,24 @@ import { deleteServiceCart } from '../../redux/actions';
 import { Wallet, initMercadoPago } from '@mercadopago/sdk-react';
 import axios from 'axios';
 import Swal from 'sweetalert2';
+import { useAuth0 } from '@auth0/auth0-react';
 
 // Loader
 import { Rings } from "react-loader-spinner";
 import { showLoader, hideLoader } from '../../redux/actions';
+import { useNavigate } from 'react-router-dom';
 
 
 export const Cart = ({ isTerms }) => {
+    let usuario = useSelector((state) => state.dataUser);
+    const { isAuthenticated } = useAuth0();
+    const navigate = useNavigate();
 
     // Accedemos al estado global del loader
     const isLoading = useSelector((state) => state.isLoading); 
+
+    // Desactivando boton tras llamar
+    const [paymentButtonDisabled, setPaymentButtonDisabled] = useState(false);
 
     initMercadoPago('APP_USR-4cc18a60-413f-4ac0-ae3e-9c9772649256')
     const [preferenceId, setPreferenceId] = useState(null)
@@ -42,6 +50,7 @@ export const Cart = ({ isTerms }) => {
     
             setPreferenceId(responseMercado.data.response.body.id)
             dispatch(hideLoader());
+            setPaymentButtonDisabled(true); // Deshabilitar el botón al hacer clic
         }else{
             Swal.fire({
                 title: 'Atencion',
@@ -49,13 +58,14 @@ export const Cart = ({ isTerms }) => {
                 icon: 'error'
             })
             dispatch(hideLoader());
+            setPaymentButtonDisabled(false); // Restablecer el estado en caso de error
         }
     }
 
     const servicesCart = useSelector(state => state.cartServices)
-    let sumTotal = servicesCart.reduce((acummulator, currentValue) => acummulator + currentValue.precio, 0)
+    let sumTotal = servicesCart.reduce((acummulator, currentValue) => acummulator + Number(currentValue.precio), 0)
     servicesCart.forEach(service => {
-        if (service.quantity > 1) sumTotal = sumTotal + (service.precio * (service.quantity - 1))
+        if (service.quantity > 1) sumTotal = sumTotal + (Number(service.precio) * (service.quantity - 1))
     });
 
 
@@ -134,9 +144,13 @@ export const Cart = ({ isTerms }) => {
                                         </div>
                                     </div>
                                     <div style={{ backgroundColor: '#F5F5F5' }}>
+                                        {(isAuthenticated && usuario.name)?(
                                         <div className='my-3'>
-                                            <button onClick={viewMercadoPago} disabled={proceed} type="button" class="btn btn-outline-success w-100 border rounded-4">Continuar con el pago</button>
-                                        </div>
+                                            <button onClick={viewMercadoPago} disabled={proceed || paymentButtonDisabled===true || !isTerms} type="button" class="btn btn-outline-success w-100 border rounded-4">Continuar con el pago</button>
+                                        </div>): (
+                                        <div className='my-3'>
+                                            <button onClick={()=>navigate("/register")} disabled={proceed || paymentButtonDisabled===true || !isTerms} type="button" class="btn btn-outline-success w-100 border rounded-4">Continuar con el pago</button>
+                                        </div>)}
                                         {
                                             preferenceId && (
                                                 <div className='my-3'>

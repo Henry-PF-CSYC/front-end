@@ -353,7 +353,8 @@ export const emptyCart = () => {
 export const raitingPost = ({rating,comment,user_email,serviceId}) => {
     return async () => {
         try {
-            const response = await axios.post(`https://csyc.onrender.com/reviews`,{rating:parseInt(rating),comment,user_email,serviceId})
+            let rating1={rating,comment,user_email,serviceId}
+            const response = await axios.post(`https://csyc.onrender.com/reviews`, rating1)
             const dataRaiting = response.data
             console.log(dataRaiting)
             console.log(response)

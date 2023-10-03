@@ -1,8 +1,8 @@
 #footerSection {
     background-color: #111111;
     padding: 2rem;
-    position: relative; /* Agrega posición relativa */
-    z-index: 10; /* Asegura que el footer tenga un z-index menor */
+    position: relative; 
+    z-index: 10; 
     margin-bottom: 0rem;
     padding-bottom: 0.5rem;
     font-size: smaller;

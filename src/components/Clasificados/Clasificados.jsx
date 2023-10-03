@@ -101,7 +101,7 @@ const Clasificados = () => {
                         )
                 )}
             </div>
-            {isAuthenticated && (
+            {(isAuthenticated && usuario.name) && (
                 <button
                     className={style.button}
                     onClick={() => {
