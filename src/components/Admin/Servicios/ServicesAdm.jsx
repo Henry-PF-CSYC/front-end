@@ -101,7 +101,7 @@ const ServicesAdm = () => {
         <MDBDataTable striped bordered small data={{ columns, rows }}
         infoLabel={['Mostrando del', 'al', 'de', 'clasificados disponibles']} searchLabel="Buscar" 
         entriesLabel="Entradas a desplegar:" paginationLabel={"<>"} noBottomColumns responsive
-        className="custom-datatable" style={{ boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)'}}  info={false}/>
+        entries={[15]} className="custom-datatable" style={{ boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)'}}  info={false}/>
 
     </div>);
 }

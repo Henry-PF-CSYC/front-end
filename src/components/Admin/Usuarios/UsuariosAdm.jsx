@@ -86,7 +86,7 @@ return(
         <MDBDataTable striped  bordered  small  data={{ columns, rows }}  paginationLabel={"<>"}
         infoLabel={['Mostrando del', 'al', 'de', 'usuarios disponibles']} noBottomColumns responsive
         searchLabel="Buscar"  entriesLabel="Entradas a desplegar:"  className="custom-datatable" info={false}
-        style={{ boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)'}}/>
+        style={{ boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)'}} entries={[15]}/>
     </div>);
 }
 
