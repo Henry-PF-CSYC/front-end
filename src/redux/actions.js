@@ -360,7 +360,9 @@ export const emptyCart = () => {
 export const raitingPost = ({rating,comment,user_email,serviceId}) => {
     return async () => {
         try {
-            const response = await axios.post(`https://csyc.onrender.com/reviews`,{rating:parseInt(rating),comment,user_email,serviceId})
+            let rating1={rating,comment,user_email,serviceId}
+            console.log(rating1)
+            const response = await axios.post(`https://csyc.onrender.com/reviews`, rating1)
             const dataRaiting = response.data
             console.log(dataRaiting)
             console.log(response)
@@ -385,6 +387,8 @@ export const getAllRating = () => { // para el admin dario
         }
     }
 }
+
+
 export const getRatingService = ({serviceId}) => { // la ocupamos para servicios modal que hizo cristian
     return async (dispatch) => {
         try {
@@ -414,6 +418,8 @@ export const getAllRatingByUser = ({user_email}) => { // en usuarios para jason 
         }
     }
 }
+
+
 export const getRatingById = ({idReview}) => { //te trae cada servicio en caso de que la review tenga 50lineas de codigo y doy un ver mas 
     return async (dispatch) => {
         try {
@@ -428,6 +434,8 @@ export const getRatingById = ({idReview}) => { //te trae cada servicio en caso d
         }
     }
 }
+
+
 export const deleteRatingById = ({idReview}) => { // elimina desde admin dario , y user jeison 
     return async () => {
         try {
@@ -437,7 +445,6 @@ export const deleteRatingById = ({idReview}) => { // elimina desde admin dario ,
         }
     }
 }
-
 
 
 // Admin actions
