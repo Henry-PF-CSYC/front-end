@@ -5,7 +5,7 @@ import Swal from 'sweetalert2'
 import { Button } from 'react-bootstrap'
 
 
-const CardsServicios = ({ imagen, titulo, descripcion, nombreBoton, estado, precio, id, type, click, index }) => {
+const CardsServicios = ({ imagen, titulo, descripcion, nombreBoton, estado, precio, id, type, click, index, openRating }) => {
 
     const dispatch = useDispatch()
     const serviceCarts = useSelector(state => state.cartServices)
@@ -51,7 +51,7 @@ const CardsServicios = ({ imagen, titulo, descripcion, nombreBoton, estado, prec
             }
         }
     }
-    console.log({ imagen, titulo, descripcion, nombreBoton, estado, precio, id, type, click, index })
+    
     return (
         // <div className={`${style.card} ${estado === 'unavailable' ? style.disabledCard : ''}`}>
         //     <div className={`${style.face} ${style.front}`}>
@@ -100,7 +100,7 @@ const CardsServicios = ({ imagen, titulo, descripcion, nombreBoton, estado, prec
                 <p className={`text-xl font-normal font-fontGeneral text-left pe-7 ${index % 2 === 1 ? 'text-white' : ' text-black'}`}>{descripcion}</p>
             </div>
             <div className='grid grid-cols-1 pt-3 px-4'>
-                <Button onClick={estado === 'available' ? addCart : null} className={`${index % 2 === 1 ? 'bg-white' : 'bg-blue-all'}`} ><p className={`${index % 2 === 1 ? 'text-gray-palido' : 'text-white'} text-2xl font-fontGeneral font-normal `}>{nombreBoton}</p></Button>
+                <Button onClick={estado === 'available' ? addCart : openRating ? openRating : null} className={`${index % 2 === 1 ? 'bg-white' : 'bg-blue-all'}`} ><p className={`${index % 2 === 1 ? 'text-gray-palido' : 'text-white'} text-2xl font-fontGeneral font-normal `}>{nombreBoton}</p></Button>
             </div>
         </div>
 
