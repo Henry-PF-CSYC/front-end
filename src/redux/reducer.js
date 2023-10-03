@@ -166,6 +166,8 @@ const reducer = (state = initialState, action) => {
                 publicacionesusuario: []
             };
         
+
+            
         // Rating
         case GETALLRATING:
             return { 
