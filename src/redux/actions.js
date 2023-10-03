@@ -361,7 +361,6 @@ export const raitingPost = ({rating,comment,user_email,serviceId}) => {
     return async () => {
         try {
             let rating1={rating,comment,user_email,serviceId}
-            console.log(rating1)
             const response = await axios.post(`https://csyc.onrender.com/reviews`, rating1)
             const dataRaiting = response.data
             console.log(dataRaiting)
