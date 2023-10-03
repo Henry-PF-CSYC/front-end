@@ -225,6 +225,14 @@ const Landing = () =>{
                 </div>
             </section>
         </section>
+        // <section className='grid grid-cols-3 p-40'>
+        //     <div className=''>
+        //         texto
+        //     </div>
+        //     <div className='col-span-2'>
+        //         Imagen
+        //     </div>
+        // </section>
     );
 };
 
