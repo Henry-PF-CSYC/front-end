@@ -49,15 +49,7 @@ export const getUser = (email) => {
 export const getAllUsers = () => {
     return async (dispatch) => {
         try {
-            const [usersResponse, adminsResponse] = await Promise.all([
-                axios.get(`https://csyc.onrender.com/users`),
-                axios.get(`https://csyc.onrender.com/users/admin`),
-            ]);
-
-            const usersData = usersResponse.data;
-            const adminsData = adminsResponse.data;
-            const data = [...usersData, ...adminsData];
-
+            const {data} = await axios.get(`https://csyc.onrender.com/users`)
             dispatch({ type: GETALLUSERS, payload: data});
         } catch (error) {
             console.error(`Error encontrando los usuarios`, error);

@@ -7,8 +7,15 @@ import { Wallet, initMercadoPago } from '@mercadopago/sdk-react';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 
+// Loader
+import { Rings } from "react-loader-spinner";
+import { showLoader, hideLoader } from '../../redux/actions';
+
 
 export const Cart = ({ isTerms }) => {
+
+    // Accedemos al estado global del loader
+    const isLoading = useSelector((state) => state.isLoading); 
 
     initMercadoPago('APP_USR-4cc18a60-413f-4ac0-ae3e-9c9772649256')
     const [preferenceId, setPreferenceId] = useState(null)
@@ -25,6 +32,7 @@ export const Cart = ({ isTerms }) => {
     }
 
     const viewMercadoPago = async () => {
+        dispatch(showLoader());
         if(Object.keys(user).length > 0){
             const data = []
             servicesCart.forEach(service => data.push({id:service.id, title: service.titulo, unit_price: service.precio, quantity: service.quantity, currency_id: 'ARS'}))
@@ -33,12 +41,14 @@ export const Cart = ({ isTerms }) => {
             const responseMercado = await axios.post('https://csyc.onrender.com/mercadopago/order', data)
     
             setPreferenceId(responseMercado.data.response.body.id)
+            dispatch(hideLoader());
         }else{
             Swal.fire({
                 title: 'Atencion',
                 text: 'Debe iniciar sesion para completar su compra',
                 icon: 'error'
             })
+            dispatch(hideLoader());
         }
     }
 
@@ -48,8 +58,17 @@ export const Cart = ({ isTerms }) => {
         if (service.quantity > 1) sumTotal = sumTotal + (service.precio * (service.quantity - 1))
     });
 
+
+    
     return (
         <div className={isTerms ? 'pt-5' : ''}>
+
+{isLoading && (
+      <div className="loader-overlay">
+        <div className="loader-container"><Rings color="#007bff" /></div>
+      </div>
+    )}
+
             {
                 isTerms && (
                     <div className='d-flex justify-content-center m-5'>
