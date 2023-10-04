@@ -207,7 +207,7 @@ export const deleteService = (id) => {
 
 
 // Offers actions
-export const getClasificados = ({title,type,order,orderBy,page,size}) => {
+export const getClasificados = ({title,type,order,orderBy,page,size,user_type}) => {
 
     return async (dispatch) => {
         try {
@@ -235,6 +235,10 @@ export const getClasificados = ({title,type,order,orderBy,page,size}) => {
             
             if (size) {
                 queriesAds.size = size;
+            }
+
+            if (user_type) {
+                queriesAds.user_type = user_type;
             }
 
             const queryAdsString = new URLSearchParams(queriesAds).toString();
