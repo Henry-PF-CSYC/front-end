@@ -23,7 +23,7 @@ const ModalPublicacion = ({ show, handleClose, publicacion }) => {
             }}
         >
             <div
-                className="card border-0 font-fontGeneral bg-onahau-400/30 mb-0 font-medium"
+                className="card border-0 font-fontGeneral bg-onahau-50/80 mb-0 font-medium"
                 style={cardStyle}
             >
                 <div className="card-header " style={headerStyle}>
@@ -34,7 +34,7 @@ const ModalPublicacion = ({ show, handleClose, publicacion }) => {
                         style={imgStyle}
                     />
                 </div>
-                <div className="card-body bg-onahau-400/60">
+                <div className="card-body bg-onahau-100/20">
                     <h5 className="card-title">
                         {publicacion.type}: {publicacion.title}
                     </h5>
