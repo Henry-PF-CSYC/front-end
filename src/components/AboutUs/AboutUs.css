@@ -4,17 +4,13 @@
     height: 500px;
     overflow: hidden;
 }
-p {
-    font-weight: 800;
-}
-h1 {
-    font-weight: 800;
-}
+
 .text-center {
     font-size: 200%;
     color: black;
     margin-bottom: 3%;
 }
+
 .cards-container .card-container {
     position: relative;
     width: 25%;

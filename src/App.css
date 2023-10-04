@@ -1,54 +1,45 @@
-@import "tailwindcss/base";
-@import "tailwindcss/components";
-@import "tailwindcss/utilities";
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
 
 @layer components {
-    .btn-primary {
-        @apply bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded;
-    }
+	.btn-primary {
+	@apply bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded}
+  
+	.btn-danger {
+	@apply bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded}
 
-    .btn-danger {
-        @apply bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded;
-    }
+	.btn-secondary {
+	@apply bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded}
 
-    .btn-secondary {
-        @apply bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded;
-    }
-
-    .btn-warning {
-        @apply bg-yellow-400 hover:bg-yellow-400 text-white font-bold py-2 px-4 rounded;
-    }
+	.btn-warning {
+	@apply bg-yellow-400 hover:bg-yellow-400 text-white font-bold py-2 px-4 rounded}
 }
 
-@font-face {
-    font-family: "Fira Sans";
-    src: url("../public/fuenteFiraSans/FiraSans-Regular.ttf");
-}
-p {
-    font-family: "Fira Sans";
-}
+
 
 .btn-flotante {
-    font-size: 16px; /* Cambiar el tamaño de la tipografia */
-    text-transform: uppercase; /* Texto en mayusculas */
-    font-weight: bold; /* Fuente en negrita o bold */
-    color: #ffffff; /* Color del texto */
-    border-radius: 5px; /* Borde del boton */
-    letter-spacing: 2px; /* Espacio entre letras */
-    padding: 18px 30px; /* Relleno del boton */
-    position: fixed;
-    bottom: 6px;
-    right: 47px;
-    transition: all 300ms ease 0ms;
-    z-index: 99;
+	font-size: 16px; /* Cambiar el tamaño de la tipografia */
+	text-transform: uppercase; /* Texto en mayusculas */
+	font-weight: bold; /* Fuente en negrita o bold */
+	color: #ffffff; /* Color del texto */
+	border-radius: 5px; /* Borde del boton */
+	letter-spacing: 2px; /* Espacio entre letras */
+	padding: 18px 30px; /* Relleno del boton */
+	position: fixed;
+	bottom: 6px;
+	right: 47px;
+	transition: all 300ms ease 0ms;
+	z-index: 99;
 }
 
 body {
     overflow-x: hidden;
 }
 
-.dangerButton {
-    background-color: red;
-    color: white;
-    border-radius: 1rem;
+.dangerButton{
+	background-color: red;
+	color: white;
+	border-radius: 1rem;
 }

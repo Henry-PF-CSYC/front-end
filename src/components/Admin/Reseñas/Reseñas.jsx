@@ -80,7 +80,7 @@ const Reseñas = () =>{
     // Mapeamos los usuarios
     const rows = reviews.map((review) => ({
       id: review.id,
-      rating: review.user_id,
+      rating: review.rating,
       comment: review.comment,
       user_id: review.user_id,
       service_id: review.service_id,

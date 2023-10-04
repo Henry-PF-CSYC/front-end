@@ -379,6 +379,8 @@ export const getAllRating = () => { // para el admin dario
         }
     }
 }
+
+
 export const getRatingService = ({serviceId}) => { // la ocupamos para servicios modal que hizo cristian
     return async (dispatch) => {
         try {
