@@ -81,7 +81,6 @@ const handleDeleteOffer = (clasificadoId) => {
     { label: "ID", field: "id", sort: "asc", width: 150 },
     { label: "Usuario", field: "user", sort: "asc", width: 150 },
     { label: "Título", field: "title", sort: "asc", width: 150 },
-    { label: "Descripción", field: "description", sort: "asc", width: 200 },
     { label: "Contacto", field: "contact", sort: "asc", width: 100 },
     { label: "Tipo", field: "type", sort: "asc", width: 100,},
     { label: 'Borrar', field: 'delete', width: 100}
@@ -93,7 +92,6 @@ const handleDeleteOffer = (clasificadoId) => {
     id: clasificado.id,
     user: clasificado.user_id,
     title: clasificado.title,
-    description: clasificado.description,
     contact: clasificado.contact,
     type: <span className={getCellStyle(clasificado.type)}>{clasificado.type}</span>,
     delete: <i onClick={() => handleDeleteOffer(clasificado.id)} class="bi bi-trash3-fill clasificadoDeleteBut"></i>
@@ -116,7 +114,7 @@ const handleDeleteOffer = (clasificadoId) => {
         <MDBDataTable striped bordered small data={{ columns, rows }}  noBottomColumns  responsive
         infoLabel={['Mostrando del', 'al', 'de', 'clasificados disponibles']}  paginationLabel={"<>"}
         searchLabel="Buscar" entriesLabel="Entradas a desplegar:" className="custom-datatable" info={false}
-        style={{ boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)'}} entries={[8]}/>
+        style={{ boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)'}} entries={[15]}/>
     </div>);
 }
 

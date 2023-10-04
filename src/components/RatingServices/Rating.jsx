@@ -12,7 +12,7 @@ const Rating = ({ show, handleClose, serviceId }) => {
   const [serverResponse, setServerResponse] = useState('');
   const [reviewUser, setReviewUser] = useState(''); //  la reseña que se va a renderizar
   const ratingServiceByUser = useSelector(state => state.commentRatingService); // suscrito al objeto que trae por comentario 
-  console.log(ratingServiceByUser)
+
 
   const dispatch = useDispatch();
   const userdata = useSelector((state) => state.dataUser);
@@ -29,7 +29,7 @@ const Rating = ({ show, handleClose, serviceId }) => {
         return;
       }
 
-      await dispatch(raitingPost({ rating, comment, serviceId, user_email: userdata.email }));
+      dispatch(await raitingPost({ rating, comment, serviceId, user_email: userdata.email }));
       setServerResponse(messagePost);
       resetForm();
       setTimeout(() => {
