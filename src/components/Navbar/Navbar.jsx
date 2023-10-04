@@ -224,7 +224,7 @@ const Navbar = () => {
         // </section>
         // </div>
         <div className='fixed bg-blue-200 z-50'>
-            <div className='grid grid-flow-col-dense grid-cols-8 mx-44 gap-14 py-2'>
+            <div className='grid grid-flow-col-dense grid-cols-8 ml-28 mr-10 gap-20 py-2'>
                 <div className='col-span-4'>
                     <Link to="/">
                         <span className='font-fontGeneral text-6xl font-bold text-blue-all'>CS<span className='text-white'>y</span>C</span>
@@ -338,8 +338,8 @@ const Navbar = () => {
                                         alt="userImage"
                                         className="rounded-2xl"
                                         title="Puedes ver tu perfil y cerrar sesión"
-                                        height={'60px'}
-                                        width={'60px'}
+                                        height={'45px'}
+                                        width={'45px'}
                                     />
                                 </button>
                                 <ul
