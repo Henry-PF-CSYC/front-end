@@ -7,16 +7,11 @@ import {
 } from '../../../redux/actions';
 import { useDispatch, useSelector } from 'react-redux';
 
-
 const ModalPublicaciones = ({ show, handleClose, email }) => {
     const cardStyle = {
         maxWidth: '20rem',
         width: '20rem',
         margin: '15px'
-    };
-    const imgStyle = {
-        maxWidth: '16rem',
-        padding: 'auto'
     };
     const descripcionStyle = {
         overflow: 'hidden',
@@ -28,7 +23,7 @@ const ModalPublicaciones = ({ show, handleClose, email }) => {
     };
     const container = {
         display: 'flex',
-        justifyContent: 'space-between',
+        justifyContent: 'space-around',
         flexWrap: 'wrap',
         marginBottom: '15px',
         width: '100%'
@@ -39,10 +34,10 @@ const ModalPublicaciones = ({ show, handleClose, email }) => {
         marginRight: '15px'
     };
     const dispatch = useDispatch();
-    const type = "soft"
+    const type = 'soft';
     let publicaciones = useSelector((state) => state.publicacionesusuario);
     const deletPublicacion = (id) => {
-        dispatch(deleteOffer(id,type));
+        dispatch(deleteOffer(id, type));
         dispatch(getOfferByEmail(email));
     };
     useEffect(() => {
@@ -61,7 +56,10 @@ const ModalPublicaciones = ({ show, handleClose, email }) => {
                 handleClose();
             }}
         >
-            <div style={container}>
+            <div
+                style={container}
+                className="flex flex-row font-fontGeneral bg-gradient-to-b to-onahau-50 from-onahau-300/30 rounded-md justify-around"
+            >
                 <h3 style={line}>Publicaciones Activas:</h3>
                 <hr style={line} />
                 {publicaciones.length > 0 &&
@@ -69,32 +67,32 @@ const ModalPublicaciones = ({ show, handleClose, email }) => {
                         (publicacion) =>
                             !publicacion.deletedAt && (
                                 <div
-                                    className="card bg-light mb-0"
+                                    className="card  bg-onahau-50/80 mb-3 max-w-xs w-80 m-3 shadow-xl"
                                     style={cardStyle}
                                 >
-                                    <div className="card-header">
+                                    <div className="card-header flex flex-row justify-center">
                                         <img
+                                            className="h-40 max-w-xs max-h-48 m-auto rounded-md"
                                             src={publicacion.image}
                                             alt="imagen"
-                                            style={imgStyle}
                                         />
                                     </div>
-                                    <div className="card-body">
+                                    <div className="card-body bg-onahau-100/20">
                                         <h5 className="card-title">
                                             {publicacion.type}:{' '}
                                             {publicacion.title}
                                         </h5>
                                         <p
-                                            className="card-text"
+                                            className="card-text overflow-hidden text-ellipsis line-clamp-4 whitespace-normal h-11"
                                             style={descripcionStyle}
                                         >
                                             {publicacion.description}
                                         </p>
                                         <p className="card-text">
-                                            {publicacion.contact}
+                                            Contacto: {publicacion.contact}
                                         </p>
                                         <p className="card-text">
-                                            {publicacion.price}
+                                            Precio: {publicacion.price}
                                         </p>{' '}
                                         <Button
                                             onClick={() => {
@@ -118,40 +116,43 @@ const ModalPublicaciones = ({ show, handleClose, email }) => {
                         (publicacion) =>
                             publicacion.deletedAt && (
                                 <div
-                                    className="card bg-light mb-0"
+                                    className="card  bg-onahau-50/80 mb-3 max-w-xs w-80 m-3 shadow-xl"
                                     style={cardStyle}
                                 >
-                                    <div className="card-header">
+                                    <div className="card-header flex flex-row justify-center">
                                         <img
+                                            className="h-40 max-w-xs max-h-48 m-auto rounded-md"
                                             src={publicacion.image}
                                             alt="imagen"
-                                            style={imgStyle}
                                         />
                                     </div>
-                                    <div className="card-body">
+                                    <div className="card-body bg-onahau-100/20">
                                         <h5 className="card-title">
                                             {publicacion.type}:{' '}
                                             {publicacion.title}
                                         </h5>
                                         <p
-                                            className="card-text"
+                                            className="card-text overflow-hidden text-ellipsis line-clamp-4 whitespace-normal h-11"
                                             style={descripcionStyle}
                                         >
                                             {publicacion.description}
                                         </p>
                                         <p className="card-text">
-                                            {publicacion.contact}
+                                            Contacto: {publicacion.contact}
                                         </p>
                                         <p className="card-text">
-                                            {publicacion.price}
+                                            Precio: {publicacion.price}
                                         </p>{' '}
                                         <Button
                                             onClick={() => {
-                                                restoreOffer(publicacion.id);
+                                                deletPublicacion(
+                                                    publicacion.id
+                                                );
+                                                getOfferByEmail(email);
                                                 // Recarga la página
                                             }}
                                         >
-                                            Restaurar
+                                            Borrar
                                         </Button>
                                     </div>
                                 </div>
