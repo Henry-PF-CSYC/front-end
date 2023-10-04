@@ -105,7 +105,9 @@ const CardsServicios = ({ imagen, titulo, descripcion, nombreBoton, estado, prec
                 <p className={`text-xl font-normal font-fontGeneral text-left pe-7 ${index % 2 === 1 ? 'text-white' : ' text-black'}`}>{descripcion}</p>
             </div>
             <div className='grid grid-cols-1 pt-3 px-4'>
-                <Button onClick={estado === 'available' ? addCart : openRating ? openRating : null} className={`${index % 2 === 1 ? 'bg-white' : 'bg-blue-all'}`} ><p className={`${index % 2 === 1 ? 'text-gray-palido' : 'text-white'} text-2xl font-fontGeneral font-normal `}>{nombreBoton}</p></Button>
+                <Button onClick={estado === 'available' ? addCart : openRating ? openRating : null} 
+                className={`${index % 2 === 1 ? 'bg-white' : 'bg-blue-all'}`} >
+                    <p className={`${index % 2 === 1 ? 'text-gray-palido' : 'text-white'} text-2xl font-fontGeneral font-normal `}>{nombreBoton}</p></Button>
             </div>
         </div>
 
