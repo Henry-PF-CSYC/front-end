@@ -176,12 +176,14 @@ const SeccionUsuario = () => {
                 src={loader}
                 />
             </div>)}
-            <div style={{ backgroundColor: '#75B3Ac' }} className="pb-1">
-                <div className="row m-5 d-flex justify-content-center">
-                    <div className="col-12 mt-5 d-flex justify-content-center">
-                    {
+            <div className="pb-1">
+                <div className="grid grid-cols-1">
+                    <div className="grid grid-cols-1 my-5">
+                        {
                             servicios.length > 0 ? (
-                                <h1>Mis servicios activos:</h1>
+                                <div className='grid place-content-center'>
+                                    <p className='font-fontGeneral text-3xl font-bold text-gray-palido'>Mis servicios activos:</p>
+                                </div>
                             ) : (
                                 <div className='row'>
                                     <div className='col-12 d-flex justify-content-center'>
@@ -198,29 +200,32 @@ const SeccionUsuario = () => {
                             )
                         }
                     </div>
-                    {servicios.length > 0 &&
-                        servicios.map((servicio, index) => {
-                            return (
-                                <div className="col-3 ps-5 my-5">
-                                    <CardsServicios
-                                        key={index}
-                                        imagen={servicio['service.image']}
-                                        titulo={servicio['service.name']}
-                                        descripcion={servicio['service.description']}
-                                        nombreBoton="Mas Informacion"
-                                    />
-                                    <button onClick={() => openRatingModal(servicio.service_id)}>Calificar Servicio</button>
-                                    {showRatingModal[servicio.service_id] && (
-                                    <Rating
-                                    key={servicio.service_id}
-                                    serviceId={servicio.service_id}
-                                    show={showRatingModal[servicio.service_id]}
-                                    handleClose={() => closeRatingModal(servicio.service_id)}
-                                    />)}
-                                </div>
-                                
-                            );
-                        })}
+                    <div className='grid grid-cols-2 mx-36 gap-5'>
+                        {servicios.length > 0 &&
+                            servicios.map((servicio, index) => {
+                                return (
+                                    <>
+                                        <CardsServicios
+                                            key={index}
+                                            imagen={servicio['service.image']}
+                                            titulo={servicio['service.name']}
+                                            descripcion={servicio['service.description']}
+                                            nombreBoton="Opiniones"
+                                            type={'internet'}
+                                            index={index}
+                                            openRating={openRatingModal}
+                                        />
+                                        {/* <button onClick={openRatingModal}>Calificar Servicio</button> */}
+                                        {showRatingModal && (
+                                            <Rating
+                                                serviceId={servicio.service_id}
+                                                show={showRatingModal}
+                                                handleClose={closeRatingModal}
+                                            />)}
+                                    </>
+                                );
+                            })}
+                    </div>
                 </div>
             </div>
             <ModalPublicaciones

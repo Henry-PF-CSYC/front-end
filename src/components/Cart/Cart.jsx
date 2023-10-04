@@ -228,7 +228,7 @@ export const Cart = ({ isTerms }) => {
                                             </label>
                                         </div>
                                         <div className='grid place-content-center '>
-                                            <button onClick={viewMercadoPago} disabled={proceed || paymentButtonDisabled === true || !isTerms} type="button" className='font-fontGeneral text-lg font-normal border-solid border-2 border-blue-all py-2 pl-24 pr-24 bg-white rounded-2xl'>Continuar con el pago</button>
+                                            <button onClick={viewMercadoPago} disabled={proceed || paymentButtonDisabled === true || !isTerms} type="button" className='font-fontGeneral text-lg font-normal border-solid border-2 border-blue-all py-2 pl-24 pr-20 bg-white rounded-2xl'>Continuar con el pago</button>
                                         </div>
                                         <div>
                                             {
