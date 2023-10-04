@@ -202,30 +202,29 @@ const SeccionUsuario = () => {
                         }
                     </div>
                     <div className='grid grid-cols-2 mx-36 gap-5'>
-                        {servicios.length > 0 &&
-                            servicios.map((servicio, index) => {
-                                return (
-                                    <>
-                                        <CardsServicios
-                                            key={index}
-                                            imagen={servicio['service.image']}
-                                            titulo={servicio['service.name']}
-                                            descripcion={servicio['service.description']}
-                                            nombreBoton="Opiniones"
-                                            type={'internet'}
-                                            index={index}
-                                            openRating={openRatingModal}
-                                        />
-                                        {/* <button onClick={openRatingModal}>Calificar Servicio</button> */}
-                                        {showRatingModal && (
-                                            <Rating
-                                                serviceId={servicio.service_id}
-                                                show={showRatingModal}
-                                                handleClose={closeRatingModal}
-                                            />)}
-                                    </>
-                                );
-                            })}
+                    {servicios.length > 0 &&
+                        servicios.map((servicio, index) => {
+                            return (
+                                <div className="col-3 ps-5 my-5">
+                                    <CardsServicios
+                                        key={index}
+                                        imagen={servicio['service.image']}
+                                        titulo={servicio['service.name']}
+                                        descripcion={servicio['service.description']}
+                                        nombreBoton="Mas Informacion"
+                                    />
+                                    <button onClick={() => openRatingModal(servicio.service_id)}>Calificar Servicio</button>
+                                    {showRatingModal[servicio.service_id] && (
+                                    <Rating
+                                    key={servicio.service_id}
+                                    serviceId={servicio.service_id}
+                                    show={showRatingModal[servicio.service_id]}
+                                    handleClose={() => closeRatingModal(servicio.service_id)}
+                                    />)}
+                                </div>
+
+                            );
+                        })}
                     </div>
                 </div>
             </div>
