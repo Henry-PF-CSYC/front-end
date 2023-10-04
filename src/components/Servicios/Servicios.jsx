@@ -20,8 +20,7 @@ const Servicios = () => {
     const [rangeMin, setRangeMin] = useState('');
     const [rangeMax, setRangeMax] = useState('');
     const size = 3; //las cartas que me tiene que traer
-    const [show, setShow] = useState(false);
-    const [service,setService]=useState({})
+   
 
     const loadServices = () => {
         //para cargar los servicios voy a mandarlo a un use efect
@@ -111,8 +110,17 @@ const Servicios = () => {
         setCurrentPage(1)
     }
     
-    const handleClose = () => {
-        setShow(false);
+    const [showModal, setShowModal] = useState(false);
+    const [selectedService, setSelectedService] = useState({});
+
+    const handleRatingClick = (servicio) => {
+        setSelectedService(servicio);
+        setShowModal(true);
+    };
+
+    const handleCloseModal = () => {
+        setSelectedService({});
+        setShowModal(false);
     };
     
     return (
@@ -198,14 +206,16 @@ const Servicios = () => {
                                         titulo={servicio.name}
                                         nombreBoton="Lo quiero!"
                                         click={()=>{
-                                            setService(servicio);
-                                            setShow(true)}}
+                                            setSelectedService(servicio);
+                                            setShowModal(true)}}
                                         descripcion={servicio.description}
                                         precio={servicio.price}
                                         estado={servicio.status}
                                         id={servicio.id}
                                         type={servicio.type}
+                                    
                                     />
+                                    <p><button key={index} className="btn btn-primary" onClick={() => handleRatingClick(servicio)}>Opiniones</button></p>
                                 </div>
                             ))
                         ) : (
@@ -262,9 +272,9 @@ const Servicios = () => {
                 </ul>
             </div>
             <ModalServicio
-                show={show}
-                handleClose={handleClose}
-                service={service}
+                show={showModal}
+                handleClose={handleCloseModal}
+                service={selectedService}
             />
         </section>
     );
