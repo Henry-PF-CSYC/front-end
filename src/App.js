@@ -36,7 +36,7 @@ import UsuariosAdm from "./components/Admin/Usuarios/UsuariosAdm";
 import ClasificadosAdm from "./components/Admin/Clasificados/ClasificadosAdm";
 import Novedades from "./components/Admin/Novedades/Novedades";
 import Reseñas from "./components/Admin/Reseñas/Reseñas";
-
+import Banned from "./components/Admin/Banned";
 
 
 
@@ -49,9 +49,10 @@ function App() {
 
   const isAdminRouted = location.pathname.includes('/admin');
   const userRole = useSelector(state => state.dataUser.role);
+  
+  if (userRole === "banned") {return <Banned/>}
 
-
-
+  
 
 
   // Renderizado
@@ -97,8 +98,8 @@ function App() {
 
         {/* Ruta de Admin Protegida */}
         {isAdminRouted && (userRole !== "admin" && userRole !== "contact_admin") && navigate("/")}
-        <Route path="/admin/*" element={userRole === "admin" || userRole === "contact_admin" ? <Admin/> : <Navigate to="/"/>}>
-          <Route index element={<ServicesAdm/>}/>
+        <Route path="/admin*" element={userRole === "admin" || userRole === "contact_admin" ? <Admin/> : <Navigate to="/"/>}>
+          <Route path="servicesAdm" element={<ServicesAdm/>}/>
           <Route path="usuarios" element={<UsuariosAdm/>}/>
           <Route path="clasificados" element={<ClasificadosAdm/>}/>
           <Route path="novedades" element={<Novedades/>}/>

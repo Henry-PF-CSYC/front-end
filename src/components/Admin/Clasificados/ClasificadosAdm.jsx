@@ -30,7 +30,9 @@ const ClasificadosAdm = () => {
   useEffect(() => {
     const obtenerClasificados = async () => {
       try {
-        await dispatch(getClasificados({ randomParam: Date.now() }));
+        dispatch(showLoader());
+        await dispatch( getClasificados({ randomParam: Date.now() }));
+        dispatch(hideLoader());
   } catch (error) { console.error('Error al obtener clasificados:', error);}};
     obtenerClasificados()}, [dispatch]); 
   
@@ -64,7 +66,7 @@ const handleDeleteOffer = (clasificadoId) => {
     if (result.isConfirmed) {
       try {
         dispatch(showLoader());
-        await dispatch(deleteOffer(clasificadoId, "hard"));
+        dispatch(await deleteOffer(clasificadoId, "hard"));
         dispatch(hideLoader());
         Swal.fire("Clasificado eliminado correctamente", "", "success")
         .then(() => {window.location.reload(200);});

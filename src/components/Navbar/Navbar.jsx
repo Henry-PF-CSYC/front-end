@@ -197,7 +197,7 @@ const Navbar = () => {
 
                             {(isAuthenticated && (usuario.role === "admin" || usuario.role === "contact_admin")) && (
                             <li>
-                                <Link to="/admin" style={{ textDecoration: 'none' }}>
+                                <Link to="/admin/servicesAdm" style={{ textDecoration: 'none' }}>
                                 <a class="dropdown-item userDropdown" href=".">
                                     Administrador
                                 </a>
