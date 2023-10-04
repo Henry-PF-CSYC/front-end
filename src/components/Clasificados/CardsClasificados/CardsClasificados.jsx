@@ -28,8 +28,13 @@ const CardsClasificados = ({
 
     return (
         <div className="card bg-light mb-3" style={cardStyle}>
-            <div className="card-header">
-                <img src={picture} alt="imagen" style={imgStyle} />
+            <div className="card-header flex flex-row justify-center">
+                <img
+                    className=" h-40 "
+                    src={picture}
+                    alt="imagen"
+                    style={imgStyle}
+                />
             </div>
             <div className="card-body">
                 <h5 className="card-title">
