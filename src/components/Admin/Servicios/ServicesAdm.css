@@ -1,7 +1,3 @@
-*{
-   font-family: 'Fira Sans';
-}
-
 .page-item.active .page-link .sr-only {
     display: none;
 }
