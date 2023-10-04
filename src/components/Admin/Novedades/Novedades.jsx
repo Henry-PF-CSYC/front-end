@@ -1,4 +1,5 @@
 import "./Novedades.css"
+import { Button } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { getNotices } from "../../../redux/actions";
@@ -96,7 +97,7 @@ const Novedades = () =>{
   
           <div id="introToServicesAdmin" className="adminTitles">
             <h2 id="titleAdminNovedades"> Últimas novedades: </h2>
-            <button className="addService" onClick={openNewNoticeModal}> Añadir aviso / novedad </button>
+            <Button variant="primary" onClick={openNewNoticeModal}> Añadir aviso / novedad </Button>
           </div>
           
           <NewNoticeModal show={showNewNoticeModal} handleClose={closeNewNoticeModal}/>
@@ -105,7 +106,7 @@ const Novedades = () =>{
   
           <MDBDataTable striped bordered small data={{ columns, rows }}
           searchLabel="Buscar" className="custom-datatable" style={{ boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)'}}  
-          info={false} paginationLabel={"<>"} noBottomColumns responsive/>
+          info={false} paginationLabel={"<>"} noBottomColumns responsive entries={[15]}/>
   
       </div>);
   }

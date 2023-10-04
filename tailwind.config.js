@@ -21,12 +21,15 @@ module.exports = {
           '950': '#06294b',
       },
     },
+
     backgroundImage: {
       'image1' : "url('../src/components/assets/Rectangle9.svg')" 
     },
+
     fontFamily: {
       'fontGeneral' : 'Fira Sans'
-    }
+    },
+    
   } },
   plugins: [],
 }

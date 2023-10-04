@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { addServiceCart } from '../../../redux/actions'
 import Swal from 'sweetalert2'
 import { Button } from 'react-bootstrap'
+import propano from '../../assets/propane.svg'
 
 
 const CardsServicios = ({ imagen, titulo, descripcion, nombreBoton, estado, precio, id, type, click, index, openRating }) => {
@@ -11,16 +12,20 @@ const CardsServicios = ({ imagen, titulo, descripcion, nombreBoton, estado, prec
     const serviceCarts = useSelector(state => state.cartServices)
 
     const iconServices = () => {
-        if(type === 'internet') {
+        if (type === 'internet') {
             return (<i class="bi bi-router fs-3"></i>)
-        }else if(type === 'agua'){
-           return(<i class="bi bi-droplet-fill fs-3"></i>) 
-        }else if(type === 'streaming'){
-            return(<i class="bi bi-cast fs-3"></i>)
-        }else if(type === 'cable'){
+        } else if (type === 'agua') {
+            return (<i class="bi bi-droplet-fill fs-3"></i>)
+        } else if (type === 'streaming') {
+            return (<i class="bi bi-cast fs-3"></i>)
+        } else if (type === 'cable') {
             return (<i class="bi bi-tv fs-3"></i>)
-        }else if(type === 'telefonia'){
+        } else if (type === 'telefonia') {
             return (<i class="bi bi-telephone fs-3"></i>)
+        } else if (type === 'luz') {
+            return (<i class="bi bi-lightbulb-fill fs-3"></i>)
+        } else if (type === 'gas') {
+            return (<img src={propano} />)
         }
     }
 
@@ -32,9 +37,9 @@ const CardsServicios = ({ imagen, titulo, descripcion, nombreBoton, estado, prec
                 let quantity = 1
                 if (isStreaming) {
                     quantity = isStreaming.quantity + 1
-                    dispatch(addServiceCart({ imagen, titulo, descripcion, nombreBoton, estado, precio, id, quantity }))
+                    dispatch(addServiceCart({ imagen, titulo, descripcion, nombreBoton, estado, precio, type, id, quantity }))
                 } else {
-                    dispatch(addServiceCart({ imagen, titulo, descripcion, nombreBoton, estado, precio, id, quantity }))
+                    dispatch(addServiceCart({ imagen, titulo, descripcion, nombreBoton, estado, precio, type, id, quantity }))
                 }
             }
         } else {
@@ -46,12 +51,12 @@ const CardsServicios = ({ imagen, titulo, descripcion, nombreBoton, estado, prec
                 })
             } else {
                 if (nombreBoton === 'Lo quiero!') {
-                    dispatch(addServiceCart({ imagen, titulo, descripcion, nombreBoton, estado, precio, id, quantity: 1 }))
+                    dispatch(addServiceCart({ imagen, titulo, descripcion, nombreBoton, estado, precio, type, id, quantity: 1 }))
                 }
             }
         }
     }
-    
+
     return (
         // <div className={`${style.card} ${estado === 'unavailable' ? style.disabledCard : ''}`}>
         //     <div className={`${style.face} ${style.front}`}>
@@ -87,14 +92,14 @@ const CardsServicios = ({ imagen, titulo, descripcion, nombreBoton, estado, prec
         //     </div>
         // </div>
 
-        <div className={`grid grid-flow-dense grid-cols-2 py-7 px-8 rounded-2xl border-solid border-5 ${index % 2 === 1 ? 'bg-blue-all border-white' : 'bg-white border-blue-all'}`}>
+        <div className={`grid grid-flow-dense grid-cols-2 py-7 px-8 h-full rounded-2xl border-solid border-5 ${index % 2 === 1 ? 'bg-blue-all border-white' : 'bg-white border-blue-all'}`}>
             <div className='grid place-content-start items-center pb-4 px-4'>
                 <p className={`text-3xl pt-3 font-bold ${index % 2 === 1 ? 'text-white' : ' text-black'}`} >{titulo}</p>
             </div>
             <div className='grid place-content-end items-center pb-4 px-4'>
-            {
-                iconServices()
-            }
+                {
+                    iconServices()
+                }
             </div>
             <div className='col-span-2 px-4'>
                 <p className={`text-xl font-normal font-fontGeneral text-left pe-7 ${index % 2 === 1 ? 'text-white' : ' text-black'}`}>{descripcion}</p>

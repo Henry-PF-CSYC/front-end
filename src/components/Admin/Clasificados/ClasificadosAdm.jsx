@@ -20,9 +20,6 @@ const ClasificadosAdm = () => {
 
   const dispatch = useDispatch();
 
-  // Traemos clasificados
-  const clasificados = useSelector((state) => state.clasificados); 
-
   // Accedemos al estado global del loader
   const isLoading = useSelector((state) => state.isLoading); 
 
@@ -34,13 +31,17 @@ const ClasificadosAdm = () => {
     const obtenerClasificados = async () => {
       try {
         await dispatch(getClasificados({ randomParam: Date.now() }));
-      } catch (error) { console.error('Error al obtener clasificados:', error);}};
-  obtenerClasificados()}, [dispatch]); 
-
+  } catch (error) { console.error('Error al obtener clasificados:', error);}};
+    obtenerClasificados()}, [dispatch]); 
+  
+  // Guardamos clasificados
+  const clasificados = useSelector((state) => state.clasificados); 
 
   // Verificamos si los datos están disponibles antes de mostrar la tabla
   if (!clasificados || clasificados.length === 0) {
     return <div>Cargando datos... esto suele suceder cuando no los hay!</div>;}
+
+
 
   
   // Definimos una función para asignar clase segun tipo de publicacion
@@ -51,7 +52,7 @@ const ClasificadosAdm = () => {
 
 
 
- // Manejando borrado permanente de clasificado con SweetAlert
+ // Manejando borrado permanente de clasificado
 const handleDeleteOffer = (clasificadoId) => {
   Swal.fire({
     title: "¿Estás seguro de que deseas eliminar este clasificado?",
@@ -115,7 +116,7 @@ const handleDeleteOffer = (clasificadoId) => {
         <MDBDataTable striped bordered small data={{ columns, rows }}  noBottomColumns  responsive
         infoLabel={['Mostrando del', 'al', 'de', 'clasificados disponibles']}  paginationLabel={"<>"} 
         searchLabel="Buscar" entriesLabel="Entradas a desplegar:" className="custom-datatable" info={false}
-        style={{ boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)'}}/>
+        style={{ boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)'}} entries={[8]}/>
     </div>);
 }
 

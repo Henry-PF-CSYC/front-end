@@ -1,15 +1,17 @@
 .myAdmin {
   background-image: url("../../../public/rekt.png");
-  font-family: "Fira Sans", sans-serif; 
   font-style: normal;
   line-height: normal;  
 }
 
 .adminTitles{
+  font-weight: bolder;
+  font-size: 1.5rem;
   padding: 0.25rem;
   text-align: center;
+  align-items: center;
   background-color: #c8e5fa;
-  color: #00000067;
+  color: #000000b6;
   border-radius: 1rem;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }

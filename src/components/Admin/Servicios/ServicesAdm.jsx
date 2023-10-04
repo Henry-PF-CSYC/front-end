@@ -1,3 +1,4 @@
+import { Button } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { getServices } from "../../../redux/actions";
@@ -91,7 +92,7 @@ const ServicesAdm = () => {
 
         <div id="introToServicesAdmin" className="adminTitles">
           <h2>Servicios activos:</h2>
-          <button className="addService" onClick={openNewServiceModal}>Añadir Servicio</button>
+          <Button variant="primary" onClick={openNewServiceModal}>Añadir Servicio</Button>
         </div>
         
         <NewServiceModal show={showNewServiceModal} handleClose={closeNewServiceModal}/>
@@ -101,7 +102,7 @@ const ServicesAdm = () => {
         <MDBDataTable striped bordered small data={{ columns, rows }}
         infoLabel={['Mostrando del', 'al', 'de', 'clasificados disponibles']} searchLabel="Buscar" 
         entriesLabel="Entradas a desplegar:" paginationLabel={"<>"} noBottomColumns responsive
-        className="custom-datatable" style={{ boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)'}}  info={false}/>
+        entries={[15]} className="custom-datatable" style={{ boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)'}}  info={false}/>
 
     </div>);
 }

@@ -153,8 +153,8 @@ return (
               </Modal.Body>
 
               <Modal.Footer>
-                  <Button variant="secondary" onClick={handleClose}>Descartar</Button> 
-                  <Button variant="primary" type="submit" form="serviceForm"> Añadir Servicio </Button>
+                  <Button className="btn-secondary" onClick={handleClose}>Descartar</Button> 
+                  <Button className="btn-primary" type="submit" form="serviceForm"> Añadir Servicio </Button>
               </Modal.Footer>
 
           </Modal>

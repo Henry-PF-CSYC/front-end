@@ -365,7 +365,7 @@ export const raitingPost = ({rating,comment,user_email,serviceId}) => {
 }
 
 
-export const getAllRating = () => {
+export const getAllRating = () => { // para el admin dario 
     return async (dispatch) => {
         try {
             const { data } = await axios.get(`https://csyc.onrender.com/reviews`)
@@ -381,9 +381,10 @@ export const getAllRating = () => {
 }
 
 
-export const getRatingService = ({serviceId}) => {
+export const getRatingService = ({serviceId}) => { // la ocupamos para servicios modal que hizo cristian
     return async (dispatch) => {
         try {
+            
             const { data } = await axios.get(`https://csyc.onrender.com/reviews/${serviceId}`)
             dispatch({
                 type: GETRATINGBYSERVICE,
@@ -391,13 +392,17 @@ export const getRatingService = ({serviceId}) => {
             });
 
         } catch (error) {
+            dispatch({
+                type: GETRATINGBYSERVICE,
+                payload:[]
+            });
             console.log(error)
         }
     }
 }
 
 
-export const getAllRatingByUser = ({user_email}) => {
+export const getAllRatingByUser = ({user_email}) => { // en usuarios para jason , esta maneja todas reviews que hizo el usuario 
     return async (dispatch) => {
         try {
             const { data } = await axios.get(`https://csyc.onrender.com/reviews/byUser/${user_email}`)
@@ -428,7 +433,7 @@ export const getRatingById = ({idReview}) => {
 }
 
 
-export const deleteRatingById = ({idReview}) => {
+export const deleteRatingById = (idReview) => {
     return async () => {
         try {
             await axios.delete(`https://csyc.onrender.com/reviews/${idReview}`)

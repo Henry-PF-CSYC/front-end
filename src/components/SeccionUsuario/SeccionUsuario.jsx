@@ -37,16 +37,16 @@ const SeccionUsuario = () => {
         image: isAuthenticated ? user.picture : loader
     });
 
-    const allServicesUser = async () => {
+    const allServicesUser = async() => {
         try {
             const servicesUser = await axios.get(`https://csyc.onrender.com/subscription/user/${usuario.email}`)
-            setServicios(servicesUser.data.subscriptions);
+        setServicios(servicesUser.data.subscriptions);
         } catch (error) {
             console.error('Error servicios', error);
         }
-
+        
     }
-
+    
     const submitSuscription = async () => {
         if (params.get('status')) {
             const ids = [];
@@ -63,7 +63,7 @@ const SeccionUsuario = () => {
             );
             dispatch(emptyCart())
             allServicesUser()
-        } else {
+        }else{
             allServicesUser()
         }
     };
@@ -76,7 +76,7 @@ const SeccionUsuario = () => {
             usuario.email = user.email;
         }
         submitSuscription();
-    }, [isAuthenticated]);
+    },[isAuthenticated]);
     useEffect(() => {
         if (isAuthenticated) {
             dispatch(getUser(user.email));
@@ -85,7 +85,7 @@ const SeccionUsuario = () => {
             usuario.email = user.email;
         }
         submitSuscription();
-    }, []);
+    },[]);
 
     const handleClose = () => {
         setShow(false);
@@ -106,16 +106,27 @@ const SeccionUsuario = () => {
 
     const [showRatingModal, setShowRatingModal] = useState(false);// estado para el modal usuario 
     // Función para abrir el modal de calificación
-    const openRatingModal = () => {
-        setShowRatingModal(true);
-    };
-    // Función para cerrar el modal de calificación
-    const closeRatingModal = () => {
-        setShowRatingModal(false);
-    };// siguen siendo de la seccion usuario 
+    const openRatingModal = (serviceId) => {
+        setShowRatingModal((prev) => {
+          return {
+            ...prev,
+            [serviceId]: true, // Establece el estado para este servicio en true
+          };
+        });
+      };
+      
+      const closeRatingModal = (serviceId) => {
+        setShowRatingModal((prev) => {
+          return {
+            ...prev,
+            [serviceId]: false, // Establece el estado para este servicio en false
+          };
+        });
+      };
+      
 
     return (
-        <>{isAuthenticated ?
+        <>{isAuthenticated?
             (<div className="row m-0" style={seccion}>
                 <div className="col-12 d-flex justify-content-end">
                     {/* <button className='btn btn-dark' type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">Modificar datos personales</button> */}
@@ -159,10 +170,10 @@ const SeccionUsuario = () => {
                         Mis publicaciones
                     </button>
                 </div>
-            </div>) :
+            </div>): 
             (<div className="d-flex justify-content-center" >
-                <img
-                    src={loader}
+                <img 
+                src={loader}
                 />
             </div>)}
             <div className="pb-1">

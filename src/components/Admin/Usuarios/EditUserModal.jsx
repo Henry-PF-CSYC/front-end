@@ -170,18 +170,18 @@ return (
                 <Modal.Body>
 
                 {!isBanned &&  !isUser &&( <div>
-                    <Button variant={userData && userData.role === "contact_admin" ? "secondary" : "primary"} onClick={handleDesignContact}
+                    <Button className={userData && userData.role === "contact_admin" ? "btn-secondary" : "btn-primary"} onClick={handleDesignContact}
                     disabled={userData && userData.role === "contact_admin"}>{contactButtonText}</Button><p>{contactInfoText}</p>
                 </div>)}
 
                 {!isBanned && !isContactAdmin &&  ( <div>
-                    <Button variant={userData && userData.role === "admin" ? "danger" : "warning"}
+                    <Button className={userData && userData.role === "admin" ? "btn-danger" : "btn-warning"}
                     onClick={handleAddAdmin} disabled={!userData}>{roleButtonText}</Button><p>{roleInfoText}</p>
                 </div>)}
       
 
                 {!isContactAdmin && !isAdmin && ( <div>
-                    <Button variant={userData && userData.role === "banned" ? "primary" : "danger"}
+                    <Button className={userData && userData.role === "banned" ? "btn-primary" : "btn-danger"}
                     onClick={handleBanUser} disabled={!userData}>{banButtonText}</Button><p>{banInfoText}</p>
                 </div>)}
       
