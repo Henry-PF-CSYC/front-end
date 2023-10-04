@@ -132,9 +132,16 @@ const Navbar = () => {
                         Contacto
                     </Link>
                 </h5>
+                
                 <h5 title="Ve las ofertas en tu área!">
                     <Link className="linkh5" to="/clasificados">
                         Clasificados
+                    </Link>
+                </h5>
+
+                <h5 title="Contacta con nosotros">
+                    <Link className="linkh5" to="/about_us">
+                        Conocenos
                     </Link>
                 </h5>
 
