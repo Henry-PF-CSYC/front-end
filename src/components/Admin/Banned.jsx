@@ -11,14 +11,14 @@ const Banned = () => {
 
 
   const handleLogout = async () => {
-  dispatch(await emptyUser());
-  logout({returnTo: window.location.origin})};
+  await dispatch(await emptyUser());
+  await logout({returnTo: window.location.origin})};
   
 
   return (
     <div className='errorOrBanned'>
       <h1> Has sido baneado, por incumplir los términos de servicio, escribe al correo de contacto para solicitar asistencia.</h1>
-      
+
       <Button variant="primary" onClick={handleLogout}>Cerrar sesión</Button>
     </div>);
 };
