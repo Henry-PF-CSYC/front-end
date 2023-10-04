@@ -1,12 +1,5 @@
 .navbar {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background-color: hsla(0, 100%, 99%, 0.231);
-    box-shadow: 0 8px 10px -10px #000;
-    position: fixed;
-    z-index: 1000;
-    backdrop-filter: blur(20px); /* Aplicar un efecto de difuminado */
+    @apply bg-opacity-25 shadow-md backdrop-blur-2xl
 }
 
 .options {
