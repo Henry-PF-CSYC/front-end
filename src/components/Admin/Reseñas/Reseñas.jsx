@@ -1,6 +1,6 @@
 import { getAllRating, deleteRatingById } from "../../../redux/actions"
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { MDBDataTable } from 'mdbreact';
 
 // Sweetalert
