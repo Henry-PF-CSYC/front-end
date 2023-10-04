@@ -75,8 +75,8 @@ const Clasificados = () => {
     }
 
     return (
-        <div className="flex flex-row font-bold pt-20">
-            <div className="flex flex-col mb-0 justify-center w-1/6 text-center  bg-gradient-to-b from-onahau-300/50 to-onahau-900/80 shadow-xl ml-0 ">
+        <div className="flex flex-row font-bold pt-20 font-fontGeneral">
+            <div className="flex flex-col mb-0 justify-center w-1/6 text-center bg-gradient-to-b from-onahau-300/50 to-onahau-900/80 shadow-xl ml-0 ">
                 <div>
                     <p>
                         <label>Buscar</label>
@@ -144,28 +144,30 @@ const Clasificados = () => {
                     </button>
                 )}
             </div>
-            <div className="w-5/6">
-                {clasi.map(
-                    (clasificado) =>
-                        clasificado.deletedAt !== {} && (
-                            <button
-                                onClick={() => {
-                                    console.log('click');
-                                    setPublicacion(clasificado);
-                                    setShow2(true);
-                                }}
-                            >
-                                <CardsClasificados
-                                    picture={clasificado.image}
-                                    tipo={clasificado.type}
-                                    titulo={clasificado.title}
-                                    descripcion={clasificado.description}
-                                    contacto={clasificado.contact}
-                                    precio={clasificado.price}
-                                />
-                            </button>
-                        )
-                )}
+            <div className="w-5/6 ">
+                <div className="min-h-screen">
+                    {clasi.map(
+                        (clasificado) =>
+                            clasificado.deletedAt !== {} && (
+                                <button
+                                    onClick={() => {
+                                        console.log('click');
+                                        setPublicacion(clasificado);
+                                        setShow2(true);
+                                    }}
+                                >
+                                    <CardsClasificados
+                                        picture={clasificado.image}
+                                        tipo={clasificado.type}
+                                        titulo={clasificado.title}
+                                        descripcion={clasificado.description}
+                                        contacto={clasificado.contact}
+                                        precio={clasificado.price}
+                                    />
+                                </button>
+                            )
+                    )}
+                </div>
                 <div>
                     <div className="pagination justify-content-center ">
                         <ul className="pagination ">
