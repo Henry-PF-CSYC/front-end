@@ -6,6 +6,7 @@ import { MDBDataTable } from 'mdbreact';
 import EditUserModal from "./EditUserModal";
 import "./UsuariosAdm.css";
 
+
 const UsuariosAdm = () => {
 
   const dispatch = useDispatch();
