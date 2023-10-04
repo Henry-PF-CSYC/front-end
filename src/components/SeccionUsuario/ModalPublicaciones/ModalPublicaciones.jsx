@@ -7,7 +7,20 @@ import {
 } from '../../../redux/actions';
 import { useDispatch, useSelector } from 'react-redux';
 
+// Sweetalert
+import Swal from 'sweetalert2'; 
+import 'sweetalert2/dist/sweetalert2.min.css';
+
+// Loader
+import { Rings } from "react-loader-spinner";
+import { showLoader, hideLoader } from "../../../redux/actions";
+
+
 const ModalPublicaciones = ({ show, handleClose, email }) => {
+
+    // Accedemos al estado global del loader
+    const isLoading = useSelector((state) => state.isLoading); 
+
     const cardStyle = {
         maxWidth: '20rem',
         width: '20rem',
@@ -34,21 +47,107 @@ const ModalPublicaciones = ({ show, handleClose, email }) => {
         marginRight: '15px'
     };
     const dispatch = useDispatch();
+
     const type = 'soft';
+
     let publicaciones = useSelector((state) => state.publicacionesusuario);
-    const deletPublicacion = (id) => {
-        dispatch(deleteOffer(id, type));
-        dispatch(getOfferByEmail(email));
-    };
+
+
+
+    const deletPublicacion = async (id) => {
+        Swal.fire({
+            title: "¿Estás seguro de que deseas desactivar este clasificado?",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonText: "Sí",
+            cancelButtonText: "Cancelar",
+          }).then(async (result) => {
+            if (result.isConfirmed) {
+              try {
+        dispatch(showLoader());
+        dispatch(await deleteOffer(id, type))
+        dispatch(hideLoader());
+        Swal.fire("Clasificado desactivado correctamente", "", "success")
+        .then(async () => dispatch(await getOfferByEmail(email)))
+
+      } catch (error) {
+        Swal.fire("Ha ocurrido un error al eliminar el clasificado", "", "error");
+      }
+    }
+  });
+};
+
+
+        
     useEffect(() => {
         dispatch(getOfferByEmail(email));
     }, []);
-    const restoreOffer = (id) => {
-        dispatch(restaurarOffer(id));
-        dispatch(getOfferByEmail(email));
-    };
+
+
+    const restoreOffer = async (id) => {
+        Swal.fire({
+            title: "¿Estás seguro de que deseas reactivar este clasificado?",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonText: "Sí",
+            cancelButtonText: "Cancelar",
+          }).then(async (result) => {
+            if (result.isConfirmed) {
+              try {
+        dispatch(showLoader());
+        dispatch(await restaurarOffer(id))
+        dispatch(hideLoader());
+        Swal.fire("Clasificado reactivado correctamente", "", "success")
+        .then(async () => dispatch(await getOfferByEmail(email)))
+
+      } catch (error) {
+        Swal.fire("Ha ocurrido un error al reactivar el clasificado", "", "error");
+      }
+    }
+  });
+};
+   
+
+
+
+ // Manejando borrado permanente de clasificado
+ const handleDeleteOffer = (clasificadoId) => {
+    Swal.fire({
+      title: "¿Estás seguro de que deseas eliminar este clasificado?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonText: "Sí",
+      cancelButtonText: "Cancelar",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        try {
+          dispatch(showLoader());
+          dispatch(await deleteOffer(clasificadoId, "hard"));
+          dispatch(hideLoader());
+          Swal.fire("Clasificado eliminado correctamente", "", "success")
+
+        } catch (error) {
+          Swal.fire("Ha ocurrido un error al eliminar el clasificado", "", "error");
+        }
+      }
+    });
+  };
+
+
+
+
+
+
 
     return (
+        <>
+
+{isLoading && (<div className="loader-background">
+                            <div className="loader-container"><Rings color="#007bff"/></div>
+                          </div>)}
+
+
+
         <Modal
             size="xl"
             show={show}
@@ -103,7 +202,7 @@ const ModalPublicaciones = ({ show, handleClose, email }) => {
                                                 // Recarga la página
                                             }}
                                         >
-                                            Borrar
+                                            Desactivar 
                                         </Button>
                                     </div>
                                 </div>
@@ -145,14 +244,26 @@ const ModalPublicaciones = ({ show, handleClose, email }) => {
                                         </p>{' '}
                                         <Button
                                             onClick={() => {
-                                                deletPublicacion(
+                                                restoreOffer(
                                                     publicacion.id
                                                 );
                                                 getOfferByEmail(email);
                                                 // Recarga la página
                                             }}
                                         >
-                                            Borrar
+                                            Reactivar
+                                        </Button>
+
+                                        <Button
+                                            onClick={() => {
+                                                handleDeleteOffer(
+                                                    publicacion.id
+                                                );
+                                                getOfferByEmail(email);
+                                              
+                                            }}
+                                        >
+                                            Borrar definitivamente
                                         </Button>
                                     </div>
                                 </div>
@@ -160,6 +271,7 @@ const ModalPublicaciones = ({ show, handleClose, email }) => {
                     )}
             </div>
         </Modal>
+        </>
     );
 };
 
