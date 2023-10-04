@@ -1,9 +1,10 @@
 .formStyles {
-    background-color: rgb(0, 0, 0);
+    background-color: rgb(5, 1, 29, 0.5);
     background-size: cover;
     background-attachment: fixed;
-    border-radius: 10px;
+    border-radius: 0.8rem;
     font-family: 'Rajdhani', sans-serif;
+    font-weight: 700;
     text-align: center;
     margin-top: 20px;
     max-width: 500px;
@@ -13,6 +14,11 @@
     padding-bottom: 1rem;
     color: white;
 }
+
+.formStyles h2 {
+    font-size: 2rem;
+}
+
 .container {
     display: flex;
     justify-content: center;
@@ -38,11 +44,14 @@
 }
 .errorText {
     font-size: 1.1rem;
-    color: red;
+    color: rgba(255, 0, 0, 0.582);
 }
 .site {
-    background-color: white;
+    background-color: rgb(96, 165, 250);
+    background-image: url('../../../public/rekt.png');
+    background-size: cover;
 }
+
 .errorContainer {
     height: 1.1rem;
 }
@@ -65,6 +74,19 @@
 .boton {
     display: flex;
     justify-content: space-around;
+    color: #00275a;
+}
+
+.botonn {
+    border-radius: 0.8rem;
+    font-weight: bold;
+    background-color: #05011d63;
+}
+
+.botonn:hover {
+    
+    background-color: #00275a;
+    box-shadow: 0px 0px 10px rgb(247, 245, 245);
 }
 @media (max-width: 720px) {
     .formContainer {
