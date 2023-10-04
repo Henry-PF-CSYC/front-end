@@ -7,7 +7,7 @@ const CardsClasificados = ({
     precio
 }) => {
     return (
-        <div className="card bg-onahau-400/30 mb-3 max-w-xs w-80 m-3 shadow-xl">
+        <div className="card bg-onahau-400/30 font-fontGeneral mb-3 max-w-xs w-80 m-3 shadow-xl">
             <div className="card-header flex flex-row justify-center">
                 <img
                     className=" h-40 max-w-xs max-h-48 m-auto rounded-md "

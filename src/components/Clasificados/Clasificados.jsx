@@ -75,8 +75,8 @@ const Clasificados = () => {
     }
 
     return (
-        <div className="flex flex-row font-bold pt-20">
-            <div className="flex flex-col mb-0 justify-center w-1/6 text-center  bg-gradient-to-b from-onahau-300/50 to-onahau-900/80 shadow-xl ml-0 ">
+        <div className="flex flex-row font-bold pt-20 font-fontGeneral">
+            <div className="flex flex-col mb-0 justify-center w-1/6 text-center bg-gradient-to-b from-onahau-300/50 to-onahau-900/80 shadow-xl ml-0 ">
                 <div>
                     <p>
                         <label>Buscar</label>

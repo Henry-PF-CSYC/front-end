@@ -23,7 +23,7 @@ const ModalPublicacion = ({ show, handleClose, publicacion }) => {
             }}
         >
             <div
-                className="card border-0 bg-onahau-400/30 mb-0 font-medium"
+                className="card border-0 font-fontGeneral bg-onahau-400/30 mb-0 font-medium"
                 style={cardStyle}
             >
                 <div className="card-header " style={headerStyle}>
