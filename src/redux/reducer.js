@@ -9,7 +9,7 @@ import {
     
     ADDCARTSERVICES, DELETECARTSERVICES, EMPTYCARTSERVICES,
 
-    GETALLRATING, GETRATINGBYSERVICE, GETALLRATINGBYUSER, GETRATINGBYID,
+    GETALLRATING, GETRATINGBYSERVICE, GETALLRATINGBYUSER, GETRATINGBYID, MESSAGERATINGPOST,  GETRATINGBYIDSERVICE,
 
     GETNOTICES} 
 from './action-types';
@@ -42,6 +42,8 @@ const initialState = {
     ratingService: [],
     ratingByUser: [] ,
     selectedReview: [],
+    messageRatingPost: "",
+    commentRatingService:{},
 
     // Notices
     notices: []
@@ -186,6 +188,16 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 selectedReview: action.payload
+            }
+        case MESSAGERATINGPOST:
+            return {
+                ...state,
+                messageRatingPost: action.payload
+            }
+        case  GETRATINGBYIDSERVICE:
+            return {
+                ...state,
+                commentRatingService: action.payload
             }
 
        

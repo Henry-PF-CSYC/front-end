@@ -5,7 +5,7 @@ import {
     GETALLUSERS, GETUSER, EMPTY_USER,
     GET_CLASIFICADO, GETOFFERBYEMAIL, DELETECLASIFICADOS,
     ADDCARTSERVICES, DELETECARTSERVICES, EMPTYCARTSERVICES, 
-    GETALLRATING, GETRATINGBYSERVICE, GETALLRATINGBYUSER, GETRATINGBYID,
+    GETALLRATING, GETRATINGBYSERVICE, GETALLRATINGBYUSER, GETRATINGBYID, MESSAGERATINGPOST,  GETRATINGBYIDSERVICE,
     GETNOTICES} 
 from './action-types';
 
@@ -350,19 +350,32 @@ export const emptyCart = () => {
 
 
 // Rating actions
-export const raitingPost = ({rating,comment,user_email,serviceId}) => {
-    return async () => {
-        try {
-            let rating1={rating,comment,user_email,serviceId}
-            const response = await axios.post(`https://csyc.onrender.com/reviews`, rating1)
-            const dataRaiting = response.data
-            console.log(dataRaiting)
-            console.log(response)
-        } catch (error) {
-            console.log(error)
+
+export const raitingPost = ({ rating, comment, user_email, serviceId }) => {
+    return async (dispatch) => {
+      try {
+        const ratingData = { rating, comment, user_email, serviceId };
+        const response = await axios.post(`https://csyc.onrender.com/reviews`, ratingData);
+               
+        if (response.request.status === 201) {
+          dispatch({
+              type: MESSAGERATINGPOST,
+              payload: "Su Reseña ha sido guardada"
+          });
+        } 
+      } catch (error) {
+        console.error(error);
+        if (error.response && error.response.status === 403) {
+          dispatch({
+              type: MESSAGERATINGPOST,
+              payload: "Ya existe una reseña para este servicio"
+          });
         }
-    }
-}
+      }
+    };
+  };
+  
+
 
 
 export const getAllRating = () => { // para el admin dario 
@@ -425,6 +438,24 @@ export const getRatingById = ({idReview}) => {
             });
             
         } catch (error) {
+            console.log(error)
+        }
+    }
+}
+export const getRatingByIdService = ({serviceId,user_email}) => {
+    return async (dispatch) => {
+        try {
+            const { data } = await axios.get(`https://csyc.onrender.com/reviews/user_service/${user_email}?service_id=${serviceId}`)
+            console.log(data)
+            dispatch({
+                type: GETRATINGBYIDSERVICE,
+                payload:data
+            });
+        } catch (error) {
+             dispatch({
+                type: GETRATINGBYIDSERVICE,
+                payload:{}
+            });
             console.log(error)
         }
     }

@@ -22,6 +22,7 @@ const SeccionUsuario = () => {
 
     const [servicios, setServicios] = useState([]);
     const susbcriptions = useSelector((state) => state.cartServices);
+    
 
     const [show2, setShow2] = useState(false);
     const { user, isAuthenticated } = useAuth0();
