@@ -78,7 +78,7 @@ const Clasificados = () => {
         <div className=" flex-row w-full  m-auto">
             <div className="flex flex-row ">
                 <div className="flex flex-row flex-wrap font-bold">
-                    <div className="flex flex-col fixed justify-center text-center   w-1/6 bg-gradient-to-b from-onahau-300/50 to-onahau-900/80 pb-40 shadow-xl ml-0 h-screen pt-2  ">
+                    <div className="flex flex-col fixed justify-center text-center w-1/6 bg-gradient-to-b from-onahau-300/50 to-onahau-900/80 pb-40 shadow-xl ml-0 h-screen pt-2  ">
                         <div>
                             <p>
                                 <label>Buscar</label>
