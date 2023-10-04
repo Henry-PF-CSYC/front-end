@@ -1,7 +1,7 @@
 import './Landing.css';
 import { useEffect } from "react"
-import { useDispatch } from "react-redux"
-import { getServices } from "../../redux/actions"
+import { useDispatch, useSelector } from "react-redux"
+import { getServices, getContactData } from "../../redux/actions"
 import { Link } from 'react-router-dom';
 
 // Imagenes
@@ -18,13 +18,9 @@ const streaming =  "https://firebasestorage.googleapis.com/v0/b/pf-henry-16edc.a
 const Landing = () =>{
 
     const dispatch = useDispatch() 
-
-    //Cargo el estado global ni bien entro al landing
-    useEffect(()=>{ 
-        dispatch(getServices())},[])
+    useEffect(()=>{ dispatch(getServices())},[] )
 
 
-        
     // Renderizado
     return (
         <section>

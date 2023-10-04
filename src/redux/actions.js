@@ -2,7 +2,7 @@ import axios from 'axios';
 import {
     SHOW_LOADER, HIDE_LOADER,
     GETSERVICES, GETPAGINATEDSERVICES,
-    GETALLUSERS, GETUSER, EMPTY_USER,
+    GETALLUSERS, GETUSER, EMPTY_USER, GETCONTACTDATA, 
     GET_CLASIFICADO, GETOFFERBYEMAIL, DELETECLASIFICADOS,
     ADDCARTSERVICES, DELETECARTSERVICES, EMPTYCARTSERVICES, 
     GETALLRATING, GETRATINGBYSERVICE, GETALLRATINGBYUSER, GETRATINGBYID, MESSAGERATINGPOST,  GETRATINGBYIDSERVICE,
@@ -565,3 +565,17 @@ export const banOrUnbanUser = (email,type) =>{
 };
 
 
+
+export const getContactData = () =>{
+    return async (dispatch) =>{
+        try{
+            const {data} = await axios.get(`https://csyc.onrender.com/users/contact_admin`);
+            dispatch({
+                type: GETCONTACTDATA,
+                payload: data
+            });
+        } catch (error) {
+            console.log(error)
+        }
+    }
+}

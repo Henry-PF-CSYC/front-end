@@ -3,7 +3,7 @@ import {
     
     GETSERVICES, GETPAGINATEDSERVICES,
     
-    GETALLUSERS, GETUSER, EMPTY_USER,
+    GETALLUSERS, GETUSER, EMPTY_USER, GETCONTACTDATA,
    
     GET_CLASIFICADO, GETOFFERBYEMAIL, DELETECLASIFICADOS,
     
@@ -22,6 +22,7 @@ const initialState = {
     // User & All
     dataUser: {},
     allUsers: [],
+    contactData: [],
 
     // Services + Pages
     services: [],
@@ -91,6 +92,12 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 dataUser: {},
                 publicacionesusuario: {}
+            };
+
+        case GETCONTACTDATA:
+            return {
+                ...state,
+                contactData: action.payload,
             };
 
         
