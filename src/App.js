@@ -13,9 +13,8 @@ import Login from "./components/Login/login"
 import Register from "./components/Register/Register"
 import SeccionUsuario from './components/SeccionUsuario/SeccionUsuario'
 import Clasificados from "./components/Clasificados/Clasificados";
-import { IconCart } from "./components/Cart/IconCart";
-import PruebaTailwind from "./components/PruebaTailwind";
 import AboutUs from "./components/AboutUs/AboutUs";
+import { IconCart } from "./components/Cart/IconCart";
 
 
 // Servicios
@@ -32,13 +31,11 @@ import { Cart } from "./components/Cart/Cart";
 
 //Administrador
 import Admin from "./components/Admin/Admin";
-import Dashboard from "./components/Admin/Dashboard/Dashboard";
 import ServicesAdm from "./components/Admin/Servicios/ServicesAdm";
 import UsuariosAdm from "./components/Admin/Usuarios/UsuariosAdm";
 import ClasificadosAdm from "./components/Admin/Clasificados/ClasificadosAdm";
 import Novedades from "./components/Admin/Novedades/Novedades";
 import Reseñas from "./components/Admin/Reseñas/Reseñas";
-import Combos from "./components/Admin/Combos/Combos";
 
 
 
@@ -84,7 +81,6 @@ function App() {
         <Route path="/usuario" element={<SeccionUsuario/>}/>
         <Route path="/clasificados" element={<Clasificados/>}/>
         <Route path="/contacto" element={<Contact/>}/>
-        <Route path="/prueba" element={<PruebaTailwind/>}/>
 
 
         {/*Servicios*/}
@@ -102,13 +98,11 @@ function App() {
         {/* Ruta de Admin Protegida */}
         {isAdminRouted && (userRole !== "admin" && userRole !== "contact_admin") && navigate("/")}
         <Route path="/admin/*" element={userRole === "admin" || userRole === "contact_admin" ? <Admin/> : <Navigate to="/"/>}>
-          <Route index element={<Dashboard/>}/>
-          <Route path="servicesAdm" element={<ServicesAdm/>}/>
+          <Route index element={<ServicesAdm/>}/>
           <Route path="usuarios" element={<UsuariosAdm/>}/>
           <Route path="clasificados" element={<ClasificadosAdm/>}/>
           <Route path="novedades" element={<Novedades/>}/>
           <Route path="reseñas" element={<Reseñas/>}/>
-          <Route path="combos" element={<Combos/>}/>
         </Route>
 
       </Routes>
