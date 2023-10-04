@@ -75,104 +75,155 @@ const Clasificados = () => {
     }
 
     return (
-        <div className=" flex-row w-full  m-auto">
-            <div className="flex flex-row ">
-                <div className="flex flex-row flex-wrap font-bold">
-                    <div className="flex flex-col fixed justify-center text-center w-1/6 bg-gradient-to-b from-onahau-300/50 to-onahau-900/80 pb-40 shadow-xl ml-0 h-screen pt-2  ">
-                        <div>
-                            <p>
-                                <label>Buscar</label>
-                            </p>
-                            <input
-                                className="rounded-md text-center w-36 mb-3"
-                                type="text"
-                                placeholder=""
-                                value={title}
-                                onChange={InputTitle}
-                            />
-                        </div>
-                        <div>
-                            <p>
-                                <label>Tipo de Anuncio: </label>
-                            </p>
-                            <select
-                                className="rounded-md text-center w-36 font-normal mb-3"
-                                value={type}
-                                onChange={handlerType}
+        <div className="flex flex-row font-bold pt-20">
+            <div className="flex flex-col mb-0 justify-center w-1/6 text-center  bg-gradient-to-b from-onahau-300/50 to-onahau-900/80 shadow-xl ml-0 ">
+                <div>
+                    <p>
+                        <label>Buscar</label>
+                    </p>
+                    <input
+                        className="rounded-md text-center w-36 mb-3"
+                        type="text"
+                        placeholder=""
+                        value={title}
+                        onChange={InputTitle}
+                    />
+                </div>
+                <div>
+                    <p>
+                        <label>Tipo de Anuncio: </label>
+                    </p>
+                    <select
+                        className="rounded-md text-center w-36 font-normal mb-3"
+                        value={type}
+                        onChange={handlerType}
+                    >
+                        <option value="">Todos</option>
+                        <option value="compra">Compra</option>
+                        <option value="venta">Venta</option>
+                        <option value="se busca">Se Busca</option>
+                    </select>
+                </div>
+                <div>
+                    <p>
+                        <label>Ordenar:</label>
+                    </p>
+                    <select
+                        className="rounded-md text-center w-36 font-normal mb-3"
+                        value={order}
+                        onChange={handleOrder}
+                    >
+                        <option value="">Sin orden</option>
+                        <option value="asc">Ascendente</option>
+                        <option value="desc">Descendente</option>
+                    </select>
+                    <br />
+                </div>
+                <div>
+                    <p>
+                        <label>Ordenar por:</label>
+                    </p>
+                    <select
+                        className="rounded-md text-center w-36 font-normal"
+                        value={orderBy}
+                        onChange={handleOrderByChange}
+                    >
+                        <option value="">Sin orden</option>
+                        <option value="title">Titulo</option>
+                        <option value="creation">Fecha</option>
+                    </select>
+                </div>
+                {isAuthenticated && (
+                    <button
+                        className="flex justify-center m-auto pt-2  w-40 h-10 rounded-md  my-2 text-white bg-gradient-to-r from-onahau-500 to-onahau-800 transition-colors duration-300 ease-in-out hover:bg-gradient-to-l hover:from-onahau-500 hover:to-onahau-800"
+                        onClick={() => {
+                            setShow(true);
+                        }}
+                    >
+                        Crear publicacion
+                    </button>
+                )}
+            </div>
+            <div className="w-5/6">
+                {clasi.map(
+                    (clasificado) =>
+                        clasificado.deletedAt !== {} && (
+                            <button
+                                onClick={() => {
+                                    console.log('click');
+                                    setPublicacion(clasificado);
+                                    setShow2(true);
+                                }}
                             >
-                                <option value="">Todos</option>
-                                <option value="compra">Compra</option>
-                                <option value="venta">Venta</option>
-                                <option value="se busca">Se Busca</option>
-                            </select>
-                        </div>
-                        <div>
-                            <p>
-                                <label>Ordenar:</label>
-                            </p>
-                            <select
-                                className="rounded-md text-center w-36 font-normal mb-3"
-                                value={order}
-                                onChange={handleOrder}
+                                <CardsClasificados
+                                    picture={clasificado.image}
+                                    tipo={clasificado.type}
+                                    titulo={clasificado.title}
+                                    descripcion={clasificado.description}
+                                    contacto={clasificado.contact}
+                                    precio={clasificado.price}
+                                />
+                            </button>
+                        )
+                )}
+                <div>
+                    <div className="pagination justify-content-center ">
+                        <ul className="pagination ">
+                            <li
+                                className={`page-item ${
+                                    currentPage === 1 ? 'disabled' : ''
+                                }`}
                             >
-                                <option value="">Sin orden</option>
-                                <option value="asc">Ascendente</option>
-                                <option value="desc">Descendente</option>
-                            </select>
-                            <br />
-                        </div>
-                        <div>
-                            <p>
-                                <label>Ordenar por:</label>
-                            </p>
-                            <select
-                                className="rounded-md text-center w-36 font-normal"
-                                value={orderBy}
-                                onChange={handleOrderByChange}
-                            >
-                                <option value="">Sin orden</option>
-                                <option value="title">Titulo</option>
-                                <option value="creation">Fecha</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div className="ml-80 pt-20">
-                        {clasi.map(
-                            (clasificado) =>
-                                clasificado.deletedAt !== {} && (
+                                <button
+                                    className="page-link"
+                                    onClick={() =>
+                                        handlePageChange(currentPage - 1)
+                                    }
+                                >
+                                    &laquo;
+                                </button>
+                            </li>
+                            {pageNumbers.map((pageNumber) => (
+                                <li
+                                    key={pageNumber}
+                                    className={`page-item ${
+                                        currentPage === pageNumber
+                                            ? 'active'
+                                            : ''
+                                    }`}
+                                >
                                     <button
-                                        onClick={() => {
-                                            console.log('click');
-                                            setPublicacion(clasificado);
-                                            setShow2(true);
-                                        }}
+                                        className={`page-link ${
+                                            currentPage === pageNumber
+                                                ? 'active'
+                                                : ''
+                                        }`}
+                                        onClick={() =>
+                                            handlePageChange(pageNumber)
+                                        }
                                     >
-                                        <CardsClasificados
-                                            picture={clasificado.image}
-                                            tipo={clasificado.type}
-                                            titulo={clasificado.title}
-                                            descripcion={
-                                                clasificado.description
-                                            }
-                                            contacto={clasificado.contact}
-                                            precio={clasificado.price}
-                                        />
+                                        {pageNumber}
                                     </button>
-                                )
-                        )}
+                                </li>
+                            ))}
+                            <li
+                                className={`page-item ${
+                                    currentPage === totalPages ? 'disabled' : ''
+                                }`}
+                            >
+                                <button
+                                    className="page-link"
+                                    onClick={() =>
+                                        handlePageChange(currentPage + 1)
+                                    }
+                                >
+                                    &raquo;
+                                </button>
+                            </li>
+                        </ul>
                     </div>
                 </div>
             </div>
-            {isAuthenticated && (
-                <button
-                    className="flex justify-center m-auto pt-2  w-40 h-10 rounded-md  my-2 text-white bg-gradient-to-r from-onahau-500 to-onahau-800 transition-colors duration-300 ease-in-out hover:bg-gradient-to-l hover:from-onahau-500 hover:to-onahau-800"
-                    onClick={() => {
-                        setShow(true);
-                    }}
-                >
-                    Crear publicacion
-                </button>
-            )}
             <ModalClasificado
                 show={show}
                 handleClose={handleClose}
@@ -183,59 +234,6 @@ const Clasificados = () => {
                 handleClose={handleClose}
                 publicacion={publicacion}
             />
-            <div>
-                <div className="pagination justify-content-center">
-                    <ul className="pagination mb-2">
-                        <li
-                            className={`page-item ${
-                                currentPage === 1 ? 'disabled' : ''
-                            }`}
-                        >
-                            <button
-                                className="page-link"
-                                onClick={() =>
-                                    handlePageChange(currentPage - 1)
-                                }
-                            >
-                                &laquo;
-                            </button>
-                        </li>
-                        {pageNumbers.map((pageNumber) => (
-                            <li
-                                key={pageNumber}
-                                className={`page-item ${
-                                    currentPage === pageNumber ? 'active' : ''
-                                }`}
-                            >
-                                <button
-                                    className={`page-link ${
-                                        currentPage === pageNumber
-                                            ? 'active'
-                                            : ''
-                                    }`}
-                                    onClick={() => handlePageChange(pageNumber)}
-                                >
-                                    {pageNumber}
-                                </button>
-                            </li>
-                        ))}
-                        <li
-                            className={`page-item ${
-                                currentPage === totalPages ? 'disabled' : ''
-                            }`}
-                        >
-                            <button
-                                className="page-link"
-                                onClick={() =>
-                                    handlePageChange(currentPage + 1)
-                                }
-                            >
-                                &raquo;
-                            </button>
-                        </li>
-                    </ul>
-                </div>
-            </div>
         </div>
     );
 };

@@ -6,41 +6,20 @@ const CardsClasificados = ({
     picture,
     precio
 }) => {
-    const cardStyle = {
-        maxWidth: '20rem',
-        width: '20rem',
-        margin: '10px',
-        boxShadow: '4px 4px 4px 1px rgba(0, 0, 0,0.1)'
-    };
-    const imgStyle = {
-        maxWidth: '16rem',
-        maxHeight: '200px',
-        padding: 'auto'
-    };
-    const descripcionStyle = {
-        overflow: 'hidden',
-        textOverflow: 'ellipsis',
-        display: '-webkit-box',
-        WebkitLineClamp: 4,
-        WebkitBoxOrient: 'vertical',
-        whiteSpace: 'normal'
-    };
-
     return (
-        <div className="card bg-light mb-3" style={cardStyle}>
+        <div className="card bg-onahau-400/30 mb-3 max-w-xs w-80 m-3 shadow-xl">
             <div className="card-header flex flex-row justify-center">
                 <img
-                    className=" h-40 "
+                    className=" h-40 max-w-xs max-h-48 m-auto rounded-md "
                     src={picture}
                     alt="imagen"
-                    style={imgStyle}
                 />
             </div>
-            <div className="card-body">
+            <div className="card-body bg-onahau-400/60">
                 <h5 className="card-title">
                     {tipo}: {titulo}
                 </h5>
-                <p className="card-text" style={descripcionStyle}>
+                <p className="card-text overflow-hidden text-ellipsis line-clamp-4 whitespace-normal h-11">
                     {descripcion}
                 </p>
                 <p className="card-text">Numero de contacto: {contacto}</p>
