@@ -4,12 +4,15 @@ import { addServiceCart } from '../../../redux/actions'
 import Swal from 'sweetalert2'
 import { Button } from 'react-bootstrap'
 import propano from '../../assets/propane.svg'
+import { useLocation } from 'react-router-dom'
+
 
 
 const CardsServicios = ({ imagen, titulo, descripcion, nombreBoton, estado, precio, id, type, click, index, openRating }) => {
 
     const dispatch = useDispatch()
     const serviceCarts = useSelector(state => state.cartServices)
+    const { pathname } = useLocation()
 
     const iconServices = () => {
         if (type === 'internet') {
@@ -93,10 +96,10 @@ const CardsServicios = ({ imagen, titulo, descripcion, nombreBoton, estado, prec
         // </div>
 
         <div className={`grid grid-flow-dense grid-cols-2 py-7 px-8 h-full rounded-2xl border-solid border-5 ${index % 2 === 1 ? 'bg-blue-all border-white' : 'bg-white border-blue-all'}`}>
-            <div className='grid place-content-start items-center pb-4 px-4'>
+            <div className='grid place-content-start items-center pb-2 px-4'>
                 <p className={`text-3xl pt-3 font-bold ${index % 2 === 1 ? 'text-white' : ' text-black'}`} >{titulo}</p>
             </div>
-            <div className='grid place-content-end items-center pb-4 px-4'>
+            <div className='grid place-content-end items-center pb-2 px-4'>
                 {
                     iconServices()
                 }
@@ -104,13 +107,16 @@ const CardsServicios = ({ imagen, titulo, descripcion, nombreBoton, estado, prec
             <div className='col-span-2 px-4'>
                 <p className={`text-xl font-normal font-fontGeneral text-left pe-7 ${index % 2 === 1 ? 'text-white' : ' text-black'}`}>{descripcion}</p>
             </div>
-            <div className='grid grid-cols-1 pt-3 px-4'>
-                <Button onClick={estado === 'available' ? addCart : openRating ? openRating : null} 
-                className={`${index % 2 === 1 ? 'bg-white' : 'bg-blue-all'}`} >
-                    <p className={`${index % 2 === 1 ? 'text-gray-palido' : 'text-white'} text-2xl font-fontGeneral font-normal `}>{nombreBoton}</p></Button>
-            </div>
+            {
+                pathname !== '/usuario' && (
+                    <div className='grid grid-cols-1 pt-3 px-4'>
+                        <Button onClick={estado === 'available' ? addCart : openRating ? openRating : null}
+                            className={`${index % 2 === 1 ? 'bg-white' : 'bg-blue-all'}`} >
+                            <p className={`${index % 2 === 1 ? 'text-gray-palido' : 'text-white'} text-2xl font-fontGeneral font-normal `}>{nombreBoton}</p></Button>
+                    </div>
+                )
+            }
         </div>
-
     )
 }
 export default CardsServicios

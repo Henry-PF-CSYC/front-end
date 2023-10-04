@@ -22,7 +22,7 @@ const SeccionUsuario = () => {
 
     const [servicios, setServicios] = useState([]);
     const susbcriptions = useSelector((state) => state.cartServices);
-    
+
 
     const [show2, setShow2] = useState(false);
     const { user, isAuthenticated } = useAuth0();
@@ -38,16 +38,16 @@ const SeccionUsuario = () => {
         image: isAuthenticated ? user.picture : loader
     });
 
-    const allServicesUser = async() => {
+    const allServicesUser = async () => {
         try {
             const servicesUser = await axios.get(`https://csyc.onrender.com/subscription/user/${usuario.email}`)
-        setServicios(servicesUser.data.subscriptions);
+            setServicios(servicesUser.data.subscriptions);
         } catch (error) {
             console.error('Error servicios', error);
         }
-        
+
     }
-    
+
     const submitSuscription = async () => {
         if (params.get('status')) {
             const ids = [];
@@ -64,7 +64,7 @@ const SeccionUsuario = () => {
             );
             dispatch(emptyCart())
             allServicesUser()
-        }else{
+        } else {
             allServicesUser()
         }
     };
@@ -77,7 +77,7 @@ const SeccionUsuario = () => {
             usuario.email = user.email;
         }
         submitSuscription();
-    },[isAuthenticated]);
+    }, [isAuthenticated]);
     useEffect(() => {
         if (isAuthenticated) {
             dispatch(getUser(user.email));
@@ -86,7 +86,7 @@ const SeccionUsuario = () => {
             usuario.email = user.email;
         }
         submitSuscription();
-    },[]);
+    }, []);
 
     const handleClose = () => {
         setShow(false);
@@ -109,73 +109,70 @@ const SeccionUsuario = () => {
     // Función para abrir el modal de calificación
     const openRatingModal = (serviceId) => {
         setShowRatingModal((prev) => {
-          return {
-            ...prev,
-            [serviceId]: true, // Establece el estado para este servicio en true
-          };
+            return {
+                ...prev,
+                [serviceId]: true, // Establece el estado para este servicio en true
+            };
         });
-      };
-      
-      const closeRatingModal = (serviceId) => {
+    };
+
+    const closeRatingModal = (serviceId) => {
         setShowRatingModal((prev) => {
-          return {
-            ...prev,
-            [serviceId]: false, // Establece el estado para este servicio en false
-          };
+            return {
+                ...prev,
+                [serviceId]: false, // Establece el estado para este servicio en false
+            };
         });
-      };
-      
+    };
+
 
     return (
-        <>{isAuthenticated?
-            (<div className="row m-0" style={seccion}>
-                <div className="col-12 d-flex justify-content-end">
-                    {/* <button className='btn btn-dark' type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">Modificar datos personales</button> */}
-                    <Button
-                        variant="dark"
-                        onClick={() => {
+        <>{isAuthenticated ?
+            (
+                <div className='grid grid-cols-12 pt-28 ml-32 mr-10'>
+                    <div className='col-span-9 grid place-content-center mb-4'>
+                        <span className="font-fontGeneral font-bold text-5xl tracking-wide text-blue-all pl-80">Mi perfil</span>
+                    </div>
+                    <div className='col-span-3 grid place-content-center mb-4'>
+                        <button className='bg-blue-all rounded-2xl text-lg text-white px-4 py-2' onClick={() => {
                             setShow(true);
-                        }}
-                    >
-                        Modificar datos personales
-                    </Button>
+                        }}>Modificar datos personales</button>
+                    </div>
+                    <div className='col-span-6 grid place-content-center'>
+                        <p className='font-fontGeneral font-bold text-2xl text-gray-palido mb-2'>Nombre: <span className='text-xl font-normal'>{dataUser.name}</span></p>
+                        <p className='font-fontGeneral font-bold text-2xl text-gray-palido mb-2'>Apellido: <span className='text-xl font-normal'>{dataUser.lastname}</span> </p>
+                        <p className='font-fontGeneral font-bold text-2xl text-gray-palido mb-2'>Email: <span className='text-xl font-normal'>{isAuthenticated ? user.email : 'Loading'}</span> </p>
+                        <p className='font-fontGeneral font-bold text-2xl text-gray-palido mb-2'>DNI: <span className='text-xl font-normal'>{dataUser.dni}</span> </p>
+                        <p className='font-fontGeneral font-bold text-2xl text-gray-palido mb-2'>Direcion: <span className='text-xl font-normal'>{dataUser.address}</span> </p>
+                        <p className='font-fontGeneral font-bold text-2xl text-gray-palido mb-2'>Telefono: <span className='text-xl font-normal'>{dataUser.phone}</span> </p>
+                    </div>
+                    <div className='col-span-6 grid place-content-center'>
+                        <img
+                            className='rounded-full'
+                            src={isAuthenticated ? user.picture : loader}
+                            width={'163px'}
+                            height={'170px'}
+                            alt="Imagen de usuario"
+                        />
+                    </div>
+                    <div className='col-span-12 grid place-content-center mt-4'>
+                        <button
+                            className='bg-white rounded-2xl text-lg text-blue-all px-4 py-2'
+                            onClick={() => {
+                                setShow2(true);
+                            }}
+                        >
+                            Mis publicaciones
+                        </button>
+                    </div>
                 </div>
-                <div className="col-12 d-flex justify-content-center mb-3">
-                    <h1>Mi perfil</h1>
-                </div>
-                <div className='col-3'></div>
-                <div className="col-4">
-                    <p>Nombre: {dataUser.name}</p>
-                    <p>Apellido: {dataUser.lastname}</p>
-                    <p>Email: {isAuthenticated ? user.email : 'Loading'}</p>
-                    <p>DNI: {dataUser.dni}</p>
-                    <p>Direcion: {dataUser.address}</p>
-                    <p>Telefono: {dataUser.phone}</p>
-                </div>
-                <div className="col-2">
+            ) :
+            (<div className="grid grid-cols-1 pt-28">
+                <div className='grid place-content-center'>
                     <img
-                        src={isAuthenticated ? user.picture : loader}
-                        width={'163px'}
-                        height={'170px'}
-                        alt="si funciona"
+                        src={loader}
                     />
                 </div>
-                <div className='col-5'></div>
-                <div className="col-2">
-                    <button
-                        className="btn btn-dark p-1 ms-2"
-                        onClick={() => {
-                            setShow2(true);
-                        }}
-                    >
-                        Mis publicaciones
-                    </button>
-                </div>
-            </div>): 
-            (<div className="d-flex justify-content-center" >
-                <img 
-                src={loader}
-                />
             </div>)}
             <div className="pb-1">
                 <div className="grid grid-cols-1">
@@ -186,45 +183,46 @@ const SeccionUsuario = () => {
                                     <p className='font-fontGeneral text-3xl font-bold text-gray-palido'>Mis servicios activos:</p>
                                 </div>
                             ) : (
-                                <div className='row'>
-                                    <div className='col-12 d-flex justify-content-center'>
-                                        <h1>En el momento no tiene servicios adquiridos</h1>
+                                <div className='grid grid-flow-dense grid-cols-12'>
+                                    <div className='col-span-12 grid place-content-center mb-4'>
+                                        <p className='font-fontGeneral text-3xl font-bold text-gray-palido'>En el momento no tiene servicios adquiridos</p>
                                     </div>
-                                    <div className='col-12 d-flex justify-content-center'>
+                                    <div className='col-span-12 grid place-content-center'>
                                         <Link to='/servicios'>
-                                            <Button variant='dark'>
+                                            <button className='bg-blue-all rounded-2xl text-lg text-white px-4 py-2'>
                                                 Adquirir servicios
-                                            </Button>
+                                            </button>
                                         </Link>
                                     </div>
                                 </div>
                             )
                         }
                     </div>
-                    <div className='grid grid-cols-2 mx-36 gap-5'>
-                    {servicios.length > 0 &&
-                        servicios.map((servicio, index) => {
-                            return (
-                                <div className="col-3 ps-5 my-5">
-                                    <CardsServicios
-                                        key={index}
-                                        imagen={servicio['service.image']}
-                                        titulo={servicio['service.name']}
-                                        descripcion={servicio['service.description']}
-                                        nombreBoton="Mas Informacion"
-                                    />
-                                    <button onClick={() => openRatingModal(servicio.service_id)}>Calificar Servicio</button>
-                                    {showRatingModal[servicio.service_id] && (
-                                    <Rating
-                                    key={servicio.service_id}
-                                    serviceId={servicio.service_id}
-                                    show={showRatingModal[servicio.service_id]}
-                                    handleClose={() => closeRatingModal(servicio.service_id)}
-                                    />)}
-                                </div>
-
-                            );
-                        })}
+                    <div className='grid grid-cols-2 mx-36 mb-20 gap-16'>
+                        {servicios.length > 0 &&
+                            servicios.map((servicio, index) => {
+                                return (
+                                    <div>
+                                        <CardsServicios
+                                            key={index}
+                                            imagen={servicio['service.image']}
+                                            titulo={servicio['service.name']}
+                                            descripcion={servicio['service.description']}
+                                            nombreBoton="Mas Informacion"
+                                        />
+                                        <div className='my-2 grid place-content-center'>
+                                            <button className='bg-blue-all rounded-2xl text-lg text-white px-4 py-2' onClick={() => openRatingModal(servicio.service_id)}>Calificar Servicio</button>
+                                            {showRatingModal[servicio.service_id] && (
+                                                <Rating
+                                                    key={servicio.service_id}
+                                                    serviceId={servicio.service_id}
+                                                    show={showRatingModal[servicio.service_id]}
+                                                    handleClose={() => closeRatingModal(servicio.service_id)}
+                                                />)}
+                                        </div>
+                                    </div>
+                                );
+                            })}
                     </div>
                 </div>
             </div>
