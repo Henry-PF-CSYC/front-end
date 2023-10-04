@@ -116,7 +116,7 @@ const handleDeleteOffer = (clasificadoId) => {
         <MDBDataTable striped bordered small data={{ columns, rows }}  noBottomColumns  responsive
         infoLabel={['Mostrando del', 'al', 'de', 'clasificados disponibles']}  paginationLabel={"<>"} 
         searchLabel="Buscar" entriesLabel="Entradas a desplegar:" className="custom-datatable" info={false}
-        style={{ boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)'}} entries={[15]}/>
+        style={{ boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)'}} entries={[8]}/>
     </div>);
 }
 

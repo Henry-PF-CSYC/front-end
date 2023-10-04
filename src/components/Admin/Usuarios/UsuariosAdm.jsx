@@ -79,7 +79,7 @@ const UsuariosAdm = () => {
 // Renderizado
 return(
     <div>
-        <h2 id="titleAdminUsers" className="adminTitles">Usuarios activos:</h2>
+        <h2 id="titleAdminUsers" className="adminTitles">Usuarios registrados:</h2>
 
         <EditUserModal show={showEditUserModal} handleClose={closeEditUserModal} userData={selectedRow}/>
 

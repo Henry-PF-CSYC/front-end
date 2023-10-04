@@ -1,3 +1,4 @@
+import { Button } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { getServices } from "../../../redux/actions";
@@ -91,7 +92,7 @@ const ServicesAdm = () => {
 
         <div id="introToServicesAdmin" className="adminTitles">
           <h2>Servicios activos:</h2>
-          <button className="addService" onClick={openNewServiceModal}>Añadir Servicio</button>
+          <Button variant="primary" onClick={openNewServiceModal}>Añadir Servicio</Button>
         </div>
         
         <NewServiceModal show={showNewServiceModal} handleClose={closeNewServiceModal}/>
