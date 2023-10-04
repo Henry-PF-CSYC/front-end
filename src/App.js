@@ -68,9 +68,9 @@ function App() {
             </div>
           </div>)}
 
-      {/*Sección ddmin no verá navbar ni footer*/}
+      {/*Sección admin no verá navbar ni footer*/}
       {!isAdminRouted && <Navbar/>}
-      {!isAdminRouted && <Footer />}
+    
 
 
 
@@ -113,6 +113,8 @@ function App() {
 
       </Routes>
 
+      {!isAdminRouted && <Footer />}
+      
     </div>);
 }
 
