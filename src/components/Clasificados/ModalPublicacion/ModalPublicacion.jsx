@@ -22,15 +22,19 @@ const ModalPublicacion = ({ show, handleClose, publicacion }) => {
                 handleClose();
             }}
         >
-            <div className="card bg-light mb-0" style={cardStyle}>
+            <div
+                className="card border-0 bg-onahau-400/30 mb-0 font-medium"
+                style={cardStyle}
+            >
                 <div className="card-header " style={headerStyle}>
                     <img
                         src={publicacion.image}
                         alt="imagen"
+                        className="rounded-md"
                         style={imgStyle}
                     />
                 </div>
-                <div className="card-body">
+                <div className="card-body bg-onahau-400/60">
                     <h5 className="card-title">
                         {publicacion.type}: {publicacion.title}
                     </h5>
