@@ -1,7 +1,22 @@
 import './Footer.css';
 import { Link } from 'react-router-dom';
+import { useEffect } from "react"
+import { useDispatch, useSelector } from "react-redux"
+import { getContactData } from "../../redux/actions"
 
 const Footer = () => {
+
+    const dispatch = useDispatch() 
+  
+    useEffect(() => {
+        const obtenerContacto = async () => {
+            try {
+                await dispatch( getContactData({ randomParam: Date.now() }));
+                } catch (error) { console.error('Error al obtener contacto:', error);}};
+                obtenerContacto()}, [dispatch]); 
+    const contactData = useSelector((state) => state.contactData); 
+
+
     return (
         <div id="footerSection">
             <section className="container-fluid footerA">
@@ -59,9 +74,9 @@ const Footer = () => {
                         <h6 className="footerTitle">Contacto</h6>
                     </Link>
                     <div className="footerOptions">
-                        <span>Teléfono de contacto: xxxx-xxxx</span>
-                        <span>Dirección: xxxx-xxxx </span>
-                        <span>Email: xxxx-xxxx </span>
+                        <span>Teléfono de contacto: {contactData.phone}</span>
+                        <span>Dirección: {contactData.address}</span>
+                        <span>Email: {contactData.email}</span>
                     </div>
                 </div>
             </section>

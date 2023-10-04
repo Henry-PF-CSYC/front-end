@@ -1,5 +1,6 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux";
+import { getContactData } from "../../redux/actions"
 import "./ContactStyle.css"
 
 // Sweetalert
@@ -14,9 +15,22 @@ import { showLoader, hideLoader } from "../../redux/actions";
 
 function Contact() {
 
+    const dispatch = useDispatch() 
+
     // Accedemos al estado global del loader
     const isLoading = useSelector((state) => state.isLoading); 
-    const dispatch = useDispatch();
+  
+
+    useEffect(() => {
+        const obtenerContacto = async () => {
+            try {
+                await dispatch( getContactData({ randomParam: Date.now() }));
+                } catch (error) { console.error('Error al obtener contacto:', error);}};
+                obtenerContacto()}, [dispatch]); 
+    const contactData = useSelector((state) => state.contactData); 
+
+
+
 
     // Datos del formulario
     const [formData, setFormData] = useState({name: "", phone: "", message: ""})
@@ -99,28 +113,28 @@ function Contact() {
                     <p className="contact-detail-options">Administrado por:</p>
                 </div>
 
-                <p>Cosme Fulanito</p>
+                <p>{contactData.name}</p>
 
                 <div className="d-flex align-items-center m-1">
                     <i class="bi bi-house-check mr-2" style={{ fontSize: '1.9rem' }}></i>
                     <p className="contact-detail-options">Dirección:</p>
                 </div>
 
-                <p>Calle Falsa 123</p>
+                <p>{contactData.address}</p>
 
                 <div className="d-flex align-items-center m-1">
                     <i class="bi bi-telephone mr-2" style={{ fontSize: '1.9rem' }}></i>
                     <p className="contact-detail-options">Teléfono:</p>
                 </div>
 
-                <p>+54 9 0000 0000</p>
+                <p>{contactData.phone}</p>
 
                 <div className="d-flex align-items-center m-1">
                     <i class="bi bi-envelope-at mr-2" style={{ fontSize: '1.9rem' }}></i>
                     <p className="contact-detail-options">Email:</p>
                 </div>
 
-                <p>dpto.cobranzas@csyc.com.ar</p>
+                <p>{contactData.email}</p>
             </div>
 
 

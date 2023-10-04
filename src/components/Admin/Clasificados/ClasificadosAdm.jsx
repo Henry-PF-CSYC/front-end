@@ -24,8 +24,6 @@ const ClasificadosAdm = () => {
   const isLoading = useSelector((state) => state.isLoading); 
 
 
-
-
   // Despachamos accion para obtener clasificados
   useEffect(() => {
     const obtenerClasificados = async () => {
