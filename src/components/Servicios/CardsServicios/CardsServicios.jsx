@@ -37,9 +37,9 @@ const CardsServicios = ({ imagen, titulo, descripcion, nombreBoton, estado, prec
                 let quantity = 1
                 if (isStreaming) {
                     quantity = isStreaming.quantity + 1
-                    dispatch(addServiceCart({ imagen, titulo, descripcion, nombreBoton, estado, precio, id, quantity }))
+                    dispatch(addServiceCart({ imagen, titulo, descripcion, nombreBoton, estado, precio, type, id, quantity }))
                 } else {
-                    dispatch(addServiceCart({ imagen, titulo, descripcion, nombreBoton, estado, precio, id, quantity }))
+                    dispatch(addServiceCart({ imagen, titulo, descripcion, nombreBoton, estado, precio, type, id, quantity }))
                 }
             }
         } else {
@@ -51,7 +51,7 @@ const CardsServicios = ({ imagen, titulo, descripcion, nombreBoton, estado, prec
                 })
             } else {
                 if (nombreBoton === 'Lo quiero!') {
-                    dispatch(addServiceCart({ imagen, titulo, descripcion, nombreBoton, estado, precio, id, quantity: 1 }))
+                    dispatch(addServiceCart({ imagen, titulo, descripcion, nombreBoton, estado, precio, type, id, quantity: 1 }))
                 }
             }
         }

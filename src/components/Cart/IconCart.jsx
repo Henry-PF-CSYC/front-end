@@ -30,9 +30,9 @@ export const IconCart = () => {
                 </Modal.Body>
                 <Modal.Footer className="border-0 me-5">
                     <Link to={'cart'}>
-                        <Button variant="outline-dark" className="px-4" onClick={openModal}>
+                        <button className="px-4 py-2 bg-blue-all text-white rounded-2xl" onClick={openModal}>
                             Ir al carrito
-                        </Button>
+                        </button>
                     </Link>
                 </Modal.Footer>
             </Modal>
