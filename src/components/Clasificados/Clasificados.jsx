@@ -75,91 +75,102 @@ const Clasificados = () => {
     }
 
     return (
-        <div className=" flex-row w-full pt-24 m-auto">
-            <div className="flex flex-row justify-around text-center rounded-xl mt-2 w-11/12 bg-onahau-50 bg-opacity-50 shadow-xl mx-auto h-10 pt-2  ">
-                <div>
-                    <label>Buscar</label>
-                    <input
-                        className="rounded-md text-center w-36"
-                        type="text"
-                        placeholder=""
-                        value={title}
-                        onChange={InputTitle}
-                    />
-                </div>
-                <div>
-                    <label>Tipo de Anuncio: </label>
-                    <select
-                        className="rounded-md text-center w-36"
-                        value={type}
-                        onChange={handlerType}
-                    >
-                        <option value="">Todos</option>
-                        <option value="compra">Compra</option>
-                        <option value="venta">Venta</option>
-                        <option value="se busca">Se Busca</option>
-                    </select>
-                </div>
-                <div>
-                    <label>Ordenar:</label>
-                    <select
-                        className="rounded-md text-center w-36"
-                        value={order}
-                        onChange={handleOrder}
-                    >
-                        <option value="">Sin orden</option>
-                        <option value="asc">Ascendente</option>
-                        <option value="desc">Descendente</option>
-                    </select>
-                    <br />
-                </div>
-                <div>
-                    <label>Ordenar por:</label>
-                    <select
-                        className="rounded-md text-center w-36"
-                        value={orderBy}
-                        onChange={handleOrderByChange}
-                    >
-                        <option value="">Sin orden</option>
-                        <option value="title">Titulo</option>
-                        <option value="creation">Fecha</option>
-                    </select>
-                </div>
-            </div>
-
-            <div className="flex flex-row border-3 border-red-800">
-                <div className="flex flex-row flex-wrap justify-around">
-                    {clasi.map(
-                        (clasificado) =>
-                            clasificado.deletedAt !== {} && (
-                                <button
-                                    onClick={() => {
-                                        console.log('click');
-                                        setPublicacion(clasificado);
-                                        setShow2(true);
-                                    }}
-                                >
-                                    <CardsClasificados
-                                        picture={clasificado.image}
-                                        tipo={clasificado.type}
-                                        titulo={clasificado.title}
-                                        descripcion={clasificado.description}
-                                        contacto={clasificado.contact}
-                                        precio={clasificado.price}
-                                    />
-                                </button>
-                            )
-                    )}
+        <div className=" flex-row w-full  m-auto">
+            <div className="flex flex-row ">
+                <div className="flex flex-row flex-wrap font-bold">
+                    <div className="flex flex-col fixed justify-center text-center   w-1/6 bg-gradient-to-b from-onahau-300/50 to-onahau-900/80 pb-40 shadow-xl ml-0 h-screen pt-2  ">
+                        <div>
+                            <p>
+                                <label>Buscar</label>
+                            </p>
+                            <input
+                                className="rounded-md text-center w-36 mb-3"
+                                type="text"
+                                placeholder=""
+                                value={title}
+                                onChange={InputTitle}
+                            />
+                        </div>
+                        <div>
+                            <p>
+                                <label>Tipo de Anuncio: </label>
+                            </p>
+                            <select
+                                className="rounded-md text-center w-36 font-normal mb-3"
+                                value={type}
+                                onChange={handlerType}
+                            >
+                                <option value="">Todos</option>
+                                <option value="compra">Compra</option>
+                                <option value="venta">Venta</option>
+                                <option value="se busca">Se Busca</option>
+                            </select>
+                        </div>
+                        <div>
+                            <p>
+                                <label>Ordenar:</label>
+                            </p>
+                            <select
+                                className="rounded-md text-center w-36 font-normal mb-3"
+                                value={order}
+                                onChange={handleOrder}
+                            >
+                                <option value="">Sin orden</option>
+                                <option value="asc">Ascendente</option>
+                                <option value="desc">Descendente</option>
+                            </select>
+                            <br />
+                        </div>
+                        <div>
+                            <p>
+                                <label>Ordenar por:</label>
+                            </p>
+                            <select
+                                className="rounded-md text-center w-36 font-normal"
+                                value={orderBy}
+                                onChange={handleOrderByChange}
+                            >
+                                <option value="">Sin orden</option>
+                                <option value="title">Titulo</option>
+                                <option value="creation">Fecha</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div className="ml-80 pt-20">
+                        {clasi.map(
+                            (clasificado) =>
+                                clasificado.deletedAt !== {} && (
+                                    <button
+                                        onClick={() => {
+                                            console.log('click');
+                                            setPublicacion(clasificado);
+                                            setShow2(true);
+                                        }}
+                                    >
+                                        <CardsClasificados
+                                            picture={clasificado.image}
+                                            tipo={clasificado.type}
+                                            titulo={clasificado.title}
+                                            descripcion={
+                                                clasificado.description
+                                            }
+                                            contacto={clasificado.contact}
+                                            precio={clasificado.price}
+                                        />
+                                    </button>
+                                )
+                        )}
+                    </div>
                 </div>
             </div>
             {isAuthenticated && (
                 <button
-                    className="flex justify-around mx-auto my-2 border-3 border-red-100"
+                    className="flex justify-center m-auto pt-2  w-40 h-10 rounded-md  my-2 text-white bg-gradient-to-r from-onahau-500 to-onahau-800 transition-colors duration-300 ease-in-out hover:bg-gradient-to-l hover:from-onahau-500 hover:to-onahau-800"
                     onClick={() => {
                         setShow(true);
                     }}
                 >
-                    <span>Crear publicacion</span>
+                    Crear publicacion
                 </button>
             )}
             <ModalClasificado
@@ -174,7 +185,7 @@ const Clasificados = () => {
             />
             <div>
                 <div className="pagination justify-content-center">
-                    <ul className="pagination">
+                    <ul className="pagination mb-2">
                         <li
                             className={`page-item ${
                                 currentPage === 1 ? 'disabled' : ''
