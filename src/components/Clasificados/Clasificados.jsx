@@ -144,28 +144,30 @@ const Clasificados = () => {
                     </button>
                 )}
             </div>
-            <div className="w-5/6">
-                {clasi.map(
-                    (clasificado) =>
-                        clasificado.deletedAt !== {} && (
-                            <button
-                                onClick={() => {
-                                    console.log('click');
-                                    setPublicacion(clasificado);
-                                    setShow2(true);
-                                }}
-                            >
-                                <CardsClasificados
-                                    picture={clasificado.image}
-                                    tipo={clasificado.type}
-                                    titulo={clasificado.title}
-                                    descripcion={clasificado.description}
-                                    contacto={clasificado.contact}
-                                    precio={clasificado.price}
-                                />
-                            </button>
-                        )
-                )}
+            <div className="w-5/6 ">
+                <div className="min-h-screen">
+                    {clasi.map(
+                        (clasificado) =>
+                            clasificado.deletedAt !== {} && (
+                                <button
+                                    onClick={() => {
+                                        console.log('click');
+                                        setPublicacion(clasificado);
+                                        setShow2(true);
+                                    }}
+                                >
+                                    <CardsClasificados
+                                        picture={clasificado.image}
+                                        tipo={clasificado.type}
+                                        titulo={clasificado.title}
+                                        descripcion={clasificado.description}
+                                        contacto={clasificado.contact}
+                                        precio={clasificado.price}
+                                    />
+                                </button>
+                            )
+                    )}
+                </div>
                 <div>
                     <div className="pagination justify-content-center ">
                         <ul className="pagination ">
