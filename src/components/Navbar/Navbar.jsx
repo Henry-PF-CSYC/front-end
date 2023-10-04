@@ -195,20 +195,15 @@ const Navbar = () => {
                                 </Link>
                             </li>)}
 
-                            {(isAuthenticated && usuario.role === "admin") && (
+                            {(isAuthenticated && (usuario.role === "admin" || usuario.role === "contact_admin")) && (
                             <li>
-                                <Link
-                                    to="/admin"
-                                    style={{ textDecoration: 'none' }}
-                                >
-                                    <a
-                                        class="dropdown-item userDropdown"
-                                        href="."
-                                    >
-                                        Administrador
-                                    </a>
+                                <Link to="/admin" style={{ textDecoration: 'none' }}>
+                                <a class="dropdown-item userDropdown" href=".">
+                                    Administrador
+                                </a>
                                 </Link>
-                            </li>)}
+                            </li>
+                            )}
 
                             <li>
                                 {/* Call handleLogout function on logout click */}

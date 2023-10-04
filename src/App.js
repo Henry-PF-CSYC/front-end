@@ -1,5 +1,5 @@
-// Ruteado y estilos
-import { Routes, Route, useLocation } from "react-router-dom"
+// Hooks y estilos
+import { Routes, Route, useLocation, Navigate, useNavigate } from "react-router-dom"
 import { useSelector } from "react-redux";
 import './App.css'
 
@@ -29,6 +29,7 @@ import Telefonia from "./components/Servicios/Telefonia/Telefonia";
 import Streaming from "./components/Servicios/Streaming/Streaming";
 import { Cart } from "./components/Cart/Cart";
 
+
 //Administrador
 import Admin from "./components/Admin/Admin";
 import Dashboard from "./components/Admin/Dashboard/Dashboard";
@@ -42,14 +43,21 @@ import Combos from "./components/Admin/Combos/Combos";
 
 
 
-// Renderizado
 function App() {
 
   const location = useLocation();
+  const navigate = useNavigate();
+
+  const cartServices = useSelector(state => state.cartServices);
+
   const isAdminRouted = location.pathname.includes('/admin');
-  const cartServices = useSelector(state => state.cartServices)
+  const userRole = useSelector(state => state.dataUser.role);
 
 
+
+
+
+  // Renderizado
   return (
     <div className="bg-image1 bg-cover w-screen bg-center bg-backgroundBody">
 
@@ -59,7 +67,11 @@ function App() {
               <IconCart />
             </div>
           </div>)}
+
+      {/*Sección ddmin no verá navbar ni footer*/}
       {!isAdminRouted && <Navbar/>}
+      {!isAdminRouted && <Footer />}
+
 
 
       <Routes>
@@ -87,21 +99,20 @@ function App() {
         <Route path="/cart" element={<Cart isTerms={true}/>}/>
 
 
-        {/* Administrador */}
-        <Route path="/admin/*" element={<Admin/>}>
+        {/* Ruta de Admin Protegida */}
+        {isAdminRouted && (userRole !== "admin" && userRole !== "contact_admin") && navigate("/")}
+        <Route path="/admin/*" element={userRole === "admin" || userRole === "contact_admin" ? <Admin/> : <Navigate to="/"/>}>
           <Route index element={<Dashboard/>}/>
-          <Route path="dashboard" element={<Dashboard/>}/>
           <Route path="servicesAdm" element={<ServicesAdm/>}/>
-          <Route path="usuarios" element={<UsuariosAdm />}/>
+          <Route path="usuarios" element={<UsuariosAdm/>}/>
           <Route path="clasificados" element={<ClasificadosAdm/>}/>
-          <Route path="novedades" element={<Novedades/>} />
-          <Route path="reseñas" element={<Reseñas/>} />
-          <Route path="combos" element={<Combos/>} />
+          <Route path="novedades" element={<Novedades/>}/>
+          <Route path="reseñas" element={<Reseñas/>}/>
+          <Route path="combos" element={<Combos/>}/>
         </Route>
 
       </Routes>
 
-      {!isAdminRouted && <Footer />}
     </div>);
 }
 
