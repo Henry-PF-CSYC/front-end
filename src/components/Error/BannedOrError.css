@@ -1,0 +1,47 @@
+.errorOrBanned {
+    background-image: url("../../../public/rekt.png");
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    display: flex;  
+    align-items: center;
+    justify-content: center;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); 
+}
+  
+
+.bannedOrErrorContainer {
+    padding: 1rem;
+    background:  rgba(5, 1, 29, 0.24);
+    max-width: fit-content;
+    max-height: fit-content;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.errorOrBanned h1,
+.errorOrBanned button {
+    font-size: 1.2rem;
+    font-weight: bold;
+    font-style: normal;
+    line-height: normal;
+    color: white;
+    z-index: 2;
+    text-align: center;
+}
+  
+
+.errorOrBanned button {
+    margin-top: 20px;
+    padding: 10px 20px;
+}
+  
+.errorOrBanned img {
+    width: 15%; 
+    transform: rotate(15deg);
+    z-index: 1;
+}  
+
+

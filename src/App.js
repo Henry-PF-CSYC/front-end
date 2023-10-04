@@ -14,6 +14,8 @@ import Register from "./components/Register/Register"
 import SeccionUsuario from './components/SeccionUsuario/SeccionUsuario'
 import Clasificados from "./components/Clasificados/Clasificados";
 import AboutUs from "./components/AboutUs/AboutUs";
+import Banned from "./components/Error/Banned";
+import NotFound from "./components/Error/NotFound";
 import { IconCart } from "./components/Cart/IconCart";
 
 
@@ -36,7 +38,6 @@ import UsuariosAdm from "./components/Admin/Usuarios/UsuariosAdm";
 import ClasificadosAdm from "./components/Admin/Clasificados/ClasificadosAdm";
 import Novedades from "./components/Admin/Novedades/Novedades";
 import Reseñas from "./components/Admin/Reseñas/Reseñas";
-import Banned from "./components/Admin/Banned";
 
 
 
@@ -48,12 +49,12 @@ function App() {
   const cartServices = useSelector(state => state.cartServices);
 
   const isAdminRouted = location.pathname.includes('/admin');
-  const userRole = useSelector(state => state.dataUser.role);
   
+  const userRole = useSelector(state => state.dataUser.role);
   if (userRole === "banned") {return <Banned/>}
 
-  
 
+  
 
   // Renderizado
   return (
@@ -65,6 +66,7 @@ function App() {
               <IconCart />
             </div>
           </div>)}
+
 
       {/*Sección admin no verá navbar ni footer*/}
       {!isAdminRouted && <Navbar/>}
@@ -82,6 +84,7 @@ function App() {
         <Route path="/usuario" element={<SeccionUsuario/>}/>
         <Route path="/clasificados" element={<Clasificados/>}/>
         <Route path="/contacto" element={<Contact/>}/>
+        <Route path='/*' element={<NotFound/>}/>
 
 
         {/*Servicios*/}
@@ -108,7 +111,7 @@ function App() {
 
       </Routes>
 
-      {!isAdminRouted && <Footer />}
+      {!isAdminRouted && <Footer/>}
       
     </div>);
 }
