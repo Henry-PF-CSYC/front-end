@@ -109,11 +109,17 @@ const CardsServicios = ({ imagen, titulo, descripcion, nombreBoton, estado, prec
             </div>
             {
                 pathname !== '/usuario' && (
-                    <div className={`grid grid-cols-1 px-4 ${pathname === '/servicios' ? 'h-2' : 'pt-3'}`}>
-                        <Button onClick={estado === 'available' ? addCart : openRating ? openRating : null}
-                            className={`${index % 2 === 1 ? 'bg-white' : 'bg-blue-all'} ${pathname === '/servicios' ? 'p-0' : ''} `} >
-                            <p className={`${index % 2 === 1 ? 'text-gray-palido' : 'text-white'} text-2xl font-fontGeneral font-normal `}>{nombreBoton}</p></Button>
+                    <div className='grid grid-cols-2 col-span-2'>
+                        <div className={` px-4 ${pathname === '/servicios' ? 'h-2' : 'pt-3'}`}>
+                            <Button onClick={estado === 'available' ? addCart : openRating ? openRating : null}
+                                className={`w-full  ${index % 2 === 1 ? 'bg-white' : 'bg-blue-all'} ${pathname === '/servicios' ? 'p-0' : ''} `} >
+                                <p className={`${index % 2 === 1 ? 'text-gray-palido' : 'text-white'} text-2xl font-fontGeneral font-normal `}>{nombreBoton}</p></Button>
+                        </div>
+                        <div className={`grid place-content-center justify-items-end ${pathname === '/servicios' ? 'p-0' : 'pt-6'}  `}>
+                            <span className={`text-xl font-normal font-fontGeneral text-left pe-7 ${index % 2 === 1 ? 'text-white' : ' text-black'}`}>{new Intl.NumberFormat('en-US',{style: 'currency',currency: 'ARS'}).format(precio)}</span>
+                        </div>
                     </div>
+
                 )
             }
         </div>
