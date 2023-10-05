@@ -1,6 +1,63 @@
-.modal-90w {
-    max-width: 80vw;
-    width: 80vw;
-    /* Other CSS properties and styles can be added here as well */
-  }
-  
+/* Modal.css */
+
+/* Estilo para el contenedor principal del modal */
+.modal-card {
+  background-color: #FFFFFF;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin: 0;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Estilo para el encabezado del modal */
+.modal-header {
+  max-width: 100%;
+  background-color: #007bff; /* Color de fondo del encabezado */
+  color: #FFFFFF; /* Color del texto del encabezado */
+  padding: 20px;
+  text-align: center;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+/* Estilo para el contenedor de contenido del modal */
+.modal-content-container {
+  display: flex;
+  flex-direction: column;
+  margin: 2rem;
+  padding: 20px;
+}
+
+/* Estilo para la sección de comentarios */
+.comments-section {
+  max-width: 100%;
+  background-color: #f8f8f8; /* Color de fondo de la sección de comentarios */
+  padding: 20px;
+  border-radius: 10px;
+}
+
+/* Estilo para las reseñas individuales */
+.review-item {
+  border: 1px solid #dcdcdc; /* Color del borde de las reseñas */
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 10px;
+}
+
+/* Estilo para el promedio de calificaciones */
+.average-rating {
+  font-weight: bold;
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+  color: #007bff; /* Color del texto del promedio de calificaciones */
+}
+.info-icon {
+  font-size: 18px; /* Tamaño de fuente del icono (ajusta según tu preferencia) */
+  vertical-align: middle; /* Alinea verticalmente con el texto */
+  margin-left: 5px; /* Espacio a la izquierda del icono (ajusta según tu preferencia) */
+  cursor: pointer; /* Cambia el cursor al pasar por encima del icono */
+}

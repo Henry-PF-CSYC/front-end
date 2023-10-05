@@ -452,7 +452,6 @@ export const getRatingByIdService = ({serviceId,user_email}) => {
     return async (dispatch) => {
         try {
             const { data } = await axios.get(`https://csyc.onrender.com/reviews/user_service/${user_email}?service_id=${serviceId}`)
-            console.log(data)
             dispatch({
                 type: GETRATINGBYIDSERVICE,
                 payload:data
