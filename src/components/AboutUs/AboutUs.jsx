@@ -159,7 +159,7 @@ const AboutUs = () => {
                                     <div className="card-link">
                                         <a
                                             className="me-3"
-                                            href="https://www.linkedin.com/in/facundo-gaston-vies-b0863a268/"
+                                            href="https://www.linkedin.com/in/paolosuarez18"
                                             target="_blank"
                                         >
                                             {linkedin}
