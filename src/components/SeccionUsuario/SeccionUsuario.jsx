@@ -162,7 +162,7 @@ const SeccionUsuario = () => {
           {isAuthenticated ? (
             <div className="grid grid-cols-12 pt-28 ml-32 mr-10">
               <div className="col-span-9 grid place-content-center mb-4">
-                <span className="font-fontGeneral font-bold text-5xl tracking-wide text-blue-all pl-80">
+                <span className="font-fontGeneral font-bold text-5xl tracking-wide text-blue-all pl-64">
                   Mi perfil
                 </span>
               </div>
@@ -223,7 +223,7 @@ const SeccionUsuario = () => {
                   alt="Imagen de usuario"
                 />
               </div>
-              <div className="col-span-12 grid place-content-center mt-4">
+              <div className="col-span-12 grid place-content-center mt-4 pr-24">
                 <button
                   className="bg-white rounded-2xl text-lg text-blue-all px-4 py-2"
                   onClick={() => {
@@ -259,7 +259,7 @@ const SeccionUsuario = () => {
                                         adquiridos
                                     </p>
                                 </div>
-                                <div className="col-span-12 grid place-content-center">
+                                <div className="col-span-12 grid place-content-center pr-3">
                                     <Link to="/servicios">
                                         <button className="bg-blue-all rounded-2xl text-lg text-white px-4 py-2">
                                             Adquirir servicios
