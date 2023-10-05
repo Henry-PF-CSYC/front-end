@@ -19,8 +19,8 @@ const Servicios = () => {
     const [orderBy, setOrderBy] = useState('');
     const [rangeMin, setRangeMin] = useState('');
     const [rangeMax, setRangeMax] = useState('');
-    const size = 3; //las cartas que me tiene que traer
-   
+    const size = 2; //las cartas que me tiene que traer
+
 
     const loadServices = () => {
         //para cargar los servicios voy a mandarlo a un use efect
@@ -109,7 +109,7 @@ const Servicios = () => {
         }
         setCurrentPage(1)
     }
-    
+
     const [showModal, setShowModal] = useState(false);
     const [selectedService, setSelectedService] = useState({});
 
@@ -122,48 +122,218 @@ const Servicios = () => {
         setSelectedService({});
         setShowModal(false);
     };
-    
+
     return (
-        <section id="servicesContainer">
-            <div id="generalInfo">
-                <h1>Servicios</h1>
-                <p className="descriptionGeneral">
+        // <section id="servicesContainer">
+        //     <div id="generalInfo">
+        //         <h1>Servicios</h1>
+        //         <p className="descriptionGeneral">
+        //             En CSYC te ofrecemos una amplia gama de soluciones para
+        //             satisfacer todas tus necesidades en el hogar, aquí
+        //             encontrarás todo lo que necesitas en un solo lugar. Nuestra misión es
+        //             proporcionarte acceso fácil y conveniente a servicios
+        //             esenciales de alta calidad.
+        //         </p>
+        //     </div>
+        //     <div className="barraLateral">
+        //         <div>
+        //         <p>Busqueda por Nombre</p>
+        //         <input
+        //             type="text"
+        //             placeholder=""
+        //             value={name}
+        //             onChange={handledInputName}
+        //         />
+        //         <p>Rango de Precios</p>
+        //         <input
+        //             type="number"
+        //             placeholder="Precio mínimo"
+        //             value={rangeMin}
+        //             onChange={handleRangeMinChange}
+        //         />
+        //         <input
+        //             type="number"
+        //             placeholder="Precio máximo"
+        //             value={rangeMax}
+        //             onChange={handleRangeMaxChange}
+        //         />
+        //         </div>
+
+        //         <div>
+        //             <label>Filtrar por tipo:</label>
+        //             <select
+        //                 value={filterType}
+        //                 onChange={handleFilterTypeChange}
+        //             >
+        //                 <option value="">Todos</option>
+        //                 <option value="luz">Luz</option>
+        //                 <option value="gas">Gas</option>
+        //                 <option value="internet">Internet</option>
+        //                 <option value="agua">Agua</option>
+        //                 <option value="cable">Cable</option>
+        //                 <option value="telefonia">Telefonía</option>
+        //                 <option value="streaming">Streaming</option>
+        //             </select>
+        //         </div>
+
+        //         <div>
+        //             <label>Ordenar:</label>
+        //             <select value={orderOption} onChange={handleOrderChange}>
+        //                 <option value="">Sin orden</option>
+        //                 <option value="ASC">Ascendente</option>
+        //                 <option value="DESC">Descendente</option>
+        //             </select>
+        //         </div>
+
+        //         <div>
+        //             <label>Ordenar por:</label>
+        //             <select value={orderBy} onChange={handleOrderByChange}>
+        //                 <option value="">Sin orden</option>
+        //                 <option value="price">Orden por Precio</option>
+        //                 <option value="name">Orden por Nombre</option>
+        //             </select>
+        //         </div>
+        //     </div>
+
+        //     <div className='row'>
+        //         <div className={serviciosInPage.length > 2 ? 'col-12 d-flex justify-content-end mb-5' : 'col-12 d-flex justify-content-center mb-5' } >
+        //             <section className="row">
+        //                 {serviciosInPage.length !== 0 ? (
+        //                     serviciosInPage.map((servicio, index) => (
+        //                         <div key={index} className={serviciosInPage.length === 2 ? "col-6 px-5" : "col-4 px-5"}>
+        //                            <CardsServicios
+        //                                 imagen={servicio.image}
+        //                                 titulo={servicio.name}
+        //                                 nombreBoton="Lo quiero!"
+        //                                 click={()=>{
+        //                                     setSelectedService(servicio);
+        //                                     setShowModal(true)}}
+        //                                 descripcion={servicio.description}
+        //                                 precio={servicio.price}
+        //                                 estado={servicio.status}
+        //                                 id={servicio.id}
+        //                                 type={servicio.type}
+
+        //                             />
+        //                             <p><button key={index} className="btn btn-primary" onClick={() => handleRatingClick(servicio)}>Opiniones</button></p>
+        //                         </div>
+        //                     ))
+        //                 ) : (
+        //                     <div className="errorCards">
+        //                         <img
+        //                             src="https://grupoleiros.com/static/product-not-found.png"
+        //                             alt=""
+        //                         />
+        //                     </div>
+        //                 )}
+        //             </section>
+        //         </div>
+        //     </div>
+        //     <div className="pagination justify-content-center">
+        //         <ul className="pagination">
+        //             <li
+        //                 className={`page-item ${currentPage === 1 ? 'disabled' : ''
+        //                     }`}
+        //             >
+        //                 <button
+        //                     className="page-link"
+        //                     onClick={() => handlePageChange(currentPage - 1)}
+        //                 >
+        //                     &laquo;
+        //                 </button>
+        //             </li>
+        //             {pageNumbers.map((pageNumber) => (
+        //                 <li
+        //                     key={pageNumber}
+        //                     className={`page-item ${currentPage === pageNumber ? 'active' : ''
+        //                         }`}
+        //                 >
+        //                     <button
+        //                         className={`page-link ${currentPage === pageNumber ? 'active' : ''
+        //                             }`}
+        //                         onClick={() => handlePageChange(pageNumber)}
+        //                     >
+        //                         {pageNumber}
+        //                     </button>
+        //                 </li>
+        //             ))}
+
+        //             <li
+        //                 className={`page-item ${currentPage === totalPages ? 'disabled' : ''
+        //                     }`}
+        //             >
+        //                 <button
+        //                     className="page-link"
+        //                     onClick={() => handlePageChange(currentPage + 1)}
+        //                 >
+        //                     &raquo;
+        //                 </button>
+        //             </li>
+        //         </ul>
+        //     </div>
+        //     <ModalServicio
+        //         show={showModal}
+        //         handleClose={handleCloseModal}
+        //         service={selectedService}
+        //     />
+        // </section>
+        <section className='grid grid-flow-dense grid-cols-1 py-24'>
+            <div className='grid place-content-center'>
+                <span className="font-fontGeneral font-bold text-6xl tracking-wide text-blue-all">Servicios</span>
+            </div>
+            <div className='grid place-content-center'>
+                <span className='className="font-fontGeneral text-xl font-normal text-justify mx-40 mt-10 text-gray-palido'>
                     En CSYC te ofrecemos una amplia gama de soluciones para
                     satisfacer todas tus necesidades en el hogar, aquí
                     encontrarás todo lo que necesitas en un solo lugar. Nuestra misión es
                     proporcionarte acceso fácil y conveniente a servicios
                     esenciales de alta calidad.
-                </p>
+                </span>
             </div>
-            <div className="barraLateral">
+            <div className='grid grid-flow-dense grid-cols-6 mx-32 mt-10 bg-white p-3 rounded-2xl shadow'>
                 <div>
-                <p>Busqueda por Nombre</p>
-                <input
-                    type="text"
-                    placeholder=""
-                    value={name}
-                    onChange={handledInputName}
-                />
-                <p>Rango de Precios</p>
-                <input
-                    type="number"
-                    placeholder="Precio mínimo"
-                    value={rangeMin}
-                    onChange={handleRangeMinChange}
-                />
-                <input
-                    type="number"
-                    placeholder="Precio máximo"
-                    value={rangeMax}
-                    onChange={handleRangeMaxChange}
-                />
+                    <label className='text-sm text-gray-palido font-fontGeneral font-normal'>Busqueda por Nombre</label>
+                    <input
+                        type="text"
+                        placeholder=""
+                        value={name}
+                        onChange={handledInputName}
+                        className='border-b-2 border-black'
+                    //  style={{border:'none', outline:'none'}}
+                    />
                 </div>
+                <div className='grid grid-flow-dense grid-cols-2 col-span-2'>
+                    <div className='col-span-2 pl-4 grid place-content-center pr-20'>
+                        <label className='text-sm text-gray-palido font-fontGeneral font-normal'>Rango de Precios</label>
+                    </div>
+                    <div >
+                        <input
+                            type="number"
+                            placeholder="Precio mínimo"
+                            value={rangeMin}
+                            onChange={handleRangeMinChange}
+                            className='w-36 border-b-2 border-black'
+                        />
 
+                    </div>
+                    <div >
+                        <input
+                            type="number"
+                            placeholder="Precio máximo"
+                            value={rangeMax}
+                            onChange={handleRangeMaxChange}
+                            className='w-36 border-b-2 border-black'
+                        />
+
+                    </div>
+                </div>
                 <div>
-                    <label>Filtrar por tipo:</label>
+                    <label className='text-sm text-gray-palido font-fontGeneral font-normal'>Filtrar por tipo:</label>
+                    <br></br>
                     <select
                         value={filterType}
                         onChange={handleFilterTypeChange}
+                        className='w-52'
                     >
                         <option value="">Todos</option>
                         <option value="luz">Luz</option>
@@ -175,61 +345,59 @@ const Servicios = () => {
                         <option value="streaming">Streaming</option>
                     </select>
                 </div>
-
                 <div>
-                    <label>Ordenar:</label>
-                    <select value={orderOption} onChange={handleOrderChange}>
+                    <label className='text-sm text-gray-palido font-fontGeneral font-normal'>Ordenar:</label>
+                    <br></br>
+                    <select value={orderOption} onChange={handleOrderChange} className='w-52'>
                         <option value="">Sin orden</option>
                         <option value="ASC">Ascendente</option>
                         <option value="DESC">Descendente</option>
                     </select>
                 </div>
-
                 <div>
-                    <label>Ordenar por:</label>
-                    <select value={orderBy} onChange={handleOrderByChange}>
+                    <label className='text-sm text-gray-palido font-fontGeneral font-normal'>Ordenar por:</label>
+                    <br></br>
+                    <select value={orderBy} onChange={handleOrderByChange} className='w-52'>
                         <option value="">Sin orden</option>
                         <option value="price">Orden por Precio</option>
                         <option value="name">Orden por Nombre</option>
                     </select>
                 </div>
             </div>
+            <div className='grid grid-flow-dense grid-cols-2 gap-2 mx-10 my-10'>
+                {serviciosInPage.length !== 0 ? (
+                    serviciosInPage.map((servicio, index) => (
+                        <div key={index}>
+                            <CardsServicios
+                                imagen={servicio.image}
+                                titulo={servicio.name}
+                                nombreBoton="Lo quiero!"
+                                click={() => {
+                                    setSelectedService(servicio);
+                                    setShowModal(true)
+                                }}
+                                descripcion={servicio.description}
+                                precio={servicio.price}
+                                estado={servicio.status}
+                                id={servicio.id}
+                                type={servicio.type}
 
-            <div className='row'>
-                <div className={serviciosInPage.length > 2 ? 'col-12 d-flex justify-content-end mb-5' : 'col-12 d-flex justify-content-center mb-5' } >
-                    <section className="row">
-                        {serviciosInPage.length !== 0 ? (
-                            serviciosInPage.map((servicio, index) => (
-                                <div key={index} className={serviciosInPage.length === 2 ? "col-6 px-5" : "col-4 px-5"}>
-                                   <CardsServicios
-                                        imagen={servicio.image}
-                                        titulo={servicio.name}
-                                        nombreBoton="Lo quiero!"
-                                        click={()=>{
-                                            setSelectedService(servicio);
-                                            setShowModal(true)}}
-                                        descripcion={servicio.description}
-                                        precio={servicio.price}
-                                        estado={servicio.status}
-                                        id={servicio.id}
-                                        type={servicio.type}
-                                    
-                                    />
-                                    <p><button key={index} className="btn btn-primary" onClick={() => handleRatingClick(servicio)}>Opiniones</button></p>
-                                </div>
-                            ))
-                        ) : (
-                            <div className="errorCards">
-                                <img
-                                    src="https://grupoleiros.com/static/product-not-found.png"
-                                    alt=""
-                                />
+                            />
+                            <div className='grid place-content-center'>
+                                <p className='pt-2'><button key={index} className="btn btn-primary" onClick={() => handleRatingClick(servicio)}>Opiniones</button></p>
                             </div>
-                        )}
-                    </section>
-                </div>
+                        </div>
+                    ))
+                ) : (
+                    <div className="errorCards">
+                        <img
+                            src="https:grupoleiros.com/static/product-not-found.png"
+                            alt=""
+                        />
+                    </div>
+                )}
             </div>
-            <div className="pagination justify-content-center">
+            <div className='grid place-content-center mt-4'>
                 <ul className="pagination">
                     <li
                         className={`page-item ${currentPage === 1 ? 'disabled' : ''
