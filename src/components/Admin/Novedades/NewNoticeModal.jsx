@@ -40,10 +40,10 @@ const NewNoticeModal = ({ show, handleClose }) => {
         dispatch(showLoader());
         dispatch(await addNotice(noticeData));
         dispatch(hideLoader());
-        Swal.fire("Servicio añadido correctamente", "", "success")
+        Swal.fire("Aviso añadido correctamente", "", "success")
         .then(() => {window.location.reload(200);}); 
 
-    } catch (error) { Swal.fire("No se pudo crear el servicio","", "error")}
+    } catch (error) { Swal.fire("No se pudo crear el aviso","", "error")}
   };
 
 
@@ -75,7 +75,7 @@ return (
                   <Form.Group controlId="description" className="mb-2">
                     <Form.Label>Descripción</Form.Label>
                     <Form.Control as="textarea" name="description" value={noticeData.description} onChange={handleChange}
-                    maxLength="20" minLength="1" required rows={3} style={{ resize:'none'}}/>
+                    maxLength="300" minLength="1" required rows={3} style={{ resize:'none'}}/>
                   </Form.Group>
 
               </Form>

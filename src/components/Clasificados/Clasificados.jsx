@@ -6,8 +6,17 @@ import ModalClasificado from './ModalClasificado/ModalClasificado';
 import ModalPublicacion from './ModalPublicacion/ModalPublicacion';
 import { useAuth0 } from '@auth0/auth0-react';
 
+// Loader
+import { Rings } from "react-loader-spinner";
+import { showLoader, hideLoader } from "../../redux/actions";
+
+
 const Clasificados = () => {
     const dispatch = useDispatch();
+
+     // Accedemos al estado global del loader
+     const isLoading = useSelector((state) => state.isLoading); 
+
     const { isAuthenticated } = useAuth0();
     let usuario = useSelector((state) => state.dataUser);
     const clasi = useSelector((state) => state.clasificados);
@@ -25,24 +34,27 @@ const Clasificados = () => {
 
     const [publicacion, setPublicacion] = useState({});
 
-    const handleClose = () => {
+    const handleClose = async () => {
+        dispatch(showLoader)
         setShow(false);
         setShow2(false);
-        dispatch(loadAdvertisements);
+        dispatch(await loadAdvertisements);
+        dispatch(hideLoader)
     };
 
-    const loadAdvertisements = () => {
+    const loadAdvertisements = async () => {
+        dispatch(showLoader)
         dispatch(
-            getClasificados({
+            await getClasificados({
                 title: title,
                 type: type,
                 order: order,
                 orderBy: orderBy,
                 page: currentPage,
-                size: sizeAds
-            })
-        );
+                size: sizeAds}));
+        dispatch(hideLoader)
     };
+
     useEffect(() => {
         dispatch(clearClasificados());
         dispatch(loadAdvertisements);
@@ -75,9 +87,16 @@ const Clasificados = () => {
     }
 
     return (
-        <div className="flex flex-row font-bold pt-20 font-fontGeneral">
-            <div className="flex flex-col mb-0 justify-center w-1/6 text-center bg-gradient-to-b from-onahau-300/50 to-onahau-900/80 shadow-xl ml-0 ">
-                <div>
+        <div className="flex flex-row font-bold pt-16 font-fontGeneral">
+
+            {/*Loader*/}
+                {isLoading && (<div className="loader-overlay">
+                                <div className="loader-container"><Rings color="#007bff" /></div>
+                            </div>)}
+
+
+            <div className="flex flex-col mb-0 justify-start  w-1/6 text-center bg-gradient-to-b from-onahau-300/50 to-onahau-900/80 shadow-xl ml-0 ">
+                <div className="mt-5">
                     <p>
                         <label>Buscar</label>
                     </p>
@@ -144,7 +163,7 @@ const Clasificados = () => {
                     </button>
                 )}
             </div>
-            <div className="w-5/6 ">
+            <div className="w-5/6 mt-3 ml-11 ">
                 <div className="min-h-screen">
                     {clasi.map(
                         (clasificado) =>

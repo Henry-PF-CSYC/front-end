@@ -4,15 +4,19 @@ import Rating from '../RatingServices/Rating';
 import { useEffect, useState } from 'react';
 import { Button } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
-import { getUser, putUser, getOfferByEmail, emptyCart } from '../../redux/actions';
+import {
+    getUser,
+    putUser,
+    getOfferByEmail,
+    emptyCart
+} from '../../redux/actions';
 import { useAuth0 } from '@auth0/auth0-react';
-import loader from "../../loading.gif"
+import loader from '../../loading.gif';
 
 import { Link, useSearchParams } from 'react-router-dom';
 import axios from 'axios';
 
 import ModalPublicaciones from './ModalPublicaciones/ModalPublicaciones';
-
 
 const SeccionUsuario = () => {
     const dispatch = useDispatch();
@@ -22,7 +26,6 @@ const SeccionUsuario = () => {
 
     const [servicios, setServicios] = useState([]);
     const susbcriptions = useSelector((state) => state.cartServices);
-
 
     const [show2, setShow2] = useState(false);
     const { user, isAuthenticated } = useAuth0();
@@ -40,13 +43,14 @@ const SeccionUsuario = () => {
 
     const allServicesUser = async () => {
         try {
-            const servicesUser = await axios.get(`https://csyc.onrender.com/subscription/user/${usuario.email}`)
+            const servicesUser = await axios.get(
+                `https://csyc.onrender.com/subscription/user/${usuario.email}`
+            );
             setServicios(servicesUser.data.subscriptions);
         } catch (error) {
             console.error('Error servicios', error);
         }
-
-    }
+    };
 
     const submitSuscription = async () => {
         if (params.get('status')) {
@@ -62,12 +66,15 @@ const SeccionUsuario = () => {
                 'https://csyc.onrender.com/subscription',
                 data
             );
-            dispatch(emptyCart())
-            allServicesUser()
+            dispatch(emptyCart());
+            allServicesUser();
         } else {
-            allServicesUser()
+            allServicesUser();
         }
     };
+    useEffect(() => {
+        dispatch(getUser(usuario.email));
+    }, []);
 
     useEffect(() => {
         if (isAuthenticated) {
@@ -94,8 +101,9 @@ const SeccionUsuario = () => {
     };
 
     const updateUser = (data) => {
+        data.image = user.picture;
         setDataUser(data);
-        dispatch(putUser(dataUser));
+        dispatch(putUser(data));
         setShow(false);
     };
 
@@ -105,13 +113,13 @@ const SeccionUsuario = () => {
         paddingRight: '100px'
     };
 
-    const [showRatingModal, setShowRatingModal] = useState(false);// estado para el modal usuario 
+    const [showRatingModal, setShowRatingModal] = useState(false); // estado para el modal usuario
     // Función para abrir el modal de calificación
     const openRatingModal = (serviceId) => {
         setShowRatingModal((prev) => {
             return {
                 ...prev,
-                [serviceId]: true, // Establece el estado para este servicio en true
+                [serviceId]: true // Establece el estado para este servicio en true
             };
         });
     };
@@ -120,44 +128,80 @@ const SeccionUsuario = () => {
         setShowRatingModal((prev) => {
             return {
                 ...prev,
-                [serviceId]: false, // Establece el estado para este servicio en false
+                [serviceId]: false // Establece el estado para este servicio en false
             };
         });
     };
 
-
     return (
-        <>{isAuthenticated ?
-            (
-                <div className='grid grid-cols-12 pt-28 ml-32 mr-10'>
-                    <div className='col-span-9 grid place-content-center mb-4'>
-                        <span className="font-fontGeneral font-bold text-5xl tracking-wide text-blue-all pl-80">Mi perfil</span>
+        <>
+            {isAuthenticated ? (
+                <div className="grid grid-cols-12 pt-28 ml-32 mr-10">
+                    <div className="col-span-9 grid place-content-center mb-4">
+                        <span className="font-fontGeneral font-bold text-5xl tracking-wide text-blue-all pl-80">
+                            Mi perfil
+                        </span>
                     </div>
-                    <div className='col-span-3 grid place-content-center mb-4'>
-                        <button className='bg-blue-all rounded-2xl text-lg text-white px-4 py-2' onClick={() => {
-                            setShow(true);
-                        }}>Modificar datos personales</button>
+                    <div className="col-span-3 grid place-content-center mb-4">
+                        <button
+                            className="bg-blue-all rounded-2xl text-lg text-white px-4 py-2"
+                            onClick={() => {
+                                setShow(true);
+                            }}
+                        >
+                            Modificar datos personales
+                        </button>
                     </div>
-                    <div className='col-span-6 grid place-content-center'>
-                        <p className='font-fontGeneral font-bold text-2xl text-gray-palido mb-2'>Nombre: <span className='text-xl font-normal'>{dataUser.name}</span></p>
-                        <p className='font-fontGeneral font-bold text-2xl text-gray-palido mb-2'>Apellido: <span className='text-xl font-normal'>{dataUser.lastname}</span> </p>
-                        <p className='font-fontGeneral font-bold text-2xl text-gray-palido mb-2'>Email: <span className='text-xl font-normal'>{isAuthenticated ? user.email : 'Loading'}</span> </p>
-                        <p className='font-fontGeneral font-bold text-2xl text-gray-palido mb-2'>DNI: <span className='text-xl font-normal'>{dataUser.dni}</span> </p>
-                        <p className='font-fontGeneral font-bold text-2xl text-gray-palido mb-2'>Direcion: <span className='text-xl font-normal'>{dataUser.address}</span> </p>
-                        <p className='font-fontGeneral font-bold text-2xl text-gray-palido mb-2'>Telefono: <span className='text-xl font-normal'>{dataUser.phone}</span> </p>
+                    <div className="col-span-6 grid place-content-center">
+                        <p className="font-fontGeneral font-bold text-2xl text-gray-palido mb-2">
+                            Nombre:{' '}
+                            <span className="text-xl font-normal">
+                                {dataUser.name}
+                            </span>
+                        </p>
+                        <p className="font-fontGeneral font-bold text-2xl text-gray-palido mb-2">
+                            Apellido:{' '}
+                            <span className="text-xl font-normal">
+                                {dataUser.lastname}
+                            </span>{' '}
+                        </p>
+                        <p className="font-fontGeneral font-bold text-2xl text-gray-palido mb-2">
+                            Email:{' '}
+                            <span className="text-xl font-normal">
+                                {isAuthenticated ? user.email : 'Loading'}
+                            </span>{' '}
+                        </p>
+                        <p className="font-fontGeneral font-bold text-2xl text-gray-palido mb-2">
+                            DNI:{' '}
+                            <span className="text-xl font-normal">
+                                {dataUser.dni}
+                            </span>{' '}
+                        </p>
+                        <p className="font-fontGeneral font-bold text-2xl text-gray-palido mb-2">
+                            Direcion:{' '}
+                            <span className="text-xl font-normal">
+                                {dataUser.address}
+                            </span>{' '}
+                        </p>
+                        <p className="font-fontGeneral font-bold text-2xl text-gray-palido mb-2">
+                            Telefono:{' '}
+                            <span className="text-xl font-normal">
+                                {dataUser.phone}
+                            </span>{' '}
+                        </p>
                     </div>
-                    <div className='col-span-6 grid place-content-center'>
+                    <div className="col-span-6 grid place-content-center">
                         <img
-                            className='rounded-full'
+                            className="rounded-full"
                             src={isAuthenticated ? user.picture : loader}
                             width={'163px'}
                             height={'170px'}
                             alt="Imagen de usuario"
                         />
                     </div>
-                    <div className='col-span-12 grid place-content-center mt-4'>
+                    <div className="col-span-12 grid place-content-center mt-4">
                         <button
-                            className='bg-white rounded-2xl text-lg text-blue-all px-4 py-2'
+                            className="bg-white rounded-2xl text-lg text-blue-all px-4 py-2"
                             onClick={() => {
                                 setShow2(true);
                             }}
@@ -166,39 +210,41 @@ const SeccionUsuario = () => {
                         </button>
                     </div>
                 </div>
-            ) :
-            (<div className="grid grid-cols-1 pt-28">
-                <div className='grid place-content-center'>
-                    <img
-                        src={loader}
-                    />
+            ) : (
+                <div className="grid grid-cols-1 pt-28">
+                    <div className="grid place-content-center">
+                        <img src={loader} />
+                    </div>
                 </div>
-            </div>)}
+            )}
             <div className="pb-1">
                 <div className="grid grid-cols-1">
                     <div className="grid grid-cols-1 my-5">
-                        {
-                            servicios.length > 0 ? (
-                                <div className='grid place-content-center'>
-                                    <p className='font-fontGeneral text-3xl font-bold text-gray-palido'>Mis servicios activos:</p>
+                        {servicios.length > 0 ? (
+                            <div className="grid place-content-center">
+                                <p className="font-fontGeneral text-3xl font-bold text-gray-palido">
+                                    Mis servicios activos:
+                                </p>
+                            </div>
+                        ) : (
+                            <div className="grid grid-flow-dense grid-cols-12">
+                                <div className="col-span-12 grid place-content-center mb-4">
+                                    <p className="font-fontGeneral text-3xl font-bold text-gray-palido">
+                                        En el momento no tiene servicios
+                                        adquiridos
+                                    </p>
                                 </div>
-                            ) : (
-                                <div className='grid grid-flow-dense grid-cols-12'>
-                                    <div className='col-span-12 grid place-content-center mb-4'>
-                                        <p className='font-fontGeneral text-3xl font-bold text-gray-palido'>En el momento no tiene servicios adquiridos</p>
-                                    </div>
-                                    <div className='col-span-12 grid place-content-center'>
-                                        <Link to='/servicios'>
-                                            <button className='bg-blue-all rounded-2xl text-lg text-white px-4 py-2'>
-                                                Adquirir servicios
-                                            </button>
-                                        </Link>
-                                    </div>
+                                <div className="col-span-12 grid place-content-center">
+                                    <Link to="/servicios">
+                                        <button className="bg-blue-all rounded-2xl text-lg text-white px-4 py-2">
+                                            Adquirir servicios
+                                        </button>
+                                    </Link>
                                 </div>
-                            )
-                        }
+                            </div>
+                        )}
                     </div>
-                    <div className='grid grid-cols-2 mx-36 mb-20 gap-16'>
+                    <div className="grid grid-cols-2 mx-36 mb-20 gap-16">
                         {servicios.length > 0 &&
                             servicios.map((servicio, index) => {
                                 return (
@@ -207,18 +253,42 @@ const SeccionUsuario = () => {
                                             key={index}
                                             imagen={servicio['service.image']}
                                             titulo={servicio['service.name']}
-                                            descripcion={servicio['service.description']}
+                                            descripcion={
+                                                servicio['service.description']
+                                            }
                                             nombreBoton="Mas Informacion"
                                         />
-                                        <div className='my-2 grid place-content-center'>
-                                            <button className='bg-blue-all rounded-2xl text-lg text-white px-4 py-2' onClick={() => openRatingModal(servicio.service_id)}>Calificar Servicio</button>
-                                            {showRatingModal[servicio.service_id] && (
+                                        <div className="my-2 grid place-content-center">
+                                            <button
+                                                className="bg-blue-all rounded-2xl text-lg text-white px-4 py-2"
+                                                onClick={() =>
+                                                    openRatingModal(
+                                                        servicio.service_id
+                                                    )
+                                                }
+                                            >
+                                                Calificar Servicio
+                                            </button>
+                                            {showRatingModal[
+                                                servicio.service_id
+                                            ] && (
                                                 <Rating
                                                     key={servicio.service_id}
-                                                    serviceId={servicio.service_id}
-                                                    show={showRatingModal[servicio.service_id]}
-                                                    handleClose={() => closeRatingModal(servicio.service_id)}
-                                                />)}
+                                                    serviceId={
+                                                        servicio.service_id
+                                                    }
+                                                    show={
+                                                        showRatingModal[
+                                                            servicio.service_id
+                                                        ]
+                                                    }
+                                                    handleClose={() =>
+                                                        closeRatingModal(
+                                                            servicio.service_id
+                                                        )
+                                                    }
+                                                />
+                                            )}
                                         </div>
                                     </div>
                                 );

@@ -84,7 +84,7 @@ function App() {
         <Route path="/usuario" element={<SeccionUsuario/>}/>
         <Route path="/clasificados" element={<Clasificados/>}/>
         <Route path="/contacto" element={<Contact/>}/>
-        <Route path='/*' element={<NotFound/>}/>
+        <Route path='/:error' element={<NotFound/>}/>
 
 
         {/*Servicios*/}
@@ -101,7 +101,7 @@ function App() {
 
         {/* Ruta de Admin Protegida */}
         {isAdminRouted && (userRole !== "admin" && userRole !== "contact_admin") && navigate("/")}
-        <Route path="/admin*" element={userRole === "admin" || userRole === "contact_admin" ? <Admin/> : <Navigate to="/"/>}>
+        <Route path="/admin/*" element={userRole === "admin" || userRole === "contact_admin" ? <Admin/> : <Navigate to="/"/>}>
           <Route path="servicesAdm" element={<ServicesAdm/>}/>
           <Route path="usuarios" element={<UsuariosAdm/>}/>
           <Route path="clasificados" element={<ClasificadosAdm/>}/>
