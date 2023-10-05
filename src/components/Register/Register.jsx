@@ -6,18 +6,28 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { getUser, postUser } from '../../redux/actions';
 import { useNavigate } from 'react-router-dom';
-import loader from "../../loading.gif"
+
+// Sweetalert
+import Swal from 'sweetalert2';
+import 'sweetalert2/dist/sweetalert2.min.css';
+
+// Loader
+import { Rings } from "react-loader-spinner";
+import { showLoader, hideLoader } from '../../redux/actions';
+
 
 const Register = () => {
 
+    // Accedemos al estado global del loader
+    const isLoading = useSelector((state) => state.isLoading);
 
     let usuario = useSelector((state) => state.dataUser);
     const navigate = useNavigate();
     const { user, isAuthenticated } = useAuth0();
     const dispatch = useDispatch();
+    
     useEffect(() => {
         if (isAuthenticated) {
-            
             dispatch(getUser(user.email));
             usuario.email = user.email;
             console.log("me ejecute",usuario)
@@ -26,6 +36,7 @@ const Register = () => {
             }
         }
     },[isAuthenticated,usuario]);
+
 
     let { values, errors, touched, handleBlur, handleChange, handleSubmit } =
         useFormik({
@@ -37,16 +48,21 @@ const Register = () => {
                 phone: ''
             },
             validationSchema: validations,
+
             onSubmit: async () => {
                 values.email = user.email;
                 values.dni = Number(values.dni);
                 try {
-                    const response = await dispatch(postUser(values));
+                    dispatch(showLoader());
+                    await dispatch(await postUser(values));
+                    dispatch(hideLoader());
+                    Swal.fire("Registro completado!", "", "success")
                     navigate("/");
+                   
                 } catch (error) {
-                    if (error.response) {
-                        alert("El DNI ya esta registrado en nuestro sistema")
-                    }
+                    Swal.fire("El DNI es único y ya está ocupado. Por favor, ingrese otro", "", "error");
+                    dispatch(hideLoader());
+                    
                 }
             }
         });
@@ -54,6 +70,12 @@ const Register = () => {
 
     return (
         <div className="site">
+              {/*Loader*/}
+              {isLoading && (<div className="loader-overlay">
+                                <div className="loader-container"><Rings color="#007bff" /></div>
+                            </div>)}
+
+
             {isAuthenticated  ? (
                 <div className="container">
                     <form
@@ -61,7 +83,8 @@ const Register = () => {
                         autoComplete="off"
                         className="formStyles"
                     >
-                        <h2>Completar Registro</h2>
+                        <h2>Terminar registro en el sitio:</h2>
+                        <p>Complete sus datos para acceder a nuestros servicios!</p>
 
                         <div className="row mt-4 fila">
                             <div className="col-md-3">
@@ -89,7 +112,7 @@ const Register = () => {
                             </div>
                         </div>
 
-                        <hr className="mx-n3" />
+                       
 
                         <div className="row mt-4 fila">
                             <div className="col-md-3">
@@ -119,8 +142,7 @@ const Register = () => {
                             </div>
                         </div>
 
-                        <hr className="mx-n3" />
-
+                    
                         <div className="row mt-4 fila">
                             <div className="col-md-3">
                                 <h6 className="tagStyle">DNI</h6>
@@ -147,8 +169,7 @@ const Register = () => {
                             </div>
                         </div>
 
-                        <hr className="mx-n3" />
-
+                      
                         <div className="row mt-4 fila">
                             <div className="col-md-3">
                                 <h6 className="tagStyle">Dirección</h6>
@@ -177,7 +198,7 @@ const Register = () => {
                             </div>
                         </div>
 
-                        <hr className="mx-n3" />
+                  
 
                         <div className="row mt-4 fila">
                             <div className="col-md-3">
@@ -205,25 +226,22 @@ const Register = () => {
                             </div>
                         </div>
 
-                        <hr className="mx-n3" />
+                        
 
                         <div className="row mt-4 boton">
                             <div className="col-md-9">
                                 <button
                                     type="submit"
                                     variant="success"
-                                    className="btn btn-primary btn-lg botonn"
+                                    className="btn-primary botonn"
                                 >
-                                    Registrarse
+                                    Completar
                                 </button>
                             </div>
                         </div>
                     </form>
                 </div>
             ):(<div class="d-flex justify-content-center " >
-            <img 
-            src={loader}
-            />
         </div>)}
         </div>
     );

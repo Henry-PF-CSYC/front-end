@@ -13,6 +13,7 @@
     padding-top: 1.5rem;
     padding-bottom: 1rem;
     color: white;
+    border: none;
 }
 
 .formStyles h2 {
@@ -78,13 +79,15 @@
 }
 
 .botonn {
+    height: 3rem;
+    width: 8rem;
     border-radius: 0.8rem;
     font-weight: bold;
     background-color: #05011d63;
+    transition: 0.4s
 }
 
 .botonn:hover {
-    
     background-color: #00275a;
     box-shadow: 0px 0px 10px rgb(247, 245, 245);
 }
@@ -106,4 +109,8 @@
         padding: 5px 10px;
         align-items: center;
     }
+}
+
+.form-control {
+    border-bottom: none !important; /* Usa !important solo si es necesario */
 }

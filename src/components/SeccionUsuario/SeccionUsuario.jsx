@@ -2,7 +2,6 @@ import CardsServicios from '../Servicios/CardsServicios/CardsServicios';
 import ModalUsuario from './ModalUsuario/ModalUsuario';
 import Rating from '../RatingServices/Rating';
 import { useEffect, useState } from 'react';
-import { Button } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import {
     getUser,
@@ -20,7 +19,6 @@ import 'sweetalert2/dist/sweetalert2.min.css';
 // Loader
 import { Rings } from "react-loader-spinner";
 import { showLoader, hideLoader } from "../../redux/actions"
-
 
 import { Link, useSearchParams } from 'react-router-dom';
 import axios from 'axios';
@@ -132,33 +130,34 @@ const SeccionUsuario = () => {
         paddingRight: '100px'
     };
 
+
     const [showRatingModal, setShowRatingModal] = useState(false); // estado para el modal usuario
     // Función para abrir el modal de calificación
     const openRatingModal = (serviceId) => {
         setShowRatingModal((prev) => {
             return {
                 ...prev,
-                [serviceId]: true // Establece el estado para este servicio en true
+                [serviceId]: true 
             };
         });
     };
+
 
     const closeRatingModal = (serviceId) => {
         setShowRatingModal((prev) => {
             return {
                 ...prev,
-                [serviceId]: false // Establece el estado para este servicio en false
+                [serviceId]: false
             };
         });
     };
 
     return (
         <>
-          {isLoading && (
-            <div className="loader-overlay">
-              <div className="loader-container"><Rings color="#007bff" /></div>
-            </div>
-          )}
+          {/*Loader*/}
+        {isLoading && (<div className="loader-overlay">
+                          <div className="loader-container"><Rings color="#007bff" /></div>
+                      </div>)}
       
           {isAuthenticated ? (
             <div className="grid grid-cols-12 pt-28 ml-32 mr-10">
@@ -219,8 +218,8 @@ const SeccionUsuario = () => {
                 <img
                   className="rounded-full"
                   src={isAuthenticated ? user.picture : loader}
-                  width={'163px'}
-                  height={'170px'}
+                  width={'160px'}
+                  height={'160px'}
                   alt="Imagen de usuario"
                 />
               </div>
@@ -238,7 +237,8 @@ const SeccionUsuario = () => {
           ) : (
             <div className="grid grid-cols-1 pt-28">
               <div className="grid place-content-center">
-                <img src={loader} />
+                <img src={loader} width="50px"/>
+                
               </div>
             </div>
           )}

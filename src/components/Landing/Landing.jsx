@@ -15,20 +15,23 @@ const Landing = () =>{
 
   const { user, isAuthenticated } = useAuth0(); 
 
-    const dispatch = useDispatch();
+     const dispatch = useDispatch();
 
-    useEffect(() => {
-        dispatch(getServices());
+     useEffect(() => {
+         dispatch(getServices());
 
-        const checkUserStatus = async () => {
-            if (isAuthenticated && user && user.email) {
-                dispatch(getUser(user.email));
-            }
-        };
+         const checkUserStatus = async () => {
+             if (isAuthenticated && user && user.email) {
+                 dispatch(getUser(user.email));
+             }
+         };
 
-      checkUserStatus();
-    }, [dispatch, user, isAuthenticated]); 
+       checkUserStatus();
+     }, [dispatch, user, isAuthenticated]); 
 
+    
+    // const dispatch = useDispatch() 
+    // useEffect(()=>{ dispatch(getServices())},[] )
 
 
 

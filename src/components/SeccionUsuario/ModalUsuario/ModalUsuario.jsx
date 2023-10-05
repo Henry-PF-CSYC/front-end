@@ -3,9 +3,11 @@ import validations from '../../Register/validations';
 import '../../Register/Register';
 import { Button, Modal } from 'react-bootstrap';
 
-// Sweetalert
-import Swal from 'sweetalert2';
-import 'sweetalert2/dist/sweetalert2.min.css';
+
+// Loader
+import { Rings } from "react-loader-spinner";
+import { showLoader, hideLoader } from '../../../redux/actions';
+
 
 const ModalUsuario = ({ show, handleClose, dataUser, updateUser }) => {
     const {
@@ -27,8 +29,12 @@ const ModalUsuario = ({ show, handleClose, dataUser, updateUser }) => {
         },
         enableReinitialize: true,
         validationSchema: validations,
-        onSubmit: () => {
-            updateUser(values);
+        onSubmit: async () => {
+            try {
+                updateUser(await values);
+            } catch (error) {
+                console.log("Error actualizando datos");
+            } 
         }
     });
 
