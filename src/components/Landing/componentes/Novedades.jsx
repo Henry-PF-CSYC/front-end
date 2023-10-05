@@ -26,7 +26,7 @@ export const RightNovedades = () => {
     useEffect(() => {
         const obtenerNovedades = async () => {
             try {
-                await dispatch(getNotices({ randomParam: Date.now() }));
+                dispatch(await getNotices({ randomParam: Date.now() }));
             } catch (error) {
                 console.error('Error al obtener novedades:', error);
             }
