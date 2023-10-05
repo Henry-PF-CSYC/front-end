@@ -154,94 +154,94 @@ const SeccionUsuario = () => {
 
     return (
         <>
-            
-         {isLoading && (<div className="loader-overlay">
-                        <div className="loader-container"><Rings color="#007bff" /></div>
-                        </div>)}
-
-
-            {isAuthenticated ? (
-                <div className="grid grid-cols-12 pt-28 ml-32 mr-10">
-                    <div className="col-span-9 grid place-content-center mb-4">
-                        <span className="font-fontGeneral font-bold text-5xl tracking-wide text-blue-all pl-80">
-                            Mi perfil
-                        </span>
-                    </div>
-                    <div className="col-span-3 grid place-content-center mb-4">
-                        <button
-                            className="bg-blue-all rounded-2xl text-lg text-white px-4 py-2"
-                            onClick={() => {
-                                setShow(true);
-                            }}
-                        >
-                            Modificar datos personales
-                        </button>
-                    </div>
-                    <div className="col-span-6 grid place-content-center">
-                        <p className="font-fontGeneral font-bold text-2xl text-gray-palido mb-2">
-                            Nombre:{' '}
-                            <span className="text-xl font-normal">
-                                {dataUser.name}
-                            </span>
-                        </p>
-                        <p className="font-fontGeneral font-bold text-2xl text-gray-palido mb-2">
-                            Apellido:{' '}
-                            <span className="text-xl font-normal">
-                                {dataUser.lastname}
-                            </span>{' '}
-                        </p>
-                        <p className="font-fontGeneral font-bold text-2xl text-gray-palido mb-2">
-                            Email:{' '}
-                            <span className="text-xl font-normal">
-                                {isAuthenticated ? user.email : 'Loading'}
-                            </span>{' '}
-                        </p>
-                        <p className="font-fontGeneral font-bold text-2xl text-gray-palido mb-2">
-                            DNI:{' '}
-                            <span className="text-xl font-normal">
-                                {dataUser.dni}
-                            </span>{' '}
-                        </p>
-                        <p className="font-fontGeneral font-bold text-2xl text-gray-palido mb-2">
-                            Direcion:{' '}
-                            <span className="text-xl font-normal">
-                                {dataUser.address}
-                            </span>{' '}
-                        </p>
-                        <p className="font-fontGeneral font-bold text-2xl text-gray-palido mb-2">
-                            Telefono:{' '}
-                            <span className="text-xl font-normal">
-                                {dataUser.phone}
-                            </span>{' '}
-                        </p>
-                    </div>
-                    <div className="col-span-6 grid place-content-center">
-                        <img
-                            className="rounded-full"
-                            src={isAuthenticated ? user.picture : loader}
-                            width={'163px'}
-                            height={'170px'}
-                            alt="Imagen de usuario"
-                        />
-                    </div>
-                    <div className="col-span-12 grid place-content-center mt-4">
-                        <button
-                            className="bg-white rounded-2xl text-lg text-blue-all px-4 py-2"
-                            onClick={() => {
-                                setShow2(true);
-                            }}
-                        >
-                            Mis publicaciones
-                        </button>
-                    </div>
-                </div>
-            ) : (
-                <div className="grid grid-cols-1 pt-28">
-                    <div className="grid place-content-center">
-                        <img src={loader} />
-                    </div>
-                </div>
-            )}
+          {isLoading && (
+            <div className="loader-overlay">
+              <div className="loader-container"><Rings color="#007bff" /></div>
+            </div>
+          )}
+      
+          {isAuthenticated ? (
+            <div className="grid grid-cols-12 pt-28 ml-32 mr-10">
+              <div className="col-span-9 grid place-content-center mb-4">
+                <span className="font-fontGeneral font-bold text-5xl tracking-wide text-blue-all pl-80">
+                  Mi perfil
+                </span>
+              </div>
+              <div className="col-span-3 grid place-content-center mb-4">
+                <button
+                  className="bg-blue-all rounded-2xl text-lg text-white px-4 py-2"
+                  onClick={() => {
+                    setShow(true);
+                  }}
+                >
+                  Modificar datos personales
+                </button>
+              </div>
+              <div className="col-span-6 grid place-content-center">
+                <p className="font-fontGeneral font-bold text-2xl text-gray-palido mb-2">
+                  Nombre:{' '}
+                  <span className="text-xl font-normal">
+                    {dataUser.name}
+                  </span>
+                </p>
+                <p className="font-fontGeneral font-bold text-2xl text-gray-palido mb-2">
+                  Apellido:{' '}
+                  <span className="text-xl font-normal">
+                    {dataUser.lastname}
+                  </span>{' '}
+                </p>
+                <p className="font-fontGeneral font-bold text-2xl text-gray-palido mb-2">
+                  Email:{' '}
+                  <span className="text-xl font-normal">
+                    {isAuthenticated ? user.email : 'Loading'}
+                  </span>{' '}
+                </p>
+                <p className="font-fontGeneral font-bold text-2xl text-gray-palido mb-2">
+                  DNI:{' '}
+                  <span className="text-xl font-normal">
+                    {dataUser.dni}
+                  </span>{' '}
+                </p>
+                <p className="font-fontGeneral font-bold text-2xl text-gray-palido mb-2">
+                  Dirección:{' '}
+                  <span className="text-xl font-normal">
+                    {dataUser.address}
+                  </span>{' '}
+                </p>
+                <p className="font-fontGeneral font-bold text-2xl text-gray-palido mb-2">
+                  Teléfono:{' '}
+                  <span className="text-xl font-normal">
+                    {dataUser.phone}
+                  </span>{' '}
+                </p>
+              </div>
+              <div className="col-span-6 grid place-content-center">
+                <img
+                  className="rounded-full"
+                  src={isAuthenticated ? user.picture : loader}
+                  width={'163px'}
+                  height={'170px'}
+                  alt="Imagen de usuario"
+                />
+              </div>
+              <div className="col-span-12 grid place-content-center mt-4">
+                <button
+                  className="bg-white rounded-2xl text-lg text-blue-all px-4 py-2"
+                  onClick={() => {
+                    setShow2(true);
+                  }}
+                >
+                  Mis publicaciones
+                </button>
+              </div>
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 pt-28">
+              <div className="grid place-content-center">
+                <img src={loader} />
+              </div>
+            </div>
+          )}
             <div className="pb-1">
                 <div className="grid grid-cols-1">
                     <div className="grid grid-cols-1 my-5">

@@ -159,3 +159,8 @@ select {
 .page-link.active {
     background-color: #073e9c;
 }
+
+/* styles.css (o el nombre que prefieras) */
+.myNewselect {
+    border-color: #3490dc; /* Cambia el color según tus preferencias */
+  }

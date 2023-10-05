@@ -99,7 +99,9 @@ const Clasificados = () => {
             )}
 
             <div className="flex flex-col mb-0 justify-start  w-1/6 text-center bg-gradient-to-b from-onahau-300/50 to-onahau-900/80 shadow-xl ml-0 ">
-                <div className="mt-5">
+            
+                
+                <div className="mt-4">
                     <p>
                         <label>Buscar</label>
                     </p>
@@ -157,7 +159,7 @@ const Clasificados = () => {
                 </div>
                 {isAuthenticated && usuario.name && (
                     <button
-                        className="flex justify-center m-auto pt-2  w-40 h-10 rounded-md  my-2 text-white bg-gradient-to-r from-onahau-500 to-onahau-800 transition-colors duration-300 ease-in-out hover:bg-gradient-to-l hover:from-onahau-500 hover:to-onahau-800"
+                        className="flex justify-center m-auto pt-2  w-40 h-10 rounded-md  mt-3 text-white bg-gradient-to-r from-onahau-500 to-onahau-800 transition-colors duration-300 ease-in-out hover:bg-gradient-to-l hover:from-onahau-500 hover:to-onahau-800"
                         onClick={() => {
                             setShow(true);
                         }}
@@ -166,8 +168,16 @@ const Clasificados = () => {
                     </button>
                 )}
             </div>
+
+
+
+
+
             <div className="w-5/6 mt-3 ml-11 ">
                 <div className="min-h-screen">
+                    
+                    <h1 className="offerTitles">Últimas ofertas realizadas:</h1>
+
                     {clasi.map(
                         (clasificado) =>
                             clasificado.deletedAt !== {} && (

@@ -239,6 +239,9 @@ const ModalClasificado = ({ show, handleClose, email }) => {
                                     <p className="errorText">{errors.price}</p>
                                 )}
                         </div>
+
+
+                        
                     </Modal.Body>
 
                     <Modal.Footer>
@@ -251,7 +254,7 @@ const ModalClasificado = ({ show, handleClose, email }) => {
                         </Button>
                         <Button
                             type="submit"
-                            variant="success"
+                            variant="primary"
                             onClick={(event) => {
                                 handleSubmit(values, event);
                             }}

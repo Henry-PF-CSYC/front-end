@@ -8,6 +8,8 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 
+
+
 export const LeftNovedades = () => {
     return (
         <>
@@ -18,6 +20,9 @@ export const LeftNovedades = () => {
         </>
     );
 };
+
+
+
 
 export const RightNovedades = () => {
     const dispatch = useDispatch();
@@ -54,7 +59,7 @@ export const RightNovedades = () => {
 
         return (
             <SwiperSlide key={notice.id}>
-                <div className="bg-white p-10 rounded-lg mx-40 shadow-lg">
+                <div className="bg-white p-10 rounded-lg mx-40 shadow-2xl h-60">
                     <p className="text-[1.2rem] font-normal text-blue-500 m-1">{formattedDate}</p>
                     <h4 className="text-[1.2rem] font-bold text-gray-600 m-1">{notice.title}</h4>
                     <p className="text-[1rem] font-normal text-gray-600 m-1">{notice.description}</p>
@@ -65,15 +70,15 @@ export const RightNovedades = () => {
 
     return (
         <div>
-            <div className="">
-                <div className="flex">
-                    <h3 className="font-fira-sans text-gray-600 text-2xl font-bold decoration-2 h-12">
+            <div className="mt-8 mb-8">
+                <div className="flex mt-7">
+                    <h3 className="font-fira-sans text-gray-600 text-2xl font-bold decoration-2 h-12 ">
                         Novedades / Avisos importantes
                     </h3>
                 </div>
 
                 <Swiper cssMode={true} navigation={true} pagination={true} mousewheel={true} keyboard={true}
-                    modules={[Navigation, Pagination, Mousewheel, Keyboard]} className="mySwiper">
+                    modules={[Navigation, Pagination, Mousewheel, Keyboard]} className="mySwiper mt-3">
                     {slides}
                 </Swiper>
             </div>

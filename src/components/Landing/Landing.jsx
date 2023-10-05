@@ -34,9 +34,7 @@ const Landing = () =>{
       <div className='mx-24 '>
         <RightNovedades/>
       </div>
-      <div className='mx-60'>
-        <Newsletter/>
-      </div>
+    
     </section>
     );
 };

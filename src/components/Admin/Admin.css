@@ -83,3 +83,19 @@
   align-items: center;
   justify-content: center;
 }
+
+
+
+.offerTitles{
+  font-size: 1.3rem;
+  padding: 0.25rem;
+  padding: 0.5rem;
+  padding-left: 1rem;
+  text-align: start;
+  align-items: center;
+  background-color: #c8e5fa;
+  color: #000000b6;
+  margin-left: -2.7rem;
+  width: 100rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
