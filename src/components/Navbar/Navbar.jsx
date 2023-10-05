@@ -8,20 +8,24 @@ import { useDispatch, useSelector } from 'react-redux';
 
 
 const Navbar = () => {
+
     const { loginWithRedirect, isAuthenticated, user, logout } = useAuth0();
     const dispatch = useDispatch();
-    const handleLogout = () => {
+
+
+    const handleLogout = async () => {
         logout({
             returnTo: window.location.origin
         });
-        dispatch(emptyUser());
-        dispatch(emptyCart())
+        dispatch(await emptyUser());
+        dispatch(await emptyCart())
     };
+
     let usuario = useSelector((state) => state.dataUser);
-    const click = () => {
-        console.log("click")
-        dispatch(getUser(user.email));
-        dispatch(getOfferByEmail(user.email));
+
+    const click = async () => {
+        dispatch(getUser(await user.email));
+        dispatch(getOfferByEmail(await user.email));
     };
 
 

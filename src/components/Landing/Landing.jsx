@@ -1,21 +1,36 @@
 import './Landing.css';
 import { useEffect } from "react"
+import { useAuth0 } from '@auth0/auth0-react';
 import { useDispatch } from "react-redux"
-import { getServices } from "../../redux/actions"
-
-import novedades from './componentes/imagenes/novedades.png'
-
+import { getServices, getUser } from "../../redux/actions"
 import { LeftSideHero, RightSideHero } from './componentes/Herocomponent';
 import { Otrosservicios } from './componentes/Otrosservicios';
-import {RightNovedades, LeftNovedades} from './componentes/Novedades';
-import { Newsletter } from './componentes/Newsletter';
+import {RightNovedades } from './componentes/Novedades';
+import novedades from './componentes/imagenes/novedades.png'
+
 
 
 
 const Landing = () =>{
 
-    const dispatch = useDispatch() 
-    useEffect(()=>{ dispatch(getServices())},[] )
+  const { user, isAuthenticated } = useAuth0(); 
+
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(getServices());
+
+        const checkUserStatus = async () => {
+            if (isAuthenticated && user && user.email) {
+                dispatch(getUser(user.email));
+            }
+        };
+
+      checkUserStatus();
+    }, [dispatch, user, isAuthenticated]); 
+
+
+
 
 
     // Renderizado

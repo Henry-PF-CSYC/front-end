@@ -49,7 +49,7 @@ function App() {
   const cartServices = useSelector(state => state.cartServices);
 
   const isAdminRouted = location.pathname.includes('/admin');
-  
+
   const userRole = useSelector(state => state.dataUser.role);
   if (userRole === "banned") {return <Banned/>}
 
