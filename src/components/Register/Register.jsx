@@ -212,7 +212,7 @@ const Register = () => {
                                 <button
                                     type="submit"
                                     variant="success"
-                                    className="btn btn-primary btn-lg"
+                                    className="btn btn-primary btn-lg botonn"
                                 >
                                     Registrarse
                                 </button>

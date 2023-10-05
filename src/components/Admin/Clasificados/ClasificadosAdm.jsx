@@ -6,7 +6,7 @@ import { deleteOffer } from "../../../redux/actions";
 import "./ClasificadosAdm.css";
 
 // Sweetalert
-import Swal from 'sweetalert2'; 
+import Swal from 'sweetalert2';
 import 'sweetalert2/dist/sweetalert2.min.css';
 
 // Loader
@@ -21,7 +21,7 @@ const ClasificadosAdm = () => {
   const dispatch = useDispatch();
 
   // Accedemos al estado global del loader
-  const isLoading = useSelector((state) => state.isLoading); 
+  const isLoading = useSelector((state) => state.isLoading);
 
 
   // Despachamos accion para obtener clasificados
@@ -29,13 +29,13 @@ const ClasificadosAdm = () => {
     const obtenerClasificados = async () => {
       try {
         dispatch(showLoader());
-        await dispatch( getClasificados({ randomParam: Date.now() }));
+        await dispatch( getClasificados({ randomParam: Date.now() }, { user_type : "admin" }));
         dispatch(hideLoader());
   } catch (error) { console.error('Error al obtener clasificados:', error);}};
-    obtenerClasificados()}, [dispatch]); 
-  
+    obtenerClasificados()}, [dispatch]);
+
   // Guardamos clasificados
-  const clasificados = useSelector((state) => state.clasificados); 
+  const clasificados = useSelector((state) => state.clasificados);
 
   // Verificamos si los datos están disponibles antes de mostrar la tabla
   if (!clasificados || clasificados.length === 0) {
@@ -43,11 +43,11 @@ const ClasificadosAdm = () => {
 
 
 
-  
+
   // Definimos una función para asignar clase segun tipo de publicacion
   const getCellStyle = (status) => {
-    if (status === 'compra') {return 'compra-cell'; } 
-    else if (status === 'venta') {return 'venta-cell'; } 
+    if (status === 'compra') {return 'compra-cell'; }
+    else if (status === 'venta') {return 'venta-cell'; }
     else return 'se-busca-cell';}
 
 
@@ -67,7 +67,7 @@ const handleDeleteOffer = (clasificadoId) => {
         dispatch(await deleteOffer(clasificadoId, "hard"));
         dispatch(hideLoader());
         Swal.fire("Clasificado eliminado correctamente", "", "success")
-        .then(() => {window.location.reload(200);});
+        
       } catch (error) {
         Swal.fire("Ha ocurrido un error al eliminar el clasificado", "", "error");
       }
@@ -81,7 +81,6 @@ const handleDeleteOffer = (clasificadoId) => {
     { label: "ID", field: "id", sort: "asc", width: 150 },
     { label: "Usuario", field: "user", sort: "asc", width: 150 },
     { label: "Título", field: "title", sort: "asc", width: 150 },
-    { label: "Descripción", field: "description", sort: "asc", width: 200 },
     { label: "Contacto", field: "contact", sort: "asc", width: 100 },
     { label: "Tipo", field: "type", sort: "asc", width: 100,},
     { label: 'Borrar', field: 'delete', width: 100}
@@ -93,12 +92,11 @@ const handleDeleteOffer = (clasificadoId) => {
     id: clasificado.id,
     user: clasificado.user_id,
     title: clasificado.title,
-    description: clasificado.description,
     contact: clasificado.contact,
     type: <span className={getCellStyle(clasificado.type)}>{clasificado.type}</span>,
     delete: <i onClick={() => handleDeleteOffer(clasificado.id)} class="bi bi-trash3-fill clasificadoDeleteBut"></i>
   }))
-  
+
 
 
 
@@ -112,11 +110,11 @@ const handleDeleteOffer = (clasificadoId) => {
     )}
 
         <h2 id="titleAdminUsers" className="adminTitles">Clasificados activos:</h2>
-        
+
         <MDBDataTable striped bordered small data={{ columns, rows }}  noBottomColumns  responsive
-        infoLabel={['Mostrando del', 'al', 'de', 'clasificados disponibles']}  paginationLabel={"<>"} 
+        infoLabel={['Mostrando del', 'al', 'de', 'clasificados disponibles']}  paginationLabel={"<>"}
         searchLabel="Buscar" entriesLabel="Entradas a desplegar:" className="custom-datatable" info={false}
-        style={{ boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)'}} entries={[8]}/>
+        style={{ boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)'}} entries={[15]}/>
     </div>);
 }
 

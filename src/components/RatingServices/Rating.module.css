@@ -1,0 +1,83 @@
+/* Rating.module.css */
+
+/* Estilo para el cuerpo del modal */
+.ratingModal .modal-body {
+    padding: 1.7rem;
+    background-size: cover;
+}
+
+/* Estilo para el selector de calificación */
+.ratingModal .ratingSelect {
+    width: 100%;
+    padding: 15px;
+    border: 1px solid rgba(234, 234, 234, 0.735);
+    border-radius: 4px;
+    font-size: 16px;
+    color: #0c0c0c;
+}
+
+/* Estilo para el cuadro de comentario */
+.ratingModal .ratingTextarea {
+    width: 100%;
+    height: 100px;
+    padding: 12px;
+    border: 1px solid rgba(234, 234, 234, 0.735);
+    border-radius: 4px;
+    font-size: 16px;
+    color: #333;
+}
+
+/* Estilo para los mensajes de error o respuesta del servidor */
+.ratingModal .errorMessage,
+.ratingModal .serverResponse {
+    margin-top: 10px;
+    font-size: 18px;
+    font-weight: 400;
+    color:red;
+}
+
+/* Estilo para el párrafo que muestra la reseña del usuario */
+.ratingModal .reviewUser {
+    margin-top: 10px;
+    font-size: 16px;
+    color: #161618;
+}
+
+/* Agregado para el contenedor principal del modal */
+.ratingModal {
+    background: #0f0f10df;
+    color: #050505;
+    margin-top: 70px;
+    border-radius: 1rem;
+}
+
+/* Estilo para los detalles de contacto en el modal */
+.ratingModal .ratingForm {
+    font-size: 1.2rem;
+    font-weight: 400;
+}
+
+/* Estilo para el formulario de calificación */
+.ratingModal .ratingForm {
+    padding: 0.8rem;
+    background: rgba(234, 234, 234, 0.735);
+}
+
+/* Estilo para los campos de entrada de calificación y comentario */
+.ratingModal .rating-input {
+    color: black;
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 0.8rem;
+}
+
+/* Estilo para el botón de envío del formulario */
+.ratingModal .ratingSubmit {
+    width: 150px;
+    background-color: #2b3137;
+    font-weight: bold;
+    border-radius: 0.8rem;
+    padding: 0.8rem;
+    transition: 0.4s;
+}

@@ -1,6 +1,8 @@
 import { useEffect } from 'react';
 import { Modal, Button } from 'react-bootstrap';
 import {
+    getClasificados,
+    clearClasificados,
     deleteOffer,
     getOfferByEmail,
     restaurarOffer
@@ -50,6 +52,19 @@ const ModalPublicaciones = ({ show, handleClose, email }) => {
 
     let publicaciones = useSelector((state) => state.publicacionesusuario);
 
+
+      // Despachamos accion para obtener clasificados
+      useEffect(() => {
+        const obtenerClasificados = async () => {
+          try {
+            dispatch(showLoader());
+            dispatch(await getOfferByEmail({ randomParam: Date.now() }, email));
+            dispatch(hideLoader());
+      } catch (error) { console.error('Error al obtener clasificados:', error);}};
+        obtenerClasificados()}, [dispatch]);
+    
+
+
     const deletPublicacion = async (id) => {
         Swal.fire({
             title: '¿Estás seguro de que deseas desactivar este clasificado?',
@@ -59,29 +74,21 @@ const ModalPublicaciones = ({ show, handleClose, email }) => {
             cancelButtonText: 'Cancelar'
         }).then(async (result) => {
             if (result.isConfirmed) {
-                try {
-                    dispatch(showLoader());
-                    dispatch(await deleteOffer(id, type));
-                    dispatch(hideLoader());
-                    Swal.fire(
-                        'Clasificado desactivado correctamente',
-                        '',
-                        'success'
-                    ).then(async () => dispatch(await getOfferByEmail(email)));
-                } catch (error) {
-                    Swal.fire(
-                        'Ha ocurrido un error al eliminar el clasificado',
-                        '',
-                        'error'
-                    );
-                }
-            }
-        });
-    };
+              try {
+        dispatch(showLoader());
+        dispatch(await deleteOffer(id, type))
+        dispatch(hideLoader());
+        Swal.fire("Clasificado desactivado correctamente", "", "success")
+        .then(async () => dispatch(await getOfferByEmail( email)))
 
-    useEffect(() => {
-        dispatch(getOfferByEmail(email));
-    }, []);
+      } catch (error) {
+        Swal.fire("Ha ocurrido un error al eliminar el clasificado", "", "error");
+      }
+    }
+  });
+};
+
+
 
     const restoreOffer = async (id) => {
         Swal.fire({
@@ -92,55 +99,51 @@ const ModalPublicaciones = ({ show, handleClose, email }) => {
             cancelButtonText: 'Cancelar'
         }).then(async (result) => {
             if (result.isConfirmed) {
-                try {
-                    dispatch(showLoader());
-                    dispatch(await restaurarOffer(id));
-                    dispatch(hideLoader());
-                    Swal.fire(
-                        'Clasificado reactivado correctamente',
-                        '',
-                        'success'
-                    ).then(async () => dispatch(await getOfferByEmail(email)));
-                } catch (error) {
-                    Swal.fire(
-                        'Ha ocurrido un error al reactivar el clasificado',
-                        '',
-                        'error'
-                    );
-                }
-            }
-        });
-    };
+              try {
+        dispatch(showLoader());
+        dispatch(await restaurarOffer(id))
+        dispatch(hideLoader());
+        Swal.fire("Clasificado reactivado correctamente", "", "success")
+        .then(async () => dispatch(await getOfferByEmail( email)))
 
-    // Manejando borrado permanente de clasificado
-    const handleDeleteOffer = (clasificadoId) => {
-        Swal.fire({
-            title: '¿Estás seguro de que deseas eliminar este clasificado?',
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonText: 'Sí',
-            cancelButtonText: 'Cancelar'
-        }).then(async (result) => {
-            if (result.isConfirmed) {
-                try {
-                    dispatch(showLoader());
-                    dispatch(await deleteOffer(clasificadoId, 'hard'));
-                    dispatch(hideLoader());
-                    Swal.fire(
-                        'Clasificado eliminado correctamente',
-                        '',
-                        'success'
-                    );
-                } catch (error) {
-                    Swal.fire(
-                        'Ha ocurrido un error al eliminar el clasificado',
-                        '',
-                        'error'
-                    );
-                }
-            }
-        });
-    };
+      } catch (error) {
+        Swal.fire("Ha ocurrido un error al reactivar el clasificado", "", "error");
+      }
+    }
+  });
+};
+   
+
+
+
+ // Manejando borrado permanente de clasificado
+ const handleDeleteOffer = (clasificadoId) => {
+    Swal.fire({
+      title: "¿Estás seguro de que deseas eliminar este clasificado?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonText: "Sí",
+      cancelButtonText: "Cancelar",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        try {
+          dispatch(showLoader());
+          dispatch(await deleteOffer(clasificadoId, "hard"));
+          dispatch(hideLoader());
+          Swal.fire("Clasificado eliminado correctamente", "", "success")
+          .then(async () => dispatch(await clearClasificados( email)))
+          .then(() => {window.location.reload(200);}); 
+
+        } catch (error) {
+          Swal.fire("Ha ocurrido un error al eliminar el clasificado", "", "error");
+        }
+      }
+    });
+  };
+
+
+
+ 
 
     return (
         <>
