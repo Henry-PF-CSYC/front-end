@@ -1,24 +1,22 @@
 /* Modal.css */
 
 /* Estilo para el contenedor principal del modal */
-.modal-card {
+.modal-card11{
   background-color: #FFFFFF;
   display: flex;
   flex-direction: column;
   width: 100%;
   margin: 0;
-  border-radius: 10px;
+  border-radius: 20px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 /* Estilo para el encabezado del modal */
-.modal-header {
+.modal-head11 {
   background-color: #007bff;
   color: #FFFFFF;
   padding: 20px;
   text-align: center;
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
   font-weight: bold;
   font-size: 1.2rem;
   display: flex;
@@ -30,7 +28,8 @@
 .filter-options {
   display: flex;
   align-items: center;
-  margin-left: auto; /* Mueve el menú a la derecha */
+  margin-left: auto; 
+  font-weight: 550;
 }
 
 .filter-options label {
@@ -59,6 +58,7 @@
   background-color: #f8f8f8;
   padding: 20px;
   border-radius: 10px;
+  font-weight: 550;
 }
 
 /* Estilo para las reseñas individuales */
@@ -72,7 +72,7 @@
 /* Estilo para el promedio de calificaciones */
 .average-rating {
   font-weight: bold;
-  font-size: 1.2rem;
+  font-size: 1.3rem;
   margin-bottom: 10px;
   color: #007bff;
 }
@@ -84,3 +84,9 @@
   margin-left: 5px;
   cursor: pointer;
 }
+
+/* Estilo para el detalle dentro de las reseñas */
+.detailP span {
+  font-weight: 500; /* Hace que el contenido del span esté en negrita */
+}
+
