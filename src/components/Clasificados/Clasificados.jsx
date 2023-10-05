@@ -7,15 +7,14 @@ import ModalPublicacion from './ModalPublicacion/ModalPublicacion';
 import { useAuth0 } from '@auth0/auth0-react';
 
 // Loader
-import { Rings } from "react-loader-spinner";
-import { showLoader, hideLoader } from "../../redux/actions";
-
+import { Rings } from 'react-loader-spinner';
+import { showLoader, hideLoader } from '../../redux/actions';
 
 const Clasificados = () => {
     const dispatch = useDispatch();
 
-     // Accedemos al estado global del loader
-     const isLoading = useSelector((state) => state.isLoading); 
+    // Accedemos al estado global del loader
+    const isLoading = useSelector((state) => state.isLoading);
 
     const { isAuthenticated } = useAuth0();
     let usuario = useSelector((state) => state.dataUser);
@@ -35,15 +34,15 @@ const Clasificados = () => {
     const [publicacion, setPublicacion] = useState({});
 
     const handleClose = async () => {
-        dispatch(showLoader)
+        dispatch(showLoader);
         setShow(false);
         setShow2(false);
         dispatch(await loadAdvertisements);
-        dispatch(hideLoader)
+        dispatch(hideLoader);
     };
 
     const loadAdvertisements = async () => {
-        dispatch(showLoader)
+        dispatch(showLoader);
         dispatch(
             await getClasificados({
                 title: title,
@@ -51,8 +50,10 @@ const Clasificados = () => {
                 order: order,
                 orderBy: orderBy,
                 page: currentPage,
-                size: sizeAds}));
-        dispatch(hideLoader)
+                size: sizeAds
+            })
+        );
+        dispatch(hideLoader);
     };
 
     useEffect(() => {
@@ -88,12 +89,14 @@ const Clasificados = () => {
 
     return (
         <div className="flex flex-row font-bold pt-16 font-fontGeneral">
-
             {/*Loader*/}
-                {isLoading && (<div className="loader-overlay">
-                                <div className="loader-container"><Rings color="#007bff" /></div>
-                            </div>)}
-
+            {isLoading && (
+                <div className="loader-overlay">
+                    <div className="loader-container">
+                        <Rings color="#007bff" />
+                    </div>
+                </div>
+            )}
 
             <div className="flex flex-col mb-0 justify-start  w-1/6 text-center bg-gradient-to-b from-onahau-300/50 to-onahau-900/80 shadow-xl ml-0 ">
                 <div className="mt-5">
@@ -152,7 +155,7 @@ const Clasificados = () => {
                         <option value="creation">Fecha</option>
                     </select>
                 </div>
-                {isAuthenticated && (
+                {isAuthenticated && usuario.name && (
                     <button
                         className="flex justify-center m-auto pt-2  w-40 h-10 rounded-md  my-2 text-white bg-gradient-to-r from-onahau-500 to-onahau-800 transition-colors duration-300 ease-in-out hover:bg-gradient-to-l hover:from-onahau-500 hover:to-onahau-800"
                         onClick={() => {
