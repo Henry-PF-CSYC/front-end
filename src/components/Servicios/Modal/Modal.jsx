@@ -41,10 +41,10 @@ const ModalServicio = ({ show, handleClose, service }) => {
                 handleClose();
             }}
         >
-            <div className="modal-card">
-                <div className="modal-header">
+            <div className="modal-card11">
+                <div className="modal-head11">
                     <div>
-                        Opiniones del producto
+                        Opiniones del Producto
                     </div>
                     <div className="filter-options">
                         <select
@@ -54,8 +54,8 @@ const ModalServicio = ({ show, handleClose, service }) => {
                         >
                             <option value="rating=true">Mejor Calificación</option>
                             <option value="date=true">Más Reciente</option>
-                            <option value="rating=false">Menor Calificación</option>
-                            <option value="date=false">Más Antigua</option>
+                            <option value="rating=true&order=asc">Menor Calificación</option>
+                            <option value="date=true&order=asc">Más Antigua</option>
                         </select>
                     </div>
                 </div>
@@ -67,15 +67,15 @@ const ModalServicio = ({ show, handleClose, service }) => {
                         </div>
                     </div>
                     <div>
-                        <div className="comments-section">Opiniones</div>
+                        <div className="comments-section">Opiniones de Usuarios</div>
                         <div>
                             {Array.isArray(reviewsService) && reviewsService.length !== 0
                                 ? (reviewsService.map((review) => (
                                     <div key={review.id} className="review-item">
-                                        <p>Calificación: {review.rating}</p>
-                                        <p>Fecha de publicación: {formatDate(review.createdAt)}</p>
-                                        <p>Comentario: {review.comment}</p>
-                                        <p>Usuario: {review.user_id}</p>
+                                        <p className="detailP"><span>Calificación:</span> {review.rating}</p>
+                                        <p className="detailP"><span>Fecha de publicación:</span> {formatDate(review.createdAt)}</p>
+                                        <p className="detailP"><span>Comentario:</span> {review.comment}</p>
+                                        <p className="detailP"><span>Usuario:</span> {review.user_id}</p>
                                     </div>
                                 )))
                                 : (<p>Aún no tiene Opiniones</p>)
