@@ -45,9 +45,7 @@
 
 /* Agregado para el contenedor principal del modal */
 .ratingModal {
-    background: #0f0f10df;
-    color: #050505;
-    margin-top: 70px;
+    margin-top: 40px;
     border-radius: 1rem;
 }
 
