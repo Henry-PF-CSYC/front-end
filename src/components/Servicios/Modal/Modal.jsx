@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { getRatingService } from '../../../redux/actions';
 import { Modal } from 'react-bootstrap';
@@ -14,11 +14,13 @@ const ModalServicio = ({ show, handleClose, service }) => {
     let cantidadOpiniones = 0;
     let promedioCalificaciones = 0;
 
+    const [filterType, setFilterType] = useState("");
+
     useEffect(() => {
         if (show) {
-            dispatch(getRatingService({ serviceId }));
+            dispatch(getRatingService({ serviceId, filterType }));
         }
-    }, [show, serviceId]);
+    }, [show, serviceId, filterType]);
 
     if (Array.isArray(reviewsService) && reviewsService.length !== 0) {
         sumaCalificaciones = reviewsService.reduce((total, review) => total + parseInt(review.rating), 0);
@@ -40,7 +42,23 @@ const ModalServicio = ({ show, handleClose, service }) => {
             }}
         >
             <div className="modal-card">
-                <div className="modal-header">Opiniones del producto</div>
+                <div className="modal-header">
+                    <div>
+                        Opiniones del producto
+                    </div>
+                    <div className="filter-options">
+                        <select
+                            id="filterType"
+                            value={filterType}
+                            onChange={(e) => setFilterType(e.target.value)}
+                        >
+                            <option value="rating=true">Mejor Calificación</option>
+                            <option value="date=true">Más Reciente</option>
+                            <option value="rating=false">Menor Calificación</option>
+                            <option value="date=false">Más Antigua</option>
+                        </select>
+                    </div>
+                </div>
                 <div className="modal-content-container">
                     <div>
                         <div className="average-rating">
@@ -60,7 +78,7 @@ const ModalServicio = ({ show, handleClose, service }) => {
                                         <p>Usuario: {review.user_id}</p>
                                     </div>
                                 )))
-                                : (<p>Aun no tiene Opiniones</p>)
+                                : (<p>Aún no tiene Opiniones</p>)
                             }
                         </div>
                     </div>
@@ -71,3 +89,4 @@ const ModalServicio = ({ show, handleClose, service }) => {
 };
 
 export default ModalServicio;
+

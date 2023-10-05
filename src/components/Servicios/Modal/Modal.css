@@ -13,15 +13,36 @@
 
 /* Estilo para el encabezado del modal */
 .modal-header {
-  max-width: 100%;
-  background-color: #007bff; /* Color de fondo del encabezado */
-  color: #FFFFFF; /* Color del texto del encabezado */
+  background-color: #007bff;
+  color: #FFFFFF;
   padding: 20px;
   text-align: center;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
   font-weight: bold;
   font-size: 1.2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Estilo para el menú desplegable de filtros */
+.filter-options {
+  display: flex;
+  align-items: center;
+  margin-left: auto; /* Mueve el menú a la derecha */
+}
+
+.filter-options label {
+  margin-right: 10px;
+}
+
+.filter-options select {
+  width: 100%;
+  padding: 5px;
+  border-radius: 4px;
+  font-size: 16px;
+  color: #333;
 }
 
 /* Estilo para el contenedor de contenido del modal */
@@ -35,14 +56,14 @@
 /* Estilo para la sección de comentarios */
 .comments-section {
   max-width: 100%;
-  background-color: #f8f8f8; /* Color de fondo de la sección de comentarios */
+  background-color: #f8f8f8;
   padding: 20px;
   border-radius: 10px;
 }
 
 /* Estilo para las reseñas individuales */
 .review-item {
-  border: 1px solid #dcdcdc; /* Color del borde de las reseñas */
+  border: 1px solid #dcdcdc;
   padding: 20px;
   margin-bottom: 20px;
   border-radius: 10px;
@@ -53,11 +74,13 @@
   font-weight: bold;
   font-size: 1.2rem;
   margin-bottom: 10px;
-  color: #007bff; /* Color del texto del promedio de calificaciones */
+  color: #007bff;
 }
+
+/* Estilo para el ícono de información */
 .info-icon {
-  font-size: 18px; /* Tamaño de fuente del icono (ajusta según tu preferencia) */
-  vertical-align: middle; /* Alinea verticalmente con el texto */
-  margin-left: 5px; /* Espacio a la izquierda del icono (ajusta según tu preferencia) */
-  cursor: pointer; /* Cambia el cursor al pasar por encima del icono */
+  font-size: 18px;
+  vertical-align: middle;
+  margin-left: 5px;
+  cursor: pointer;
 }
