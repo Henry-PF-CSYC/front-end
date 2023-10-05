@@ -4,7 +4,7 @@ import { useAuth0 } from '@auth0/auth0-react';
 import { useDispatch } from "react-redux"
 import { getServices, getUser } from "../../redux/actions"
 import { LeftSideHero, RightSideHero } from './componentes/Herocomponent';
-import { Otrosservicios } from './componentes/Otrosservicios';
+import Otrosservicios from './componentes/Otrosservicios';
 import {RightNovedades } from './componentes/Novedades';
 import novedades from './componentes/imagenes/novedades.png'
 

@@ -62,7 +62,7 @@ const Navbar = () => {
                                 to="/servicios/luz"
                                 style={{ textDecoration: 'none' }}
                             >
-                                <span className="dropdown-item font-fontGeneral text-gray-palido text-[1rem] font-normal">Luz</span>
+                                <span className="dropdown-item font-fontGeneral text-gray-palido text-[1rem] font-normal">Electricidad</span>
                             </Link>
                         </li>
                         <li>

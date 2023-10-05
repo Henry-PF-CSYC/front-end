@@ -28,9 +28,7 @@ const ClasificadosAdm = () => {
   useEffect(() => {
     const obtenerClasificados = async () => {
       try {
-        dispatch(showLoader());
         await dispatch( getClasificados({ randomParam: Date.now() }, { user_type : "admin" }));
-        dispatch(hideLoader());
   } catch (error) { console.error('Error al obtener clasificados:', error);}};
     obtenerClasificados()}, [dispatch]);
 

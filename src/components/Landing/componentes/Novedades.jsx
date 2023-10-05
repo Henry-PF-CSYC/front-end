@@ -2,6 +2,7 @@ import React from "react";
 import { getNotices } from "../../../redux/actions";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
+
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Mousewheel, Keyboard } from 'swiper/modules';
 import 'swiper/css';
