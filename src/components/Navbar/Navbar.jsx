@@ -1,7 +1,7 @@
 import './Navbar.css';
 import { Link } from 'react-router-dom';
 import { useAuth0 } from '@auth0/auth0-react';
-import { emptyUser, getOfferByEmail, getUser } from '../../redux/actions';
+import { emptyCart, emptyUser, getOfferByEmail, getUser } from '../../redux/actions';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -15,6 +15,7 @@ const Navbar = () => {
             returnTo: window.location.origin
         });
         dispatch(emptyUser());
+        dispatch(emptyCart())
     };
     let usuario = useSelector((state) => state.dataUser);
     const click = () => {
