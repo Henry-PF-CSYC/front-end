@@ -67,7 +67,7 @@ const handleDeleteOffer = (clasificadoId) => {
         dispatch(await deleteOffer(clasificadoId, "hard"));
         dispatch(hideLoader());
         Swal.fire("Clasificado eliminado correctamente", "", "success")
-        
+        .then(() => {window.location.reload(200);}); 
       } catch (error) {
         Swal.fire("Ha ocurrido un error al eliminar el clasificado", "", "error");
       }

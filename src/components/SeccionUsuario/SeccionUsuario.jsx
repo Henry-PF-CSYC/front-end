@@ -13,6 +13,15 @@ import {
 import { useAuth0 } from '@auth0/auth0-react';
 import loader from '../../loading.gif';
 
+// Sweetalert
+import Swal from 'sweetalert2';
+import 'sweetalert2/dist/sweetalert2.min.css';
+
+// Loader
+import { Rings } from "react-loader-spinner";
+import { showLoader, hideLoader } from "../../redux/actions"
+
+
 import { Link, useSearchParams } from 'react-router-dom';
 import axios from 'axios';
 
@@ -20,6 +29,9 @@ import ModalPublicaciones from './ModalPublicaciones/ModalPublicaciones';
 
 const SeccionUsuario = () => {
     const dispatch = useDispatch();
+
+    // Accedemos al estado global del loader
+    const isLoading = useSelector((state) => state.isLoading);
 
     const [params] = useSearchParams();
     const [show, setShow] = useState(false);
@@ -100,12 +112,19 @@ const SeccionUsuario = () => {
         setShow2(false);
     };
 
-    const updateUser = (data) => {
-        data.image = user.picture;
-        setDataUser(data);
-        dispatch(putUser(data));
-        setShow(false);
-    };
+    const updateUser = async (data) => {
+        try {
+            dispatch(showLoader());
+            data.image = user.picture;
+            setDataUser(data);
+            dispatch(await putUser(data));
+            dispatch(hideLoader());
+            Swal.fire("Datos modificados correctamente", "", "success")
+            .then(() => {window.location.reload(200);}); 
+        } catch (error) {
+            Swal.fire("Ha ocurrido un error al eliminar el clasificado", "", "error")}
+        }
+  
 
     const seccion = {
         paddingTop: '85px',
@@ -135,6 +154,12 @@ const SeccionUsuario = () => {
 
     return (
         <>
+            
+         {isLoading && (<div className="loader-overlay">
+                        <div className="loader-container"><Rings color="#007bff" /></div>
+                        </div>)}
+
+
             {isAuthenticated ? (
                 <div className="grid grid-cols-12 pt-28 ml-32 mr-10">
                     <div className="col-span-9 grid place-content-center mb-4">
