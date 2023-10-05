@@ -1,7 +1,3 @@
-.navbar {
-    @apply bg-opacity-25 shadow-md backdrop-blur-2xl
-}
-
 .options {
     display: flex;
     flex-direction: row;

@@ -29,7 +29,8 @@ const AboutUs = () => {
         <>
             <Navbar />
             <section className="container flex-column text-white">
-                <h1 className="text-center">Nuestro Equipo</h1>
+                <h1 className="text-center text-[2rem] font-fontGeneral">Nuestro Equipo:</h1>
+                <h1 className="text-center font-normal">¡Estamos orgullosos de presentar nuestra aplicación, la cual sabemos que será de utilidad para muchas personas!</h1>
                 <div>
                     <div className="cards-container">
                         <div className="card-container">
@@ -215,7 +216,7 @@ const AboutUs = () => {
                                     <div className="card-link">
                                         <a
                                             className="me-3"
-                                            href="https://www.linkedin.com/in/maximiliano-marquez-519274183/"
+                                            href="https://www.linkedin.com/in/cristian-barth-570227288"
                                             target="_blank"
                                         >
                                             {linkedin}

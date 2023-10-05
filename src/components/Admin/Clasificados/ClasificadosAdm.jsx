@@ -23,13 +23,13 @@ const ClasificadosAdm = () => {
   // Accedemos al estado global del loader
   const isLoading = useSelector((state) => state.isLoading);
 
-  randomParam: Date.now()
+
   // Despachamos accion para obtener clasificados
   useEffect(() => {
     const obtenerClasificados = async () => {
       try {
         dispatch(showLoader());
-        await dispatch( getClasificados({ user_type : "admin" }));
+        await dispatch( getClasificados({ randomParam: Date.now() }, { user_type : "admin" }));
         dispatch(hideLoader());
   } catch (error) { console.error('Error al obtener clasificados:', error);}};
     obtenerClasificados()}, [dispatch]);
@@ -67,7 +67,7 @@ const handleDeleteOffer = (clasificadoId) => {
         dispatch(await deleteOffer(clasificadoId, "hard"));
         dispatch(hideLoader());
         Swal.fire("Clasificado eliminado correctamente", "", "success")
-      
+        .then(() => {window.location.reload(200);}); 
       } catch (error) {
         Swal.fire("Ha ocurrido un error al eliminar el clasificado", "", "error");
       }

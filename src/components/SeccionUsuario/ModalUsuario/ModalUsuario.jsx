@@ -3,6 +3,10 @@ import validations from '../../Register/validations';
 import '../../Register/Register';
 import { Button, Modal } from 'react-bootstrap';
 
+// Sweetalert
+import Swal from 'sweetalert2';
+import 'sweetalert2/dist/sweetalert2.min.css';
+
 const ModalUsuario = ({ show, handleClose, dataUser, updateUser }) => {
     const {
         values,
@@ -19,8 +23,7 @@ const ModalUsuario = ({ show, handleClose, dataUser, updateUser }) => {
             dni: dataUser.dni,
             email: dataUser.email,
             address: dataUser.address,
-            phone: dataUser.phone,
-            picfile: 'prueba'
+            phone: dataUser.phone
         },
         enableReinitialize: true,
         validationSchema: validations,
@@ -89,29 +92,7 @@ const ModalUsuario = ({ show, handleClose, dataUser, updateUser }) => {
                                 Apellido
                             </label>
                         </div>
-                        <div className="form-floating mb-2">
-                            <p
-                                type="email"
-                                name="email"
-                                className={
-                                    'form-control ' +
-                                    (errors.email && touched.email
-                                        ? 'inputError'
-                                        : '')
-                                }
-                                id="email"
-                                placeholder="name@example.com"
-                                onChange={handleChange}
-                                onBlur={handleBlur}
-                                value={values.email}
-                            />
-                            {errors.email && touched.email && (
-                                <p className="errorText">{errors.email}</p>
-                            )}
-                            <label className="ms-2" htmlFor="floatingEmail">
-                                {dataUser.email}
-                            </label>
-                        </div>
+      
                         <div className="form-floating mb-2">
                             <input
                                 type="number"
@@ -192,7 +173,7 @@ const ModalUsuario = ({ show, handleClose, dataUser, updateUser }) => {
                         >
                             Cancelar
                         </Button>
-                        <Button type="submit" variant="success">
+                        <Button type="submit" variant="primary">
                             Guardar cambios
                         </Button>
                     </Modal.Footer>

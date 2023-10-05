@@ -113,7 +113,7 @@ function Contact() {
                     <p className="contact-detail-options">Administrado por:</p>
                 </div>
 
-                <p>{contactData.name}</p>
+                <p>{contactData.name} {contactData.lastname}</p>
 
                 <div className="d-flex align-items-center m-1">
                     <i class="bi bi-house-check mr-2" style={{ fontSize: '1.9rem' }}></i>

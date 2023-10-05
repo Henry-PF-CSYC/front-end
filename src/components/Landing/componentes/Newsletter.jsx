@@ -2,7 +2,7 @@ import React from "react"
 export const Newsletter = () => {
 return (
 <>
-  <div className='bg-blue-500 flex flex-row rounded-2xl '>
+  <div className='bg-blue-500 flex flex-row rounded-2xl mt-8 mb-8'>
     <div className="w-80 ml-14 my-28">
       <h2 className="font-fira-sans font-bold text-3xl h-28 text-white">Suscribite a nuestro Newsletter</h2>
       <p className="text-sm text-white font-light ">Regístrate y entérate de todas las novedades que CSyC tiene para ti.

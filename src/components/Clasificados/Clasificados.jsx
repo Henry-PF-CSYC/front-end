@@ -6,8 +6,16 @@ import ModalClasificado from './ModalClasificado/ModalClasificado';
 import ModalPublicacion from './ModalPublicacion/ModalPublicacion';
 import { useAuth0 } from '@auth0/auth0-react';
 
+// Loader
+import { Rings } from 'react-loader-spinner';
+import { showLoader, hideLoader } from '../../redux/actions';
+
 const Clasificados = () => {
     const dispatch = useDispatch();
+
+    // Accedemos al estado global del loader
+    const isLoading = useSelector((state) => state.isLoading);
+
     const { isAuthenticated } = useAuth0();
     let usuario = useSelector((state) => state.dataUser);
     const clasi = useSelector((state) => state.clasificados);
@@ -25,15 +33,18 @@ const Clasificados = () => {
 
     const [publicacion, setPublicacion] = useState({});
 
-    const handleClose = () => {
+    const handleClose = async () => {
+        dispatch(showLoader);
         setShow(false);
         setShow2(false);
-        dispatch(loadAdvertisements);
+        dispatch(await loadAdvertisements);
+        dispatch(hideLoader);
     };
 
-    const loadAdvertisements = () => {
+    const loadAdvertisements = async () => {
+        dispatch(showLoader);
         dispatch(
-            getClasificados({
+            await getClasificados({
                 title: title,
                 type: type,
                 order: order,
@@ -42,7 +53,9 @@ const Clasificados = () => {
                 size: sizeAds
             })
         );
+        dispatch(hideLoader);
     };
+
     useEffect(() => {
         dispatch(clearClasificados());
         dispatch(loadAdvertisements);
@@ -75,9 +88,20 @@ const Clasificados = () => {
     }
 
     return (
-        <div className="flex flex-row font-bold pt-20 font-fontGeneral">
-            <div className="flex flex-col mb-0 justify-center w-1/6 text-center bg-gradient-to-b from-onahau-300/50 to-onahau-900/80 shadow-xl ml-0 ">
-                <div>
+        <div className="flex flex-row font-bold pt-16 font-fontGeneral">
+            {/*Loader*/}
+            {isLoading && (
+                <div className="loader-overlay">
+                    <div className="loader-container">
+                        <Rings color="#007bff" />
+                    </div>
+                </div>
+            )}
+
+            <div className="flex flex-col mb-0 justify-start  w-1/6 text-center bg-gradient-to-b from-onahau-300/50 to-onahau-900/80 shadow-xl ml-0 ">
+            
+                
+                <div className="mt-4">
                     <p>
                         <label>Buscar</label>
                     </p>
@@ -133,9 +157,9 @@ const Clasificados = () => {
                         <option value="creation">Fecha</option>
                     </select>
                 </div>
-                {isAuthenticated && (
+                {isAuthenticated && usuario.name && (
                     <button
-                        className="flex justify-center m-auto pt-2  w-40 h-10 rounded-md  my-2 text-white bg-gradient-to-r from-onahau-500 to-onahau-800 transition-colors duration-300 ease-in-out hover:bg-gradient-to-l hover:from-onahau-500 hover:to-onahau-800"
+                        className="flex justify-center m-auto pt-2  w-40 h-10 rounded-md  mt-3 text-white bg-gradient-to-r from-onahau-500 to-onahau-800 transition-colors duration-300 ease-in-out hover:bg-gradient-to-l hover:from-onahau-500 hover:to-onahau-800"
                         onClick={() => {
                             setShow(true);
                         }}
@@ -144,8 +168,16 @@ const Clasificados = () => {
                     </button>
                 )}
             </div>
-            <div className="w-5/6 ">
+
+
+
+
+
+            <div className="w-5/6 mt-3 ml-11 ">
                 <div className="min-h-screen">
+                    
+                    <h1 className="offerTitles">Últimas ofertas realizadas:</h1>
+
                     {clasi.map(
                         (clasificado) =>
                             clasificado.deletedAt !== {} && (

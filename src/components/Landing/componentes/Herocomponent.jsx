@@ -13,13 +13,11 @@ export const LeftSideHero = () => {
                 <p className='font-fontGeneral font-medium text-3xl leading-8  w-auto h-20 text-blue-all tracking-wide '>
                         ayudamos
                     </p>
-                 <p className='font-fira-sans font-normal text-base leading-7 text-gray-600 w-96 h-48'>    
-                        Pasión y compromiso son nuestras prioridades para
-                        ofrecerte servicios de vanguardia. Nuestra experiencia y
-                        métodos innovadores te aseguran resultados excepcionales
-                        y soluciones adaptadas a tus necesidades.
+                 <p className='font-fira-sans font-normal text-base leading-7 text-gray-600 w-96 h-40'>    
+                        Pasión y compromiso son nuestras prioridades para ofrecerte servicios de vanguardia. 
+                        Nuestra experiencia te aseguran resultados excepcionales y soluciones adaptadas a tus necesidades.
                 </p>
-                <button className='bg-blue-500 px-12 py-2 rounded-xl'>
+                <button className='bg-blue-500 px-10 py-2 rounded-xl'>
                     <span className='text-white font-fira-sans'>
                         Ingresar
                     </span>

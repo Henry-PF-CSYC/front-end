@@ -12,7 +12,7 @@ export const IconCart = () => {
 
     return (
         <div className="ms-3">
-            <Button className="py-1 ps-2 pe-3" variant="dark" onClick={openModal}>
+            <Button className="py-1 ps-2 pe-3" variant="primary" onClick={openModal}>
                 <i class="bi bi-cart fs-3"></i>
                 <Badge bg="outline-dark" className="fs-4 ps-1 pe-0">{servicesCart.length}</Badge>
             </Button>

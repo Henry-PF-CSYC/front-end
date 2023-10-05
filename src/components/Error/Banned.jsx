@@ -18,12 +18,14 @@ const Banned = () => {
               obtenerContacto()}, [dispatch]); 
   const contactData = useSelector((state) => state.contactData); 
 
-
   const handleLogout = async () => {
-  await dispatch(await emptyUser());
-  await logout({returnTo: window.location.origin})};
+    await dispatch(await emptyUser());
+    await logout(); 
+    window.location.href = '/'}
   
+ 
 
+  // Renderizado
   return (
     <section className='errorOrBanned'>
 
