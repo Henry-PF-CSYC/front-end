@@ -1,6 +1,8 @@
 import { useEffect } from 'react';
 import { Modal, Button } from 'react-bootstrap';
 import {
+    getClasificados,
+    clearClasificados,
     deleteOffer,
     getOfferByEmail,
     restaurarOffer
@@ -52,7 +54,16 @@ const ModalPublicaciones = ({ show, handleClose, email }) => {
 
     let publicaciones = useSelector((state) => state.publicacionesusuario);
 
-
+      // Despachamos accion para obtener clasificados
+      useEffect(() => {
+        const obtenerClasificados = async () => {
+          try {
+            dispatch(showLoader());
+            dispatch(await getOfferByEmail({ randomParam: Date.now() }, email));
+            dispatch(hideLoader());
+      } catch (error) { console.error('Error al obtener clasificados:', error);}};
+        obtenerClasificados()}, [dispatch]);
+    
 
     const deletPublicacion = async (id) => {
         Swal.fire({
@@ -68,7 +79,7 @@ const ModalPublicaciones = ({ show, handleClose, email }) => {
         dispatch(await deleteOffer(id, type))
         dispatch(hideLoader());
         Swal.fire("Clasificado desactivado correctamente", "", "success")
-        .then(async () => dispatch(await getOfferByEmail(email)))
+        .then(async () => dispatch(await getOfferByEmail( email)))
 
       } catch (error) {
         Swal.fire("Ha ocurrido un error al eliminar el clasificado", "", "error");
@@ -79,9 +90,6 @@ const ModalPublicaciones = ({ show, handleClose, email }) => {
 
 
         
-    useEffect(() => {
-        dispatch(getOfferByEmail(email));
-    }, []);
 
 
     const restoreOffer = async (id) => {
@@ -98,7 +106,7 @@ const ModalPublicaciones = ({ show, handleClose, email }) => {
         dispatch(await restaurarOffer(id))
         dispatch(hideLoader());
         Swal.fire("Clasificado reactivado correctamente", "", "success")
-        .then(async () => dispatch(await getOfferByEmail(email)))
+        .then(async () => dispatch(await getOfferByEmail( email)))
 
       } catch (error) {
         Swal.fire("Ha ocurrido un error al reactivar el clasificado", "", "error");
@@ -125,6 +133,8 @@ const ModalPublicaciones = ({ show, handleClose, email }) => {
           dispatch(await deleteOffer(clasificadoId, "hard"));
           dispatch(hideLoader());
           Swal.fire("Clasificado eliminado correctamente", "", "success")
+          .then(async () => dispatch(await clearClasificados( email)))
+          .then(() => {window.location.reload(200);}); 
 
         } catch (error) {
           Swal.fire("Ha ocurrido un error al eliminar el clasificado", "", "error");
