@@ -43,7 +43,7 @@ const Navbar = () => {
                 <div className="dropdown grid place-content-center">
                     <h5
                         title="Informacion sobre nuestros servicios!"
-                        className="dropdown-toggle font-fontGeneral text-gray-palido text-[1.1rem] font-normal"
+                        className="dropdown-toggle font-fontGeneral text-gray-palido text-[1.1rem] font-normal cursor-pointer hover:underline hover:text-blue-all"
                         data-bs-toggle="dropdown"
                     >
                         Servicios
@@ -117,17 +117,17 @@ const Navbar = () => {
                 </div>
                 <div className='grid place-content-center'>
                     <Link to="/contacto">
-                        <p className='font-fontGeneral text-gray-palido text-[1.1rem] font-normal'>Contacto</p>
+                        <p className='font-fontGeneral text-gray-palido text-[1.1rem] font-normal hover:underline hover:text-blue-all'>Contacto</p>
                     </Link>
                 </div>
                 <div className='grid place-content-center'>
                     <Link to="/clasificados">
-                        <p className='font-fontGeneral text-gray-palido text-[1.1rem] font-normal'>Clasificados</p>
+                        <p className='font-fontGeneral hover:underline hover:text-blue-all text-gray-palido text-[1.1rem] font-normal'>Clasificados</p>
                     </Link>
                 </div>
                 <div className="grid place-content-center">
                     <Link to="/about_us">
-                        <p className='font-fontGeneral text-gray-palido text-[1.1rem] font-normal'>Conocenos</p>
+                        <p className='font-fontGeneral hover:underline hover:text-blue-all text-gray-palido text-[1.1rem] font-normal'>Conocenos</p>
                     </Link>
                 </div>
                 <div className="grid place-content-center pr-10">
@@ -140,7 +140,7 @@ const Navbar = () => {
                                     id="dropdownMenuButton1"
                                     data-bs-toggle="dropdown"
                                     aria-expanded="false"
-                                    className="rounded-2xl"
+                                    className="rounded-2xl hover:"
                                 >
                                     <img
                                         src={user.picture}
@@ -202,7 +202,7 @@ const Navbar = () => {
                                 </ul>
                             </div>
                         ) : (
-                            <button onClick={loginWithRedirect} className='px-4 py-2 rounded-2xl bg-blue-all text-white text-xl font-bold'>Ingresa</button>
+                            <button onClick={loginWithRedirect} className='px-4 py-2 rounded-2xl bg-blue-all text-white text-xl font-bold  hover:bg-blue-600'>Ingresa</button>
                         )
                     }
                 </div>
