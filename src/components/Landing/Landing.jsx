@@ -39,7 +39,7 @@ const Landing = () =>{
     // Renderizado
     return (
     <section className="">
-      <div className="columns-2 pt-36 mx-24 mb-52">
+      <div className="grid grid-flow-dense grid-cols-2 pt-36 mx-24 mb-44">
         <LeftSideHero /> 
         <RightSideHero /> 
       </div>

@@ -5,7 +5,7 @@ const imagen = "https://cdn.discordapp.com/attachments/1148640720442359982/11570
 export const LeftSideHero = () => {
   return (
     <>
-        <div className='mt-14 '>
+        <div className='mt-14 pb-10'>
                  <h1 className='font-fontGeneral font-bold text-4xl leading-10 text-gray-600 w-44 h-16'>CSyC</h1>
                  <p className='font-fontGeneral text-3xl leading-8 text-gray-600 w-425 h-10 font-medium'>
                     Donde todos nos  
@@ -17,7 +17,7 @@ export const LeftSideHero = () => {
                         Pasión y compromiso son nuestras prioridades para ofrecerte servicios de vanguardia. 
                         Nuestra experiencia te aseguran resultados excepcionales y soluciones adaptadas a tus necesidades.
                 </p>
-                <button className='bg-blue-500 px-10 py-2 rounded-xl'>
+                <button className='bg-blue-500  px-10 py-2 rounded-xl  hover:bg-blue-600 duration-400'>
                     <span className='text-white font-fira-sans'>
                         Ingresar
                     </span>

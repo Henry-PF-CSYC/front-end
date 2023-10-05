@@ -71,7 +71,7 @@ export const RightNovedades = () => {
 
     return (
         <div>
-            <div className="mt-8 mb-8">
+            <div className="mt-24 mb-24">
                 <div className="flex mt-7">
                     <h3 className="font-fira-sans text-gray-600 text-2xl font-bold decoration-2 h-12 ">
                         Novedades / Avisos importantes
