@@ -8,7 +8,7 @@ import 'swiper/css/pagination';
 
 export const Otrosservicios = () => {
   const servicios = [
-    { titulo: "Gas Natural", descripcion: "El servicio de gas más seguro y confiable para tu hogar.", type: "gas" },
+    { titulo: "Gas Natural", descripcion: "El servicio de gas más seguro y confiable para tu hogar.", type: "gas",},
     { titulo: "Internet", descripcion: "Conéctate a la velocidad de la luz con nuestro servicio de Internet.", type: "internet" },
     { titulo: "Electricidad", descripcion: "Energía eléctrica eficiente y confiable para tu hogar.", type: "luz" },
     { titulo: "Agua", descripcion: "Disfruta de agua potable de alta calidad en tu hogar.", type: "agua" },
@@ -27,6 +27,7 @@ export const Otrosservicios = () => {
           <p className="font-fira-sans text-gray-600 font-medium text-lg leading-7 h-24">Consulta nuestros servicios más populares:</p>
         </div>
 
+
         {/* Carrusel */}
         <Swiper slidesPerView={2} spaceBetween={20} navigation pagination={{ clickable: true }} className="mySwiper mb-10"
           modules={[Navigation, Pagination, Mousewheel, Keyboard]} cssMode={true} keyboard={true}>
@@ -42,8 +43,8 @@ export const Otrosservicios = () => {
         </Swiper>
 
         <div className="flex flex-row h-14">
-          <p className="font-fira-sans text-gray-600 font-normal text-sm "> Para descubrir aún más, visita este
-            <a className="text-blue-all text-sm" href="/servicios"> link! </a></p>
+          <p className="font-fira-sans text-gray-600 font-normal text-sm "> Tienes dudas o preguntas? Visita este
+            <a className="text-blue-all text-sm" href="/contacto"> link! </a></p>
         </div>
 
         <hr className="border-t-2 text-blue-400 h-10" />

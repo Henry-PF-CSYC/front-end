@@ -29,10 +29,6 @@ const Landing = () =>{
        checkUserStatus();
      }, [dispatch, user, isAuthenticated]); 
 
-    
-    // const dispatch = useDispatch() 
-    // useEffect(()=>{ dispatch(getServices())},[] )
-
 
 
 

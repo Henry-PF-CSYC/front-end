@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 const imagen = "https://cdn.discordapp.com/attachments/1148640720442359982/1157050868714192896/Group_6.png?ex=651c7918&is=651b2798&hm=bdcd685d6bac448fe947a5b8f6747afd5ad5379abe5d31bcc374b19b92859431&"
 
@@ -17,11 +18,11 @@ export const LeftSideHero = () => {
                         Pasión y compromiso son nuestras prioridades para ofrecerte servicios de vanguardia. 
                         Nuestra experiencia te aseguran resultados excepcionales y soluciones adaptadas a tus necesidades.
                 </p>
-                <button className='bg-blue-500  px-10 py-2 rounded-xl  hover:bg-blue-600 duration-400'>
+                <Link to="/servicios"><button className='bg-blue-500  px-10 py-2 rounded-xl  hover:bg-blue-600 duration-400'>
                     <span className='text-white font-fira-sans'>
-                        Ingresar
+                        Explorar
                     </span>
-                </button>
+                </button></Link>
         </div>
     </>
   )
