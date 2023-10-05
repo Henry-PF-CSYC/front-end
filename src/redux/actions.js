@@ -395,13 +395,20 @@ export const getAllRating = () => {
     };
 };
 
-export const getRatingService = ({ serviceId }) => {
-    // la ocupamos para servicios modal que hizo cristian
+export const getRatingService = ({ serviceId, filterType}) => {
     return async (dispatch) => {
         try {
-            const { data } = await axios.get(
-                `https://csyc.onrender.com/reviews/${serviceId}`
-            );
+            let url = `https://csyc.onrender.com/reviews/${serviceId}`;
+            
+            // Agregar parámetros de consulta según el filtro seleccionado
+            if (filterType) {
+                url += `?${filterType}`;
+            }
+            console.log(url)
+
+            const { data } = await axios.get(url);
+            console.log(data)
+
             dispatch({
                 type: GETRATINGBYSERVICE,
                 payload: data
@@ -411,13 +418,13 @@ export const getRatingService = ({ serviceId }) => {
                 type: GETRATINGBYSERVICE,
                 payload: []
             });
-            console.log(error);
+            console.error(error);
         }
     };
 };
 
+
 export const getAllRatingByUser = ({ user_email }) => {
-    // en usuarios para jason , esta maneja todas reviews que hizo el usuario
     return async (dispatch) => {
         try {
             const { data } = await axios.get(

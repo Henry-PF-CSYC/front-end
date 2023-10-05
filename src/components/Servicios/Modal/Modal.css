@@ -1,6 +1,86 @@
-.modal-90w {
-    max-width: 80vw;
-    width: 80vw;
-    /* Other CSS properties and styles can be added here as well */
-  }
-  
+/* Modal.css */
+
+/* Estilo para el contenedor principal del modal */
+.modal-card {
+  background-color: #FFFFFF;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin: 0;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Estilo para el encabezado del modal */
+.modal-header {
+  background-color: #007bff;
+  color: #FFFFFF;
+  padding: 20px;
+  text-align: center;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  font-weight: bold;
+  font-size: 1.2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Estilo para el menú desplegable de filtros */
+.filter-options {
+  display: flex;
+  align-items: center;
+  margin-left: auto; /* Mueve el menú a la derecha */
+}
+
+.filter-options label {
+  margin-right: 10px;
+}
+
+.filter-options select {
+  width: 100%;
+  padding: 5px;
+  border-radius: 4px;
+  font-size: 16px;
+  color: #333;
+}
+
+/* Estilo para el contenedor de contenido del modal */
+.modal-content-container {
+  display: flex;
+  flex-direction: column;
+  margin: 2rem;
+  padding: 20px;
+}
+
+/* Estilo para la sección de comentarios */
+.comments-section {
+  max-width: 100%;
+  background-color: #f8f8f8;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+/* Estilo para las reseñas individuales */
+.review-item {
+  border: 1px solid #dcdcdc;
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 10px;
+}
+
+/* Estilo para el promedio de calificaciones */
+.average-rating {
+  font-weight: bold;
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+  color: #007bff;
+}
+
+/* Estilo para el ícono de información */
+.info-icon {
+  font-size: 18px;
+  vertical-align: middle;
+  margin-left: 5px;
+  cursor: pointer;
+}

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { getRatingService } from '../../../redux/actions';
 import { Modal } from 'react-bootstrap';
@@ -6,50 +6,32 @@ import { Modal } from 'react-bootstrap';
 import "./Modal.css";
 
 const ModalServicio = ({ show, handleClose, service }) => {
-    const cardStyle = {
-        backgroundColor:"white",
-        display:"flex",
-        flexDirection: "column",
-        width:"100%",
-        margin: '0px'
-    };
-    const header={
-        maxWidth: "100%",
-        boxShadow: '4px 4px 4px 1px rgba(0, 0, 0,0.1)',
-        width: "100%",
-        padding: "10px", 
-        textAlign: "center", 
-    };
-    const container={
-        display:"flex",
-        flexDirection: "row",
-        justifyContent: "space-between",
-        margin:"2rem"
-        }
-    const comentarios={
-        maxWidth:"50%"
-    }
-    
-    const dispatch= useDispatch()
-    const reviewsService=useSelector(state=>state.ratingService) //me suscribo a todas las reviews del servicio seleccionado
-    
-    const serviceId=service.id 
-    
+    const dispatch = useDispatch();
+    const reviewsService = useSelector(state => state.ratingService);
+    const serviceId = service.id;
+
     let sumaCalificaciones = 0;
     let cantidadOpiniones = 0;
     let promedioCalificaciones = 0;
-    
+
+    const [filterType, setFilterType] = useState("");
+
     useEffect(() => {
         if (show) {
-            dispatch(getRatingService({ serviceId }));
+            dispatch(getRatingService({ serviceId, filterType }));
         }
-    }, [show, serviceId]);
-    
+    }, [show, serviceId, filterType]);
+
     if (Array.isArray(reviewsService) && reviewsService.length !== 0) {
         sumaCalificaciones = reviewsService.reduce((total, review) => total + parseInt(review.rating), 0);
         cantidadOpiniones = reviewsService.length;
         promedioCalificaciones = Math.round(sumaCalificaciones / cantidadOpiniones);
     }
+
+    const formatDate = (dateString) => {
+        const options = { year: 'numeric', month: 'long', day: 'numeric' };
+        return new Date(dateString).toLocaleDateString('es-ES', options);
+    };
 
     return (
         <Modal
@@ -59,36 +41,52 @@ const ModalServicio = ({ show, handleClose, service }) => {
                 handleClose();
             }}
         >
-            <div style={cardStyle}>
-                <div style={header}>Opiniones del producto</div>
-                <div style={container}>
-                    <div><div>rating</div></div>
+            <div className="modal-card">
+                <div className="modal-header">
                     <div>
-                        <div style={comentarios}>comentarios</div>
-                        <div>
-                        {Array.isArray(reviewsService) && reviewsService.length !== 0 
-                        ? (reviewsService.map((review) => (
-                        <div key={review.id} style={{ border: '1px solid black' }}>
-                        <p>Calificacion: {review.rating}</p>
-                        <p>Fecha: {review.createdAt}</p>
-                        <p>Comentario: {review.comment}</p>
-                        <p>Usuario: {review.user_id}</p>
+                        Opiniones del producto
+                    </div>
+                    <div className="filter-options">
+                        <select
+                            id="filterType"
+                            value={filterType}
+                            onChange={(e) => setFilterType(e.target.value)}
+                        >
+                            <option value="rating=true">Mejor Calificación</option>
+                            <option value="date=true">Más Reciente</option>
+                            <option value="rating=false">Menor Calificación</option>
+                            <option value="date=false">Más Antigua</option>
+                        </select>
+                    </div>
+                </div>
+                <div className="modal-content-container">
+                    <div>
+                        <div className="average-rating">
+                            Nivel de Valoraciones: {promedioCalificaciones}
+                            <span className="info-icon" title="1 Es el menor y 5 es el mayor">&#9432;</span>
                         </div>
-                        )))
-                        : (<p>"Aun no tiene Opiniones"</p>)
-                        }
-                        </div>
+                    </div>
+                    <div>
+                        <div className="comments-section">Opiniones</div>
                         <div>
-                        <div>
-                            Promedio de calificaciones: {promedioCalificaciones}
-                        </div> 
+                            {Array.isArray(reviewsService) && reviewsService.length !== 0
+                                ? (reviewsService.map((review) => (
+                                    <div key={review.id} className="review-item">
+                                        <p>Calificación: {review.rating}</p>
+                                        <p>Fecha de publicación: {formatDate(review.createdAt)}</p>
+                                        <p>Comentario: {review.comment}</p>
+                                        <p>Usuario: {review.user_id}</p>
+                                    </div>
+                                )))
+                                : (<p>Aún no tiene Opiniones</p>)
+                            }
                         </div>
                     </div>
                 </div>
-                
             </div>
         </Modal>
     );
 };
 
 export default ModalServicio;
+
