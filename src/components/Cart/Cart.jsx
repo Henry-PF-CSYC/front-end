@@ -15,7 +15,7 @@ import { useNavigate } from 'react-router-dom';
 
 export const Cart = ({ isTerms }) => {
     let usuario = useSelector((state) => state.dataUser);
-    const { isAuthenticated } = useAuth0();
+    const { isAuthenticated, loginWithRedirect } = useAuth0();
     const navigate = useNavigate();
 
     // Accedemos al estado global del loader
@@ -319,7 +319,14 @@ export const Cart = ({ isTerms }) => {
                                     </div>
                                 ) : (
                                     <button
-                                        onClick={() => navigate('/register')}
+                                        onClick={() => {
+                                            if (isAuthenticated === false) {
+                                                loginWithRedirect();
+                                                console.log('dsad');
+                                            } else if (!usuario.name) {
+                                                navigate('/register');
+                                            }
+                                        }}
                                         type="button"
                                         className="font-fontGeneral text-lg font-normal border-solid border-2 border-blue-all py-2 pl-24 pr-20 bg-white rounded-2xl"
                                     >
