@@ -4,7 +4,7 @@ import { addServiceCart } from '../../../redux/actions'
 import Swal from 'sweetalert2'
 import { Button } from 'react-bootstrap'
 import propano from '../../assets/propane.svg'
-import { useLocation } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 
 
 
@@ -13,6 +13,7 @@ const CardsServicios = ({ imagen, titulo, descripcion, nombreBoton, estado, prec
     const dispatch = useDispatch()
     const serviceCarts = useSelector(state => state.cartServices)
     const { pathname } = useLocation()
+    const navigate = useNavigate()
 
     const iconServices = () => {
         if (type === 'internet') {
@@ -30,6 +31,10 @@ const CardsServicios = ({ imagen, titulo, descripcion, nombreBoton, estado, prec
         } else if (type === 'gas') {
             return (<img src={propano} />)
         }
+    }
+
+    const moreInformation = () => {
+        navigate(`/servicios/${type}`)
     }
 
     const addCart = () => {
@@ -111,7 +116,7 @@ const CardsServicios = ({ imagen, titulo, descripcion, nombreBoton, estado, prec
                 pathname !== '/usuario' && (
                     <div className='grid grid-cols-2 col-span-2'>
                         <div className={` px-4 ${pathname === '/servicios' ? 'h-2' : 'pt-3'}`}>
-                            <Button onClick={estado === 'available' ? addCart : openRating ? openRating : null}
+                            <Button onClick={estado === 'available' ? addCart : moreInformation}
                                 className={`w-full  ${index % 2 === 1 ? 'bg-white' : 'bg-blue-all'} ${pathname === '/servicios' ? 'p-0' : ''} `} >
                                 <p className={`${index % 2 === 1 ? 'text-gray-palido' : 'text-white'} text-2xl font-fontGeneral font-normal `}>{nombreBoton}</p></Button>
                         </div>
