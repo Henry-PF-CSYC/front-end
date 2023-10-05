@@ -75,9 +75,9 @@ const Clasificados = () => {
     }
 
     return (
-        <div className="flex flex-row font-bold pt-20 font-fontGeneral">
-            <div className="flex flex-col mb-0 justify-center w-1/6 text-center bg-gradient-to-b from-onahau-300/50 to-onahau-900/80 shadow-xl ml-0 ">
-                <div>
+        <div className="flex flex-row font-bold pt-16 font-fontGeneral">
+            <div className="flex flex-col mb-0 justify-start  w-1/6 text-center bg-gradient-to-b from-onahau-300/50 to-onahau-900/80 shadow-xl ml-0 ">
+                <div className="mt-5">
                     <p>
                         <label>Buscar</label>
                     </p>
@@ -144,7 +144,7 @@ const Clasificados = () => {
                     </button>
                 )}
             </div>
-            <div className="w-5/6 ">
+            <div className="w-5/6 mt-3 ml-11 ">
                 <div className="min-h-screen">
                     {clasi.map(
                         (clasificado) =>

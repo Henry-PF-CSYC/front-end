@@ -19,8 +19,7 @@ const ModalUsuario = ({ show, handleClose, dataUser, updateUser }) => {
             dni: dataUser.dni,
             email: dataUser.email,
             address: dataUser.address,
-            phone: dataUser.phone,
-            picfile: 'prueba'
+            phone: dataUser.phone
         },
         enableReinitialize: true,
         validationSchema: validations,
