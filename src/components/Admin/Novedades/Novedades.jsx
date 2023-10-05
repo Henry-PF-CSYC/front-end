@@ -59,7 +59,6 @@ const Novedades = () =>{
     const columns = [
       {label: 'ID', field: 'id', sort: 'asc', width: 150},
       {label: 'Title', field: 'title', sort: 'asc', width: 150},
-      {label: 'Description', field: 'desc', sort: 'asc', width: 150},
       {label: 'Date', field: 'date', sort: 'asc', width: 200},
       {label: 'Editar', field: 'edit', width: 100}
     ];
@@ -81,7 +80,6 @@ const Novedades = () =>{
     return {
       id: notice.id,
       title: notice.title,
-      desc: notice.description,
       date: formattedDate,
       edit: <i onClick={() => handleRowClick(notice)} className="bi bi-pencil-square serviceOptionBut"></i>
     };
