@@ -58,7 +58,7 @@ const Rating = ({ show, handleClose, serviceId }) => {
         return;
       }
 
-      const response = await axios.delete(`https://csyc.onrender.com/reviews/${reviewIdToDelete}`);
+      const response = await axios.delete(`/reviews/${reviewIdToDelete}`);
       console.log(response);
       setServerResponse("La reseña se ha eliminado")
       // Después de eliminar la reseña, puedes realizar las acciones necesarias, como cerrar el modal

@@ -54,7 +54,7 @@ export const Cart = ({ isTerms }) => {
 
             // const responseMercado = await axios.post('http://localhost:3001/mercadopago/order', data)
             const responseMercado = await axios.post(
-                'https://csyc.onrender.com/mercadopago/order',
+                '/mercadopago/order',
                 data
             );
 

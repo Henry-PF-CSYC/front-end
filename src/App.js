@@ -39,7 +39,9 @@ import ClasificadosAdm from "./components/Admin/Clasificados/ClasificadosAdm";
 import Novedades from "./components/Admin/Novedades/Novedades";
 import Reseñas from "./components/Admin/Reseñas/Reseñas";
 
-
+import axios from "axios";
+axios.defaults.baseURL = "https://csyc.onrender.com";
+///axios.defaults.baseURL = "http://localhost:3001";
 
 function App() {
 

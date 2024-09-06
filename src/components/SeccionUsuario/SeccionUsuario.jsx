@@ -54,7 +54,7 @@ const SeccionUsuario = () => {
     const allServicesUser = async () => {
         try {
             const servicesUser = await axios.get(
-                `https://csyc.onrender.com/subscription/user/${usuario.email}`
+                `/subscription/user/${usuario.email}`
             );
             setServicios(servicesUser.data.subscriptions);
         } catch (error) {
@@ -73,7 +73,7 @@ const SeccionUsuario = () => {
                 service_ids: ids
             };
             const saveSuscription = await axios.post(
-                'https://csyc.onrender.com/subscription',
+                '/subscription',
                 data
             );
             dispatch(emptyCart());

@@ -48,7 +48,7 @@ function Contact() {
           const dataToSend={ name, phone, message};
             try {
               dispatch(showLoader());
-              const response= await fetch("https://csyc.onrender.com/contact/send", {
+              const response= await fetch("/contact/send", {
                 method: "POST",
                 headers: {"Content-Type": "application/json"},
                 body: JSON.stringify(dataToSend)})

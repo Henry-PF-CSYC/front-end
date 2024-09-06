@@ -41,7 +41,7 @@ export const getUser = (email) => {
     return async (dispatch) => {
         try {
             const { data } = await axios.get(
-                `https://csyc.onrender.com/users/?email=${email}`
+                `/users/?email=${email}`
             );
             dispatch({
                 type: GETUSER,
@@ -56,7 +56,7 @@ export const getUser = (email) => {
 export const getAllUsers = () => {
     return async (dispatch) => {
         try {
-            const { data } = await axios.get(`https://csyc.onrender.com/users`);
+            const { data } = await axios.get(`/users`);
             dispatch({ type: GETALLUSERS, payload: data });
         } catch (error) {
             console.error(`Error encontrando los usuarios`, error);
@@ -67,7 +67,7 @@ export const getAllUsers = () => {
 export const postUser = (user) => {
     return async () => {
         try {
-            await axios.post('https://csyc.onrender.com/users', user);
+            await axios.post('/users', user);
         } catch (error) {
             console.error('Error creando el usuario', error);
             throw error;
@@ -79,7 +79,7 @@ export const putUser = (user) => {
     return async () => {
         try {
             await axios.put(
-                `https://csyc.onrender.com/users/${user.email}`,
+                `/users/${user.email}`,
                 user
             );
             console.log('me cree');
@@ -100,7 +100,7 @@ export const getServices = () => {
     return async (dispatch) => {
         try {
             const response = await axios.get(
-                'https://csyc.onrender.com/services?size=9999'
+                '/services?size=9999'
             );
             const allservices = response.data.service;
             dispatch({
@@ -144,7 +144,7 @@ export const getServicesPaginated = ({
 
             // Construye la URL de la solicitud con las consultas válidas.
 
-            const url = `https://csyc.onrender.com/services?${queryString}`;
+            const url = `/services?${queryString}`;
             console.log(url);
             const response = await axios.get(url);
             const services = response.data.service;
@@ -172,7 +172,7 @@ export const getServicesPaginated = ({
 export const addService = (service) => {
     return async () => {
         try {
-            await axios.post('https://csyc.onrender.com/services', service);
+            await axios.post('/services', service);
         } catch (error) {
             alert('Error al crear el servicio', error);
         }
@@ -183,7 +183,7 @@ export const updateService = (id, service) => {
     return async () => {
         try {
             await axios.put(
-                `https://csyc.onrender.com/services/${id}`,
+                `/services/${id}`,
                 service
             );
         } catch (error) {
@@ -196,7 +196,7 @@ export const deleteService = (id) => {
     return async () => {
         try {
             await axios.delete(
-                `https://csyc.onrender.com/services/delete/${id}`
+                `/services/delete/${id}`
             );
         } catch (error) {
             alert('Error al borrar el servicio', error);
@@ -247,7 +247,7 @@ export const getClasificados = ({
             }
 
             const queryAdsString = new URLSearchParams(queriesAds).toString();
-            const url = `https://csyc.onrender.com/offer?${queryAdsString}`;
+            const url = `/offer?${queryAdsString}`;
             console.log(url);
             const response = await axios.get(url);
             const offer = response.data.offers;
@@ -276,7 +276,7 @@ export const getClasificados = ({
 export const postClasificados = (clasificado) => {
     return async () => {
         try {
-            await axios.post('https://csyc.onrender.com/offer/', clasificado);
+            await axios.post('/offer/', clasificado);
         } catch (error) {
             console.log(clasificado);
             console.error('Error al crear la publicacion', error);
@@ -288,7 +288,7 @@ export const getOfferByEmail = (email) => {
     return async (dispatch) => {
         try {
             const { data } = await axios.get(
-                `https://csyc.onrender.com/offer/${email}`
+                `/offer/${email}`
             );
             dispatch({
                 type: GETOFFERBYEMAIL,
@@ -310,7 +310,7 @@ export const deleteOffer = (id, type) => {
     return async () => {
         try {
             await axios.delete(
-                `https://csyc.onrender.com/offer/${id}?type=${type}`
+                `/offer/${id}?type=${type}`
             );
         } catch (error) {
             console.error(`Error al borrar la publicacion`, error);
@@ -321,7 +321,7 @@ export const deleteOffer = (id, type) => {
 export const restaurarOffer = (id) => {
     return async () => {
         try {
-            await axios.put(`https://csyc.onrender.com/offer/${id}`);
+            await axios.put(`/offer/${id}`);
         } catch (error) {
             console.error(`Error al restaurar la publicacion`, error);
         }
@@ -356,7 +356,7 @@ export const raitingPost = ({ rating, comment, user_email, serviceId }) => {
         try {
             const ratingData = { rating, comment, user_email, serviceId };
             const response = await axios.post(
-                `https://csyc.onrender.com/reviews`,
+                `/reviews`,
                 ratingData
             );
 
@@ -383,7 +383,7 @@ export const getAllRating = () => {
     return async (dispatch) => {
         try {
             const { data } = await axios.get(
-                `https://csyc.onrender.com/reviews`
+                `/reviews`
             );
             dispatch({
                 type: GETALLRATING,
@@ -398,7 +398,7 @@ export const getAllRating = () => {
 export const getRatingService = ({ serviceId, filterType}) => {
     return async (dispatch) => {
         try {
-            let url = `https://csyc.onrender.com/reviews/${serviceId}`;
+            let url = `/reviews/${serviceId}`;
             
             // Agregar parámetros de consulta según el filtro seleccionado
             if (filterType) {
@@ -428,7 +428,7 @@ export const getAllRatingByUser = ({ user_email }) => {
     return async (dispatch) => {
         try {
             const { data } = await axios.get(
-                `https://csyc.onrender.com/reviews/byUser/${user_email}`
+                `/reviews/byUser/${user_email}`
             );
             dispatch({
                 type: GETALLRATINGBYUSER,
@@ -444,7 +444,7 @@ export const getRatingById = ({ idReview }) => {
     return async (dispatch) => {
         try {
             const { data } = await axios.get(
-                `https://csyc.onrender.com/reviews/${idReview}`
+                `/reviews/${idReview}`
             );
             dispatch({
                 type: GETRATINGBYID,
@@ -459,7 +459,7 @@ export const getRatingByIdService = ({ serviceId, user_email }) => {
     return async (dispatch) => {
         try {
             const { data } = await axios.get(
-                `https://csyc.onrender.com/reviews/user_service/${user_email}?service_id=${serviceId}`
+                `/reviews/user_service/${user_email}?service_id=${serviceId}`
             );
             console.log(data);
             dispatch({
@@ -479,7 +479,7 @@ export const getRatingByIdService = ({ serviceId, user_email }) => {
 export const deleteRatingById = (idReview) => {
     return async () => {
         try {
-            await axios.delete(`https://csyc.onrender.com/reviews/${idReview}`);
+            await axios.delete(`/reviews/${idReview}`);
         } catch (error) {
             console.log(error);
         }
@@ -491,7 +491,7 @@ export const getNotices = () => {
     return async (dispatch) => {
         try {
             const { data } = await axios.get(
-                `https://csyc.onrender.com/notices`
+                `/notices`
             );
             dispatch({
                 type: GETNOTICES,
@@ -506,7 +506,7 @@ export const getNotices = () => {
 export const editNotice = (id, notice) => {
     return async () => {
         try {
-            await axios.put(`https://csyc.onrender.com/notices/${id}`, notice);
+            await axios.put(`/notices/${id}`, notice);
         } catch (error) {
             alert('Error al editar el aviso', error);
         }
@@ -516,7 +516,7 @@ export const editNotice = (id, notice) => {
 export const addNotice = (notice) => {
     return async () => {
         try {
-            await axios.post('https://csyc.onrender.com/notices', notice);
+            await axios.post('/notices', notice);
         } catch (error) {
             alert('Error al crear el aviso', error);
         }
@@ -526,7 +526,7 @@ export const addNotice = (notice) => {
 export const deleteNotice = (id) => {
     return async () => {
         try {
-            await axios.delete(`https://csyc.onrender.com/notices/${id}`);
+            await axios.delete(`/notices/${id}`);
         } catch (error) {
             alert('Error al borrar el aviso', error);
         }
@@ -538,7 +538,7 @@ export const createOrDesignAdmin = (userEmail, type) => {
     return async () => {
         try {
             await axios.put(
-                `https://csyc.onrender.com/users/admin/${userEmail}?type=${type}`
+                `/users/admin/${userEmail}?type=${type}`
             );
         } catch (error) {
             console.log('Error al designar como administrador', error);
@@ -550,7 +550,7 @@ export const designNewContactEmail = (email) => {
     return async () => {
         try {
             await axios.put(
-                `https://csyc.onrender.com/contact/set_target/${email}`
+                `/contact/set_target/${email}`
             );
         } catch (error) {
             console.log(
@@ -565,7 +565,7 @@ export const banOrUnbanUser = (email, type) => {
     return async () => {
         try {
             await axios.put(
-                `https://csyc.onrender.com/users/ban/${email}?type=${type}`
+                `/users/ban/${email}?type=${type}`
             );
         } catch (error) {
             console.log('Error al cambiar el estado del usuario', error);
@@ -577,7 +577,7 @@ export const getContactData = () => {
     return async (dispatch) => {
         try {
             const { data } = await axios.get(
-                `https://csyc.onrender.com/users/contact_admin`
+                `/users/contact_admin`
             );
             dispatch({
                 type: GETCONTACTDATA,
